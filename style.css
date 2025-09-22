@@ -83,7 +83,7 @@ header.topbar {
 
 /* Navigation */
 .nav-toggle {
-  display: none; /* Hidden by default, shown in media query */
+  display: block; /* Always show the toggle button */
   background: none;
   border: 1px solid var(--border);
   color: #fff;
@@ -91,13 +91,42 @@ header.topbar {
   padding: .3rem .6rem;
   border-radius: 8px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 1001; /* Ensure it's above the nav list */
 }
 
-nav ul { list-style: none; display: flex; gap: .75rem; margin: 0; padding: 0; }
+nav { position: relative; } /* Needed for positioning the ul */
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  position: absolute;
+  top: calc(100% + .5rem); /* Position below the header */
+  right: 0;
+  width: min(100vw - 2rem, 250px);
+  flex-direction: column;
+  gap: .25rem;
+  background: rgba(10,10,10,0.9);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: .75rem;
+  transform: translateY(-10px) scale(0.95);
+  opacity: 0;
+  transition: transform .2s ease, opacity .2s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+nav ul.is-open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+
 nav a {
-  color: #fff; text-decoration: none; font-size: .95rem;
-  padding: .45rem .7rem; border: 1px solid var(--border); border-radius: 999px;
+  display: block;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: .95rem;
+  padding: .45rem .7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
   transition: background-color .2s ease, transform .2s ease;
 }
 
@@ -191,28 +220,7 @@ footer small { display: block; text-align: center; }
   h1 { font-size: clamp(1.4rem, 6vw, 2rem); }
   h2.section-title { font-size: clamp(1rem, 4.5vw, 1.25rem); }
 
-  /* Nav: dropdown menu */
-  .nav-toggle { display: block; }
-  nav ul {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: min(100% - 2rem, 300px);
-    flex-direction: column;
-    align-items: stretch;
-    gap: .25rem;
-    background: rgba(10,10,10,0.9);
-    backdrop-filter: blur(5px);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: .75rem;
-    transform: translateY(-10px) scale(0.95);
-    opacity: 0;
-    transition: transform .2s ease, opacity .2s ease;
-    pointer-events: none;
-  }
-  nav ul.is-open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
-  nav a { display: block; text-align: center; border-radius: 8px; }
+  /* Nav: No changes needed as dropdown is now default */
 
   /* Socials: stack and make links easier to tap */
   .socials { flex-direction: column; gap: .6rem; align-items: center; }
