@@ -5,17 +5,28 @@ document.getElementById('y').textContent = new Date().getFullYear();
 const navToggle = document.querySelector('.nav-toggle');
 const navList = document.querySelector('#primary-nav-list');
 
+const closeNav = () => {
+  navList.classList.remove('is-open');
+  navToggle.setAttribute('aria-expanded', 'false');
+};
+
 navToggle.addEventListener('click', () => {
   const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
   navToggle.setAttribute('aria-expanded', !isExpanded);
   navList.classList.toggle('is-open');
 });
 
-// Close mobile menu when a link is clicked
+// Close nav when a link inside is clicked
 navList.addEventListener('click', (e) => {
   if (e.target.tagName === 'A') {
-    navList.classList.remove('is-open');
-    navToggle.setAttribute('aria-expanded', 'false');
+    closeNav();
+  }
+});
+
+// Close nav when clicking outside of it
+document.addEventListener('click', (e) => {
+  if (navList.classList.contains('is-open') && !navList.contains(e.target) && !navToggle.contains(e.target)) {
+    closeNav();
   }
 });
 

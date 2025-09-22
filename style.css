@@ -103,6 +103,7 @@ nav ul {
   top: calc(100% + .5rem); /* Position below the header */
   right: 0;
   width: min(100vw - 2rem, 250px);
+  display: flex;
   flex-direction: column;
   gap: .25rem;
   background: rgba(10,10,10,0.9);
