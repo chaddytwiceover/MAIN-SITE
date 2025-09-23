@@ -1,52 +1,70 @@
+<!-- /index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CHADDYTWICEOVER</title>
 
-  <!-- Fonts & Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Icons (optional but useful) -->
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- System font stack (SF on Apple) -->
+  <style>/* Preload minimal to avoid FOUT; full styles in style.css */html{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;}</style>
+
+  <!-- Icons (keep if you use the <i> icons below) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="scanlines" aria-hidden="true"></div>
-  <div class="site">
-    <!-- Topbar -->
-    <header class="topbar">
-      <div class="wrap inner">
-        <a class="brand" href="#about" aria-label="CHADDYTWICEOVER Home">
-          <span class="glitch" data-text="CHADDYTWICEOVER">CHADDYTWICEOVER</span>
-        </a>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav-list">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="wrap inner">
+      <a class="brand" href="#home" aria-label="CHADDYTWICEOVER Home">
+        <span class="logo">CHADDYTWICEOVER</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav-list" aria-label="Toggle navigation">
           <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
-        <nav aria-label="Primary">
-          <ul id="primary-nav-list">
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#socials">Socials</a></li>
-            <li><a href="#lab">Lab</a></li>
-          </ul>
-        </nav>
+        <ul id="primary-nav-list" class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#socials">Socials</a></li>
+          <li><a href="#lab">Lab</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero" aria-label="Intro">
+    <div class="wrap">
+      <h1 class="headline">Building clean, human-friendly web things.</h1>
+      <p class="kicker">Student developer crafting a focused portfolio hub for experiments, links, and notes.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#lab">Explore the Lab</a>
+        <a class="btn btn-ghost" href="#socials">Say hello</a>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <!-- (Hero removed for minimalist layout) -->
-
-    <!-- About Me -->
+  <main id="main" tabindex="-1">
+    <!-- About -->
     <section id="about" aria-labelledby="about-title">
       <div class="wrap">
-        <h2 id="about-title" class="section-title">About Me</h2>
-        <div class="about">
-          <div class="bio">
-            <p class="lead"> web dev student & this site is my central hub for portfolio pieces, experiments, social links, and my thoughts.</p>
-            
-          </div>
-          
+        <h2 id="about-title" class="section-title">About</h2>
+        <div class="grid one">
+          <article class="card">
+            <p class="lead">
+              Web dev student; this site is my central hub for portfolio pieces, experiments, social links, and thoughts.
+            </p>
+          </article>
         </div>
       </div>
     </section>
@@ -55,32 +73,273 @@
     <section id="socials" aria-labelledby="socials-title">
       <div class="wrap">
         <h2 id="socials-title" class="section-title">Socials</h2>
-        <p class="lead">Follow along or say hi!</p>
-        <div class="socials">
-          <a class="sub-link" href="https://social.chaddytwiceover.com"><i class="fa-solid fa-earth-americas" aria-hidden="true"></i> social.chaddytwiceover.com</a>
+        <p class="lead">Follow along or say hi.</p>
+        <div class="pills">
+          <a class="pill" href="https://social.chaddytwiceover.com">
+            <i class="fa-solid fa-earth-americas" aria-hidden="true"></i>
+            social.chaddytwiceover.com
+          </a>
         </div>
-        
       </div>
     </section>
 
-    <!-- Lab (external subdomain link) -->
+    <!-- Lab -->
     <section id="lab" aria-labelledby="lab-title">
       <div class="wrap">
         <h2 id="lab-title" class="section-title">Lab</h2>
         <p class="lead">Experiments and projects.</p>
-        <div class="socials">
-          <a class="sub-link" href="https://lab.chaddytwiceover.com"><i class="fa-solid fa-flask" aria-hidden="true"></i> lab.chaddytwiceover.com</a>
+        <div class="grid cards">
+          <a class="card link-card" href="https://lab.chaddytwiceover.com" aria-label="Open lab.chaddytwiceover.com">
+            <div class="card-body">
+              <div class="eyebrow">External</div>
+              <div class="card-title">lab.chaddytwiceover.com</div>
+              <div class="chevron" aria-hidden="true">↗</div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
+  </main>
 
-    <footer>
-      <div class="wrap">
-        <small>© <span id="y"></span> CHADDYTWICEOVER — Built with neon & glitches</small>
-      </div>
-    </footer>
-  </div>
+  <footer class="site-footer">
+    <div class="wrap">
+      <small>© <span id="y"></span> CHADDYTWICEOVER · Designed with care.</small>
+    </div>
+  </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
+
+<!-- /style.css -->
+:root{
+  /* Core tokens (light defaults) */
+  --bg: #ffffff;
+  --text: #1d1d1f;
+  --text-dim: #6e6e73;
+  --border: rgba(0,0,0,0.08);
+  --card: #ffffff;
+  --elev: rgba(0,0,0,0.04);
+  --blue: #0071e3; /* Apple link blue */
+  --blue-press: #0062c9;
+
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.06), 0 1px 1px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 10px rgba(0,0,0,.08);
+
+  --wrap: min(100% - 2rem, 1080px);
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0a0a0a;
+    --text: #f5f5f7;
+    --text-dim: #a1a1a6;
+    --border: rgba(255,255,255,0.08);
+    --card: #111112;
+    --elev: rgba(255,255,255,0.04);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.5), 0 1px 1px rgba(0,0,0,.3);
+    --shadow-md: 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+
+/* Base */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, "Apple Color Emoji","Segoe UI Emoji";
+  text-rendering:optimizeLegibility;
+}
+.wrap{width:var(--wrap); margin-inline:auto}
+.section-title{margin:0 0 1rem; font-weight:700; letter-spacing:-.02em; font-size:clamp(1.25rem,2.3vw,1.6rem)}
+.lead{color:var(--text-dim); margin:0}
+
+/* Skip link */
+.skip-link{
+  position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+}
+.skip-link:focus{
+  position:fixed; inset:1rem auto auto 1rem; width:auto; height:auto;
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius-md);
+  padding:.5rem .75rem; z-index:9999;
+}
+
+/* Topbar */
+.topbar{
+  position:sticky; top:0; z-index:1000;
+  backdrop-filter:saturate(1.8) blur(14px);
+  background:color-mix(in oklab, var(--bg), transparent 20%);
+  border-bottom:1px solid var(--border);
+}
+.topbar .inner{display:flex; align-items:center; justify-content:space-between; padding:.75rem 0}
+.brand{color:var(--text); text-decoration:none; font-weight:700; letter-spacing:-.02em}
+.logo{font-size:1.1rem}
+
+.nav{position:relative}
+.nav-toggle{
+  display:none; border:1px solid transparent; background:transparent; color:var(--text-dim);
+  padding:.5rem .65rem; border-radius:12px; cursor:pointer;
+}
+.nav-toggle:hover{background:var(--elev); color:var(--text)}
+.nav-list{display:flex; gap:.25rem; list-style:none; margin:0; padding:0}
+.nav-list a{
+  display:block; padding:.5rem .8rem; text-decoration:none; color:var(--text-dim);
+  border-radius:12px; transition:background-color .2s ease,color .2s ease;
+}
+.nav-list a:hover{background:var(--elev); color:var(--text)}
+.nav-list a.active{color:var(--text); background:transparent; font-weight:600}
+
+@media (max-width: 760px){
+  .nav-toggle{display:inline-block}
+  .nav-list{
+    position:absolute; right:0; top:calc(100% + .5rem);
+    width:min(92vw, 320px);
+    flex-direction:column; gap:.25rem;
+    background:var(--card); border:1px solid var(--border); border-radius:16px;
+    padding:.5rem; box-shadow:var(--shadow-md);
+    opacity:0; transform:translateY(-8px) scale(.98); pointer-events:none; transition:.2s ease;
+  }
+  .nav-list.is-open{opacity:1; transform:translateY(0) scale(1); pointer-events:auto}
+}
+
+/* Hero */
+.hero{padding: clamp(3.5rem, 7vw, 7rem) 0}
+.headline{
+  margin:0;
+  font-weight:800;
+  letter-spacing:-.035em;
+  font-size:clamp(1.75rem,5.6vw,3.25rem);
+  line-height:1.1;
+  text-wrap:balance;
+}
+.kicker{max-width:60ch; margin:.9rem 0 0}
+.cta{display:flex; gap:.75rem; margin-top:1.25rem}
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding:.7rem 1rem; border-radius:999px; text-decoration:none; font-weight:600; font-size:.95rem;
+  border:1px solid transparent; transition:filter .2s ease, transform .04s ease, background-color .2s ease;
+}
+.btn:active{transform:scale(.98)}
+.btn-primary{color:#fff; background:var(--blue); border-color:color-mix(in oklab, var(--blue), #000 8%)}
+.btn-primary:hover{filter:brightness(1.05); background:var(--blue-press)}
+.btn-ghost{color:var(--text); background:transparent; border-color:var(--border)}
+.btn-ghost:hover{background:var(--elev)}
+
+/* Sections */
+section{padding: clamp(2.5rem, 5vw, 4rem) 0; border-top:1px solid var(--border)}
+.grid{display:grid; gap:1rem}
+.grid.one{grid-template-columns:1fr}
+.grid.cards{grid-template-columns:repeat(auto-fit, minmax(260px,1fr))}
+@media (min-width:900px){.grid.one{grid-template-columns:1fr}}
+
+.card{
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius-xl); padding:1.25rem; box-shadow:var(--shadow-sm)
+}
+.link-card{ text-decoration:none; color:inherit; display:block; }
+.link-card:focus-visible{outline:2px solid var(--blue); outline-offset:3px; border-radius:var(--radius-xl)}
+.card-body{display:flex; align-items:center; gap:1rem; justify-content:space-between}
+.card-title{font-weight:700; letter-spacing:-.015em}
+.eyebrow{font-size:.8rem; color:var(--text-dim)}
+.chevron{font-size:1.25rem; opacity:.6}
+
+/* Pills */
+.pills{display:flex; flex-wrap:wrap; gap:.6rem; align-items:center}
+.pill{
+  display:inline-flex; align-items:center; gap:.6rem; padding:.6rem .9rem; border-radius:999px;
+  text-decoration:none; color:var(--text); background:var(--card); border:1px solid var(--border)
+}
+.pill:hover{background:var(--elev)}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--border); padding:2.5rem 0; color:var(--text-dim); text-align:center}
+
+/* Focus */
+a:focus-visible, button:focus-visible{outline:2px solid var(--blue); outline-offset:2px; border-radius:10px}
+
+/* Motion-safe */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; scroll-behavior:auto!important}
+}
+
+/* Utilities */
+.hidden{display:none!important}
+
+/* /script.js */
+(() => {
+  // Year
+  const y = document.getElementById('y');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // Mobile nav
+  const toggle = document.querySelector('.nav-toggle');
+  const list = document.getElementById('primary-nav-list');
+
+  const closeMenu = () => {
+    if (!list) return;
+    list.classList.remove('is-open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  const openMenu = () => {
+    if (!list) return;
+    list.classList.add('is-open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+  };
+
+  if (toggle && list) {
+    toggle.addEventListener('click', () => {
+      const isOpen = list.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close on outside click / escape
+    document.addEventListener('click', (e) => {
+      if (!list.classList.contains('is-open')) return;
+      const nav = document.querySelector('.nav');
+      if (nav && !nav.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Close on link click
+    list.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', closeMenu)
+    );
+  }
+
+  // Active section highlight
+  const links = Array.from(document.querySelectorAll('.nav-list a'));
+  const map = new Map();
+  links.forEach(a => {
+    const id = a.getAttribute('href')?.replace('#','');
+    const el = id ? document.getElementById(id) : null;
+    if (id && el) map.set(el, a);
+  });
+
+  const setActive = (aEl) => {
+    links.forEach(l => l.classList.toggle('active', l === aEl));
+  };
+
+  if (map.size) {
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) {
+        const a = map.get(visible.target);
+        if (a) setActive(a);
+      }
+    }, { rootMargin: '-20% 0px -70% 0px', threshold: [0, .25, .5, .75, 1] });
+    map.forEach((_, section) => io.observe(section));
+  }
+})();
