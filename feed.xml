@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>CHADDYTWICEOVER</title>
+  <link>https://chaddytwiceover.com</link>
+  <description>A central hub for my portfolio pieces, experiments, social links, and thoughts.</description>
+  <language>en-us</language>
+  <lastBuildDate>Tue, 23 Sep 2025 02:57:04 GMT</lastBuildDate>
+  <atom:link href="https://chaddytwiceover.com/feed.xml" rel="self" type="application/rss+xml" />
+
+  <item>
+    <title>About Me</title>
+    <link>https://chaddytwiceover.com#about</link>
+    <guid isPermaLink="true">https://chaddytwiceover.com#about</guid>
+    <pubDate>Tue, 23 Sep 2025 02:57:04 GMT</pubDate>
+    <description><![CDATA[A section about me from my portfolio site.]]></description>
+  </item>
+
+  <item>
+    <title>Socials</title>
+    <link>https://chaddytwiceover.com#socials</link>
+    <guid isPermaLink="true">https://chaddytwiceover.com#socials</guid>
+    <pubDate>Tue, 23 Sep 2025 02:57:04 GMT</pubDate>
+    <description><![CDATA[Links to my social media profiles.]]></description>
+  </item>
+
+  <item>
+    <title>Lab</title>
+    <link>https://chaddytwiceover.com#lab</link>
+    <guid isPermaLink="true">https://chaddytwiceover.com#lab</guid>
+    <pubDate>Tue, 23 Sep 2025 02:57:04 GMT</pubDate>
+    <description><![CDATA[A collection of my experiments and projects.]]></description>
+  </item>
+
+</channel>
+</rss>
