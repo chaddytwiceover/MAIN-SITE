@@ -99,24 +99,24 @@ header.topbar {
 
 .brand {
   display: inline-block;
-  color: var(--color-neon-cyan);
+  color: #00ffff;
   text-decoration: none;
   font-weight: 600;
   font-size: 1.25rem;
-  text-shadow: var(--glow-cyan);
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
   transition: all 0.3s ease;
 }
 
 .brand:hover {
-  color: var(--color-neon-pink);
-  text-shadow: var(--glow-pink);
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff, 0 0 15px #00ffff, 0 0 25px #00ffff;
 }
 
 /* Glitch effect for the brand */
 .glitch {
   position: relative;
-  color: var(--color-neon-cyan);
-  text-shadow: var(--glow-cyan);
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
   animation: neon-pulse 2s ease-in-out infinite alternate;
 }
 
@@ -180,6 +180,40 @@ header.topbar {
       0 0 5px #00ffff,
       0 0 8px #00ffff,
       0 0 12px #00ffff;
+  }
+}
+
+@keyframes neon-pulse-orange {
+  from {
+    text-shadow: 
+      0 0 5px #ff7f00,
+      0 0 10px #ff7f00,
+      0 0 15px #ff7f00,
+      0 0 20px #ff7f00;
+  }
+  to {
+    text-shadow: 
+      0 0 2px #ff7f00,
+      0 0 5px #ff7f00,
+      0 0 8px #ff7f00,
+      0 0 12px #ff7f00;
+  }
+}
+
+@keyframes neon-pulse-pink {
+  from {
+    text-shadow: 
+      0 0 5px #ff10f0,
+      0 0 10px #ff10f0,
+      0 0 15px #ff10f0,
+      0 0 20px #ff10f0;
+  }
+  to {
+    text-shadow: 
+      0 0 2px #ff10f0,
+      0 0 5px #ff10f0,
+      0 0 8px #ff10f0,
+      0 0 12px #ff10f0;
   }
 }
 
