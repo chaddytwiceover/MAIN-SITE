@@ -69,6 +69,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Respect iOS safe-area insets */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
 /* Skip link */
 .skip-link {
   position: absolute;
@@ -144,9 +150,10 @@ p { margin: 0 0 var(--s-4); color: var(--txt-1); }
 
 /* Header & Nav */
 .header {
-  position: fixed; inset: 0 0 auto 0; height: var(--header);
+  position: fixed; inset: 0 0 auto 0; height: calc(var(--header) + var(--safe-top));
   background: rgba(10,10,15,.85); backdrop-filter: blur(12px) saturate(1.8);
   border-bottom: 2px solid rgba(0,255,255,.3); z-index: 50;
+  padding-top: var(--safe-top);
 }
 .header-container { height: 100%; }
 .header-grid {
@@ -167,7 +174,7 @@ p { margin: 0 0 var(--s-4); color: var(--txt-1); }
 
 .navigation { position: relative; }
 .nav-toggle {
-  display: none; width: 42px; height: 42px;
+  display: none; width: 48px; height: 48px; min-width:48px; min-height:48px;
   background: none; color: var(--neon-cyan);
   border: 2px solid var(--neon-cyan); border-radius: var(--r-md);
   cursor: pointer; transition: .25s;
@@ -350,6 +357,21 @@ p { margin: 0 0 var(--s-4); color: var(--txt-1); }
   .cta-button { width: 100%; justify-content: center; }
   .connection-card, .lab-link { flex-direction: column; text-align: center; }
 }
+
+/* Mobile / Touch improvements */
+@media (max-width: 760px) {
+  :root { --container: calc(100% - 2rem); }
+  /* Hide heavy overlays on smaller devices */
+  .scanlines, .digital-rain, .glitch-overlay { opacity: 0.06; }
+  .nn-canvas { display: none !important; }
+  .nav-link { padding: .9rem 1rem; font-size: 1rem; }
+  .nav-toggle { width: 52px; height: 52px; }
+  .cta-button { padding: .9rem 1rem; font-size: 1rem; }
+  .stat-card, .connection-card, .lab-link { padding: var(--s-4); }
+}
+
+/* Safe-area for footer */
+.footer { padding-bottom: calc(var(--s-6) + var(--safe-bottom)); }
 
 /* Prefers Reduced Motion */
 @media (prefers-reduced-motion: reduce) {

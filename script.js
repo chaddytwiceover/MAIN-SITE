@@ -107,3 +107,43 @@
     }, { once: true });
   }
 })();
+
+// Enhance neural canvas scaling and resize handling (if present)
+(function() {
+  const canvas = document.getElementById('nn-canvas');
+  if (!canvas) return;
+
+  function scaleCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = Math.max(window.devicePixelRatio || 1, 1);
+    canvas.width = Math.floor(rect.width * dpr);
+    canvas.height = Math.floor(rect.height * dpr);
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  let resizeTimeout = null;
+  function onResize() {
+    if (resizeTimeout) clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // hide canvas on small screens
+      if (window.innerWidth < 760) {
+        canvas.style.display = 'none';
+        return;
+      } else {
+        canvas.style.display = '';
+      }
+      scaleCanvas();
+    }, 120);
+  }
+
+  // initial scale
+  onResize();
+  window.addEventListener('resize', onResize, { passive: true });
+  window.addEventListener('orientationchange', onResize, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) onResize();
+  });
+})();
