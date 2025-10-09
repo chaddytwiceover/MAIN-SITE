@@ -3,226 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="CHADDYTWICEOVER - Cyberpunk web dev portfolio with responsive, accessible design." />
-  <title>CHADDYTWICEOVER | Web Developer</title>
+  <meta name="description" content="Frontend engineer focused on clarity, performance, and craft." />
+  <title>CHADDYTWICEOVER | Frontend Engineer</title>
 
-  <!-- Performance: Preload critical CSS and fonts -->
+  <!-- Performance: Preload critical CSS -->
   <link rel="preload" href="style.css" as="style">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" as="style">
-
-  <!-- Fonts & Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <meta name="theme-color" content="#00ffff" />
+  
+  <meta name="theme-color" content="#3A86FF" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip-link" href="#about">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Ambient effects -->
-  <div class="atmosphere-effects" aria-hidden="true">
-    <div class="scanlines"></div>
-    <div class="digital-rain"></div>
-    <div class="glitch-overlay"></div>
-  </div>
+  <!-- Navigation -->
+  <header class="nav-bar" role="banner">
+    <div class="nav-container">
+      <a href="#hero" class="brand" aria-label="Home">C2</a>
+      <nav class="nav-main" aria-label="Primary navigation">
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      <a href="#contact" class="cta-btn cta-btn--primary">Get in touch</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+      </button>
+    </div>
+  </header>
 
-  <div class="site">
-    <header class="header" role="banner">
-      <div class="header-container">
-        <div class="header-grid">
-          <div class="brand-section">
-            <a class="brand" href="#hero" aria-label="CHADDYTWICEOVER Home">
-              <span class="brand-text glitch-enhanced" data-text="CHADDYTWICEOVER">CHADDYTWICEOVER</span>
-              <span class="brand-subtitle">WEB_DEVELOPER.exe</span>
-            </a>
-          </div>
-
-          <div class="system-status" aria-hidden="true">
-            <div class="status-indicator">
-              <span class="status-dot"></span>
-              <span class="status-text">ONLINE</span>
-            </div>
-            <div class="neural-activity">
-              <span class="neural-pulse"></span>
-            </div>
-          </div>
-
-          <nav class="navigation" aria-label="Primary navigation">
-            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
-              <span class="nav-toggle-inner" aria-hidden="true">
-                <span class="nav-line"></span>
-                <span class="nav-line"></span>
-                <span class="nav-line"></span>
-              </span>
-            </button>
-            <ul id="nav-menu" class="nav-menu">
-              <li><a href="#hero" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i><span>Home</span></a></li>
-              <li><a href="#about" class="nav-link"><i class="fas fa-user-astronaut" aria-hidden="true"></i><span>About</span></a></li>
-              <li><a href="#socials" class="nav-link"><i class="fas fa-network-wired" aria-hidden="true"></i><span>Connect</span></a></li>
-              <li><a href="#lab" class="nav-link"><i class="fas fa-flask" aria-hidden="true"></i><span>Lab</span></a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
-
-    <main class="main-content">
-      <!-- Hero -->
-      <section id="hero" class="hero-section" aria-labelledby="hero-title">
-        <div class="hero-container">
-          <div class="hero-grid">
-            <div class="hero-content">
-              <div class="hero-badge"><span class="badge-text">SYSTEM_INITIALIZED</span></div>
-              <h1 id="hero-title" class="hero-title">
-                <span class="hero-line">WELCOME TO THE</span>
-                <span class="hero-line hero-emphasis">NEURAL_NETWORK</span>
-              </h1>
-              <p class="hero-text">
-                Interfacing with the digital realm from South Florida.<br>
-                Crafting clean, simple, and fun web experiences while learning every day.
-              </p>
-              <div class="hero-actions">
-                <a href="#about" class="cta-button primary"><span class="button-text">INITIALIZE_CONNECTION</span><i class="fas fa-chevron-right" aria-hidden="true"></i></a>
-                <a href="#socials" class="cta-button secondary"><span class="button-text">CONNECT</span><i class="fas fa-network-wired" aria-hidden="true"></i></a>
-              </div>
-            </div>
-
-            <div class="hero-visual" aria-hidden="true">
-              <div class="hologram-container">
-                <div class="hologram-grid">
-                  <div class="grid-line"></div><div class="grid-line"></div><div class="grid-line"></div><div class="grid-line"></div>
-                </div>
-                <div class="data-streams">
-                  <div class="data-stream"></div><div class="data-stream"></div><div class="data-stream"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- About -->
-      <section id="about" class="about-section section" aria-labelledby="about-title">
-        <div class="section-container">
-          <header class="section-header">
-            <h2 id="about-title" class="section-title">
-              <span class="title-prefix">[USER_PROFILE]</span> ABOUT_ME.json
-            </h2>
-            <div class="section-line"></div>
-          </header>
-
-          <div class="about-grid">
-            <div class="about-content">
-              <div class="terminal-window" role="region" aria-label="Profile Terminal">
-                <div class="terminal-header">
-                  <div class="terminal-buttons">
-                    <span class="terminal-button close"></span>
-                    <span class="terminal-button minimize"></span>
-                    <span class="terminal-button maximize"></span>
-                  </div>
-                  <div class="terminal-title">profile.exe</div>
-                </div>
-                <div class="terminal-body">
-                  <pre class="code-block" aria-label="Profile data"><code>{
-  "name": "CHADDYTWICEOVER",
-  "role": "Web Developer",
-  "location": "South Florida",
-  "status": "Learning & Building",
-  "mission": "Creating digital experiences",
-  "passion": "Clean, simple, and fun things on the web"
-}</code></pre>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-stats">
-              <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
-                <div class="stat-content">
-                  <div class="stat-number">Learning</div>
-                  <div class="stat-label">Always</div>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-microchip" aria-hidden="true"></i></div>
-                <div class="stat-content">
-                  <div class="stat-number">Focus</div>
-                  <div class="stat-label">Front-End</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Socials -->
-      <section id="socials" class="socials-section section" aria-labelledby="socials-title">
-        <div class="section-container">
-          <header class="section-header">
-            <h2 id="socials-title" class="section-title">
-              <span class="title-prefix">[NETWORK_CONNECTIONS]</span> CONNECT.link
-            </h2>
-            <div class="section-line"></div>
-          </header>
-
-          <div class="connections-grid">
-            <a class="connection-card" href="https://social.chaddytwiceover.com">
-              <div class="connection-icon"><i class="fa-solid fa-earth-americas" aria-hidden="true"></i></div>
-              <div class="connection-content">
-                <h3 class="connection-title">Social Hub</h3>
-                <p class="connection-description">Central communication node</p>
-                <span class="connection-url">social.chaddytwiceover.com</span>
-              </div>
-              <div class="connection-arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Lab -->
-      <section id="lab" class="lab-section section" aria-labelledby="lab-title">
-        <div class="section-container">
-          <header class="section-header">
-            <h2 id="lab-title" class="section-title">
-              <span class="title-prefix">[RESEARCH_FACILITY]</span> LAB.experiments
-            </h2>
-            <div class="section-line"></div>
-          </header>
-
-          <div class="lab-grid">
-            <p class="lab-description">Experiments and projects.</p>
-            <a class="lab-link" href="https://lab.chaddytwiceover.com">
-              <div class="lab-icon"><i class="fa-solid fa-flask" aria-hidden="true"></i></div>
-              <div class="lab-text">
-                <span class="lab-title">ACCESS_LAB</span>
-                <span class="lab-url">lab.chaddytwiceover.com</span>
-              </div>
-              <div class="lab-arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></div>
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer" role="contentinfo">
-      <div class="footer-container">
-        <div class="footer-content">
-          <div class="footer-text">
-            <span class="copyright">© <span id="current-year"></span> CHADDYTWICEOVER</span>
-            <span class="footer-separator">—</span>
-            <span class="footer-tech">Built with <span class="highlight">cyberpunk</span> aesthetics</span>
-          </div>
-          <div class="footer-status">
-            <span class="status-text">SYSTEM_RUNNING</span>
-            <div class="status-indicator"><span class="status-pulse"></span></div>
+  <!-- Main Content -->
+  <main id="main" class="main">
+    
+    <!-- Hero -->
+    <section id="hero" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Designing systems that disappear</h1>
+          <p class="hero-subtitle">Frontend engineer focused on clarity, performance, and craft.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn--primary">View projects</a>
+            <a href="#resume" class="btn btn--secondary">Résumé (PDF)</a>
           </div>
         </div>
       </div>
-    </footer>
-  </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Selected Projects</h2>
+        <div class="projects-grid">
+          
+          <article class="project-card">
+            <div class="project-image">
+              <div class="project-image-placeholder" role="img" aria-label="Project preview"></div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Social Hub</h3>
+              <p class="project-role">Full-stack development · Central link aggregator</p>
+              <div class="project-tags">
+                <span class="tag">html</span>
+                <span class="tag">css</span>
+                <span class="tag">javascript</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <div class="project-image-placeholder" role="img" aria-label="Project preview"></div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Lab Experiments</h3>
+              <p class="project-role">Research & prototypes · Interactive demos</p>
+              <div class="project-tags">
+                <span class="tag">web apis</span>
+                <span class="tag">design</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section section--gray">
+      <div class="container container--narrow">
+        <div class="about-layout">
+          <div class="about-image">
+            <div class="portrait" role="img" aria-label="Profile portrait"></div>
+          </div>
+          <div class="about-text">
+            <h2 class="section-title">About</h2>
+            <p>I design and build fast, minimal web experiences. My work focuses on clarity, performance, and systems thinking.</p>
+            <p>Based in South Florida, I'm constantly learning and refining my craft, believing that the best interfaces are the ones you don't notice.</p>
+            <div class="principles">
+              <h3 class="principles-title">Principles</h3>
+              <ul class="principles-list">
+                <li>Clarity over cleverness</li>
+                <li>Performance by default</li>
+                <li>Accessible to everyone</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container container--narrow">
+        <div class="contact-content">
+          <h2 class="section-title">Get in touch</h2>
+          <p class="contact-text">I'm always interested in new opportunities and conversations about design, development, and the web.</p>
+          <div class="contact-links">
+            <a href="https://social.chaddytwiceover.com" class="contact-link">Social Hub</a>
+            <a href="https://lab.chaddytwiceover.com" class="contact-link">Lab</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#projects" class="footer-link">Projects</a>
+          <a href="#about" class="footer-link">About</a>
+          <a href="#contact" class="footer-link">Contact</a>
+        </div>
+        <div class="footer-copy">
+          <span>© <span id="current-year"></span> CHADDYTWICEOVER</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
