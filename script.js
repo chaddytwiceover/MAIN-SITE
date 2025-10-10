@@ -1,4 +1,4 @@
-// Sleek Minimalist Portfolio - JavaScript
+// Cyberpunk 2077 Portfolio - JavaScript
 
 (function() {
   'use strict';
@@ -11,6 +11,32 @@
   const yearEl = $('#current-year');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
+  }
+
+  // Glitch effect on hero title
+  const heroTitle = $('.hero-title');
+  if (heroTitle) {
+    setInterval(() => {
+      if (Math.random() > 0.95) {
+        heroTitle.style.animation = 'none';
+        setTimeout(() => {
+          heroTitle.style.animation = '';
+        }, 50);
+      }
+    }, 3000);
+  }
+
+  // Random glitch on brand logo
+  const brand = $('.brand');
+  if (brand) {
+    setInterval(() => {
+      if (Math.random() > 0.97) {
+        brand.style.animation = 'glitch 0.3s ease-in-out';
+        setTimeout(() => {
+          brand.style.animation = '';
+        }, 300);
+      }
+    }, 2000);
   }
 
   // Mobile navigation toggle
@@ -148,12 +174,12 @@
     $$('.project-card').forEach(card => {
       card.style.opacity = '0';
       card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 400ms cubic-bezier(.2,.8,.2,1), transform 400ms cubic-bezier(.2,.8,.2,1)';
+      card.style.transition = 'opacity 500ms cubic-bezier(0.87, 0, 0.13, 1), transform 500ms cubic-bezier(0.87, 0, 0.13, 1)';
       observer.observe(card);
     });
   }
 
-  // Handle nav bar on scroll (translucent effect)
+  // Handle nav bar on scroll (neon glow effect)
   const navBar = $('.nav-bar');
   if (navBar) {
     let lastScroll = 0;
@@ -161,13 +187,31 @@
       const currentScroll = window.pageYOffset;
       
       if (currentScroll > 10) {
-        navBar.style.boxShadow = '0 1px 3px rgba(0,0,0,.1)';
+        navBar.style.boxShadow = '0 0 30px rgba(252, 238, 10, 0.5), 0 5px 20px rgba(0, 0, 0, 0.3)';
       } else {
-        navBar.style.boxShadow = 'none';
+        navBar.style.boxShadow = '0 0 20px rgba(252, 238, 10, 0.3)';
       }
       
       lastScroll = currentScroll;
     }, { passive: true });
+  }
+
+  // Cyberpunk cursor trail effect (subtle)
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Create subtle glow on interactive elements
+    $$('a, button').forEach(el => {
+      el.addEventListener('mouseenter', function() {
+        this.style.transition = 'all 0.3s cubic-bezier(0.87, 0, 0.13, 1)';
+      });
+    });
   }
 
 })();
