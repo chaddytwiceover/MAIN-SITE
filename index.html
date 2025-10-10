@@ -2,115 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Digital architect crafting the future of the web in neon and code." />
-  <title>CHADDYTWICEOVER | Digital Architect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHADDYTWICEOVER</title>
 
-  <!-- Cyberpunk Fonts -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <!-- Performance: Preload critical CSS -->
-  <link rel="preload" href="style.css" as="style">
-  
-  <meta name="theme-color" content="#fcee0a" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <!-- Navigation -->
-  <header class="nav-bar" role="banner">
-    <div class="nav-container">
-      <a href="#hero" class="brand" aria-label="Home">C2</a>
-      <nav class="nav-main" aria-label="Primary navigation">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
-  <!-- header CTA removed to avoid duplication; use hero or contact links -->
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main id="main" class="main">
-    
-    <!-- Hero -->
-    <section id="hero" class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1 class="hero-title">Building the future, one line at a time</h1>
-          <p class="hero-subtitle">Digital architect crafting immersive web experiences in the neon glow of Night City.</p>
-          <div class="hero-actions">
-            <div class="mini-section">
-              <a href="#contact" class="btn btn--primary">Get in touch</a>
-            </div>
-          </div>
-        </div>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="site">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="wrap inner">
+        <a class="brand" href="#top" aria-label="CHADDYTWICEOVER Home">
+          <span class="glitch" data-text="CHADDYTWICEOVER">CHADDYTWICEOVER</span>
+        </a>
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#socials">Socials</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
       </div>
-    </section>
+    </header>
+
+    <!-- Hero -->
+    <main id="top" class="hero">
+      <div class="wrap">
+        <span class="tag">DESIGN // DEV // CREATIVE</span>
+        <h1 class="glitch" data-text="CHADDYTWICEOVER">CHADDYTWICEOVER</h1>
+        <p class="kicker">Showcasing projects, experiments, and whatever else I can think of.</p>
+        <p class="lead"></p>
+      </div>
+    </main>
 
     <!-- About -->
-    <section id="about" class="section section--gray">
-      <div class="container container--narrow">
-        <div class="about-content-center">
-          <h2 class="section-title">System.bio</h2>
-          <p>Digital architect at the intersection of design and technology. Clean code, electric interfaces, innovation brighter than Night City's neon lights.</p>
-          <p>Based in South Florida. Plugged into the latest tech. Constantly pushing boundaries and exploring the bleeding edge of web development.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section">
-      <div class="container container--narrow">
-        <div class="contact-content">
-          <h2 class="section-title">Connect</h2>
-          <p class="contact-text">Ready to build something extraordinary?</p>
-          <div class="contact-cards">
-            <section class="contact-card" aria-labelledby="contact-email">
-              <h3 id="contact-email">Email</h3>
-              <p class="contact-card-desc">Direct mail for briefs, collaborations, and inquiries. Expect a reply within 48 hours.</p>
-              <div class="mini-section"><a href="mailto:contact@chaddytwiceover.com" class="contact-link">Email</a></div>
-            </section>
-
-            <section class="contact-card" aria-labelledby="contact-social">
-              <h3 id="contact-social">Social Hub</h3>
-              <p class="contact-card-desc">Central hub for all social profiles and links — follow updates, threads, and quick project notes from one place.</p>
-              <div class="mini-section"><a href="https://social.chaddytwiceover.com" class="contact-link" target="_blank" rel="noopener noreferrer">Visit Social Hub</a></div>
-            </section>
-
-            <section class="contact-card" aria-labelledby="contact-lab">
-              <h3 id="contact-lab">Lab</h3>
-              <p class="contact-card-desc">Experimental projects, prototypes, and demos. Ideal if you want to see what’s being built next.</p>
-              <div class="mini-section"><a href="https://lab.chaddytwiceover.com" class="contact-link" target="_blank" rel="noopener noreferrer">Enter the Lab</a></div>
-            </section>
+    <section id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <h2 id="about-title" class="section-title">About</h2>
+        <div class="about">
+          <div class="bio">
+            <p class="lead">I'm Chris — a web dev student & this site is my central hub for portfolio pieces, experiments, and social links, and my thoughts.</p>
+            <p>Currently tinkering with modern frontend tooling, performance-minded animations, and component-driven design systems. Open to collabs and freelance work.</p>
           </div>
+          
         </div>
       </div>
     </section>
 
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-links">
-          <a href="#about" class="footer-link">About</a>
-          <a href="#contact" class="footer-link">Contact</a>
-        </div>
-        <div class="footer-copy">
-          <span>© <span id="current-year"></span> CHADDYTWICEOVER</span>
+    <!-- Projects -->
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <h2 id="projects-title" class="section-title">Projects</h2>
+        <p class="lead">Check out my latest experiments and builds</p>
+        <div class="socials">
+          <a class="sub-link" href="https://lab.chaddytwiceover.com" target="_blank" rel="noopener">
+            <i class="fa-solid fa-flask"></i>
+            lab.chaddytwiceover.com
+          </a>
         </div>
       </div>
-    </div>
-  </footer>
+    </section>
+
+    <!-- Socials -->
+    <section id="socials" aria-labelledby="socials-title">
+      <div class="wrap">
+        <h2 id="socials-title" class="section-title">Socials</h2>
+        <p class="lead">Follow along or say hi!</p>
+        <div class="socials">
+          <a class="sub-link" href="https://social.chaddytwiceover.com" target="_blank" rel="noopener">
+            <i class="fa-solid fa-share-nodes"></i>
+            social.chaddytwiceover.com
+          </a>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Contact (mirrors Socials layout) -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 id="contact-title" class="section-title">Contact</h2>
+        <p class="lead">Want to collaborate, hire me, or chat about an idea?</p>
+        <div class="socials">
+          <a class="sub-link" href="mailto:contact@chaddytwiceover.com">
+            <i class="fa-solid fa-envelope"></i>
+            contact@chaddytwiceover.com
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <small>© <span id="y"></span> CHADDYTWICEOVER — Built with neon & glitches</small>
+      </div>
+    </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
