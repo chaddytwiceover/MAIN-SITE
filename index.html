@@ -8,7 +8,7 @@
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <link rel="stylesheet" href="style.css">
@@ -23,7 +23,10 @@
           <span class="glitch" data-text="CHADDYTWICEOVER">CHADDYTWICEOVER</span>
         </a>
         <nav aria-label="Primary">
-          <ul>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#socials">Socials</a></li>
@@ -37,7 +40,6 @@
     <main id="top" class="hero">
       <div class="wrap">
         <span class="tag">DESIGN // DEV // CREATIVE</span>
-        <h1 class="glitch" data-text="CHADDYTWICEOVER">CHADDYTWICEOVER</h1>
         <p class="kicker">Showcasing projects, experiments, and whatever else I can think of.</p>
         <p class="lead"></p>
       </div>
@@ -49,8 +51,8 @@
         <h2 id="about-title" class="section-title">About</h2>
         <div class="about">
           <div class="bio">
-            <p class="lead">I'm Chris — a web dev student & this site is my central hub for portfolio pieces, experiments, and social links, and my thoughts.</p>
-            <p>Currently tinkering with modern frontend tooling, performance-minded animations, and component-driven design systems. Open to collabs and freelance work.</p>
+            <p class="lead">A web dev student & this site is my central hub for portfolio pieces, experiments, and social links, and my thoughts.</p>
+            <p class="center-text">Currently tinkering with modern frontend tooling, performance-minded animations, and component-driven design systems. <br>Open to collabs and freelance work.</p>
           </div>
           
         </div>

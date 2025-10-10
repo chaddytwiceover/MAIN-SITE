@@ -18,7 +18,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: 'Orbitron', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background-color: var(--dark-background);
   background-image: radial-gradient(circle at top left, var(--dark-blue), var(--dark-background) 40%);
   color: var(--primary-yellow);
@@ -26,6 +26,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
 .scanlines {
@@ -55,6 +58,7 @@ header.topbar {
 }
 .glitch {
   position: relative; display: inline-block; white-space: nowrap;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 700; text-transform: uppercase;
   letter-spacing: clamp(0.04em, 0.7vw, 0.12em);
   font-size: clamp(1.2rem, 3.6vw, 1.8rem);
@@ -95,16 +99,31 @@ nav a.active { box-shadow: 0 0 10px var(--cyber-cyan), inset 0 0 10px var(--cybe
 
 /* Hero */
 .hero { padding: 8svh 0 12svh; text-align: center; }
-.tag { color: var(--cyber-cyan); text-shadow: 0 0 5px var(--cyber-cyan); letter-spacing: .25em; font-size: clamp(.7rem, 2.2vw, .9rem); margin: .3rem 0 1rem; display: block; }
+.tag { 
+  font-family: 'Orbitron', sans-serif;
+  color: var(--cyber-cyan); 
+  text-shadow: 0 0 5px var(--cyber-cyan); 
+  letter-spacing: .25em; 
+  font-size: clamp(.7rem, 2.2vw, .9rem); 
+  margin: .3rem 0 1rem; 
+  display: block; 
+}
 .kicker { color: var(--muted); max-width: 60ch; margin: .8rem auto 0; line-height: 1.6; }
 
 /* Sections */
 section { padding: 6rem 0; border-top: 1px dashed var(--border); }
-h2.section-title { color: var(--primary-yellow); text-transform: uppercase; letter-spacing: .2em; font-size: clamp(1.2rem, 3vw, 1.6rem); margin: 0 0 1.25rem; }
+h2.section-title { 
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary-yellow); 
+  text-transform: uppercase; 
+  letter-spacing: .2em; 
+  font-size: clamp(1.2rem, 3vw, 1.6rem); 
+  margin: 0 0 1.25rem; 
+}
 p.lead { color: var(--muted); margin: 0 0 2rem; }
 
 /* Center headings and section subtitles */
-h1, h2.section-title, .tag, .kicker, p.lead { text-align: center; }
+h1, h2.section-title, .tag, .kicker, p.lead, .center-text { text-align: center; }
 
 /* Buttons */
 .btn {
@@ -168,24 +187,107 @@ footer small { display: block; text-align: center; }
   .about .bio { grid-column: span 12; }
 }
 
-/* Mobile-specific improvements */
+/* Mobile Menu Styles */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--primary-yellow);
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+  background: rgba(255,255,255,0.08);
+  color: var(--cyber-cyan);
+}
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+  .wrap { width: min(100% - 1.5rem, var(--maxw)); }
+  
+  .about {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .hero { padding: 8svh 0 10svh; }
+}
+
+/* Mobile Responsive */
 @media (max-width: 520px) {
   /* Reduce large vertical spacing for smaller screens */
   .hero { padding: 6svh 0 8svh; }
   section { padding: 3.5rem 0; }
 
+  /* Mobile Navigation */
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--dark-background);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
   /* Slightly smaller headings for readability */
   h1 { font-size: clamp(1.4rem, 6vw, 2rem); }
   h2.section-title { font-size: clamp(1rem, 4.5vw, 1.25rem); }
 
-  /* Nav: collapse spacing and allow wrap */
-  nav ul { flex-wrap: wrap; gap: .5rem; }
-  nav a { padding: .35rem .55rem; font-size: .9rem; }
-
   /* Socials: stack and make links easier to tap */
-  .socials { flex-direction: column; gap: .6rem; align-items: center; }
-  .socials .sub-link { display: inline-block; width: 100%; max-width: 360px; text-align: center; padding: .65rem .8rem; border-radius: 10px; border-bottom: none; background: rgba(255,255,255,0.02); }
+  .socials { 
+    flex-direction: column; 
+    gap: .6rem; 
+    align-items: stretch;
+  }
+  
+  .socials .sub-link { 
+    display: flex;
+    justify-content: center;
+    width: 100%; 
+    padding: .75rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
 
   /* Lead paragraphs: keep readable width */
-  .kicker, .lead { max-width: 44ch; margin-left: auto; margin-right: auto; }
+  .kicker, .lead { 
+    max-width: 44ch; 
+    margin-left: auto; 
+    margin-right: auto;
+    font-size: 0.95rem;
+  }
+  
+  /* Improve tap targets */
+  nav a, .btn, .sub-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
