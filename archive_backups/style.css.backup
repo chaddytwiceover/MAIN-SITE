@@ -1,0 +1,16 @@
+/* ================================
+   CYBERPUNK 2077 INDUSTRIAL THEME
+   Modern, responsive, accessible
+   ================================ */
+
+/* Design Tokens */
+:root {
+  /* Palette */
+  --bg-1: #0a0a0f;
+  --bg-2: #1a1a2e;
+  --bg-3: #16213e;
+  --glass: rgba(16, 33, 62, 0.1);
+  --card: rgba(26, 26, 46, 0.8);
+  --card-border: rgba(255, 16, 240, 0.4);
+
+  /* ... (file truncated for brevity) ... */

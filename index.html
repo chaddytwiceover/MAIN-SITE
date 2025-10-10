@@ -25,11 +25,10 @@
     <div class="nav-container">
       <a href="#hero" class="brand" aria-label="Home">C2</a>
       <nav class="nav-main" aria-label="Primary navigation">
-        <a href="#projects" class="nav-link">Projects</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
-      <a href="mailto:contact@chaddytwiceover.com" class="cta-btn cta-btn--primary">Get in touch</a>
+  <!-- header CTA removed to avoid duplication; use hero or contact links -->
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span class="nav-toggle-line"></span>
         <span class="nav-toggle-line"></span>
@@ -45,51 +44,13 @@
     <section id="hero" class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title" data-text="Building the future, one line at a time">Building the future, one line at a time</h1>
+          <h1 class="hero-title">Building the future, one line at a time</h1>
           <p class="hero-subtitle">Digital architect crafting immersive web experiences in the neon glow of Night City.</p>
           <div class="hero-actions">
-            <a href="#projects" class="btn btn--primary">View projects</a>
-            <a href="#resume" class="btn btn--secondary">Download résumé</a>
+            <div class="mini-section">
+              <a href="#contact" class="btn btn--primary">Get in touch</a>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="section">
-      <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-          
-          <article class="project-card">
-            <div class="project-image">
-              <div class="project-image-placeholder" role="img" aria-label="Project preview"></div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Social Hub</h3>
-              <p class="project-role">Full-stack development · Central link aggregator</p>
-              <div class="project-tags">
-                <span class="tag">html</span>
-                <span class="tag">css</span>
-                <span class="tag">javascript</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-image">
-              <div class="project-image-placeholder" role="img" aria-label="Project preview"></div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Lab Experiments</h3>
-              <p class="project-role">Research & prototypes · Interactive demos</p>
-              <div class="project-tags">
-                <span class="tag">web apis</span>
-                <span class="tag">design</span>
-              </div>
-            </div>
-          </article>
-
         </div>
       </div>
     </section>
@@ -97,23 +58,10 @@
     <!-- About -->
     <section id="about" class="section section--gray">
       <div class="container container--narrow">
-        <div class="about-layout">
-          <div class="about-image">
-            <div class="portrait" role="img" aria-label="Profile portrait"></div>
-          </div>
-          <div class="about-text">
-            <h2 class="section-title">System.bio</h2>
-            <p>I architect digital experiences at the intersection of design and technology. My code is clean, my interfaces are electric, and my passion for innovation burns brighter than Night City's neon lights.</p>
-            <p>Based in South Florida, I'm plugged into the latest tech, constantly pushing boundaries and exploring the bleeding edge of web development.</p>
-            <div class="principles">
-              <h3 class="principles-title">Core Directives</h3>
-              <ul class="principles-list">
-                <li>Performance is not optional</li>
-                <li>Code with precision and style</li>
-                <li>Accessibility for all users</li>
-              </ul>
-            </div>
-          </div>
+        <div class="about-content-center">
+          <h2 class="section-title">System.bio</h2>
+          <p>Digital architect at the intersection of design and technology. Clean code, electric interfaces, innovation brighter than Night City's neon lights.</p>
+          <p>Based in South Florida. Plugged into the latest tech. Constantly pushing boundaries and exploring the bleeding edge of web development.</p>
         </div>
       </div>
     </section>
@@ -123,10 +71,25 @@
       <div class="container container--narrow">
         <div class="contact-content">
           <h2 class="section-title">Connect</h2>
-          <p class="contact-text">Ready to collaborate on the next generation of web experiences? Let's build something extraordinary together.</p>
-          <div class="contact-links">
-            <a href="https://social.chaddytwiceover.com" class="contact-link">Social Hub</a>
-            <a href="https://lab.chaddytwiceover.com" class="contact-link">Lab</a>
+          <p class="contact-text">Ready to build something extraordinary?</p>
+          <div class="contact-cards">
+            <section class="contact-card" aria-labelledby="contact-email">
+              <h3 id="contact-email">Email</h3>
+              <p class="contact-card-desc">Direct mail for briefs, collaborations, and inquiries. Expect a reply within 48 hours.</p>
+              <div class="mini-section"><a href="mailto:contact@chaddytwiceover.com" class="contact-link">Email</a></div>
+            </section>
+
+            <section class="contact-card" aria-labelledby="contact-social">
+              <h3 id="contact-social">Social Hub</h3>
+              <p class="contact-card-desc">Central hub for all social profiles and links — follow updates, threads, and quick project notes from one place.</p>
+              <div class="mini-section"><a href="https://social.chaddytwiceover.com" class="contact-link" target="_blank" rel="noopener noreferrer">Visit Social Hub</a></div>
+            </section>
+
+            <section class="contact-card" aria-labelledby="contact-lab">
+              <h3 id="contact-lab">Lab</h3>
+              <p class="contact-card-desc">Experimental projects, prototypes, and demos. Ideal if you want to see what’s being built next.</p>
+              <div class="mini-section"><a href="https://lab.chaddytwiceover.com" class="contact-link" target="_blank" rel="noopener noreferrer">Enter the Lab</a></div>
+            </section>
           </div>
         </div>
       </div>
@@ -139,7 +102,6 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-links">
-          <a href="#projects" class="footer-link">Projects</a>
           <a href="#about" class="footer-link">About</a>
           <a href="#contact" class="footer-link">Contact</a>
         </div>

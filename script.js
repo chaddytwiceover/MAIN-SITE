@@ -170,12 +170,12 @@
       });
     }, observerOptions);
 
-    // Observe project cards and other elements
-    $$('.project-card').forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 500ms cubic-bezier(0.87, 0, 0.13, 1), transform 500ms cubic-bezier(0.87, 0, 0.13, 1)';
-      observer.observe(card);
+    // Observe generic reveal elements (sections and interactive links)
+    $$('.section, .contact-link, .about-content-center, .hero-content').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(18px)';
+      el.style.transition = 'opacity 500ms var(--ease-cyber), transform 500ms var(--ease-cyber)';
+      observer.observe(el);
     });
   }
 
