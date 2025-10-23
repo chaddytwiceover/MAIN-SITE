@@ -24,7 +24,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
-// Basic active link indication on scroll
+// Enhanced active link indication on scroll
 const sections = [...document.querySelectorAll('section')];
 const navLinks = [...document.querySelectorAll('nav a')];
 const io = new IntersectionObserver((entries) => {
@@ -34,5 +34,49 @@ const io = new IntersectionObserver((entries) => {
       navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
     }
   });
-}, { rootMargin: '-45% 0px -50% 0px', threshold: .01 });
+}, { rootMargin: '-40% 0px -55% 0px', threshold: 0.1 });
 sections.forEach(s => io.observe(s));
+
+// Modern fade-in animations on scroll (respecting motion preferences)
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const fadeElements = [...document.querySelectorAll('section, .about .bio, .sub-link')];
+  
+  // Add fade-in class to elements
+  fadeElements.forEach((el, index) => {
+    el.classList.add('fade-in');
+    if (index > 0) {
+      el.classList.add(`stagger-${Math.min(index, 4)}`);
+    }
+  });
+  
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { 
+    rootMargin: '-10% 0px -10% 0px', 
+    threshold: 0.1 
+  });
+  
+  fadeElements.forEach(el => fadeObserver.observe(el));
+}
+
+// Smooth header background on scroll
+let lastScrollY = window.scrollY;
+const header = document.querySelector('header.topbar');
+
+window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY;
+  
+  if (currentScrollY > 100) {
+    header.style.background = 'rgba(26, 26, 39, 0.95)';
+    header.style.backdropFilter = 'blur(32px) saturate(180%)';
+  } else {
+    header.style.background = 'rgba(26, 26, 39, 0.6)';
+    header.style.backdropFilter = 'blur(24px) saturate(180%)';
+  }
+  
+  lastScrollY = currentScrollY;
+}, { passive: true });
