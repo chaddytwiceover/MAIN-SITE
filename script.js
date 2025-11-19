@@ -1,82 +1,69 @@
 // Year stamp
-document.getElementById('y').textContent = new Date().getFullYear();
-
-// Mobile menu functionality
-const menuToggle = document.querySelector('.mobile-menu-toggle');
-const mobileNav = document.querySelector('.nav-links');
-
-menuToggle.addEventListener('click', () => {
-  const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-  menuToggle.setAttribute('aria-expanded', !isExpanded);
-  mobileNav.classList.toggle('active');
-  
-  // Change icon based on state
-  const icon = menuToggle.querySelector('i');
-  icon.className = isExpanded ? 'fa-solid fa-bars' : 'fa-solid fa-xmark';
-});
-
-// Close mobile menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileNav.classList.remove('active');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.querySelector('i').className = 'fa-solid fa-bars';
-  });
-});
-
-// Enhanced active link indication on scroll
-const sections = [...document.querySelectorAll('section')];
-const navLinks = [...document.querySelectorAll('nav a')];
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
-    }
-  });
-}, { rootMargin: '-40% 0px -55% 0px', threshold: 0.1 });
-sections.forEach(s => io.observe(s));
-
-// Modern fade-in animations on scroll (respecting motion preferences)
-if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const fadeElements = [...document.querySelectorAll('section, .about .bio, .sub-link')];
-  
-  // Add fade-in class to elements
-  fadeElements.forEach((el, index) => {
-    el.classList.add('fade-in');
-    if (index > 0) {
-      el.classList.add(`stagger-${Math.min(index, 4)}`);
-    }
-  });
-  
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { 
-    rootMargin: '-10% 0px -10% 0px', 
-    threshold: 0.1 
-  });
-  
-  fadeElements.forEach(el => fadeObserver.observe(el));
+const yearSpan = document.getElementById('year');
+if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
 }
 
-// Smooth header background on scroll
-let lastScrollY = window.scrollY;
-const header = document.querySelector('header.topbar');
+// Mobile menu functionality
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileNav = document.querySelector('.nav-links');
 
+if (menuToggle && mobileNav) {
+    menuToggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        
+        // Change icon based on state
+        const icon = menuToggle.querySelector('i');
+        if (mobileNav.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark');
+        } else {
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        });
+    });
+}
+
+// Scroll Animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Only animate once
+        }
+    });
+}, observerOptions);
+
+// Elements to animate
+const animatedElements = document.querySelectorAll('.project-card, .section-title, #about p, #contact form');
+animatedElements.forEach(el => {
+    el.classList.add('fade-in-up'); // Add CSS class for initial state if needed
+    observer.observe(el);
+});
+
+// Navbar Scroll Effect
+const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {
-  const currentScrollY = window.scrollY;
-  
-  if (currentScrollY > 100) {
-    header.style.background = 'rgba(26, 26, 39, 0.95)';
-    header.style.backdropFilter = 'blur(32px) saturate(180%)';
-  } else {
-    header.style.background = 'rgba(26, 26, 39, 0.6)';
-    header.style.backdropFilter = 'blur(24px) saturate(180%)';
-  }
-  
-  lastScrollY = currentScrollY;
-}, { passive: true });
+    if (window.scrollY > 50) {
+        nav.style.background = 'rgba(11, 12, 21, 0.95)';
+        nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+    } else {
+        nav.style.background = 'rgba(11, 12, 21, 0.9)';
+        nav.style.boxShadow = 'none';
+    }
+});
