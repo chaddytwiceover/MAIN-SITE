@@ -11,30 +11,33 @@ const mobileNav = document.querySelector('.nav-links');
 if (menuToggle && mobileNav) {
     menuToggle.addEventListener('click', () => {
         mobileNav.classList.toggle('active');
-        
-        // Change icon based on state
-        const icon = menuToggle.querySelector('i');
-        if (mobileNav.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
-        } else {
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
-        }
+        menuToggle.classList.toggle('active');
     });
 
     // Close mobile menu when clicking a link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             mobileNav.classList.remove('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
+            menuToggle.classList.remove('active');
         });
     });
 }
 
-// Scroll Animations
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Intersection Observer for fade-in animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px"
@@ -43,27 +46,34 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target); // Only animate once
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Elements to animate
-const animatedElements = document.querySelectorAll('.project-card, .section-title, #about p, #contact form');
+// Observe elements for animation
+const animatedElements = document.querySelectorAll('.project-card, .about-text, .hero-content');
 animatedElements.forEach(el => {
-    el.classList.add('fade-in-up'); // Add CSS class for initial state if needed
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
 });
 
-// Navbar Scroll Effect
+// Navbar scroll effect
 const nav = document.querySelector('nav');
+let lastScroll = 0;
+
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        nav.style.background = 'rgba(11, 12, 21, 0.95)';
-        nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+        nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.5)';
     } else {
-        nav.style.background = 'rgba(11, 12, 21, 0.9)';
         nav.style.boxShadow = 'none';
     }
+    
+    lastScroll = currentScroll;
 });
