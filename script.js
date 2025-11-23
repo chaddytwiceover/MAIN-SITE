@@ -11,9 +11,19 @@ let mouseY = 0;
 let trailX = 0;
 let trailY = 0;
 
+// Throttle mousemove with requestAnimationFrame
+let ticking = false;
+
 document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            ticking = false;
+        });
+        ticking = true;
+    }
 });
 
 function animateCursorTrail() {

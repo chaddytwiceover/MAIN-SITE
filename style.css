@@ -62,7 +62,7 @@ h1 {
 }
 
 h2 {
-    font-size: clamp(1.875rem, 4vw, 3rem); /* H1: 30-48px */
+    font-size: clamp(1.875rem, 4vw, 3rem); /* H2: 30-48px */
     font-weight: 700;
     margin-bottom: 1.5rem;
     letter-spacing: -0.01em;
