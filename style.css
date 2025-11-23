@@ -376,6 +376,15 @@ footer {
     transition: transform 300ms ease-out;
 }
 
+/* Section Number Accent */
+.section-number {
+    color: var(--teal-400);
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
 /* Animations */
 @keyframes fadeInUp {
     from {

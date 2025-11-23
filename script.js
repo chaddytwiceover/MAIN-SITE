@@ -17,19 +17,21 @@ document.addEventListener('mousemove', (e) => {
 });
 
 function animateCursorTrail() {
+    if (!cursorTrail) return;
+    
     // Smooth following with delay
     trailX += (mouseX - trailX) * 0.1;
     trailY += (mouseY - trailY) * 0.1;
     
-    if (cursorTrail) {
-        cursorTrail.style.left = trailX + 'px';
-        cursorTrail.style.top = trailY + 'px';
-    }
+    cursorTrail.style.left = trailX + 'px';
+    cursorTrail.style.top = trailY + 'px';
     
     requestAnimationFrame(animateCursorTrail);
 }
 
-animateCursorTrail();
+if (cursorTrail) {
+    animateCursorTrail();
+}
 
 // Mobile menu functionality
 const menuToggle = document.querySelector('.menu-toggle');
