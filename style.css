@@ -11,10 +11,14 @@
     --amber-500: #f59e0b;
     --amber-400: #fbbf24;
     
+    /* RGB Values for rgba() usage */
+    --stone-900-rgb: 28, 25, 23;
+    --teal-400-rgb: 45, 212, 191;
+    
     /* Semantic Colors */
     --bg-main: var(--stone-950);
     --bg-section: var(--stone-900);
-    --bg-card: rgba(28, 25, 23, 0.3);
+    --bg-card: rgba(var(--stone-900-rgb), 0.3);
     --primary: var(--stone-100);
     --secondary: var(--stone-100);
     --accent: var(--teal-400);
@@ -43,8 +47,8 @@ body {
     position: relative;
     /* Visible grid background */
     background-image: 
-        linear-gradient(rgba(45, 212, 191, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(45, 212, 191, 0.05) 1px, transparent 1px);
+        linear-gradient(rgba(var(--teal-400-rgb), 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--teal-400-rgb), 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
 }
 
@@ -72,7 +76,7 @@ h3 {
     line-height: 1.2;
 }
 
-p, body {
+p {
     font-size: 1.125rem; /* Body: 18px */
     line-height: 1.75;
 }
@@ -280,7 +284,7 @@ section {
 .project-card:hover {
     border-color: var(--accent);
     transform: translateY(-4px);
-    background: rgba(28, 25, 23, 0.5);
+    background: rgba(var(--stone-900-rgb), 0.5);
 }
 
 .project-header {
@@ -369,7 +373,7 @@ footer {
     width: 384px;
     height: 384px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(45, 212, 191, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(var(--teal-400-rgb), 0.05) 0%, transparent 70%);
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
