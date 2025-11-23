@@ -4,6 +4,33 @@ if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
 
+// Cursor trail effect
+const cursorTrail = document.getElementById('cursor-trail');
+let mouseX = 0;
+let mouseY = 0;
+let trailX = 0;
+let trailY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animateCursorTrail() {
+    // Smooth following with delay
+    trailX += (mouseX - trailX) * 0.1;
+    trailY += (mouseY - trailY) * 0.1;
+    
+    if (cursorTrail) {
+        cursorTrail.style.left = trailX + 'px';
+        cursorTrail.style.top = trailY + 'px';
+    }
+    
+    requestAnimationFrame(animateCursorTrail);
+}
+
+animateCursorTrail();
+
 // Mobile menu functionality
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileNav = document.querySelector('.nav-links');
