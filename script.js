@@ -108,10 +108,10 @@ let lastScroll = 0;
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
-    if (currentScroll > 100) {
-        nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.5)';
+    if (currentScroll > 50) {
+        nav.style.borderBottom = '3px solid var(--accent)';
     } else {
-        nav.style.boxShadow = 'none';
+        nav.style.borderBottom = 'var(--border)';
     }
     
     lastScroll = currentScroll;
