@@ -4,45 +4,6 @@ if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
 
-// Cursor trail effect
-const cursorTrail = document.getElementById('cursor-trail');
-let mouseX = 0;
-let mouseY = 0;
-let trailX = 0;
-let trailY = 0;
-
-// Throttle mousemove with requestAnimationFrame
-let ticking = false;
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            ticking = false;
-        });
-        ticking = true;
-    }
-});
-
-function animateCursorTrail() {
-    if (!cursorTrail) return;
-    
-    // Smooth following with delay
-    trailX += (mouseX - trailX) * 0.1;
-    trailY += (mouseY - trailY) * 0.1;
-    
-    cursorTrail.style.left = trailX + 'px';
-    cursorTrail.style.top = trailY + 'px';
-    
-    requestAnimationFrame(animateCursorTrail);
-}
-
-if (cursorTrail) {
-    animateCursorTrail();
-}
-
 // Mobile menu functionality
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileNav = document.querySelector('.nav-links');
@@ -93,26 +54,27 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe elements for animation
-const animatedElements = document.querySelectorAll('.project-card, .about-text, .hero-content');
-animatedElements.forEach(el => {
+const animatedElements = document.querySelectorAll('.project-card, .hero-content, .section-content h2, .section-content p');
+animatedElements.forEach((el, index) => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+    // Stagger delay
+    el.style.transitionDelay = `${index * 0.1}s`;
     observer.observe(el);
 });
 
-// Navbar scroll effect
+// Navbar scroll effect (Glassmorphism enhancement)
 const nav = document.querySelector('nav');
-let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    
+
     if (currentScroll > 50) {
-        nav.style.borderBottom = '3px solid var(--accent)';
+        nav.style.background = 'rgba(10, 10, 10, 0.9)';
+        nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
     } else {
-        nav.style.borderBottom = 'var(--border)';
+        nav.style.background = 'rgba(10, 10, 10, 0.8)';
+        nav.style.boxShadow = 'none';
     }
-    
-    lastScroll = currentScroll;
 });
