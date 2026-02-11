@@ -82,17 +82,6 @@ window.addEventListener('scroll', () => {
 // Add cursor glow effect
 const cursor = document.createElement('div');
 cursor.className = 'cursor-glow';
-cursor.style.cssText = `
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent);
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-    display: none;
-`;
 
 // Only add cursor glow on non-touch devices
 if (!('ontouchstart' in window)) {
