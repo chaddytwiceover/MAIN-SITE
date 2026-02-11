@@ -71,10 +71,36 @@ window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 50) {
-        nav.style.background = 'rgba(10, 10, 10, 0.9)';
-        nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+        nav.style.background = 'rgba(10, 0, 20, 0.9)';
+        nav.style.boxShadow = '0 4px 30px rgba(0, 255, 255, 0.2)';
     } else {
-        nav.style.background = 'rgba(10, 10, 10, 0.8)';
-        nav.style.boxShadow = 'none';
+        nav.style.background = 'rgba(10, 0, 20, 0.7)';
+        nav.style.boxShadow = '0 4px 30px rgba(0, 255, 255, 0.1)';
     }
 });
+
+// Add cursor glow effect
+const cursor = document.createElement('div');
+cursor.className = 'cursor-glow';
+cursor.style.cssText = `
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    display: none;
+`;
+
+// Only add cursor glow on non-touch devices
+if (!('ontouchstart' in window)) {
+    document.body.appendChild(cursor);
+    cursor.style.display = 'block';
+    
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX - 10 + 'px';
+        cursor.style.top = e.clientY - 10 + 'px';
+    });
+}
