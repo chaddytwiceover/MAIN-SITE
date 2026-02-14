@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CHADDYTWICEOVER | Developer & Designer</title>
+    <title>CHADDYTWICEOVER</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="#hero" class="logo">CHADDYTWICEOVER</a>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch theme">Y2K</button>
             <div class="menu-toggle">
                 <span></span>
                 <span></span>
@@ -24,88 +24,61 @@
         </div>
     </nav>
 
-    <!-- Hero -->
     <section id="hero">
-        <div class="hero-background">
-            <img src="assets/images/hero.png" alt="Abstract Architecture">
-        </div>
-        <div class="hero-content float-animation">
-            <span class="season-tag">Valentine's Day Edition</span>
-            <span class="hero-subtitle glow">Designer · Developer · Creator</span>
-            <h1 class="chrome-text">Building heartfelt digital experiences<br>with purpose and precision.</h1>
-            <p>
-                Focusing on clarity, structure, and the beauty of function. 
-                I create web interfaces that are as robust as they are refined,
-                now wrapped in a warm Valentine's glow.
-            </p>
-            <a href="#projects" class="cta-button y2k-btn">View Selected Work</a>
+        <div class="hero-content">
+            <p class="hero-label">Design & Development</p>
+            <h1>Digital experiences<br>crafted with care.</h1>
+            <a href="#projects" class="cta-button">View Work</a>
         </div>
     </section>
 
-    <!-- About -->
     <section id="about">
         <div class="section-content">
-            <span class="section-number glow">01 / About</span>
-            <h2 class="chrome-text">The Intersection of<br>Design & Logic</h2>
-            <p>
-                I am a web developer dedicated to crafting functional, information-rich digital experiences. 
-                My work strips away the unnecessary to reveal the essential.
-            </p>
-            <p>
-                Currently exploring modern frontend frameworks, performance optimization, and design systems 
-                that prioritize clarity over decoration.
-            </p>
+            <span class="section-label">About</span>
+            <h2>Clarity over complexity.</h2>
+            <p>Web developer focused on functional, refined digital experiences. Stripping away the unnecessary to reveal what matters.</p>
         </div>
     </section>
 
-    <!-- Projects -->
     <section id="projects">
         <div class="section-content">
-            <span class="section-number glow">02 / Selected Work</span>
-            <h2 class="chrome-text">Recent Projects</h2>
+            <span class="section-label">Work</span>
+            <h2>Selected Projects</h2>
             
             <div class="project-grid">
-                <!-- Project 1 -->
-                <div class="project-card card">
+                <a href="https://lab.chaddytwiceover.com" class="project-card" target="_blank">
                     <div class="project-image">
-                        <img src="assets/images/lab.png" alt="The Lab">
+                        <img src="assets/images/lab-icon.svg" alt="The Lab">
                     </div>
                     <div class="project-info">
                         <h3>The Lab</h3>
-                        <p>Experimental code, snippets, and works in progress. A digital workshop for testing new ideas.</p>
-                        <a href="https://lab.chaddytwiceover.com" class="project-link y2k-btn" target="_blank">Visit Project</a>
+                        <p>Experimental code and ideas.</p>
                     </div>
-                </div>
+                </a>
 
-                <!-- Project 2 -->
-                <div class="project-card card">
+                <a href="https://social.chaddytwiceover.com" class="project-card" target="_blank">
                     <div class="project-image">
-                        <img src="assets/images/social.png" alt="Social Hub">
+                        <img src="assets/images/social-icon.svg" alt="Social Hub">
                     </div>
                     <div class="project-info">
                         <h3>Social Hub</h3>
-                        <p>Centralized social media presence. A unified gateway to all my digital communication channels.</p>
-                        <a href="https://social.chaddytwiceover.com" class="project-link y2k-btn" target="_blank">Visit Project</a>
+                        <p>All channels, one place.</p>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact">
         <div class="section-content">
-            <span class="section-number glow">03 / Contact</span>
-            <h2 class="chrome-text">Let's Create Together</h2>
-            <p>Open for collaborations and new opportunities.</p>
-            <a href="mailto:contact@chaddytwiceover.com" class="cta-button y2k-btn">Get In Touch</a>
+            <span class="section-label">Contact</span>
+            <h2>Let's connect.</h2>
+            <a href="mailto:contact@chaddytwiceover.com" class="cta-button">Say Hello</a>
         </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <p>© <span id="year">2025</span> CHADDYTWICEOVER</p>
-        </div>
+        <p>© <span id="year">2026</span> CHADDYTWICEOVER</p>
     </footer>
 
     <script src="script.js"></script>

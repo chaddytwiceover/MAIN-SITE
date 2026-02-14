@@ -4,7 +4,39 @@ if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
 
-// Mobile menu functionality
+// Theme toggle with persistence
+const themeToggle = document.getElementById('theme-toggle');
+const savedTheme = localStorage.getItem('theme');
+
+if (savedTheme === 'y2k') {
+    document.body.setAttribute('data-theme', 'y2k');
+}
+
+if (themeToggle) {
+    const updateToggleLabel = () => {
+        const isY2k = document.body.getAttribute('data-theme') === 'y2k';
+        themeToggle.textContent = isY2k ? 'MIN' : 'Y2K';
+        themeToggle.setAttribute('aria-label', isY2k ? 'Switch to minimalist theme' : 'Switch to early 2000s theme');
+    };
+
+    updateToggleLabel();
+
+    themeToggle.addEventListener('click', () => {
+        const isY2k = document.body.getAttribute('data-theme') === 'y2k';
+
+        if (isY2k) {
+            document.body.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'minimal');
+        } else {
+            document.body.setAttribute('data-theme', 'y2k');
+            localStorage.setItem('theme', 'y2k');
+        }
+
+        updateToggleLabel();
+    });
+}
+
+// Mobile menu
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileNav = document.querySelector('.nav-links');
 
@@ -14,7 +46,6 @@ if (menuToggle && mobileNav) {
         menuToggle.classList.toggle('active');
     });
 
-    // Close mobile menu when clicking a link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             mobileNav.classList.remove('active');
@@ -23,7 +54,7 @@ if (menuToggle && mobileNav) {
     });
 }
 
-// Smooth scroll for navigation links
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -37,7 +68,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for fade-in animations
+// Fade-in on scroll
 const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px"
@@ -53,43 +84,17 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements for animation
-const animatedElements = document.querySelectorAll('.project-card, .hero-content, .section-content h2, .section-content p');
-animatedElements.forEach((el, index) => {
+document.querySelectorAll('.project-card, .section-content h2, .section-content p').forEach((el, index) => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-    // Stagger delay
-    el.style.transitionDelay = `${index * 0.1}s`;
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transitionDelay = `${index * 0.05}s`;
     observer.observe(el);
 });
 
-// Navbar scroll effect (Glassmorphism enhancement)
-const nav = document.querySelector('nav');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > 50) {
-        nav.style.background = 'rgba(10, 0, 20, 0.9)';
-        nav.style.boxShadow = '0 4px 30px rgba(0, 255, 255, 0.2)';
-    } else {
-        nav.style.background = 'rgba(10, 0, 20, 0.7)';
-        nav.style.boxShadow = '0 4px 30px rgba(0, 255, 255, 0.1)';
-    }
+// Fallback for broken image links
+document.querySelectorAll('.project-image img').forEach((image) => {
+    image.addEventListener('error', () => {
+        image.src = 'assets/images/hero.png';
+    }, { once: true });
 });
-
-// Add cursor glow effect
-const cursor = document.createElement('div');
-cursor.className = 'cursor-glow';
-
-// Only add cursor glow on non-touch devices
-if (!('ontouchstart' in window)) {
-    document.body.appendChild(cursor);
-    cursor.style.display = 'block';
-    
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX - 10 + 'px';
-        cursor.style.top = e.clientY - 10 + 'px';
-    });
-}
