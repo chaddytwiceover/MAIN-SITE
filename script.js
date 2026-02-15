@@ -92,9 +92,3 @@ document.querySelectorAll('.project-card, .section-content h2, .section-content 
     observer.observe(el);
 });
 
-// Fallback for broken image links
-document.querySelectorAll('.project-image img').forEach((image) => {
-    image.addEventListener('error', () => {
-        image.src = 'assets/images/hero.png';
-    }, { once: true });
-});

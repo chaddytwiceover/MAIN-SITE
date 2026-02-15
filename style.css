@@ -65,25 +65,25 @@ body[data-theme='y2k']::before {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background: repeating-linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.06) 0,
-        rgba(255, 255, 255, 0.06) 1px,
-        transparent 1px,
-        transparent 3px
-    );
+    background: repeating-linear-gradient(180deg,
+            rgba(255, 255, 255, 0.06) 0,
+            rgba(255, 255, 255, 0.06) 1px,
+            transparent 1px,
+            transparent 3px);
     mix-blend-mode: soft-light;
     opacity: 0.35;
     z-index: 0;
 }
 
-body > * {
+body>* {
     position: relative;
     z-index: 1;
 }
 
 /* Typography */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-weight: 500;
     letter-spacing: -0.02em;
     line-height: 1.2;
@@ -349,7 +349,7 @@ section {
     margin-bottom: 1rem;
 }
 
-body[data-theme='y2k'] section + section {
+body[data-theme='y2k'] section+section {
     border-top: 1px dashed rgba(141, 239, 255, 0.55);
 }
 
@@ -405,7 +405,8 @@ body[data-theme='y2k'] .project-card {
     background: var(--bg);
 }
 
-.project-image img {
+.project-image img,
+.project-image svg {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -413,12 +414,14 @@ body[data-theme='y2k'] .project-card {
     transition: var(--transition);
 }
 
-body[data-theme='y2k'] .project-image img {
+body[data-theme='y2k'] .project-image img,
+body[data-theme='y2k'] .project-image svg {
     filter: saturate(1.2) contrast(1.05);
     image-rendering: pixelated;
 }
 
-.project-card:hover .project-image img {
+.project-card:hover .project-image img,
+.project-card:hover .project-image svg {
     opacity: 1;
     transform: scale(1.02);
 }
