@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="description" content="Projects and experiments by CHADDYTWICEOVER.">
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#d4d0c8" media="(prefers-color-scheme: light)">
+    <link rel="canonical" href="https://chaddytwiceover.com/projects.html">
+    <title>Projects — CHADDYTWICEOVER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="index.html" class="logo">CHADDYTWICEOVER</a>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch theme">Y2K</button>
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links" role="list">
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html" aria-current="page">Work</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <section class="page-section" id="projects">
+            <div class="section-content">
+                <a class="cta-button cta-secondary page-back" href="index.html">← Back to Homepage</a>
+                <span class="section-label">Work</span>
+                <h1>Experiments & Projects</h1>
+                <p>Active learning builds where I test ideas and improve front-end skills.</p>
+
+                <div class="project-grid">
+                    <a href="https://lab.chaddytwiceover.com" class="project-card" target="_blank" rel="noopener noreferrer">
+                        <div class="project-image">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="The Lab" focusable="false">
+                                <rect width="640" height="400" fill="#1c1c30" />
+                                <rect x="72" y="72" width="496" height="256" fill="none" stroke="#78e5ff" stroke-width="4" />
+                                <text x="320" y="210" fill="#ffffff" font-family="Verdana, sans-serif" font-size="34" text-anchor="middle">THE LAB</text>
+                            </svg>
+                        </div>
+                        <div class="project-info">
+                            <h3>The Lab</h3>
+                            <p class="project-outcome">My sandbox for interaction experiments and front-end concept testing.</p>
+                            <p class="project-meta">Focus: UI experiments + front-end practice</p>
+                            <p class="project-meta">Stack: HTML, CSS, JavaScript, SVG</p>
+                            <p class="project-stat">Status: Active learning project</p>
+                            <span class="sr-only">(opens in new tab)</span>
+                        </div>
+                    </a>
+
+                    <a href="https://social.chaddytwiceover.com" class="project-card" target="_blank" rel="noopener noreferrer">
+                        <div class="project-image">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Social Hub" focusable="false">
+                                <rect width="640" height="400" fill="#2a1d24" />
+                                <circle cx="320" cy="200" r="88" fill="none" stroke="#ffd4e6" stroke-width="4" />
+                                <text x="320" y="210" fill="#ffffff" font-family="Verdana, sans-serif" font-size="34" text-anchor="middle">SOCIAL HUB</text>
+                            </svg>
+                        </div>
+                        <div class="project-info">
+                            <h3>Social Hub</h3>
+                            <p class="project-outcome">A personal hub for organizing links and improving navigation flow.</p>
+                            <p class="project-meta">Focus: Navigation patterns + usability</p>
+                            <p class="project-meta">Stack: HTML, CSS, JavaScript, SVG</p>
+                            <p class="project-stat">Status: Ongoing iteration</p>
+                            <span class="sr-only">(opens in new tab)</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year">2026</span> CHADDYTWICEOVER</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

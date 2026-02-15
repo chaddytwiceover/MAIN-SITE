@@ -1,69 +1,83 @@
 # CHADDYTWICEOVER
 
-Personal website and portfolio implementing the CHADDYTWICEOVER design system.
+Personal learning portfolio for CHADDYTWICEOVER.
 
-## Design Philosophy
+## Overview
 
-This site follows a brutalist-inspired design system with the following core principles:
+Single-page site with:
 
-- **Emergent aesthetics** - Form follows purpose, beauty emerges naturally
-- **Exposed structure** - Visible grid, borders, and scaffolding
-- **Dense, information-rich** - Every element earns its space
-- **Explicit over implicit** - Clear labels, obvious interactions
-- **Performance IS design** - Fast load times, smooth animations
+- A modern default theme for clarity and readability
+- A distinct Y2K/Netscape-style alternate theme for personality
+- Ongoing experiments and project iterations
+- Theme preference persistence via local storage
+- Responsive navigation and keyboard-accessible interactions
 
-## Color Palette
+## Purpose
 
-- **stone-950** (#0c0a09) - Primary background
-- **stone-900** (#1c1917) - Secondary background  
-- **stone-800** (#292524) - Borders, dividers
-- **stone-100** (#f5f5f4) - Primary text
-- **teal-400** (#2dd4bf) - Primary accent ("muted zest")
-- **amber-500** (#f59e0b) - Highlights, warnings
+This is not a commercial agency site.
 
-## Typography
+It is a personal space to:
 
-Monospace font stack for technical aesthetic:
-```
-font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
-```
+- practice front-end development
+- experiment with design ideas
+- document progress while studying web development
+- share work in public and connect with others
 
-## Features
+## Stack
 
-- Visible 50px × 50px grid background
-- Cursor trail effect with radial blur
-- Responsive mobile-first design
-- Section numbering (01, 02, 03)
-- Bordered components exposing structure
-- Smooth 300ms transitions
-- Arrow indicators on hover
+- HTML5
+- CSS3
+- Vanilla JavaScript (no framework)
 
 ## File Structure
 
 ```
 /
-├── index.html          # Main page
-├── style.css           # Design system styles
-├── script.js           # Interactions
-└── README.md           # Documentation
+├── index.html          # Main page structure/content
+├── style.css           # Base + Y2K theme styles
+├── script.js           # Theme toggle, menu, scroll/animation behavior
+└── README.md           # Project documentation
 ```
 
-## Development
+## Local Development
 
-Open `index.html` directly in a browser, or use a simple HTTP server:
+Open `index.html` directly in a browser, or run a simple local server:
 
 ```bash
-python3 -m http.server 8080
+python -m http.server 8080
 ```
 
-Then navigate to `http://localhost:8080`
+Then open `http://localhost:8080`.
 
-## Philosophy
+## Notes
 
-**"Design is how it works"**
+- Theme mode is stored under `localStorage['theme']`.
+- In Y2K mode, modern scroll-fade animations are disabled by design.
+- Analytics are intentionally minimal/optional for now.
 
-Emergent aesthetics. Exposed structure. Information-dense.
+## Deployment Security (2026 Baseline)
+
+This project includes an Apache config file: `.htaccess`.
+
+It sets:
+
+- `Content-Security-Policy`
+- `Strict-Transport-Security` (HTTPS only)
+- `Referrer-Policy`
+- `Permissions-Policy`
+- `X-Content-Type-Options`
+- `X-Frame-Options`
+- `Cross-Origin-Opener-Policy`
+- `Cross-Origin-Resource-Policy`
+
+### Verify after deploy
+
+```bash
+curl -I https://your-domain.example
+```
+
+Confirm the response includes the headers above.
 
 ---
 
-© 2025 CHADDYTWICEOVER
+© 2026 CHADDYTWICEOVER
