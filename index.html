@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="CHADDYTWICEOVER — Web developer focused on functional, refined digital experiences. Design & development portfolio.">
     <title>CHADDYTWICEOVER</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon"
@@ -13,15 +15,18 @@
 
 <body>
 
-    <nav>
+    <a href="#hero" class="skip-link">Skip to content</a>
+
+    <nav aria-label="Main navigation">
         <div class="nav-container">
             <a href="#hero" class="logo">CHADDYTWICEOVER</a>
             <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch theme">Y2K</button>
-            <div class="menu-toggle">
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="nav-links">
                 <span></span>
                 <span></span>
-            </div>
-            <ul class="nav-links">
+            </button>
+            <ul class="nav-links" id="nav-links" role="list">
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Work</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -29,125 +34,132 @@
         </div>
     </nav>
 
-    <section id="hero">
-        <div class="hero-content">
-            <p class="hero-label">Design & Development</p>
-            <h1>Digital experiences<br>crafted with care.</h1>
-            <a href="#projects" class="cta-button">View Work</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="section-content">
-            <span class="section-label">About</span>
-            <h2>Clarity over complexity.</h2>
-            <p>Web developer focused on functional, refined digital experiences. Stripping away the unnecessary to
-                reveal what matters.</p>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="section-content">
-            <span class="section-label">Work</span>
-            <h2>Selected Projects</h2>
-
-            <div class="project-grid">
-                <a href="https://lab.chaddytwiceover.com" class="project-card" target="_blank">
-                    <div class="project-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="The Lab">
-                            <defs>
-                                <linearGradient id="lab-bg" x1="0" y1="0" x2="1" y2="1">
-                                    <stop offset="0%" stop-color="#1a0f2f" />
-                                    <stop offset="100%" stop-color="#3a1f52" />
-                                </linearGradient>
-                                <linearGradient id="lab-line" x1="0" y1="0" x2="1" y2="0">
-                                    <stop offset="0%" stop-color="#ff6aa8" />
-                                    <stop offset="100%" stop-color="#78e5ff" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="640" height="400" fill="url(#lab-bg)" />
-                            <g opacity="0.2" stroke="#ffffff" stroke-width="1">
-                                <path d="M0 80h640M0 160h640M0 240h640M0 320h640" />
-                                <path d="M80 0v400M160 0v400M240 0v400M320 0v400M400 0v400M480 0v400M560 0v400" />
-                            </g>
-                            <rect x="90" y="86" width="460" height="228" rx="14" fill="#0e0b1a" stroke="url(#lab-line)"
-                                stroke-width="5" />
-                            <rect x="116" y="116" width="408" height="170" rx="8" fill="#120d22" stroke="#ff6aa8"
-                                stroke-opacity="0.5" />
-                            <path d="M150 250l76-100 74 72 70-90 120 118" fill="none" stroke="url(#lab-line)"
-                                stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
-                            <circle cx="150" cy="250" r="9" fill="#78e5ff" />
-                            <circle cx="226" cy="150" r="9" fill="#ff6aa8" />
-                            <circle cx="300" cy="222" r="9" fill="#78e5ff" />
-                            <circle cx="370" cy="132" r="9" fill="#ff6aa8" />
-                            <circle cx="490" cy="250" r="9" fill="#78e5ff" />
-                            <text x="320" y="352" fill="#ffd8ee" font-family="Verdana, Tahoma, sans-serif"
-                                font-size="24" text-anchor="middle" letter-spacing="2">THE LAB</text>
-                        </svg>
-                    </div>
-                    <div class="project-info">
-                        <h3>The Lab</h3>
-                        <p>Experimental code and ideas.</p>
-                    </div>
-                </a>
-
-                <a href="https://social.chaddytwiceover.com" class="project-card" target="_blank">
-                    <div class="project-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img"
-                            aria-label="Social Hub">
-                            <defs>
-                                <linearGradient id="social-bg" x1="0" y1="0" x2="1" y2="1">
-                                    <stop offset="0%" stop-color="#220f1d" />
-                                    <stop offset="100%" stop-color="#3b1f33" />
-                                </linearGradient>
-                                <linearGradient id="social-ring" x1="0" y1="0" x2="1" y2="1">
-                                    <stop offset="0%" stop-color="#ff87b8" />
-                                    <stop offset="100%" stop-color="#ffd4e6" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="640" height="400" fill="url(#social-bg)" />
-                            <g opacity="0.15">
-                                <circle cx="320" cy="200" r="150" fill="none" stroke="#ffffff" stroke-width="2" />
-                                <circle cx="320" cy="200" r="110" fill="none" stroke="#ffffff" stroke-width="2" />
-                                <circle cx="320" cy="200" r="70" fill="none" stroke="#ffffff" stroke-width="2" />
-                            </g>
-                            <g stroke="url(#social-ring)" stroke-width="4" fill="none" stroke-linecap="round">
-                                <path d="M180 140L320 200L470 120" />
-                                <path d="M150 260L320 200L490 260" />
-                                <path d="M210 310L320 200L420 320" />
-                            </g>
-                            <g fill="#ffd4e6" stroke="#ff87b8" stroke-width="3">
-                                <circle cx="320" cy="200" r="24" />
-                                <circle cx="180" cy="140" r="16" />
-                                <circle cx="470" cy="120" r="16" />
-                                <circle cx="150" cy="260" r="16" />
-                                <circle cx="490" cy="260" r="16" />
-                                <circle cx="210" cy="310" r="16" />
-                                <circle cx="420" cy="320" r="16" />
-                            </g>
-                            <text x="320" y="356" fill="#ffeaf3" font-family="Verdana, Tahoma, sans-serif"
-                                font-size="24" text-anchor="middle" letter-spacing="2">SOCIAL HUB</text>
-                        </svg>
-                    </div>
-                    <div class="project-info">
-                        <h3>Social Hub</h3>
-                        <p>All channels, one place.</p>
-                    </div>
-                </a>
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <p class="hero-label">Design &amp; Development</p>
+                <h1>Digital experiences<br>crafted with care.</h1>
+                <a href="#projects" class="cta-button">View Work</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact">
-        <div class="section-content">
-            <span class="section-label">Contact</span>
-            <h2>Let's connect.</h2>
-            <a href="mailto:contact@chaddytwiceover.com" class="cta-button">Say Hello</a>
-        </div>
-    </section>
+        <section id="about">
+            <div class="section-content">
+                <span class="section-label">About</span>
+                <h2>Clarity over complexity.</h2>
+                <p>Web developer focused on functional, refined digital experiences. Stripping away the unnecessary to
+                    reveal what matters.</p>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="section-content">
+                <span class="section-label">Work</span>
+                <h2>Selected Projects</h2>
+
+                <div class="project-grid">
+                    <a href="https://lab.chaddytwiceover.com" class="project-card" target="_blank"
+                        rel="noopener noreferrer">
+                        <div class="project-image">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img"
+                                aria-label="The Lab" focusable="false">
+                                <defs>
+                                    <linearGradient id="lab-bg" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#1a0f2f" />
+                                        <stop offset="100%" stop-color="#3a1f52" />
+                                    </linearGradient>
+                                    <linearGradient id="lab-line" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#ff6aa8" />
+                                        <stop offset="100%" stop-color="#78e5ff" />
+                                    </linearGradient>
+                                </defs>
+                                <rect width="640" height="400" fill="url(#lab-bg)" />
+                                <g opacity="0.2" stroke="#ffffff" stroke-width="1">
+                                    <path d="M0 80h640M0 160h640M0 240h640M0 320h640" />
+                                    <path d="M80 0v400M160 0v400M240 0v400M320 0v400M400 0v400M480 0v400M560 0v400" />
+                                </g>
+                                <rect x="90" y="86" width="460" height="228" rx="14" fill="#0e0b1a"
+                                    stroke="url(#lab-line)" stroke-width="5" />
+                                <rect x="116" y="116" width="408" height="170" rx="8" fill="#120d22" stroke="#ff6aa8"
+                                    stroke-opacity="0.5" />
+                                <path d="M150 250l76-100 74 72 70-90 120 118" fill="none" stroke="url(#lab-line)"
+                                    stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                                <circle cx="150" cy="250" r="9" fill="#78e5ff" />
+                                <circle cx="226" cy="150" r="9" fill="#ff6aa8" />
+                                <circle cx="300" cy="222" r="9" fill="#78e5ff" />
+                                <circle cx="370" cy="132" r="9" fill="#ff6aa8" />
+                                <circle cx="490" cy="250" r="9" fill="#78e5ff" />
+                                <text x="320" y="352" fill="#ffd8ee" font-family="Verdana, Tahoma, sans-serif"
+                                    font-size="24" text-anchor="middle" letter-spacing="2">THE LAB</text>
+                            </svg>
+                        </div>
+                        <div class="project-info">
+                            <h3>The Lab</h3>
+                            <p>Experimental code and ideas.</p>
+                            <span class="sr-only">(opens in new tab)</span>
+                        </div>
+                    </a>
+
+                    <a href="https://social.chaddytwiceover.com" class="project-card" target="_blank"
+                        rel="noopener noreferrer">
+                        <div class="project-image">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img"
+                                aria-label="Social Hub" focusable="false">
+                                <defs>
+                                    <linearGradient id="social-bg" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#220f1d" />
+                                        <stop offset="100%" stop-color="#3b1f33" />
+                                    </linearGradient>
+                                    <linearGradient id="social-ring" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#ff87b8" />
+                                        <stop offset="100%" stop-color="#ffd4e6" />
+                                    </linearGradient>
+                                </defs>
+                                <rect width="640" height="400" fill="url(#social-bg)" />
+                                <g opacity="0.15">
+                                    <circle cx="320" cy="200" r="150" fill="none" stroke="#ffffff" stroke-width="2" />
+                                    <circle cx="320" cy="200" r="110" fill="none" stroke="#ffffff" stroke-width="2" />
+                                    <circle cx="320" cy="200" r="70" fill="none" stroke="#ffffff" stroke-width="2" />
+                                </g>
+                                <g stroke="url(#social-ring)" stroke-width="4" fill="none" stroke-linecap="round">
+                                    <path d="M180 140L320 200L470 120" />
+                                    <path d="M150 260L320 200L490 260" />
+                                    <path d="M210 310L320 200L420 320" />
+                                </g>
+                                <g fill="#ffd4e6" stroke="#ff87b8" stroke-width="3">
+                                    <circle cx="320" cy="200" r="24" />
+                                    <circle cx="180" cy="140" r="16" />
+                                    <circle cx="470" cy="120" r="16" />
+                                    <circle cx="150" cy="260" r="16" />
+                                    <circle cx="490" cy="260" r="16" />
+                                    <circle cx="210" cy="310" r="16" />
+                                    <circle cx="420" cy="320" r="16" />
+                                </g>
+                                <text x="320" y="356" fill="#ffeaf3" font-family="Verdana, Tahoma, sans-serif"
+                                    font-size="24" text-anchor="middle" letter-spacing="2">SOCIAL HUB</text>
+                            </svg>
+                        </div>
+                        <div class="project-info">
+                            <h3>Social Hub</h3>
+                            <p>All channels, one place.</p>
+                            <span class="sr-only">(opens in new tab)</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-content">
+                <span class="section-label">Contact</span>
+                <h2>Let's connect.</h2>
+                <a href="mailto:contact@chaddytwiceover.com" class="cta-button">Say Hello</a>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>© <span id="year">2026</span> CHADDYTWICEOVER</p>
+        <p>&copy; <span id="year">2026</span> CHADDYTWICEOVER</p>
     </footer>
 
     <script src="script.js"></script>
