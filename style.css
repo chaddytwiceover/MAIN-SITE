@@ -443,6 +443,10 @@ body[data-theme='y2k'] #hero {
     padding: 1.5rem;
 }
 
+body[data-theme='y2k'] .page-section {
+    padding-top: 1.5rem;
+}
+
 body[data-theme='y2k'] #hero::after {
     display: none;
 }
@@ -798,6 +802,11 @@ body[data-theme='y2k'] a {
 
 body[data-theme='y2k'] a:visited {
     color: #551a8b;
+}
+
+body[data-theme='y2k'] .cta-button:visited,
+body[data-theme='y2k'] .cta-button.page-back:visited {
+    color: inherit;
 }
 
 body[data-theme='y2k'] footer {
