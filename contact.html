@@ -5,15 +5,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta name="description" content="Contact CHADDYTWICEOVER.">
-    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#d4d0c8" media="(prefers-color-scheme: light)">
+    <meta name="description" content="Contact CHADDYTWICEOVER — share feedback, ideas, or resources.">
+    <meta name="theme-color" content="#08080f">
     <link rel="canonical" href="https://chaddytwiceover.com/contact.html">
+    <meta property="og:title" content="Contact — CHADDYTWICEOVER" />
+    <meta property="og:description" content="Share feedback, ideas, or resources. Reach out and connect." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://chaddytwiceover.com/contact.html" />
+    <meta property="og:image" content="https://chaddytwiceover.com/assets/images/hero.png" />
+    <meta name="twitter:card" content="summary" />
     <title>Contact — CHADDYTWICEOVER</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>◈</text></svg>"
+        type="image/svg+xml">
 </head>
 
 <body>
@@ -22,8 +27,9 @@
     <nav aria-label="Main navigation">
         <div class="nav-container">
             <a href="index.html" class="logo">CHADDYTWICEOVER</a>
-            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch theme">Y2K</button>
-            <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Turn neon off">NEON ON</button>
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="nav-links">
                 <span></span>
                 <span></span>
             </button>
@@ -38,11 +44,45 @@
     <main id="main-content">
         <section class="page-section" id="contact">
             <div class="section-content">
-                <a class="cta-button cta-secondary page-back" href="index.html">← Back to Homepage</a>
+                <a class="cta-button cta-secondary page-back" href="index.html">← Back</a>
                 <span class="section-label">Contact</span>
                 <h1>Say hi.</h1>
                 <p>If you want to talk web dev, share feedback, or trade resources, feel free to reach out.</p>
-                <a href="mailto:contact@chaddytwiceover.com" class="cta-button">Email Me</a>
+
+                <form class="contact-form" id="contact-form" novalidate>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                    <p class="form-note">// Submitting opens your email client via mailto</p>
+                </form>
+
+                <nav aria-label="Social links">
+                    <div class="social-links">
+                        <a href="https://github.com/chaddytwiceover" class="social-link" target="_blank"
+                            rel="noopener noreferrer">
+                            GitHub
+                            <span class="sr-only">(opens in new tab)</span>
+                        </a>
+                        <a href="mailto:contact@chaddytwiceover.com" class="social-link">
+                            Email
+                        </a>
+                        <a href="https://lab.chaddytwiceover.com" class="social-link" target="_blank"
+                            rel="noopener noreferrer">
+                            The Lab
+                            <span class="sr-only">(opens in new tab)</span>
+                        </a>
+                    </div>
+                </nav>
             </div>
         </section>
     </main>
