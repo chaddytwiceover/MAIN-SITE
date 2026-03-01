@@ -137,15 +137,25 @@ function initCardTilt(container) {
     if (prefersReduced) return;
 
     container.querySelectorAll('.project-card').forEach(card => {
+        let rafId = null;
+
         card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            card.style.transform =
-                `perspective(1000px) rotateX(${y * -8}deg) rotateY(${x * 8}deg) translateY(-4px)`;
+            if (rafId) return;
+            rafId = requestAnimationFrame(() => {
+                rafId = null;
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                card.style.transform =
+                    `perspective(1000px) rotateX(${y * -8}deg) rotateY(${x * 8}deg) translateY(-4px)`;
+            });
         });
 
         card.addEventListener('mouseleave', () => {
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
             card.style.transform =
                 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
         });
@@ -268,14 +278,58 @@ const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const name = contactForm.elements['name'].value.trim();
-        const email = contactForm.elements['email'].value.trim();
-        const message = contactForm.elements['message'].value.trim();
 
-        if (!name || !email || !message) return;
+        const nameEl = contactForm.elements['name'];
+        const emailEl = contactForm.elements['email'];
+        const messageEl = contactForm.elements['message'];
+
+        const name = nameEl.value.trim();
+        const email = emailEl.value.trim();
+        const message = messageEl.value.trim();
+
+        // Basic email format validation
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+        const fields = [
+            { el: nameEl, valid: name.length > 0, msg: 'Name is required.' },
+            { el: emailEl, valid: emailOk, msg: 'A valid email is required.' },
+            { el: messageEl, valid: message.length > 0, msg: 'Message is required.' }
+        ];
+
+        let hasError = false;
+        fields.forEach(({ el, valid, msg }) => {
+            const existingErr = el.parentElement.querySelector('.form-error');
+            if (existingErr) existingErr.remove();
+
+            if (!valid) {
+                hasError = true;
+                el.classList.add('invalid');
+                el.setAttribute('aria-invalid', 'true');
+                const err = document.createElement('span');
+                err.className = 'form-error';
+                err.setAttribute('role', 'alert');
+                err.textContent = msg;
+                el.parentElement.appendChild(err);
+            } else {
+                el.classList.remove('invalid');
+                el.removeAttribute('aria-invalid');
+            }
+        });
+
+        if (hasError) return;
 
         const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
         const body = encodeURIComponent(`From: ${name} <${email}>\n\n${message}`);
         window.location.href = `mailto:contact@chaddytwiceover.com?subject=${subject}&body=${body}`;
+    });
+
+    // Clear validation state on input
+    contactForm.querySelectorAll('input, textarea').forEach(el => {
+        el.addEventListener('input', () => {
+            el.classList.remove('invalid');
+            el.removeAttribute('aria-invalid');
+            const err = el.parentElement.querySelector('.form-error');
+            if (err) err.remove();
+        });
     });
 }

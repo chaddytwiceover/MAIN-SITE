@@ -654,6 +654,7 @@ section {
     transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
     transform-style: preserve-3d;
     transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0);
+    will-change: transform;
     position: relative;
 }
 
@@ -1033,4 +1034,22 @@ footer p {
     .glitch::after {
         display: none;
     }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.section-label--gap {
+    margin-top: 2.5rem;
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid {
+    border-color: var(--accent-alt);
+    box-shadow: 0 0 8px rgba(255, 45, 120, 0.4);
+}
+
+.form-error {
+    font-size: 0.72rem;
+    color: var(--accent-alt);
+    font-family: var(--font-mono);
+    margin-top: 0.25rem;
 }
