@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
+const MotionLink = motion.create(Link)
+
 export default function Hero() {
   const skip = useSkipAnimation()
 
@@ -24,24 +26,22 @@ export default function Hero() {
           as I keep improving my craft.
         </p>
         <div className="hero-ctas">
-          <Link href="/projects" passHref legacyBehavior>
-            <motion.a
-              className="cta-button"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View Work
-            </motion.a>
-          </Link>
-          <Link href="/contact" passHref legacyBehavior>
-            <motion.a
-              className="cta-button cta-secondary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Contact
-            </motion.a>
-          </Link>
+          <MotionLink
+            href="/projects"
+            className="cta-button"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            View Work
+          </MotionLink>
+          <MotionLink
+            href="/contact"
+            className="cta-button cta-secondary"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Contact
+          </MotionLink>
         </div>
       </motion.div>
     </section>
