@@ -110,7 +110,6 @@ export default function ContactForm() {
       <button type="submit" className="cta-button">
         Send Message
       </button>
-      <p className="form-note">// Submitting opens your email client via mailto</p>
     </form>
   )
 }
