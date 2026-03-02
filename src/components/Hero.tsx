@@ -24,24 +24,16 @@ export default function Hero() {
           as I keep improving my craft.
         </p>
         <div className="hero-ctas">
-          <Link href="/projects" passHref legacyBehavior>
-            <motion.a
-              className="cta-button"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link href="/projects" className="cta-button">
               View Work
-            </motion.a>
-          </Link>
-          <Link href="/contact" passHref legacyBehavior>
-            <motion.a
-              className="cta-button cta-secondary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link href="/contact" className="cta-button cta-secondary">
               Contact
-            </motion.a>
-          </Link>
+            </Link>
+          </motion.div>
         </div>
       </motion.div>
     </section>
