@@ -1,193 +1,89 @@
-# CHADDYTWICEOVER — Hobbyist Portfolio Design Spec (v2)
+# Tech Stack Blueprint (social-links)
 
-## 1) Design Goal
+This document describes the tech stack used in the `chaddytwiceover/social-links` repository so it can be replicated for another domain/project.
 
-Create a personal site that feels authentic, visually distinct, and easy to explore, while documenting growth as a web dev student.
+## Overview
 
-Visitors should quickly understand:
+This project is a **Next.js (React) site deployed as a static export**. The build produces a static output folder (`out/`) that can be hosted on any static hosting provider (including IONOS Deploy Now) without running a Node server at runtime.
 
-1. What you’re currently learning
-2. What you’re experimenting with
-3. How your style/skills are evolving
-4. How to connect with you
+## Core Framework
 
----
+- **Next.js** (React framework)
+  - Rendering model: **Static export**
+  - Key config:
+    - `output: 'export'` (generates static files into `out/`)
+    - `images: { unoptimized: true }` (required for static export when using `next/image`)
+    - `trailingSlash: true` (routes output as `/path/index.html`)
 
-## 2) Positioning
+- **React 18**
+  - UI library used by Next.js
 
-### Primary identity (default theme)
+## Language / Tooling
 
-- Clean and modern
-- Focused on readability and structure
-- Feels like a personal lab notebook + portfolio
+- **TypeScript**
+  - Types: `@types/node`, `@types/react`, `@types/react-dom`
+  - Config: `tsconfig.json`
+  - Next TS env: `next-env.d.ts`
 
-### Secondary identity (Y2K mode)
+## Styling
 
-- Nostalgic, playful, and intentionally different
-- Keeps the same content and navigation structure
-- Acts as personality expression, not a separate product
+- **Tailwind CSS**
+  - Utility-first CSS framework
+- **PostCSS**
+  - Build-time CSS processing
+- **Autoprefixer**
+  - Adds vendor prefixes for broader browser compatibility
 
-**Rule:** Both themes must present the same information architecture.
+## UI / Motion
 
----
+- **Framer Motion**
+  - Animations and transitions
 
-## 3) Content Architecture (Top to Bottom)
+## Package Manager
 
-## Hero
+- **npm**
+  - Lockfile present: `package-lock.json`
 
-- Short label describing the craft area
-- Honest headline about building/learning
-- 1 short paragraph on current focus
-- 2 simple actions:
-  - See experiments
-  - Say hi
+## Key Scripts (npm)
 
-## About
+Typical scripts used:
 
-- Explain current stage (student / learning in public)
-- Mention what skills are being practiced
-- Keep tone humble and clear
+- `npm run dev` — local development
+- `npm run build` — production build (**also performs static export due to Next config**)
+- `npm run start` — starts a Next server (**not used for static hosting**)
+- `npm run lint` — linting
 
-## Work
+## Build Output / Hosting Model
 
-- 2–4 live experiments/projects
-- Each card should include:
-  - Project name
-  - What it explores
-  - Skill focus
-  - Tech used
-  - Status (active, iterating, archived)
+### Build output directory
 
-## Contact
+- **`out/`** (static export output)
 
-- One low-friction path (email)
-- Invitation to share feedback, ideas, or resources
+### Hosting requirements
 
----
+- Static file hosting (no server runtime required)
+- Serve the site from the `out/` directory
 
-## 4) Voice & Copy Guidelines
+### IONOS Deploy Now settings (recommended)
 
-Use language that is:
+- Install: `npm ci`
+- Build: `npm run build`
+- Publish directory: `out`
 
-- Honest (no inflated business claims)
-- Curious (learning-forward)
-- Personal (first person is okay)
-- Specific (what the project actually teaches you)
+## Notes / Legacy Files
 
-Avoid language that sounds like:
+This repository may contain older static-site/PWA artifacts (for example `index.html`, `styles.css`, `app.js`, `service-worker.js`, `offline.html`, `manifest.webmanifest`, `.htaccess`) from a previous non-Next version.
 
-- Agency sales copy
-- Guaranteed outcomes
-- Fabricated metrics
+For a clean Next.js blueprint, consider removing legacy root static files if they are no longer used, to avoid confusion in static hosting setups (hosts may accidentally serve the root `index.html` instead of the Next export output).
 
----
+## Blueprint Checklist (for main domain)
 
-## 5) Visual System
-
-## Type scale
-
-- Keep current hierarchy (H1/H2/body) with strong readability
-- Body text should remain comfortable for long scanning
-
-## Spacing rhythm
-
-- Base rhythm: 8px
-- Give sections enough air to feel intentional
-- Preserve denser, boxier rhythm in Y2K mode
-
-## Width and legibility
-
-- Content max width around current implementation
-- Keep paragraph measure in readable range
-
-## Motion
-
-- Motion supports orientation only
-- Reduced motion respected globally
-- Minimal/no decorative motion in Y2K mode
-
----
-
-## 6) Component Guidelines
-
-## Navigation
-
-- Clear anchors: About / Work / Contact
-- Theme switch should stay visible but not dominate
-
-## Buttons
-
-- Primary and secondary styles are enough
-- Action labels should match hobbyist intent (e.g., See Experiments, Say Hi)
-
-## Project Cards
-
-- Prioritize what was learned and explored
-- Keep visuals supportive, not overpowering
-
-## Footer
-
-- Keep minimal: copyright + identity
-
----
-
-## 7) UX Rules
-
-1. Every section should be understandable in under 5 seconds.
-2. Personal authenticity beats polished marketing language.
-3. Preserve the same structure across both themes.
-4. Accessibility remains required (focus states, contrast, keyboard, reduced motion).
-5. Add complexity only when it helps understanding.
-
----
-
-## 8) Instrumentation Policy
-
-Default approach: **no analytics required** for now.
-
-If analytics are added later, keep them lightweight and privacy-conscious:
-
-- Track only high-level interactions
-- Avoid personal data collection
-- Keep transparency in README
-
----
-
-## 9) Ongoing Improvement Plan
-
-### Phase 1: Keep it honest
-
-- Ensure copy reflects current skill level
-- Remove any over-claiming language
-
-### Phase 2: Show progress
-
-- Add/update experiments regularly
-- Note what changed in each project over time
-
-### Phase 3: Improve craft
-
-- Refine spacing, hierarchy, and clarity
-- Keep accessibility quality high as the site grows
-
----
-
-## 10) Success Criteria
-
-The site succeeds if it:
-
-- Feels true to where you are now
-- Makes experiments easy to browse
-- Shows visible growth over time
-- Encourages friendly feedback and connections
-
----
-
-## 11) Non-Goals
-
-- Selling services aggressively
-- Pretending to be a full agency/product studio
-- Heavy growth funnels or complex lead capture
-- Overengineering before fundamentals are strong
-
-Keep this version focused: **learning, experimentation, personality, and steady progress.**
+1. Create a new Next.js project (or reuse this repo).
+2. Ensure `next.config.js` includes:
+   - `output: 'export'`
+   - `images: { unoptimized: true }`
+   - `trailingSlash: true` (optional but recommended for static hosts)
+3. Use Tailwind setup (Tailwind + PostCSS + Autoprefixer).
+4. Add Framer Motion if animations are needed.
+5. Configure hosting to deploy the `out/` folder.
+6. (Optional) Remove any legacy root `index.html` and related assets to prevent mis-deploys.
