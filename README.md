@@ -13,6 +13,38 @@ A cyberpunk-themed personal portfolio built with **Next.js**, **React**, **TypeS
 | Motion    | Framer Motion                               |
 | Build     | PostCSS + Autoprefixer                      |
 
+### Exact Core Dependencies
+
+| Package        | Version Range |
+| -------------- | ------------- |
+| `next`         | `^14.2.0`     |
+| `react`        | `^18.3.0`     |
+| `react-dom`    | `^18.3.0`     |
+| `framer-motion`| `^11.0.0`     |
+| `typescript`   | `^5.4.0`      |
+| `tailwindcss`  | `^3.4.0`      |
+
+## Merge to `main`
+
+```bash
+git checkout main
+git pull origin main
+git checkout <your-feature-branch>
+git rebase main
+git checkout main
+git merge <your-feature-branch>
+git push origin main
+```
+
+If merge conflicts block you, rebuild the branch on top of latest `main` by creating a fresh branch and cherry-picking your commits:
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b rebuild/<feature>
+git cherry-pick <commit-sha-1> <commit-sha-2>
+```
+
 ## Project Structure
 
 ```
