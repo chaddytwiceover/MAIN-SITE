@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useCallback } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion'
 import type { Project } from '@/lib/projects'
 
 interface ProjectCardProps {
@@ -9,8 +9,9 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const isExternal = project.url !== '#'
-  const cardRef = useRef<HTMLAnchorElement>(null)
+  const isExternal = !!project.url
+  const cardRef = useRef<HTMLDivElement>(null)
+  const prefersReducedMotion = useReducedMotion()
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -26,13 +27,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+      if (prefersReducedMotion) return
       const rect = cardRef.current?.getBoundingClientRect()
       if (!rect) return
       x.set((e.clientX - rect.left) / rect.width - 0.5)
       y.set((e.clientY - rect.top) / rect.height - 0.5)
     },
-    [x, y]
+    [x, y, prefersReducedMotion]
   )
 
   const handleMouseLeave = useCallback(() => {
@@ -40,14 +41,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     y.set(0)
   }, [x, y])
 
-  return (
-    <motion.a
+  const cardContent = (
+    <motion.div
       ref={cardRef}
-      href={project.url}
       className="project-card"
       data-category={project.category}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noopener noreferrer' : undefined}
       style={{ rotateX, rotateY, transformPerspective: 1000 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -104,6 +102,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <p className="project-stat">// {project.status}</p>
         {isExternal && <span className="sr-only">(opens in new tab)</span>}
       </div>
-    </motion.a>
+    </motion.div>
   )
+
+  if (isExternal) {
+    return (
+      <a href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} project (opens in new tab)`}>
+        {cardContent}
+      </a>
+    )
+  }
+
+  return cardContent
 }
