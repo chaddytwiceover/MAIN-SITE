@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useCallback } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion'
 import type { Project } from '@/lib/projects'
 
 interface ProjectCardProps {
@@ -24,15 +24,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     damping: 20,
   })
 
+  const prefersReducedMotion = useReducedMotion()
+
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+      if (prefersReducedMotion) return
       const rect = cardRef.current?.getBoundingClientRect()
       if (!rect) return
       x.set((e.clientX - rect.left) / rect.width - 0.5)
       y.set((e.clientY - rect.top) / rect.height - 0.5)
     },
-    [x, y]
+    [prefersReducedMotion, x, y]
   )
 
   const handleMouseLeave = useCallback(() => {
