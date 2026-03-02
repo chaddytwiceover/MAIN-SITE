@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useCallback } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion'
 import type { Project } from '@/lib/projects'
 
 interface ProjectCardProps {
@@ -9,8 +9,9 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const isExternal = project.url !== '#'
+  const isExternal = !!project.url && project.url !== '#'
   const cardRef = useRef<HTMLAnchorElement>(null)
+  const shouldReduceMotion = useReducedMotion()
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -26,13 +27,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+      if (shouldReduceMotion) return
       const rect = cardRef.current?.getBoundingClientRect()
       if (!rect) return
       x.set((e.clientX - rect.left) / rect.width - 0.5)
       y.set((e.clientY - rect.top) / rect.height - 0.5)
     },
-    [x, y]
+    [x, y, shouldReduceMotion]
   )
 
   const handleMouseLeave = useCallback(() => {
@@ -48,6 +49,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       data-category={project.category}
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
+      aria-disabled={!project.url ? true : undefined}
       style={{ rotateX, rotateY, transformPerspective: 1000 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
