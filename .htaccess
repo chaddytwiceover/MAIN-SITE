@@ -1,35 +1,45 @@
-Clean URLs Config
+# Clean URLs Config
 
---- Security Headers ---
-<IfModule mod_headers.c> Header always set X-Content-Type-Options "nosniff" Header always set X-Frame-Options "DENY" Header always set Referrer-Policy "strict-origin-when-cross-origin" Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
-Header always set Cross-Origin-Opener-Policy "same-origin"
-Header always set Cross-Origin-Resource-Policy "same-origin"
+# --- Security Headers ---
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    Header always set Cross-Origin-Resource-Policy "same-origin"
 
-Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests"
 
-Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" "expr=%{HTTPS} == 'on'"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" "expr=%{HTTPS} == 'on'"
 </IfModule>
---- URL Rewriting & Clean URLs ---
-<IfModule mod_rewrite.c> RewriteEngine On
-# 1. Force HTTPS
-RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 2. Redirect /index.html to the root domain (/)
-# This prevents the "/index.html" text from showing up in the URL bar
-RewriteCond %{THE_REQUEST} /index\.html [NC]
-RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+# --- URL Rewriting & Clean URLs ---
+<IfModule mod_rewrite.c>
+    RewriteEngine On
 
-# 3. External Redirect: Remove .html extension from all pages
-# Example: If someone visits site.com/about.html, they are sent to site.com/about
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.html\ HTTP/
-RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+    # 1. Force HTTPS
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 4. Internal Mapping: Map clean URLs back to .html files
-# This makes site.com/about actually load the content of about.html
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^([^\.]+)$ $1.html [NC,L]
+    # 2. Redirect /index.html to the root domain (/)
+    # This prevents the "/index.html" text from showing up in the URL bar
+    RewriteCond %{THE_REQUEST} /index\.html [NC]
+    RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+    # 3. External Redirect: Remove .html extension from all pages
+    # Example: If someone visits site.com/about.html, they are sent to site.com/about
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.html\ HTTP/
+    RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+
+    # 4. Internal Mapping: Map clean URLs back to .html files
+    # This makes site.com/about actually load the content of about.html
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteRule ^([^\.]+)$ $1.html [NC,L]
 </IfModule>
---- MIME Types ---
-<IfModule mod_mime.c> AddType image/svg+xml .svg </IfModule>
+
+# --- MIME Types ---
+<IfModule mod_mime.c>
+    AddType image/svg+xml .svg
+</IfModule>

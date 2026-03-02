@@ -33,9 +33,16 @@ It is a personal space to:
 
 ```
 /
-├── index.html          # Main page structure/content
-├── style.css           # Base + Y2K theme styles
+├── index.html          # Home page
+├── about.html          # About page
+├── projects.html       # Projects/work page
+├── contact.html        # Contact page
+├── style.css           # Base + neon theme styles
 ├── script.js           # Theme toggle, menu, scroll/animation behavior
+├── .htaccess           # Apache config: security headers, clean URLs
+├── assets/
+│   └── images/         # hero.png and SVG icons
+├── DESIGN_SPEC.md      # Design specification
 └── README.md           # Project documentation
 ```
 
@@ -51,8 +58,8 @@ Then open `http://localhost:8080`.
 
 ## Notes
 
-- Theme mode is stored under `localStorage['theme']`.
-- In Y2K mode, modern scroll-fade animations are disabled by design.
+- Theme mode is stored under `localStorage['neon']`.
+- In neon-off mode, the ambient background and scanline animations are disabled by design.
 - Analytics are intentionally minimal/optional for now.
 
 ## Deployment Security (2026 Baseline)
