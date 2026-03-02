@@ -6,7 +6,7 @@ export interface Project {
   focus: string
   stack: string
   status: string
-  url: string
+  url?: string
   svgBg: string
   svgStroke: string
   svgLabel: string
@@ -47,7 +47,6 @@ export const projects: Project[] = [
     focus: 'Design systems + accessibility',
     stack: 'HTML, CSS, JavaScript',
     status: 'Continuously improved',
-    url: '#',
     svgBg: '#0a1408',
     svgStroke: '#ffe600',
     svgLabel: 'MAIN SITE',

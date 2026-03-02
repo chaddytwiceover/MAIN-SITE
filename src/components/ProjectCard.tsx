@@ -9,8 +9,9 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const isExternal = project.url !== '#'
-  const cardRef = useRef<HTMLAnchorElement>(null)
+  const hasUrl = !!project.url
+  const isExternal = !!project.url?.startsWith('http')
+  const cardRef = useRef<HTMLElement>(null)
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -40,19 +41,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     y.set(0)
   }, [x, y])
 
-  return (
-    <motion.a
-      ref={cardRef}
-      href={project.url}
-      className="project-card"
-      data-category={project.category}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noopener noreferrer' : undefined}
-      style={{ rotateX, rotateY, transformPerspective: 1000 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      whileHover={{ translateY: -4 }}
-    >
+  const sharedMotionProps = {
+    className: 'project-card',
+    'data-category': project.category,
+    style: { rotateX, rotateY, transformPerspective: 1000 },
+    onMouseMove: handleMouseMove,
+    onMouseLeave: handleMouseLeave,
+    whileHover: { translateY: -4 },
+  }
+
+  const cardContent = (
+    <>
       <div className="project-image">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -102,8 +101,32 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <p className="project-meta">Focus: {project.focus}</p>
         <p className="project-meta">Stack: {project.stack}</p>
         <p className="project-stat">// {project.status}</p>
-        {isExternal && <span className="sr-only">(opens in new tab)</span>}
       </div>
-    </motion.a>
+    </>
+  )
+
+  if (hasUrl) {
+    return (
+      <motion.a
+        ref={cardRef as React.RefObject<HTMLAnchorElement>}
+        href={project.url}
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        {...sharedMotionProps}
+      >
+        {cardContent}
+        {isExternal && <span className="sr-only">(opens in new tab)</span>}
+      </motion.a>
+    )
+  }
+
+  return (
+    <motion.div
+      ref={cardRef as React.RefObject<HTMLDivElement>}
+      aria-label={project.title}
+      {...sharedMotionProps}
+    >
+      {cardContent}
+    </motion.div>
   )
 }
