@@ -3,7 +3,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { motion, useScroll } from 'framer-motion'
 import { useNeon } from './NeonProvider'
+import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
 const navLinks = [
   { href: '/about', label: 'About' },
@@ -16,6 +18,9 @@ export default function Nav() {
   const { neonOn, toggle } = useNeon()
   const [menuOpen, setMenuOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
+  const skip = useSkipAnimation()
+  
+  const { scrollYProgress } = useScroll()
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
 
@@ -65,57 +70,70 @@ export default function Nav() {
   }, [menuOpen])
 
   return (
-    <nav aria-label="Main navigation" ref={navRef}>
-      <div className="nav-container">
-        <Link
-          href="/"
-          className="logo"
-          aria-current={pathname === '/' ? 'page' : undefined}
-        >
-          CHADDYTWICEOVER
-        </Link>
-        <button
-          className="theme-toggle"
-          type="button"
-          aria-label={neonOn ? 'Turn neon off' : 'Turn neon on'}
-          onClick={toggle}
-        >
-          {neonOn ? 'NEON ON' : 'NEON OFF'}
-        </button>
-        <button
-          className={`menu-toggle${menuOpen ? ' active' : ''}`}
-          id="menu-toggle"
-          type="button"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          aria-controls="nav-links"
-          onClick={() => setMenuOpen((prev) => !prev)}
-        >
-          <span />
-          <span />
-        </button>
-        <ul
-          className={`nav-links${menuOpen ? ' active' : ''}`}
-          id="nav-links"
-          role="list"
-        >
-          {navLinks.map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                aria-current={
-                  pathname === href || pathname === `${href}/`
-                    ? 'page'
-                    : undefined
-                }
-                onClick={closeMenu}
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </nav>
+    <>
+      <motion.div
+        className="scroll-progress-bar"
+        style={{ scaleX: scrollYProgress }}
+      />
+      <nav aria-label="Main navigation" ref={navRef}>
+        <div className="nav-container">
+          <Link
+            href="/"
+            className="logo"
+            aria-current={pathname === '/' ? 'page' : undefined}
+          >
+            CHADDYTWICEOVER
+          </Link>
+          <button
+            className="theme-toggle"
+            type="button"
+            aria-label={neonOn ? 'Turn neon off' : 'Turn neon on'}
+            onClick={toggle}
+          >
+            {neonOn ? 'NEON ON' : 'NEON OFF'}
+          </button>
+          <button
+            className={`menu-toggle${menuOpen ? ' active' : ''}`}
+            id="menu-toggle"
+            type="button"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls="nav-links"
+            onClick={() => setMenuOpen((prev) => !prev)}
+          >
+            <span />
+            <span />
+          </button>
+          <ul
+            className={`nav-links${menuOpen ? ' active' : ''}`}
+            id="nav-links"
+            role="list"
+          >
+            {navLinks.map(({ href, label }) => {
+              const isActive = pathname === href || pathname === `${href}/`
+              return (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    aria-current={isActive ? 'page' : undefined}
+                    onClick={closeMenu}
+                    className="nav-link"
+                  >
+                    {label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="nav-underline"
+                        transition={{ type: 'spring', bounce: 0.2, duration: skip ? 0 : 0.6 }}
+                      />
+                    )}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </nav>
+    </>
   )
 }

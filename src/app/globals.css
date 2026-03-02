@@ -240,15 +240,24 @@ nav {
 }
 
 .nav-links a::after {
-  content: '';
+  display: none; /* Removed old underline to use framer-motion */
+}
+
+.nav-link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-underline {
   position: absolute;
-  bottom: -3px;
+  bottom: -4px;
   left: 0;
-  width: 0;
-  height: 1px;
+  right: 0;
+  height: 2px;
   background: var(--accent);
   box-shadow: var(--glow-sm);
-  transition: width 0.25s ease;
+  z-index: -1;
 }
 
 .nav-links a:hover {
@@ -256,14 +265,22 @@ nav {
   text-shadow: var(--glow-sm);
 }
 
-.nav-links a:hover::after,
-.nav-links a[aria-current='page']::after {
-  width: 100%;
-}
-
 .nav-links a[aria-current='page'] {
   color: var(--accent);
   text-shadow: var(--glow-sm);
+}
+
+/* ===== SCROLL PROGRESS BAR ===== */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform-origin: 0%;
+  z-index: 9999;
+  box-shadow: var(--glow-sm);
 }
 
 /* ===== THEME TOGGLE ===== */

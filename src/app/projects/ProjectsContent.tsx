@@ -2,11 +2,26 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { projects } from '@/lib/projects'
 import ProjectCard from '@/components/ProjectCard'
 import FilterBar from '@/components/FilterBar'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
+
+const itemVariant = {
+  hidden: { opacity: 0, scale: 0.95, y: 15 },
+  show: { opacity: 1, scale: 1, y: 0, transition: { type: 'spring', bounce: 0.3, duration: 0.6 } }
+}
 
 export default function ProjectsContent() {
   const [filter, setFilter] = useState('all')
@@ -40,15 +55,29 @@ export default function ProjectsContent() {
 
         <FilterBar activeFilter={filter} onFilter={setFilter} />
 
-        <div
+        <motion.div
           className="project-grid"
           aria-live="polite"
           aria-label="Projects"
+          variants={container}
+          initial="hidden"
+          animate="show"
         >
-          {filtered.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
+          <AnimatePresence mode="popLayout">
+            {filtered.map((project) => (
+              <motion.div
+                key={project.id}
+                variants={itemVariant}
+                layout
+                initial="hidden"
+                animate="show"
+                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+              >
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </motion.div>
     </section>
   )
