@@ -1,70 +1,85 @@
-# CHADDYTWICEOVER
+# CHADDYTWICEOVER — Portfolio
 
-Personal learning portfolio for CHADDYTWICEOVER.
+A cyberpunk-themed personal portfolio built with **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**. Deployed as a static export.
 
-## Overview
+## Tech Stack
 
-Single-page site with:
+| Layer     | Technology                                  |
+| --------- | ------------------------------------------- |
+| Framework | Next.js 14 (App Router, static export)      |
+| UI        | React 18                                    |
+| Language  | TypeScript                                  |
+| Styling   | Tailwind CSS + custom CSS (cyberpunk theme) |
+| Motion    | Framer Motion                               |
+| Build     | PostCSS + Autoprefixer                      |
 
-- A modern default theme for clarity and readability
-- A distinct Y2K/Netscape-style alternate theme for personality
-- Ongoing experiments and project iterations
-- Theme preference persistence via local storage
-- Responsive navigation and keyboard-accessible interactions
-
-## Purpose
-
-This is not a commercial agency site.
-
-It is a personal space to:
-
-- practice front-end development
-- experiment with design ideas
-- document progress while studying web development
-- share work in public and connect with others
-
-## Stack
-
-- HTML5
-- CSS3
-- Vanilla JavaScript (no framework)
-
-## File Structure
+## Project Structure
 
 ```
-/
-├── index.html          # Main page structure/content
-├── style.css           # Base + Y2K theme styles
-├── script.js           # Theme toggle, menu, scroll/animation behavior
-└── README.md           # Project documentation
+src/
+  app/
+    layout.tsx          # Root layout (nav, footer, neon provider)
+    page.tsx            # Homepage
+    globals.css         # Tailwind directives + cyberpunk theme CSS
+    about/
+      page.tsx          # About page (metadata)
+      AboutContent.tsx  # About page client component
+    projects/
+      page.tsx          # Projects page (metadata)
+      ProjectsContent.tsx
+    contact/
+      page.tsx          # Contact page (metadata)
+      ContactContent.tsx
+  components/
+    NeonProvider.tsx     # Neon on/off theme context
+    Nav.tsx             # Fixed navigation with mobile menu
+    Footer.tsx          # Footer with dynamic year
+    Hero.tsx            # Animated hero section with glitch effect
+    ProjectCard.tsx     # 3D tilt project card
+    SectionCard.tsx     # Animated section link cards
+    FeaturedProjects.tsx
+    FilterBar.tsx       # Project filter buttons
+    SkillTag.tsx        # Animated skill badge
+    ContactForm.tsx     # Client-side validated contact form (mailto)
+  lib/
+    projects.ts         # Project data + TypeScript types
+public/
+  images/               # Static assets (hero.png, SVGs)
 ```
 
-## Local Development
-
-Open `index.html` directly in a browser, or run a simple local server:
+## Getting Started
 
 ```bash
-python -m http.server 8080
+npm install
+npm run dev
 ```
 
-Then open `http://localhost:8080`.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Notes
+## Build & Deploy
 
-- Theme mode is stored under `localStorage['theme']`.
-- In Y2K mode, modern scroll-fade animations are disabled by design.
-- Analytics are intentionally minimal/optional for now.
+```bash
+npm run build
+```
 
-## Deployment Security (2026 Baseline)
+Static output is generated in the `out/` directory. Deploy the `out/` folder to any static host.
 
-This project includes an Apache config file: `.htaccess`.
+### IONOS Deploy Now
 
-It sets:
+- **Install command:** `npm ci`
+- **Build command:** `npm run build`
+- **Publish directory:** `out`
 
-- `Content-Security-Policy`
-- `Strict-Transport-Security` (HTTPS only)
-- `Referrer-Policy`
-- `Permissions-Policy`
+## Features
+
+- **Neon toggle** — Switch between vibrant cyberpunk glow and muted mode (persisted in localStorage)
+- **Glitch text** — CSS-only glitch animation on the hero heading
+- **3D card tilt** — Framer Motion spring-based tilt on project cards
+- **Scroll animations** — Framer Motion `whileInView` fade-in on section cards and skill tags
+- **Page transitions** — Smooth entrance animations on each page
+- **Responsive** — Mobile-first with hamburger menu, safe-area support
+- **Accessible** — Skip link, `aria-current`, `aria-live`, `aria-pressed`, reduced motion support
+- **Static export** — No server runtime required
 - `X-Content-Type-Options`
 - `X-Frame-Options`
 - `Cross-Origin-Opener-Policy`
