@@ -38,31 +38,26 @@ const socialLinks = [
   {
     name: 'Twitter / X',
     url: 'https://twitter.com/chaddytwiceover',
-    description: 'Quick updates and web dev thoughts',
     icon: <TwitterXIcon />,
   },
   {
     name: 'TikTok',
     url: 'https://tiktok.com/@chaddytwiceover',
-    description: 'Short-form videos and creative content',
     icon: <TikTokIcon />,
   },
   {
     name: 'Instagram',
     url: 'https://instagram.com/chaddytwiceover',
-    description: 'Photos, reels, and behind-the-scenes',
     icon: <InstagramIcon />,
   },
   {
     name: 'GitHub',
     url: 'https://github.com/chaddytwiceover',
-    description: 'Code repositories and open source contributions',
     icon: <GitHubIcon />,
   },
   {
     name: 'Email',
     url: 'mailto:contact@chaddytwiceover.com',
-    description: 'Direct email contact',
     icon: <EmailIcon />,
   },
 ]
@@ -112,7 +107,6 @@ export default function SocialsContent() {
                 {link.icon}
               </span>
               <h2 className="social-name">{link.name}</h2>
-              <p className="social-description">{link.description}</p>
               {link.url.startsWith('http') && (
                 <span className="sr-only">(opens in new tab)</span>
               )}

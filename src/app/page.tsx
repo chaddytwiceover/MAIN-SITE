@@ -1,12 +1,10 @@
 import Hero from '@/components/Hero'
-import FeaturedProjects from '@/components/FeaturedProjects'
 import SectionCard from '@/components/SectionCard'
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <FeaturedProjects />
       <section className="home-sections">
         <div className="section-content">
           <div className="section-card-grid">
