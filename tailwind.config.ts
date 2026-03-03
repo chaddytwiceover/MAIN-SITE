@@ -5,7 +5,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cyber: {
+        theme: {
           bg: 'var(--bg)',
           surface: 'var(--surface)',
           'surface-2': 'var(--surface-2)',
@@ -14,8 +14,7 @@ const config: Config = {
           text: 'var(--text)',
           'text-muted': 'var(--text-muted)',
           accent: 'var(--accent)',
-          'accent-alt': 'var(--accent-alt)',
-          'accent-warm': 'var(--accent-warm)',
+          'accent-hover': 'var(--accent-hover)',
           'accent-soft': 'var(--accent-soft)',
         },
       },
@@ -25,7 +24,7 @@ const config: Config = {
           'Menlo', 'Consolas', 'Courier New', 'monospace',
         ],
         sans: [
-          'ui-sans-serif', 'system-ui', '-apple-system',
+          'Inter', 'ui-sans-serif', 'system-ui', '-apple-system',
           'Segoe UI', 'Helvetica', 'Arial', 'sans-serif',
         ],
       },

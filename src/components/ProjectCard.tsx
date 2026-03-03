@@ -87,7 +87,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <text
             x="320"
             y="215"
-            fill="#ffffff"
+            fill="#1a1a18"
             fontFamily="Consolas, monospace"
             fontSize="30"
             fontWeight="bold"

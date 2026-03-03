@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
@@ -13,10 +14,18 @@ export default function Hero() {
         className="hero-content"
         initial={skip ? false : { opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: skip ? 0 : 0.6, ease: 'easeOut' }}
+        transition={{ duration: skip ? 0 : 0.8, ease: 'easeOut' }}
       >
+        <Image
+          src="/favicon.png"
+          alt="CHADDYTWICEOVER — tree of code logo"
+          width={180}
+          height={180}
+          className="hero-logo"
+          priority
+        />
         <p className="hero-label">Design &amp; Development</p>
-        <h1 className="glitch" data-text="A space to build, test, and learn.">
+        <h1>
           A space to build,<br />test, and learn.
         </h1>
         <p className="hero-subcopy">
@@ -24,12 +33,12 @@ export default function Hero() {
           as I keep improving my craft.
         </p>
         <div className="hero-ctas">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link href="/projects" className="cta-button">
               View Work
             </Link>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link href="/contact" className="cta-button cta-secondary">
               Contact
             </Link>

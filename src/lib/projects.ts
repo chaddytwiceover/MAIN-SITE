@@ -22,8 +22,8 @@ export const projects: Project[] = [
     stack: 'HTML, CSS, JavaScript, SVG',
     status: 'Active learning project',
     url: 'https://lab.chaddytwiceover.com',
-    svgBg: '#0a0a1e',
-    svgStroke: '#00f5ff',
+    svgBg: '#f4f3f0',
+    svgStroke: '#4a6741',
     svgLabel: 'THE LAB',
   },
   {
@@ -35,8 +35,8 @@ export const projects: Project[] = [
     stack: 'HTML, CSS, JavaScript, SVG',
     status: 'Integrated into main site',
     url: 'https://social.chaddytwiceover.com',
-    svgBg: '#1a0820',
-    svgStroke: '#ff2d78',
+    svgBg: '#f0ece6',
+    svgStroke: '#6b6860',
     svgLabel: 'SOCIAL HUB',
   },
 ]

@@ -3,8 +3,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, useScroll } from 'framer-motion'
-import { useNeon } from './NeonProvider'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
 const navLinks = [
@@ -16,11 +16,10 @@ const navLinks = [
 
 export default function Nav() {
   const pathname = usePathname()
-  const { neonOn, toggle } = useNeon()
   const [menuOpen, setMenuOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
   const skip = useSkipAnimation()
-  
+
   const { scrollYProgress } = useScroll()
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
@@ -83,16 +82,16 @@ export default function Nav() {
             className="logo"
             aria-current={pathname === '/' ? 'page' : undefined}
           >
+            <Image
+              src="/favicon.png"
+              alt=""
+              width={28}
+              height={28}
+              className="logo-icon"
+              priority
+            />
             CHADDYTWICEOVER
           </Link>
-          <button
-            className="theme-toggle"
-            type="button"
-            aria-label={neonOn ? 'Turn neon off' : 'Turn neon on'}
-            onClick={toggle}
-          >
-            {neonOn ? 'NEON ON' : 'NEON OFF'}
-          </button>
           <button
             className={`menu-toggle${menuOpen ? ' active' : ''}`}
             id="menu-toggle"

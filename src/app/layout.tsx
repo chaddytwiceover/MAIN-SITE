@@ -1,8 +1,14 @@
 import type { Metadata } from 'next'
-import { NeonProvider } from '@/components/NeonProvider'
+import { Inter } from 'next/font/google'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import './globals.css'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -33,7 +39,7 @@ export const metadata: Metadata = {
     ],
   },
   other: {
-    'theme-color': '#08080f',
+    'theme-color': '#faf9f7',
     referrer: 'strict-origin-when-cross-origin',
   },
   icons: {
@@ -48,19 +54,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
       </head>
       <body>
-        <NeonProvider>
-          <a href="#main-content" className="skip-link">
-            Skip to content
-          </a>
-          <Nav />
-          <main id="main-content">{children}</main>
-          <Footer />
-        </NeonProvider>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
+        <Nav />
+        <main id="main-content">{children}</main>
+        <Footer />
       </body>
     </html>
   )
