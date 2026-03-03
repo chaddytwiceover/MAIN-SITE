@@ -69,34 +69,6 @@ export default function ContactContent() {
           </div>
         </div>
 
-        <nav aria-label="Social links">
-          <div className="social-links">
-            <a
-              href="https://github.com/chaddytwiceover"
-              className="social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-              <span className="sr-only">(opens in new tab)</span>
-            </a>
-            <a
-              href="mailto:contact@chaddytwiceover.com"
-              className="social-link"
-            >
-              Email
-            </a>
-            <a
-              href="https://lab.chaddytwiceover.com"
-              className="social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              The Lab
-              <span className="sr-only">(opens in new tab)</span>
-            </a>
-          </div>
-        </nav>
       </motion.div>
     </section>
   )
