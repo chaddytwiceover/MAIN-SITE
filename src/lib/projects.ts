@@ -34,6 +34,7 @@ export const projects: Project[] = [
     focus: 'Navigation patterns + usability',
     stack: 'HTML, CSS, JavaScript, SVG',
     status: 'Integrated into main site',
+    url: 'https://social.chaddytwiceover.com',
     svgBg: '#1a0820',
     svgStroke: '#ff2d78',
     svgLabel: 'SOCIAL HUB',
