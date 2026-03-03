@@ -76,7 +76,7 @@ export default function Nav() {
         className="scroll-progress-bar"
         style={{ scaleX: scrollYProgress }}
       />
-      <nav aria-label="Main navigation" ref={navRef}>
+      <nav className="main-nav" aria-label="Main navigation" ref={navRef}>
         <div className="nav-container">
           <Link
             href="/"
