@@ -37,7 +37,8 @@ export const metadata: Metadata = {
     referrer: 'strict-origin-when-cross-origin',
   },
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>◈</text></svg>",
+    icon: '/favicon.png',
+    apple: '/favicon.png',
   },
 }
 
