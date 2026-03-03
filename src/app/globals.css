@@ -187,7 +187,7 @@ button:focus-visible {
 }
 
 /* ===== NAVIGATION ===== */
-nav {
+.main-nav {
   position: fixed;
   top: 0;
   width: 100%;
