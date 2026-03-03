@@ -943,7 +943,7 @@ section {
   position: relative;
   padding: 1.75rem;
   border: 1px solid var(--border);
-  background: var(--bg-surface);
+  background: var(--surface);
   transition: var(--transition);
   display: flex;
   flex-direction: column;
@@ -995,7 +995,7 @@ section {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin: 0;
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .social-description {
