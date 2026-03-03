@@ -1,6 +1,6 @@
 # CHADDYTWICEOVER — Portfolio
 
-A cyberpunk-themed personal portfolio built with **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**. Deployed as a static export.
+A personal portfolio and learning-in-public site built with **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**. Deployed as a static export.
 
 ## Tech Stack
 
@@ -9,7 +9,7 @@ A cyberpunk-themed personal portfolio built with **Next.js**, **React**, **TypeS
 | Framework | Next.js 14 (App Router, static export)      |
 | UI        | React 18                                    |
 | Language  | TypeScript                                  |
-| Styling   | Tailwind CSS + custom CSS (cyberpunk theme) |
+| Styling   | Tailwind CSS + custom CSS                   |
 | Motion    | Framer Motion                               |
 | Build     | PostCSS + Autoprefixer                      |
 
@@ -18,9 +18,11 @@ A cyberpunk-themed personal portfolio built with **Next.js**, **React**, **TypeS
 ```
 src/
   app/
-    layout.tsx          # Root layout (nav, footer, neon provider)
+    layout.tsx          # Root layout (nav, footer, SEO metadata, JSON-LD)
     page.tsx            # Homepage
-    globals.css         # Tailwind directives + cyberpunk theme CSS
+    globals.css         # Tailwind directives + global CSS
+    robots.ts           # Generated robots.txt
+    sitemap.ts          # Generated sitemap.xml
     about/
       page.tsx          # About page (metadata)
       AboutContent.tsx  # About page client component
@@ -34,10 +36,10 @@ src/
       page.tsx          # Contact page (metadata)
       ContactContent.tsx
   components/
-    NeonProvider.tsx     # Neon on/off theme context
-    Nav.tsx             # Fixed navigation with mobile menu
+    Nav.tsx             # Fixed navigation with scroll progress bar + mobile menu
     Footer.tsx          # Footer with dynamic year
-    Hero.tsx            # Animated hero section with glitch effect
+    Hero.tsx            # Animated hero section
+    BackButton.tsx      # Animated back-to-home button
     ProjectCard.tsx     # 3D tilt project card
     SectionCard.tsx     # Animated section link cards
     FeaturedProjects.tsx
@@ -46,6 +48,7 @@ src/
     ContactForm.tsx     # Client-side validated contact form (mailto)
   lib/
     projects.ts         # Project data + TypeScript types
+    useSafeAnimation.ts # Reduced-motion hook
 public/
   images/               # Static assets (hero.png, SVGs)
 ```
@@ -97,13 +100,13 @@ npm install
 
 ## Features
 
-- **Neon toggle** — Switch between vibrant cyberpunk glow and muted mode (persisted in localStorage)
-- **Glitch text** — CSS-only glitch animation on the hero heading
 - **3D card tilt** — Framer Motion spring-based tilt on project cards
+- **Scroll progress bar** — Animated top-of-page progress indicator while scrolling
 - **Scroll animations** — Framer Motion `whileInView` fade-in on section cards and skill tags
 - **Page transitions** — Smooth entrance animations on each page
 - **Responsive** — Mobile-first with hamburger menu, safe-area support
-- **Accessible** — Skip link, `aria-current`, `aria-live`, `aria-pressed`, reduced motion support
+- **Accessible** — Skip link, `aria-current`, `aria-live`, `aria-pressed`, reduced motion support via `useSafeAnimation`
+- **SEO** — OpenGraph tags, Twitter card metadata, JSON-LD structured data, generated sitemap and robots.txt
 - **Static export** — No server runtime required
 
 ---
