@@ -38,16 +38,4 @@ export const projects: Project[] = [
     svgStroke: '#ff2d78',
     svgLabel: 'SOCIAL HUB',
   },
-  {
-    id: 'main-site',
-    title: 'This Site',
-    category: 'web',
-    description: 'The portfolio itself — iterating on design systems, accessibility, and responsive layouts.',
-    focus: 'Design systems + accessibility',
-    stack: 'HTML, CSS, JavaScript',
-    status: 'Continuously improved',
-    svgBg: '#0a1408',
-    svgStroke: '#ffe600',
-    svgLabel: 'MAIN SITE',
-  },
 ]
