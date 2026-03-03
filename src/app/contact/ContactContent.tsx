@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
+import BackButton from '@/components/BackButton'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
 const EMAIL = 'contact@chaddytwiceover.com'
@@ -36,9 +36,7 @@ export default function ContactContent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: skip ? 0 : 0.5, ease: 'easeOut' }}
       >
-        <Link className="cta-button cta-secondary page-back" href="/">
-          ← Back
-        </Link>
+        <BackButton />
         <span className="section-label">Contact</span>
         <h1>Say hi.</h1>
         <p>

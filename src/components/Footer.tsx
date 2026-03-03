@@ -3,7 +3,7 @@
 export default function Footer() {
   return (
     <footer>
-      <p>&copy; {new Date().getFullYear()} CHADDYTWICEOVER</p>
+      <p><small>&copy; {new Date().getFullYear()} CHADDYTWICEOVER</small></p>
     </footer>
   )
 }

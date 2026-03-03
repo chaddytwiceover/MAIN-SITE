@@ -57,6 +57,42 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                '@context': 'https://schema.org',
+                '@type': 'WebSite',
+                name: 'CHADDYTWICEOVER',
+                url: 'https://chaddytwiceover.com',
+                description:
+                  'Web dev student building experiments in public. Design & development portfolio.',
+              },
+              {
+                '@context': 'https://schema.org',
+                '@type': 'Person',
+                name: 'CHADDYTWICEOVER',
+                url: 'https://chaddytwiceover.com',
+                sameAs: [
+                  'https://github.com/chaddytwiceover',
+                  'https://twitter.com/chaddytwiceover',
+                  'https://instagram.com/chaddytwiceover',
+                  'https://tiktok.com/@chaddytwiceover',
+                ],
+                jobTitle: 'Web Development Student',
+                knowsAbout: [
+                  'HTML',
+                  'CSS',
+                  'JavaScript',
+                  'Web Development',
+                  'Responsive Design',
+                  'Accessibility',
+                ],
+              },
+            ]),
+          }}
+        />
       </head>
       <body>
         <a href="#main-content" className="skip-link">
