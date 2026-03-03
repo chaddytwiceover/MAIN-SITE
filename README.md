@@ -27,6 +27,9 @@ src/
     projects/
       page.tsx          # Projects page (metadata)
       ProjectsContent.tsx
+    socials/
+      page.tsx          # Socials page (metadata)
+      SocialsContent.tsx # Social links hub
     contact/
       page.tsx          # Contact page (metadata)
       ContactContent.tsx
@@ -62,13 +65,35 @@ Open [http://localhost:3000](http://localhost:3000).
 npm run build
 ```
 
-Static output is generated in the `out/` directory. Deploy the `out/` folder to any static host.
+Static output is generated in the `out/` directory. This project is already configured for static export in `next.config.js`.
 
 ### IONOS Deploy Now
 
-- **Install command:** `npm ci`
+- **Install command:** `npm install`
 - **Build command:** `npm run build`
 - **Publish directory:** `out`
+
+### IONOS Web Hosting (FTP/SFTP)
+
+1. Run `npm install`
+2. Run `npm run build`
+3. Upload all contents of `out/` to your domain document root (often `htdocs/`)
+4. Ensure `index.html` exists at the document root after upload
+
+### Pre-deploy checklist
+
+- `npm run lint` passes
+- `npm run build` passes
+- `out/` contains expected pages (`index.html`, `about/index.html`, `projects/index.html`, `contact/index.html`)
+- Domain DNS points to your IONOS hosting target
+
+### Troubleshooting (Windows + OneDrive)
+
+If dependency install fails with `EBUSY` or locked files in `node_modules`, pause OneDrive sync (or move the repo outside OneDrive), then run:
+
+```bash
+npm install
+```
 
 ## Features
 
@@ -80,18 +105,6 @@ Static output is generated in the `out/` directory. Deploy the `out/` folder to 
 - **Responsive** — Mobile-first with hamburger menu, safe-area support
 - **Accessible** — Skip link, `aria-current`, `aria-live`, `aria-pressed`, reduced motion support
 - **Static export** — No server runtime required
-- `X-Content-Type-Options`
-- `X-Frame-Options`
-- `Cross-Origin-Opener-Policy`
-- `Cross-Origin-Resource-Policy`
-
-### Verify after deploy
-
-```bash
-curl -I https://your-domain.example
-```
-
-Confirm the response includes the headers above.
 
 ---
 

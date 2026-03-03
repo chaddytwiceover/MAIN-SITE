@@ -23,6 +23,12 @@ export default function HomePage() {
               description="Live builds, UI experiments, and ongoing iterations I'm actively working on."
             />
             <SectionCard
+              href="/socials"
+              label="Socials"
+              title="Connect"
+              description="Find me across the web — GitHub, email, and more."
+            />
+            <SectionCard
               href="/contact"
               label="Contact"
               title="Say Hi"

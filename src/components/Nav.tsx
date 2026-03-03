@@ -10,6 +10,7 @@ import { useSkipAnimation } from '@/lib/useSafeAnimation'
 const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/projects', label: 'Work' },
+  { href: '/socials', label: 'Socials' },
   { href: '/contact', label: 'Contact' },
 ]
 

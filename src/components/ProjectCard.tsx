@@ -103,7 +103,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <p className="project-outcome">{project.description}</p>
         <p className="project-meta">Focus: {project.focus}</p>
         <p className="project-meta">Stack: {project.stack}</p>
-        <p className="project-stat">// {project.status}</p>
+        <p className="project-stat">{`// ${project.status}`}</p>
         {isExternal && <span className="sr-only">(opens in new tab)</span>}
       </div>
     </motion.a>
