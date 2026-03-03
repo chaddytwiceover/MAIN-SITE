@@ -36,6 +36,24 @@ const TikTokIcon = () => (
 
 const socialLinks = [
   {
+    name: 'Twitter / X',
+    url: 'https://twitter.com/chaddytwiceover',
+    description: 'Quick updates and web dev thoughts',
+    icon: <TwitterXIcon />,
+  },
+  {
+    name: 'TikTok',
+    url: 'https://tiktok.com/@chaddytwiceover',
+    description: 'Short-form videos and creative content',
+    icon: <TikTokIcon />,
+  },
+  {
+    name: 'Instagram',
+    url: 'https://instagram.com/chaddytwiceover',
+    description: 'Photos, reels, and behind-the-scenes',
+    icon: <InstagramIcon />,
+  },
+  {
     name: 'GitHub',
     url: 'https://github.com/chaddytwiceover',
     description: 'Code repositories and open source contributions',
@@ -46,24 +64,6 @@ const socialLinks = [
     url: 'mailto:contact@chaddytwiceover.com',
     description: 'Direct email contact',
     icon: <EmailIcon />,
-  },
-  {
-    name: 'Twitter / X',
-    url: 'https://twitter.com/chaddytwiceover',
-    description: 'Quick updates and web dev thoughts',
-    icon: <TwitterXIcon />,
-  },
-  {
-    name: 'Instagram',
-    url: 'https://instagram.com/chaddytwiceover',
-    description: 'Photos, reels, and behind-the-scenes',
-    icon: <InstagramIcon />,
-  },
-  {
-    name: 'TikTok',
-    url: 'https://tiktok.com/@chaddytwiceover',
-    description: 'Short-form videos and creative content',
-    icon: <TikTokIcon />,
   },
 ]
 

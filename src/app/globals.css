@@ -807,6 +807,40 @@ section {
   flex-shrink: 0;
 }
 
+/* ===== CONTACT EMAIL BLOCK ===== */
+.contact-email-block {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.contact-email-address {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--accent);
+  text-shadow: var(--glow-sm);
+  letter-spacing: 0.04em;
+  flex: 1;
+  min-width: 0;
+  word-break: break-all;
+  transition: var(--transition);
+}
+
+.contact-email-address:hover {
+  text-shadow: var(--glow);
+}
+
+.contact-email-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
 /* ===== CONTACT FORM ===== */
 .contact-form {
   margin-top: 2rem;
