@@ -12,27 +12,27 @@ const socialLinks = [
     icon: '◈',
   },
   {
-    name: 'Email',
-    url: 'mailto:contact@chaddytwiceover.com',
-    description: 'Direct email contact',
-    icon: '◉',
-  },
-  {
-    name: 'The Lab',
-    url: 'https://lab.chaddytwiceover.com',
-    description: 'Experimental UI sandbox and front-end testing ground',
-    icon: '◆',
-  },
-  {
-    name: 'LinkedIn',
-    url: 'https://linkedin.com/in/chaddytwiceover',
-    description: 'Professional network and career updates',
+    name: 'Twitter / X',
+    url: 'https://x.com/chaddytwiceover',
+    description: 'Quick updates and web dev thoughts',
     icon: '◇',
   },
   {
-    name: 'Twitter / X',
-    url: 'https://twitter.com/chaddytwiceover',
-    description: 'Quick updates and web dev thoughts',
+    name: 'TikTok',
+    url: 'https://www.tiktok.com/@chaddytwiceover',
+    description: 'Short-form content and project clips',
+    icon: '◆',
+  },
+  {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/chaddytwiceover/',
+    description: 'Visual updates and behind-the-scenes posts',
+    icon: '◉',
+  },
+  {
+    name: 'Email',
+    url: 'mailto:contact@chaddytwiceover.com',
+    description: 'Direct email contact',
     icon: '◈',
   },
 ]
@@ -54,8 +54,7 @@ export default function SocialsContent() {
         <span className="section-label">Socials</span>
         <h1>{"Let's connect."}</h1>
         <p>
-          Find me across the web — code repos, experiments, and ways to get in
-          touch.
+          Find me across the web — all handles are <strong>chaddytwiceover</strong>.
         </p>
 
         <div className="socials-grid">
