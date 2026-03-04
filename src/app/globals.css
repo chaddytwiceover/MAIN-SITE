@@ -477,6 +477,59 @@ main {
   }
 }
 
+/* ===== SCROLL TO TOP ===== */
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(250, 249, 247, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.scroll-to-top:hover {
+  color: var(--text);
+  border-color: var(--border-accent);
+  background: rgba(250, 249, 247, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-to-top:active {
+  transform: scale(0.94);
+}
+
+@media (prefers-color-scheme: dark) {
+  .scroll-to-top {
+    background: rgba(17, 17, 16, 0.85);
+  }
+
+  .scroll-to-top:hover {
+    background: rgba(17, 17, 16, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: max(1.25rem, env(safe-area-inset-bottom));
+    right: 1.25rem;
+    width: 36px;
+    height: 36px;
+  }
+}
+
 /* ===== SECTIONS ===== */
 section {
   padding: 5rem 2rem;
@@ -1115,8 +1168,8 @@ footer p {
   }
 
   .back-button-wrapper {
-    top: 62px;
-    left: 1.25rem;
+    position: static;
+    margin-bottom: 1.25rem;
   }
 
   .back-button {
