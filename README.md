@@ -4,14 +4,14 @@ A personal portfolio and learning-in-public site built with **Next.js**, **React
 
 ## Tech Stack
 
-| Layer     | Technology                                  |
-| --------- | ------------------------------------------- |
-| Framework | Next.js 14 (App Router, static export)      |
-| UI        | React 18                                    |
-| Language  | TypeScript                                  |
-| Styling   | Tailwind CSS + custom CSS                   |
-| Motion    | Framer Motion                               |
-| Build     | PostCSS + Autoprefixer                      |
+| Layer     | Technology                             |
+| --------- | -------------------------------------- |
+| Framework | Next.js 14 (App Router, static export) |
+| UI        | React 18                               |
+| Language  | TypeScript                             |
+| Styling   | Tailwind CSS + custom CSS              |
+| Motion    | Framer Motion                          |
+| Build     | PostCSS + Autoprefixer                 |
 
 ## Project Structure
 
@@ -61,6 +61,19 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+## Documentation
+
+Project documentation lives in the `/docs` directory.
+
+This includes:
+
+- **Agent prompts** — Task specifications for AI coding assistants
+- **Architecture notes** — Technical decisions and system structure
+- **Design guidelines** — UI/UX patterns and color system
+- **Project roadmap** — Planned features and improvements
+
+Browse the `/docs` folder for detailed information on each topic.
 
 ## Build & Deploy
 
