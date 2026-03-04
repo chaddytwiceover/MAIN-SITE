@@ -25,9 +25,6 @@ export const metadata: Metadata = {
       'Web dev student building experiments in public. Design & development portfolio.',
     url: 'https://chaddytwiceover.com',
     siteName: 'CHADDYTWICEOVER',
-    images: [
-      { url: '/images/hero.png', alt: 'CHADDYTWICEOVER portfolio preview' },
-    ],
     type: 'website',
   },
   twitter: {
@@ -35,9 +32,6 @@ export const metadata: Metadata = {
     title: 'CHADDYTWICEOVER',
     description:
       'Web dev student building experiments in public. Design & development portfolio.',
-    images: [
-      { url: '/images/hero.png', alt: 'CHADDYTWICEOVER portfolio preview' },
-    ],
   },
   other: {
     'theme-color': '#faf9f7',
