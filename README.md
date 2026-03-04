@@ -32,6 +32,9 @@ src/
     socials/
       page.tsx          # Socials page (metadata)
       SocialsContent.tsx # Social links hub
+    pricing/
+      page.tsx          # Pricing page (metadata)
+      PricingContent.tsx # Freelance services pricing
     contact/
       page.tsx          # Contact page (metadata)
       ContactContent.tsx
@@ -45,12 +48,13 @@ src/
     FeaturedProjects.tsx
     FilterBar.tsx       # Project filter buttons
     SkillTag.tsx        # Animated skill badge
+    PricingCard.tsx     # Reusable pricing tier card
     ContactForm.tsx     # Client-side validated contact form (mailto)
   lib/
     projects.ts         # Project data + TypeScript types
     useSafeAnimation.ts # Reduced-motion hook
 public/
-  images/               # Static assets (hero.png, SVGs)
+  images/               # Static assets (SVGs, icons)
 ```
 
 ## Getting Started
@@ -100,7 +104,7 @@ Static output is generated in the `out/` directory. This project is already conf
 
 - `npm run lint` passes
 - `npm run build` passes
-- `out/` contains expected pages (`index.html`, `about/index.html`, `projects/index.html`, `contact/index.html`)
+- `out/` contains expected pages (`index.html`, `about/index.html`, `projects/index.html`, `pricing/index.html`, `socials/index.html`, `contact/index.html`)
 - Domain DNS points to your IONOS hosting target
 
 ### Troubleshooting (Windows + OneDrive)

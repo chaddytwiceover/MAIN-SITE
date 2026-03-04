@@ -55,6 +55,7 @@ This portfolio is a statically-exported Next.js application designed for perform
 | `/`         | Homepage with hero and featured projects   |
 | `/about`    | About the developer                        |
 | `/projects` | Portfolio projects showcase with filtering |
+| `/pricing`  | Freelance services and pricing tiers       |
 | `/socials`  | Social media links hub                     |
 | `/contact`  | Contact form (mailto-based)                |
 
