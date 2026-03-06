@@ -17,24 +17,39 @@ export const metadata: Metadata = {
     template: '%s — CHADDYTWICEOVER',
   },
   description:
-    'CHADDYTWICEOVER — Web dev student building experiments in public. Design & development portfolio.',
+    'CHADDYTWICEOVER — web dev student sharing front-end experiments, UI builds, and design work in public.',
   metadataBase: new URL('https://chaddytwiceover.com'),
   openGraph: {
     title: 'CHADDYTWICEOVER',
     description:
-      'Web dev student building experiments in public. Design & development portfolio.',
+      'Web dev student sharing front-end experiments, UI builds, and design work in public.',
     url: 'https://chaddytwiceover.com',
     siteName: 'CHADDYTWICEOVER',
     type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'CHADDYTWICEOVER — Design & Development Portfolio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'CHADDYTWICEOVER',
     description:
-      'Web dev student building experiments in public. Design & development portfolio.',
+      'Web dev student sharing front-end experiments, UI builds, and design work in public.',
+    site: '@chaddytwiceover',
+    creator: '@chaddytwiceover',
+    images: ['/og-image.png'],
   },
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#faf9f7' },
+    { media: '(prefers-color-scheme: dark)', color: '#111110' },
+  ],
   other: {
-    'theme-color': '#faf9f7',
     referrer: 'strict-origin-when-cross-origin',
   },
   icons: {
@@ -62,13 +77,22 @@ export default function RootLayout({
                 name: 'CHADDYTWICEOVER',
                 url: 'https://chaddytwiceover.com',
                 description:
-                  'Web dev student building experiments in public. Design & development portfolio.',
+                  'Web dev student sharing front-end experiments, UI builds, and design work in public.',
+                potentialAction: {
+                  '@type': 'SearchAction',
+                  target: {
+                    '@type': 'EntryPoint',
+                    urlTemplate: 'https://chaddytwiceover.com/projects?q={search_term_string}',
+                  },
+                  'query-input': 'required name=search_term_string',
+                },
               },
               {
                 '@context': 'https://schema.org',
                 '@type': 'Person',
                 name: 'CHADDYTWICEOVER',
                 url: 'https://chaddytwiceover.com',
+                image: 'https://chaddytwiceover.com/favicon.png',
                 sameAs: [
                   'https://github.com/chaddytwiceover',
                   'https://twitter.com/chaddytwiceover',
@@ -80,9 +104,13 @@ export default function RootLayout({
                   'HTML',
                   'CSS',
                   'JavaScript',
+                  'TypeScript',
+                  'React',
+                  'Next.js',
                   'Web Development',
                   'Responsive Design',
                   'Accessibility',
+                  'UI Design',
                 ],
               },
             ]),

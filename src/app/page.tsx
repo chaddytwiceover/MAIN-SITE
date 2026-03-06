@@ -1,5 +1,10 @@
+import type { Metadata } from 'next'
 import Hero from '@/components/Hero'
 import SectionCard from '@/components/SectionCard'
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+}
 
 export default function HomePage() {
   return (

@@ -1074,14 +1074,19 @@ section {
 
 /* ===== FOOTER ===== */
 footer {
-  padding: 3rem 2rem;
-  text-align: center;
   border-top: 1px solid var(--border);
   position: relative;
   z-index: 1;
 }
 
-footer::before {
+.footer-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.footer-inner::before {
   content: '';
   display: block;
   width: 32px;
