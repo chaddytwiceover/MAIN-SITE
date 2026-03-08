@@ -66,54 +66,13 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Documentation
-
-Project documentation lives in the `/docs` directory.
-
-This includes:
-
-- **Agent prompts** — Task specifications for AI coding assistants
-- **Architecture notes** — Technical decisions and system structure
-- **Design guidelines** — UI/UX patterns and color system
-- **Project roadmap** — Planned features and improvements
-
-Browse the `/docs` folder for detailed information on each topic.
-
-## Build & Deploy
+## Build
 
 ```bash
 npm run build
 ```
 
-Static output is generated in the `out/` directory. This project is already configured for static export in `next.config.js`.
-
-### IONOS Deploy Now
-
-- **Install command:** `npm install`
-- **Build command:** `npm run build`
-- **Publish directory:** `out`
-
-### IONOS Web Hosting (FTP/SFTP)
-
-1. Run `npm install`
-2. Run `npm run build`
-3. Upload all contents of `out/` to your domain document root (often `htdocs/`)
-4. Ensure `index.html` exists at the document root after upload
-
-### Pre-deploy checklist
-
-- `npm run lint` passes
-- `npm run build` passes
-- `out/` contains expected pages (`index.html`, `about/index.html`, `projects/index.html`, `pricing/index.html`, `socials/index.html`, `contact/index.html`)
-- Domain DNS points to your IONOS hosting target
-
-### Troubleshooting (Windows + OneDrive)
-
-If dependency install fails with `EBUSY` or locked files in `node_modules`, pause OneDrive sync (or move the repo outside OneDrive), then run:
-
-```bash
-npm install
-```
+Static output is generated in the `out/` directory. This project is configured for static export in `next.config.js`.
 
 ## Features
 
