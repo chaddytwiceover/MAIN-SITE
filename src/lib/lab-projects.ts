@@ -14,14 +14,14 @@ export const labProjects: LabProject[] = [
   {
     "slug": "pixel-art",
     "title": "Pixel Art Editor",
-    "description": "A browser-based pixel art editor built on the Canvas API. Draw, fill, and erase on a customizable grid — no install required.",
+    "description": "A feature-rich pixel art editor with nature-inspired color palettes, symmetry drawing modes, spray brush, adjustable canvas sizes, and rotating Bob Ross quotes. Paint happy little trees!",
     "tags": [
       "HTML",
       "CSS",
       "JavaScript",
       "Canvas API"
     ],
-    "status": "prototype",
+    "status": "finished",
     "demoUrl": "/demos/pixel-art/index.html"
   },
   {

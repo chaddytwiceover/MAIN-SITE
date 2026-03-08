@@ -25,10 +25,17 @@
         <input type="color" id="colorPicker" title="Color (C to pick)"/>
       </label>
 
+      <div class="group palette-group">
+        <span>Palette</span>
+        <div id="colorPalette" class="color-palette" title="Nature-inspired colors"></div>
+        <div id="recentColors" class="recent-colors" title="Recent colors"></div>
+      </div>
+
       <label class="group">
         <span>Tool</span>
         <select id="toolSelect" title="Tools: Nature's Brushes">
           <option value="brush">Nature Brush</option>
+          <option value="spray">Gentle Mist</option>
           <option value="eraser">Cloud Wipe</option>
           <option value="line">Tree Branch</option>
           <option value="rect">Mountain Frame</option>
@@ -45,11 +52,35 @@
 
       <div class="spacer"></div>
 
+      <button id="symmetryBtn" title="Mirror Mode (M)" class="btn">Mirror</button>
       <button id="undoBtn" title="Step Back (Ctrl+Z)" class="btn">Undo</button>
       <button id="redoBtn" title="Step Forward (Ctrl+Y)" class="btn">Redo</button>
       <button id="toggleGrid" aria-pressed="false" title="Show Grid (G)" class="btn">Grid</button>
+      <button id="canvasSizeBtn" title="Canvas Size" class="btn">Size</button>
       <button id="resetBtn" title="Fresh Canvas" class="btn danger">New Canvas</button>
       <button id="exportBtn" title="Save Your Masterpiece" class="btn primary">Save Art</button>
+    </div>
+
+    <!-- Canvas Size Modal -->
+    <div id="canvasSizeModal" class="modal" hidden>
+      <div class="modal-content">
+        <h3>Canvas Size</h3>
+        <div class="modal-row">
+          <label>Width: <input type="number" id="canvasWidth" min="16" max="2048" value="512"></label>
+          <label>Height: <input type="number" id="canvasHeight" min="16" max="2048" value="384"></label>
+        </div>
+        <div class="modal-presets">
+          <button class="preset-btn" data-w="256" data-h="256">256×256</button>
+          <button class="preset-btn" data-w="512" data-h="384">512×384</button>
+          <button class="preset-btn" data-w="640" data-h="480">640×480</button>
+          <button class="preset-btn" data-w="800" data-h="600">800×600</button>
+          <button class="preset-btn" data-w="1024" data-h="768">1024×768</button>
+        </div>
+        <div class="modal-actions">
+          <button id="cancelSizeBtn" class="btn">Cancel</button>
+          <button id="applySizeBtn" class="btn primary">Apply</button>
+        </div>
+      </div>
     </div>
 
     <div id="canvasFrame">
@@ -64,15 +95,18 @@
       <div class="stat"><span class="label">Tool</span><span id="hudTool">Paintbrush</span></div>
       <div class="stat"><span class="label">Color</span><span id="hudColor">#000000</span></div>
       <div class="stat"><span class="label">Size</span><span id="hudSize">5</span></div>
-      <div class="stat"><span class="label">Zoom</span><span id="hudZoom">1600%</span></div>
+      <div class="stat"><span class="label">Zoom</span><span id="hudZoom">100%</span></div>
+      <div class="stat"><span class="label">Canvas</span><span id="hudCanvas">512×384</span></div>
+      <div class="stat" id="symmetryStat" hidden><span class="label">Mirror</span><span id="hudSymmetry">Off</span></div>
       <div class="stat"><span class="label">Coords</span><span id="hudCoords">— , —</span></div>
       <div class="stat hide-on-mobile"><span class="label">Happy Shortcuts</span>
-        <span class="kbd">1-7</span><span class="muted">tools</span>
+        <span class="kbd">1-8</span><span class="muted">tools</span>
+        <span class="kbd">M</span><span class="muted">mirror</span>
         <span class="kbd">G</span><span class="muted">grid</span>
         <span class="kbd">[ ]</span><span class="muted">brush</span>
         <span class="kbd">+ -</span><span class="muted">zoom</span>
-        <span class="kbd">Drag</span><span class="muted">pan</span>
       </div>
+      <div class="bob-quote" id="bobQuote">"There are no mistakes, only happy little accidents."</div>
     </footer>
   </div>
 
