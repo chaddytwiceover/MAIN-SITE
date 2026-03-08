@@ -1,6 +1,0 @@
-{
-  "title": "Pixel Art Editor",
-  "description": "A browser-based pixel art editor built on the Canvas API. Draw, fill, and erase on a customizable grid — no install required.",
-  "technologies": ["HTML", "CSS", "JavaScript", "Canvas API"],
-  "status": "prototype"
-}
