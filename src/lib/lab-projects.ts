@@ -22,7 +22,7 @@ export const labProjects: LabProject[] = [
       "Canvas API"
     ],
     "status": "prototype",
-    "demoUrl": "/lab/pixel-art/index.html"
+    "demoUrl": "/demos/pixel-art/index.html"
   },
   {
     "slug": "simon-says",
@@ -34,7 +34,7 @@ export const labProjects: LabProject[] = [
       "JavaScript"
     ],
     "status": "finished",
-    "demoUrl": "/lab/simon-says/index.html"
+    "demoUrl": "/demos/simon-says/index.html"
   },
   {
     "slug": "tic-tac-toe",
@@ -46,6 +46,6 @@ export const labProjects: LabProject[] = [
       "JavaScript"
     ],
     "status": "finished",
-    "demoUrl": "/lab/tic-tac-toe/index.html"
+    "demoUrl": "/demos/tic-tac-toe/index.html"
   }
 ]

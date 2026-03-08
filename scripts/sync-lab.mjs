@@ -1,6 +1,6 @@
 /**
  * sync-lab.mjs
- * Scans public/lab/ and generates src/lib/lab-projects.ts
+ * Scans public/demos/ and generates src/lib/lab-projects.ts
  * Run: npm run sync-lab
  */
 
@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const ROOT = resolve(__dirname, '..')
-const LAB_DIR = join(ROOT, 'public', 'lab')
+const LAB_DIR = join(ROOT, 'public', 'demos')
 const OUT = join(ROOT, 'src', 'lib', 'lab-projects.ts')
 
 function slugToTitle(slug) {
@@ -72,7 +72,7 @@ async function main() {
         ? meta.technologies
         : ['HTML', 'CSS', 'JavaScript'],
       status: mapStatus(meta.status),
-      demoUrl: `/lab/${slug}/index.html`,
+      demoUrl: `/demos/${slug}/index.html`,
     })
   }
 
