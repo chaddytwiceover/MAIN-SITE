@@ -21,11 +21,13 @@ const item = {
 }
 
 export default function FeaturedProjects() {
+  const featured = projects.filter((p) => p.featured).slice(0, 3)
+
   return (
     <section className="featured-section">
       <div className="section-content">
         <span className="section-label">Featured</span>
-        <h2 className="featured-heading">Selected Projects</h2>
+        <h2 className="featured-heading">Featured Projects</h2>
         <motion.div
           className="featured-grid"
           aria-live="polite"
@@ -34,7 +36,7 @@ export default function FeaturedProjects() {
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {projects.slice(0, 2).map((project) => (
+          {featured.map((project) => (
             <motion.div key={project.id} variants={item}>
               <ProjectCard project={project} />
             </motion.div>
