@@ -5,8 +5,12 @@ import Link from 'next/link'
 import { gsap } from 'gsap'
 import { useIsLoading } from '@/lib/loading-context'
 
-const HLS_SRC = 'https://stream.mux.com/Gs3wZfrtz6ZfqZqQ02c02Z7lugV00FGZvRpcqFTel66r3g.m3u8'
-const MP4_FALLBACK = 'https://stream.mux.com/Gs3wZfrtz6ZfqZqQ02c02Z7lugV00FGZvRpcqFTel66r3g/high.mp4'
+const HLS_SRC =
+  process.env.NEXT_PUBLIC_MUX_HLS_URL ??
+  'https://stream.mux.com/Gs3wZfrtz6ZfqZqQ02c02Z7lugV00FGZvRpcqFTel66r3g.m3u8'
+const MP4_FALLBACK =
+  process.env.NEXT_PUBLIC_MUX_MP4_URL ??
+  'https://stream.mux.com/Gs3wZfrtz6ZfqZqQ02c02Z7lugV00FGZvRpcqFTel66r3g/high.mp4'
 
 export default function Hero() {
   const isLoading = useIsLoading()
@@ -30,7 +34,7 @@ export default function Hero() {
       // Use hls.js for other browsers
       import('hls.js').then(({ default: Hls }) => {
         if (Hls.isSupported()) {
-          hlsInstance = new Hls({ enableWorker: false })
+          hlsInstance = new Hls()
           hlsInstance.loadSource(HLS_SRC)
           hlsInstance.attachMedia(video)
         } else {
