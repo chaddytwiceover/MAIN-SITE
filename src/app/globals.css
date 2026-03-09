@@ -2011,6 +2011,13 @@ footer p {
   margin-bottom: 0;
 }
 
+.blog-cta-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
 /* ===== PRICING PROCESS ===== */
 .pricing-process-section {
   padding: 4rem 2rem;

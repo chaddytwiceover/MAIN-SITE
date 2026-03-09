@@ -50,7 +50,7 @@ export default function BlogContent() {
 
         <div className="blog-cta">
           <p>In the meantime, explore the lab or check out the projects.</p>
-          <div className="hero-ctas" style={{ marginTop: '1.5rem', justifyContent: 'flex-start' }}>
+          <div className="blog-cta-buttons">
             <Link href="/lab" className="cta-button cta-secondary">Explore the Lab</Link>
             <Link href="/projects" className="cta-button cta-secondary">View Projects</Link>
           </div>

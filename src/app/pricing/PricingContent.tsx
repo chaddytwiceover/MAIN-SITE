@@ -6,6 +6,13 @@ import PricingCard from '@/components/PricingCard'
 import BackButton from '@/components/BackButton'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
+const trustItems = [
+  'Simple process',
+  'Beginner-friendly rates',
+  'Clear communication',
+  'Best for small business / portfolio / landing page work',
+]
+
 const pricingPlans = [
   {
     title: 'Starter',
@@ -253,7 +260,7 @@ export default function PricingContent() {
           transition={{ duration: skip ? 0 : 0.5, ease: 'easeOut' }}
         >
           <div className="pricing-trust-strip">
-            {['Simple process', 'Beginner-friendly rates', 'Clear communication', 'Best for small business / portfolio / landing page work'].map((trust) => (
+            {trustItems.map((trust) => (
               <span key={trust} className="pricing-trust-item">{trust}</span>
             ))}
           </div>
