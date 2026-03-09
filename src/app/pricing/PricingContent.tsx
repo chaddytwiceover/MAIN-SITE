@@ -103,6 +103,37 @@ export default function PricingContent() {
         </motion.div>
       </section>
 
+      {/* How It Works Section */}
+      <section className="pricing-process-section">
+        <motion.div
+          className="section-content"
+          initial={skip ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: skip ? 0 : 0.5, ease: 'easeOut' }}
+        >
+          <span className="section-label">Process</span>
+          <h2>How it works</h2>
+          <div className="pricing-process-steps">
+            {[
+              { title: 'You send your idea', desc: 'Tell me what you need and what you\'re hoping to achieve.' },
+              { title: 'I plan the layout', desc: 'I\'ll sketch out the structure and get back to you with a clear plan.' },
+              { title: 'I build the site', desc: 'I write clean, modern code using Next.js, React, and Tailwind.' },
+              { title: 'You review it', desc: 'You get to see the work and request revisions within scope.' },
+              { title: 'We launch', desc: 'I deploy it and hand over everything you need to manage it.' },
+            ].map((step, i) => (
+              <div key={step.title} className="pricing-process-step">
+                <div className="pricing-step-number">{i + 1}</div>
+                <div className="pricing-step-content">
+                  <strong>{step.title}</strong>
+                  <p>{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
       {/* Pricing Cards Section */}
       <section className="pricing-cards-section">
         <div className="section-content">
@@ -221,6 +252,11 @@ export default function PricingContent() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: skip ? 0 : 0.5, ease: 'easeOut' }}
         >
+          <div className="pricing-trust-strip">
+            {['Simple process', 'Beginner-friendly rates', 'Clear communication', 'Best for small business / portfolio / landing page work'].map((trust) => (
+              <span key={trust} className="pricing-trust-item">{trust}</span>
+            ))}
+          </div>
           <h2>Need a website for your business?</h2>
           <p>Let&apos;s build something simple and modern.</p>
           <motion.div

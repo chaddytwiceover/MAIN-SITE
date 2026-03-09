@@ -47,8 +47,7 @@ export default function ProjectsContent() {
         <span className="section-label">Work</span>
         <h1>Experiments &amp; Projects</h1>
         <p>
-          Active learning builds where I test ideas and improve front-end
-          skills.
+          Real builds — what was built, why, and what I learned.
         </p>
 
         <FilterBar activeFilter={filter} onFilter={setFilter} />

@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
+const techStack = ['Next.js', 'React', 'TypeScript', 'Tailwind', 'Framer Motion']
+
 export default function Hero() {
   const skip = useSkipAnimation()
 
@@ -26,23 +28,27 @@ export default function Hero() {
         />
         <p className="hero-label">Design &amp; Development</p>
         <h1>
-          A space to build,<br />test, and learn.
+          Building modern<br />web interfaces.
         </h1>
         <p className="hero-subcopy">
-          I&apos;m a web dev student sharing experiments, concepts, and projects
-          as I keep improving my craft.
+          Front-end developer and web dev student — building with Next.js, React, and TypeScript. Sharing experiments and projects as I learn in public.
         </p>
         <div className="hero-ctas">
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link href="/projects" className="cta-button">
-              View Work
+              View Projects
             </Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-            <Link href="/contact" className="cta-button cta-secondary">
-              Contact
+            <Link href="/lab" className="cta-button cta-secondary">
+              Explore the Lab
             </Link>
           </motion.div>
+        </div>
+        <div className="hero-stack">
+          {techStack.map((tech) => (
+            <span key={tech} className="hero-stack-badge">{tech}</span>
+          ))}
         </div>
       </motion.div>
     </section>
