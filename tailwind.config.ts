@@ -17,8 +17,16 @@ const config: Config = {
           'accent-hover': 'var(--accent-hover)',
           'accent-soft': 'var(--accent-soft)',
         },
+        bg: 'var(--bg)',
+        surface: 'var(--surface)',
+        text: 'var(--text)',
+        muted: 'var(--muted)',
+        accent: 'var(--accent)',
+        stroke: 'var(--stroke)',
       },
       fontFamily: {
+        display: ['var(--font-display)', 'serif'],
+        body: ['var(--font-body)', 'sans-serif'],
         mono: [
           'ui-monospace', 'Cascadia Code', 'Source Code Pro',
           'Menlo', 'Consolas', 'Courier New', 'monospace',
