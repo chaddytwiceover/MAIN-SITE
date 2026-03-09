@@ -19,6 +19,12 @@
   --transition: all 0.3s ease;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'Courier New', monospace;
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  /* Font family CSS variables for new components */
+  --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  /* Muted / stroke aliases for new components */
+  --muted: #888888;
+  --stroke: #e8e5e0;
 }
 
 /* ===== DARK MODE ===== */
@@ -34,7 +40,26 @@
     --accent: #7a9e70;
     --accent-hover: #8fb584;
     --accent-soft: rgba(122, 158, 112, 0.08);
+    --muted: #888888;
+    --stroke: #2a2a28;
   }
+}
+
+/* ===== FORCED DARK THEME (portfolio landing) ===== */
+[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-2: #1a1a1a;
+  --border: #1f1f1f;
+  --border-accent: rgba(137, 170, 204, 0.25);
+  --text: #f5f5f5;
+  --text-muted: #888888;
+  --accent: #f5f5f5;
+  --accent-hover: #cccccc;
+  --accent-soft: rgba(137, 170, 204, 0.08);
+  --muted: #888888;
+  --stroke: #1f1f1f;
+  color-scheme: dark;
 }
 
 /* ===== SELECTION ===== */

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
+import AppWrapper from '@/components/AppWrapper'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -57,9 +58,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -114,10 +121,12 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
-        <Nav />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <ScrollToTop />
+        <AppWrapper>
+          <Nav />
+          <main id="main-content">{children}</main>
+          <Footer />
+          <ScrollToTop />
+        </AppWrapper>
       </body>
     </html>
   )
