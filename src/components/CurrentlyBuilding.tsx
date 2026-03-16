@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 const items = [
   { label: 'Improving the Lab', note: 'Adding more experiments and polishing existing ones' },
   { label: 'Building new UI experiments', note: 'Exploring animation patterns and interactive components' },
-  { label: 'Writing dev notes', note: 'Documenting builds and lessons for the future blog' },
+  { label: 'Writing dev notes', note: 'Documenting builds and lessons learned along the way' },
   { label: 'Exploring 3D portfolio ideas', note: 'Early research into Three.js and interactive scenes' },
 ]
 
