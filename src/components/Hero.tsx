@@ -19,11 +19,12 @@ export default function Hero() {
         transition={{ duration: skip ? 0 : 0.8, ease: 'easeOut' }}
       >
         <Image
-          src="/favicon.png"
+          src="/favicon.webp"
           alt="CHADDYTWICEOVER — tree of code logo"
           width={180}
           height={180}
           className="hero-logo"
+          sizes="180px"
           priority
         />
         <p className="hero-label">Design &amp; Development</p>

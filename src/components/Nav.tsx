@@ -85,11 +85,12 @@ export default function Nav() {
             aria-current={pathname === '/' ? 'page' : undefined}
           >
             <Image
-              src="/favicon.png"
+              src="/favicon.webp"
               alt=""
               width={28}
               height={28}
               className="logo-icon"
+              sizes="28px"
               priority
             />
             CHADDYTWICEOVER
