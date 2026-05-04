@@ -10,12 +10,12 @@ export const metadata: Metadata = {
     template: '%s — CHADDYTWICEOVER',
   },
   description:
-    'CHADDYTWICEOVER — web dev student sharing front-end experiments, UI builds, and design work in public.',
+    'CHADDYTWICEOVER — front-end developer and web development graduate sharing front-end experiments, UI builds, and design work in public.',
   metadataBase: new URL('https://chaddytwiceover.com'),
   openGraph: {
     title: 'CHADDYTWICEOVER',
     description:
-      'Web dev student sharing front-end experiments, UI builds, and design work in public.',
+      'Front-end developer and web development graduate sharing front-end experiments, UI builds, and design work in public.',
     url: 'https://chaddytwiceover.com',
     siteName: 'CHADDYTWICEOVER',
     type: 'website',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'CHADDYTWICEOVER',
     description:
-      'Web dev student sharing front-end experiments, UI builds, and design work in public.',
+      'Front-end developer and web development graduate sharing front-end experiments, UI builds, and design work in public.',
     site: '@chaddytwiceover',
     creator: '@chaddytwiceover',
     images: ['/og-image.png'],
@@ -70,7 +70,7 @@ export default function RootLayout({
                 name: 'CHADDYTWICEOVER',
                 url: 'https://chaddytwiceover.com',
                 description:
-                  'Web dev student sharing front-end experiments, UI builds, and design work in public.',
+                  'Front-end developer and web development graduate sharing front-end experiments, UI builds, and design work in public.',
                 potentialAction: {
                   '@type': 'SearchAction',
                   target: {
@@ -92,7 +92,7 @@ export default function RootLayout({
                   'https://instagram.com/chaddytwiceover',
                   'https://tiktok.com/@chaddytwiceover',
                 ],
-                jobTitle: 'Web Development Student',
+                jobTitle: 'Front-End Developer',
                 knowsAbout: [
                   'HTML',
                   'CSS',

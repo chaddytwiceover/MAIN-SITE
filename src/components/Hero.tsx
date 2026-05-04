@@ -32,7 +32,7 @@ export default function Hero() {
           Building modern<br />web interfaces.
         </h1>
         <p className="hero-subcopy">
-          Front-end developer and web dev student — building with Next.js, React, and TypeScript. Sharing experiments and projects as I learn in public.
+          Front-end developer and web development graduate — building with Next.js, React, and TypeScript. Sharing experiments and projects as I keep learning in public.
         </p>
         <div className="hero-ctas">
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>

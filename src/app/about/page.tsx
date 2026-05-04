@@ -3,11 +3,13 @@ import AboutContent from './AboutContent'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Learn about CHADDYTWICEOVER — a web dev student building in public, sharing front-end experiments, UI designs, and the learning process.',
+  description:
+    'Learn about CHADDYTWICEOVER — a front-end developer and web development graduate building in public, sharing front-end experiments, UI designs, and the creative process.',
   alternates: { canonical: '/about' },
   openGraph: {
     title: 'About — CHADDYTWICEOVER',
-    description: 'A web dev student building in public — sharing front-end experiments, UI designs, and the learning process.',
+    description:
+      'A front-end developer and web development graduate building in public — sharing front-end experiments, UI designs, and the creative process.',
     locale: 'en_US',
     type: 'profile',
     images: [

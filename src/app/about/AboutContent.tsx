@@ -39,9 +39,9 @@ export default function AboutContent() {
       >
         <BackButton />
         <span className="section-label">About</span>
-        <h1>Learning in public.</h1>
+        <h1>Building in public.</h1>
         <p>
-          I&apos;m currently studying web development and using this site to
+          I recently completed a web development program and use this site to
           document progress through real experiments and builds.
         </p>
         <p>
