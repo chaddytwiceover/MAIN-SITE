@@ -6,18 +6,18 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'CHADDYTWICEOVER',
-    template: '%s — CHADDYTWICEOVER',
+    default: 'chaddytwiceover',
+    template: '%s — chaddytwiceover',
   },
   description:
-    'CHADDYTWICEOVER — web dev student sharing front-end experiments, UI builds, and design work in public.',
+    'chaddytwiceover is a personal landing page for links, experiments, socials, and random things I make.',
   metadataBase: new URL('https://chaddytwiceover.com'),
   openGraph: {
-    title: 'CHADDYTWICEOVER',
+    title: 'chaddytwiceover',
     description:
-      'Web dev student sharing front-end experiments, UI builds, and design work in public.',
+      'A personal landing page for links, experiments, socials, and random things I make.',
     url: 'https://chaddytwiceover.com',
-    siteName: 'CHADDYTWICEOVER',
+    siteName: 'chaddytwiceover',
     type: 'website',
     locale: 'en_US',
     images: [
@@ -25,15 +25,15 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'CHADDYTWICEOVER — Design & Development Portfolio',
+        alt: 'chaddytwiceover',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CHADDYTWICEOVER',
+    title: 'chaddytwiceover',
     description:
-      'Web dev student sharing front-end experiments, UI builds, and design work in public.',
+      'A personal landing page for links, experiments, socials, and random things I make.',
     site: '@chaddytwiceover',
     creator: '@chaddytwiceover',
     images: ['/og-image.png'],
@@ -67,23 +67,15 @@ export default function RootLayout({
               {
                 '@context': 'https://schema.org',
                 '@type': 'WebSite',
-                name: 'CHADDYTWICEOVER',
+                name: 'chaddytwiceover',
                 url: 'https://chaddytwiceover.com',
                 description:
-                  'Web dev student sharing front-end experiments, UI builds, and design work in public.',
-                potentialAction: {
-                  '@type': 'SearchAction',
-                  target: {
-                    '@type': 'EntryPoint',
-                    urlTemplate: 'https://chaddytwiceover.com/projects?q={search_term_string}',
-                  },
-                  'query-input': 'required name=search_term_string',
-                },
+                  'A personal landing page for links, experiments, socials, and random things I make.',
               },
               {
                 '@context': 'https://schema.org',
                 '@type': 'Person',
-                name: 'CHADDYTWICEOVER',
+                name: 'chaddytwiceover',
                 url: 'https://chaddytwiceover.com',
                 image: 'https://chaddytwiceover.com/favicon.png',
                 sameAs: [
@@ -91,19 +83,6 @@ export default function RootLayout({
                   'https://twitter.com/chaddytwiceover',
                   'https://instagram.com/chaddytwiceover',
                   'https://tiktok.com/@chaddytwiceover',
-                ],
-                jobTitle: 'Web Development Student',
-                knowsAbout: [
-                  'HTML',
-                  'CSS',
-                  'JavaScript',
-                  'TypeScript',
-                  'React',
-                  'Next.js',
-                  'Web Development',
-                  'Responsive Design',
-                  'Accessibility',
-                  'UI Design',
                 ],
               },
             ]),
