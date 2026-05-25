@@ -8,12 +8,9 @@ import { motion, useScroll } from 'framer-motion'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
 const navLinks = [
-  { href: '/about', label: 'About' },
-  { href: '/projects', label: 'Work' },
+  { href: '/', label: 'Home' },
   { href: '/lab', label: 'Lab' },
-  { href: '/pricing', label: 'Pricing' },
   { href: '/socials', label: 'Socials' },
-  { href: '/contact', label: 'Contact' },
 ]
 
 export default function Nav() {
@@ -93,7 +90,7 @@ export default function Nav() {
               sizes="28px"
               priority
             />
-            CHADDYTWICEOVER
+            chaddytwiceover
           </Link>
           <button
             className={`menu-toggle${menuOpen ? ' active' : ''}`}
