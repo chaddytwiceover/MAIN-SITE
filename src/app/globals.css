@@ -2079,3 +2079,317 @@ footer p {
     gap: 1rem;
   }
 }
+
+/* ===== HOMEPAGE REDESIGN: 90s RETRO THEME ===== */
+.retro-home {
+  width: min(100%, 74rem);
+  margin: 0 auto;
+  padding: 6.2rem 1rem 3rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.retro-hero,
+.retro-links,
+.retro-community {
+  border: 3px solid #1f2a44;
+  box-shadow: 6px 6px 0 #0f172a;
+  background: linear-gradient(180deg, #f8f8ff 0%, #edf2ff 100%);
+  padding: 1rem;
+}
+
+.retro-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border: 2px solid #1f2a44;
+  background: #f6ffec;
+  color: #214d1c;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+  font-weight: 700;
+}
+
+.retro-window {
+  border: 2px solid #1f2a44;
+  background: #fff;
+}
+
+.retro-window-bar {
+  background: linear-gradient(90deg, #1d4ed8 0%, #7c3aed 100%);
+  color: #fff;
+  padding: 0.45rem 0.65rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.retro-window-body {
+  padding: 1rem;
+}
+
+.retro-hero-kicker {
+  margin: 0;
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #334155;
+}
+
+.retro-window-body h1 {
+  margin: 0.7rem 0;
+  font-size: clamp(1.55rem, 6vw, 2.45rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.retro-hero-copy {
+  color: #1e293b;
+  margin: 0;
+  max-width: 58ch;
+}
+
+.retro-hero-actions {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  align-items: flex-start;
+}
+
+.retro-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 2px solid #1f2a44;
+  box-shadow: 3px 3px 0 #1f2a44;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.retro-button:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 #1f2a44;
+}
+
+.retro-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #1f2a44;
+}
+
+.retro-button-primary {
+  background: #fef08a;
+  color: #111827;
+}
+
+.retro-button-secondary {
+  background: #e0e7ff;
+  color: #111827;
+}
+
+.retro-text-link {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.retro-marquee {
+  margin: 1rem 0 0;
+  padding: 0.55rem 0.75rem;
+  border: 2px dashed #1f2a44;
+  background: repeating-linear-gradient(
+    90deg,
+    #fdf2f8 0,
+    #fdf2f8 10px,
+    #eef2ff 10px,
+    #eef2ff 20px
+  );
+  color: #3f3f46;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.retro-section-header {
+  margin-bottom: 1rem;
+}
+
+.retro-section-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.74rem;
+  color: #334155;
+}
+
+.retro-section-header h2 {
+  margin: 0.45rem 0 0;
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.retro-card-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.retro-card {
+  border: 2px solid #1f2a44;
+  background: #ffffff;
+  padding: 0.95rem;
+  display: grid;
+  gap: 0.35rem;
+  box-shadow: 4px 4px 0 #1f2a44;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.retro-card:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 3px 3px 0 #1f2a44;
+}
+
+.retro-card-type {
+  margin: 0;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.68rem;
+  color: #475569;
+}
+
+.retro-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.retro-card p {
+  margin: 0;
+  color: #1f2937;
+  line-height: 1.55;
+  max-width: none;
+  font-size: 0.93rem;
+}
+
+.retro-community-panel {
+  border: 2px solid #1f2a44;
+  background: #f8fafc;
+  padding: 1rem;
+}
+
+.retro-community-panel p {
+  margin: 0;
+  color: #1f2937;
+  max-width: 62ch;
+}
+
+.retro-community-panel ul {
+  margin: 0.9rem 0 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.retro-community-panel li {
+  color: #111827;
+}
+
+.retro-community-panel a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.retro-badge-row {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.retro-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.6rem;
+  border: 2px solid #1f2a44;
+  background: #fef9c3;
+  color: #111827;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+}
+
+.retro-home a:focus-visible,
+.retro-home button:focus-visible {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 3px;
+}
+
+@media (min-width: 700px) {
+  .retro-home {
+    padding: 7rem 1.5rem 4rem;
+  }
+
+  .retro-hero,
+  .retro-links,
+  .retro-community {
+    padding: 1.5rem;
+  }
+
+  .retro-hero-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .retro-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1040px) {
+  .retro-home {
+    gap: 2.25rem;
+  }
+
+  .retro-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .retro-marquee {
+    animation: retro-marquee-glow 3.8s ease-in-out infinite;
+  }
+}
+
+@keyframes retro-marquee-glow {
+  0%,
+  100% {
+    filter: saturate(1);
+  }
+  50% {
+    filter: saturate(1.25);
+  }
+}
