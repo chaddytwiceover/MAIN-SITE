@@ -1,4 +1,10 @@
-@tailwind base;
+import re
+
+with open('src/app/globals.css', 'r') as f:
+    css = f.read()
+
+# I will replace everything after the tailwind imports.
+tailwind_imports = """@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -246,165 +252,8 @@ footer { border-top: 4px solid var(--border); background: var(--surface); margin
 
 /* Utilities */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+"""
 
-.section-label {
-  font-family: var(--font-mono);
-  font-weight: bold;
-  background: var(--yellow);
-  color: black;
-  padding: 0.25rem 0.5rem;
-  border: 2px solid var(--border);
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-@media (prefers-color-scheme: dark) {
-  .section-label { background: var(--purple); color: white; }
-}
+with open('src/app/globals.css', 'w') as f:
+    f.write(tailwind_imports)
 
-/* Lab Cards */
-.lab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-.lab-card {
-  display: block; text-decoration: none !important; color: var(--text);
-  background: var(--surface); border: 3px solid var(--border);
-  padding: 1.5rem; box-shadow: 6px 6px 0px var(--border);
-  transition: all 0.1s; position: relative;
-}
-.lab-card:hover {
-  transform: translate(-2px, -2px); box-shadow: 8px 8px 0px var(--border);
-  background: var(--surface-2);
-}
-.lab-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; gap: 1rem; flex-wrap: wrap; }
-.lab-card-title { margin: 0; font-size: 1.25rem; font-family: var(--font-sans); }
-.lab-card-status { font-family: var(--font-mono); font-size: 0.75rem; font-weight: bold; border: 2px solid var(--border); padding: 0.15rem 0.4rem; background: var(--pink); color: white; transform: rotate(2deg); }
-.lab-card-status--active { background: var(--yellow); color: black; }
-.lab-card-status--finished { background: var(--cyan); color: black; }
-.lab-card-description { font-size: 0.95rem; margin-bottom: 1.5rem; }
-.lab-card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
-.lab-tag { font-family: var(--font-mono); font-size: 0.7rem; border: 1px dashed var(--border); padding: 0.15rem 0.4rem; background: var(--bg); }
-.lab-card-cta { font-family: var(--font-mono); font-weight: bold; font-size: 0.85rem; color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
-.lab-card:hover .lab-card-cta { color: var(--pink); text-decoration: none; }
-
-/* Contact Page */
-.contact-email-block {
-  margin-top: 2rem;
-  padding: 2rem;
-  background: var(--surface);
-  border: 4px dashed var(--border);
-  box-shadow: 6px 6px 0px var(--border);
-  text-align: center;
-}
-.contact-email-address {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: clamp(1.2rem, 4vw, 2rem);
-  font-weight: bold;
-  color: var(--pink);
-  margin-bottom: 2rem;
-  text-decoration: none !important;
-}
-.contact-email-address:hover { color: var(--blue); text-decoration: underline !important; background: transparent; }
-.contact-email-actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.cta-button {
-  font-family: var(--font-mono); font-weight: bold; padding: 0.75rem 1.5rem;
-  text-decoration: none !important; border: 3px solid var(--border);
-  box-shadow: inset -3px -3px 0px rgba(0,0,0,0.3), inset 3px 3px 0px rgba(255,255,255,0.7), 4px 4px 0px var(--border);
-  cursor: pointer; display: inline-block; text-transform: uppercase;
-  background: var(--accent); color: white;
-}
-.cta-button:active { box-shadow: inset 3px 3px 0px rgba(0,0,0,0.3), inset -3px -3px 0px rgba(255,255,255,0.7), 1px 1px 0px var(--border); transform: translate(3px, 3px); }
-.cta-button:hover { background: var(--pink); color: white; }
-.cta-secondary { background: var(--surface-2); color: var(--text); }
-.cta-secondary:hover { background: var(--yellow); color: black; }
-
-
-/* Pricing Page */
-.pricing-hero { margin-bottom: 2rem; }
-.pricing-process-section, .pricing-addons-section, .pricing-scope-section, .pricing-cta-section {
-  max-width: 1000px; margin: 2rem auto; padding: 2rem 1rem;
-}
-
-.pricing-process-steps { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
-.pricing-process-step {
-  display: flex; gap: 1.5rem; align-items: flex-start;
-  background: var(--surface); border: 3px dashed var(--border); padding: 1.5rem;
-}
-.pricing-step-number {
-  background: var(--yellow); border: 2px solid var(--border); width: 40px; height: 40px;
-  display: flex; align-items: center; justify-content: center; font-family: var(--font-mono);
-  font-weight: bold; font-size: 1.5rem; flex-shrink: 0; box-shadow: 2px 2px 0px var(--border);
-}
-
-.pricing-cards-section { max-width: 1000px; margin: 0 auto; padding: 1rem; }
-.pricing-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-.pricing-card {
-  background: var(--surface); border: 4px solid var(--border);
-  padding: 2rem; box-shadow: 8px 8px 0px var(--border);
-  position: relative; display: flex; flex-direction: column; gap: 1.5rem;
-}
-.pricing-card.featured {
-  background: var(--surface-2); border-color: var(--pink);
-}
-.pricing-card.featured::before {
-  content: "BEST VALUE"; position: absolute; top: -15px; left: 50%; transform: translateX(-50%) rotate(-3deg);
-  background: var(--yellow); border: 2px solid var(--border); padding: 0.25rem 0.75rem;
-  font-family: var(--font-mono); font-weight: bold; font-size: 1.1rem; z-index: 10;
-  box-shadow: 2px 2px 0px var(--border); color: black;
-}
-.pricing-price { font-family: var(--font-sans); font-size: 2.5rem; font-weight: bold; color: var(--pink); text-shadow: 2px 2px 0px var(--border); margin: 0; }
-.pricing-features { list-style: none; padding: 0; margin: 0; }
-.pricing-features li { padding: 0.5rem 0; border-bottom: 2px dashed var(--border); font-family: var(--font-mono); font-size: 0.9rem; }
-.pricing-features li:last-child { border-bottom: none; }
-.pricing-delivery { background: var(--bg); padding: 0.5rem; border: 2px solid var(--border); font-family: var(--font-mono); font-size: 0.8rem; font-weight: bold; text-align: center; }
-
-.pricing-addons-list { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 1rem; }
-.pricing-addons-list li {
-  display: flex; justify-content: space-between; padding: 1rem; background: var(--surface);
-  border: 3px solid var(--border); box-shadow: 4px 4px 0px var(--border); font-family: var(--font-mono); font-weight: bold;
-}
-.addon-price { color: var(--pink); }
-
-.pricing-scope-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 1.5rem; }
-.pricing-scope-card { background: var(--surface); border: 3px solid var(--border); padding: 1.5rem; box-shadow: 6px 6px 0px var(--border); }
-.pricing-scope-card--offered h3 { color: var(--accent); }
-.pricing-scope-card--not-offered h3 { color: var(--red); }
-.pricing-scope-card ul { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.75rem; }
-.pricing-scope-card li { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.9rem; }
-.pricing-scope-card--offered li svg { color: var(--accent); }
-.pricing-scope-card--not-offered li svg { color: var(--red); }
-
-.pricing-cta-section { text-align: center; background: var(--yellow); border: 4px solid var(--border); padding: 3rem 1rem; margin-bottom: 2rem; box-shadow: 8px 8px 0px var(--border); color: black; }
-@media (prefers-color-scheme: dark) { .pricing-cta-section { background: var(--purple); color: white; } }
-.pricing-trust-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
-.pricing-trust-item { background: var(--surface); border: 2px solid var(--border); padding: 0.25rem 0.75rem; font-family: var(--font-mono); font-weight: bold; font-size: 0.8rem; box-shadow: 2px 2px 0px var(--border); color: var(--text); }
-.pricing-cta-button-wrapper { margin-top: 2rem; }
-
-
-/* Overrides for PricingCard.tsx existing classes */
-.pricing-card {
-  background: var(--surface); border: 4px solid var(--border);
-  padding: 2rem; box-shadow: 8px 8px 0px var(--border);
-  position: relative; display: flex; flex-direction: column; gap: 1.5rem;
-}
-.pricing-card--featured {
-  background: var(--surface-2); border-color: var(--pink);
-}
-.pricing-card-badge {
-  position: absolute; top: -15px; left: 50%; transform: translateX(-50%) rotate(-3deg);
-  background: var(--yellow); border: 2px solid var(--border); padding: 0.25rem 0.75rem;
-  font-family: var(--font-mono); font-weight: bold; font-size: 1.1rem; z-index: 10;
-  box-shadow: 2px 2px 0px var(--border); color: black;
-}
-.pricing-card-title { font-size: 1.5rem; }
-.pricing-card-price { display: flex; align-items: flex-start; gap: 0.2rem; }
-.pricing-card-currency { font-size: 1.2rem; font-weight: bold; margin-top: 0.3rem; }
-.pricing-card-amount { font-family: var(--font-sans); font-size: 3rem; font-weight: bold; color: var(--pink); text-shadow: 2px 2px 0px var(--border); line-height: 1; }
-.pricing-card-features { list-style: none; padding: 0; margin: 0; }
-.pricing-card-features li { padding: 0.5rem 0; border-bottom: 2px dashed var(--border); font-family: var(--font-mono); font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
-.pricing-card-features li:last-child { border-bottom: none; }
-.pricing-card-features li svg { color: var(--accent); flex-shrink: 0; }
-.pricing-card-delivery { display: flex; align-items: center; gap: 0.5rem; background: var(--bg); padding: 0.75rem; border: 2px solid var(--border); font-family: var(--font-mono); font-size: 0.85rem; font-weight: bold; justify-content: center; }
