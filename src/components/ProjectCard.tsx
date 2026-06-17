@@ -53,7 +53,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       style={{ rotateX, rotateY, transformPerspective: 1000 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      whileHover={{ translateY: -4 }}
+      
     >
       <div className="project-image">
         <svg
