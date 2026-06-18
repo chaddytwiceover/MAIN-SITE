@@ -1,8 +1,11 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
+
+const techStack = ['Next.js', 'React', 'TypeScript', 'Tailwind', 'Framer Motion']
 
 export default function Hero() {
   const skip = useSkipAnimation()
@@ -13,27 +16,40 @@ export default function Hero() {
         className="hero-content"
         initial={skip ? false : { opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: skip ? 0 : 0.6, ease: 'easeOut' }}
+        transition={{ duration: skip ? 0 : 0.8, ease: 'easeOut' }}
       >
+        <Image
+          src="/favicon.webp"
+          alt="CHADDYTWICEOVER — tree of code logo"
+          width={180}
+          height={180}
+          className="hero-logo"
+          sizes="180px"
+          priority
+        />
         <p className="hero-label">Design &amp; Development</p>
-        <h1 className="glitch" data-text="A space to build, test, and learn.">
-          A space to build,<br />test, and learn.
+        <h1>
+          Building modern<br />web interfaces.
         </h1>
         <p className="hero-subcopy">
-          I&apos;m a web dev student sharing experiments, concepts, and projects
-          as I keep improving my craft.
+          Front-end developer and web dev student — building with Next.js, React, and TypeScript. Sharing experiments and projects as I learn in public.
         </p>
         <div className="hero-ctas">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link href="/projects" className="cta-button">
-              View Work
+              View Projects
             </Link>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link href="/contact" className="cta-button cta-secondary">
-              Contact
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+            <Link href="/lab" className="cta-button cta-secondary">
+              Explore the Lab
             </Link>
           </motion.div>
+        </div>
+        <div className="hero-stack">
+          {techStack.map((tech) => (
+            <span key={tech} className="hero-stack-badge">{tech}</span>
+          ))}
         </div>
       </motion.div>
     </section>

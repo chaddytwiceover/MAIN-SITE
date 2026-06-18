@@ -16,9 +16,7 @@ export default function ContactContent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: skip ? 0 : 0.5, ease: 'easeOut' }}
       >
-        <Link className="cta-button cta-secondary page-back" href="/">
-          ← Back
-        </Link>
+        <BackButton />
         <span className="section-label">Contact</span>
         <h1>Say hi.</h1>
         <p>

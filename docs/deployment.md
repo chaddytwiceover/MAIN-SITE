@@ -26,6 +26,7 @@ npm run build   # ✅ Should generate `out/` directory
 - `out/index.html` (home page)
 - `out/about/index.html`
 - `out/projects/index.html`
+- `out/pricing/index.html`
 - `out/socials/index.html`
 - `out/contact/index.html`
 - `out/_next/` (JS/CSS bundles)

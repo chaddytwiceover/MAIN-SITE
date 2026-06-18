@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { projects } from '@/lib/projects'
 import ProjectCard from '@/components/ProjectCard'
 import FilterBar from '@/components/FilterBar'
+import BackButton from '@/components/BackButton'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
 const container = {
@@ -43,14 +43,11 @@ export default function ProjectsContent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: skip ? 0 : 0.5, ease: 'easeOut' }}
       >
-        <Link className="cta-button cta-secondary page-back" href="/">
-          ← Back
-        </Link>
+        <BackButton />
         <span className="section-label">Work</span>
         <h1>Experiments &amp; Projects</h1>
         <p>
-          Active learning builds where I test ideas and improve front-end
-          skills.
+          Real builds — what was built, why, and what I learned.
         </p>
 
         <FilterBar activeFilter={filter} onFilter={setFilter} />

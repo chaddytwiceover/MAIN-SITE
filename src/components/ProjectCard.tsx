@@ -53,7 +53,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       style={{ rotateX, rotateY, transformPerspective: 1000 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      whileHover={{ translateY: -4 }}
+      
     >
       <div className="project-image">
         <svg
@@ -87,7 +87,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <text
             x="320"
             y="215"
-            fill="#ffffff"
+            fill="#1a1a18"
             fontFamily="Consolas, monospace"
             fontSize="30"
             fontWeight="bold"
@@ -104,6 +104,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <p className="project-meta">Focus: {project.focus}</p>
         <p className="project-meta">Stack: {project.stack}</p>
         <p className="project-stat">{`// ${project.status}`}</p>
+        {project.problem && project.approach && project.result && project.learned && (
+          <div className="project-case-study">
+            <p className="project-case-item"><span className="case-label">Problem:</span> {project.problem}</p>
+            <p className="project-case-item"><span className="case-label">Approach:</span> {project.approach}</p>
+            <p className="project-case-item"><span className="case-label">Result:</span> {project.result}</p>
+            <p className="project-case-item"><span className="case-label">Learned:</span> {project.learned}</p>
+          </div>
+        )}
         {isExternal && <span className="sr-only">(opens in new tab)</span>}
       </div>
     </motion.a>

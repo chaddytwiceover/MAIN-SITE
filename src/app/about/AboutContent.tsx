@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import SkillTag from '@/components/SkillTag'
+import BackButton from '@/components/BackButton'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
 const skills = [
@@ -37,9 +37,7 @@ export default function AboutContent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: skip ? 0 : 0.5, ease: 'easeOut' }}
       >
-        <Link className="cta-button cta-secondary page-back" href="/">
-          ← Back
-        </Link>
+        <BackButton />
         <span className="section-label">About</span>
         <h1>Learning in public.</h1>
         <p>

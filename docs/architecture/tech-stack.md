@@ -1,6 +1,6 @@
-# Tech Stack Blueprint (social-links)
+# Tech Stack Blueprint
 
-This document describes the tech stack used in the `chaddytwiceover/social-links` repository so it can be replicated for another domain/project.
+This document describes the tech stack used in the CHADDYTWICEOVER portfolio so it can be referenced for maintenance and future projects.
 
 ## Overview
 

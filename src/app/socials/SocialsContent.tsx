@@ -1,7 +1,7 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
+import BackButton from '@/components/BackButton'
 import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
 const socialLinks = [
@@ -48,9 +48,7 @@ export default function SocialsContent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: skip ? 0 : 0.5, ease: 'easeOut' }}
       >
-        <Link className="cta-button cta-secondary page-back" href="/">
-          ← Back
-        </Link>
+        <BackButton />
         <span className="section-label">Socials</span>
         <h1>{"Let's connect."}</h1>
         <p>
@@ -91,7 +89,7 @@ export default function SocialsContent() {
 
         <div className="socials-note">
           <p>
-            {'// All links open in new tabs except email. Feel free to reach out anytime.'}
+            {'// All links open in new tabs. Feel free to reach out anytime.'}
           </p>
         </div>
       </motion.div>
