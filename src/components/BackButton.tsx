@@ -1,39 +1,40 @@
 'use client'
 
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { useSkipAnimation } from '@/lib/useSafeAnimation'
+import { useRouter } from 'next/navigation'
+import { motion, useReducedMotion } from 'framer-motion'
+
+/**
+ * BackButton — Navigate back to the previous page or home
+ */
 
 export default function BackButton() {
-    const skip = useSkipAnimation()
+  const router = useRouter()
+  const prefersReduced = useReducedMotion()
 
-    return (
-        <motion.div
-            className="back-button-wrapper"
-            initial={skip ? false : { opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: skip ? 0 : 0.4, ease: 'easeOut', delay: skip ? 0 : 0.15 }}
-        >
-            <Link href="/" className="back-button" aria-label="Back to home">
-                <svg
-                    className="back-button-arrow"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-                    <path
-                        d="M10 12L6 8L10 4"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                </svg>
-                <span>Back</span>
-            </Link>
-        </motion.div>
-    )
+  return (
+    <motion.button
+      type="button"
+      onClick={() => router.back()}
+      className="
+        inline-flex items-center gap-2 mb-8
+        text-sm font-medium text-text-dim
+        hover:text-text transition-colors duration-200
+        focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2
+      "
+      whileHover={prefersReduced ? {} : { x: -4 }}
+      aria-label="Go back"
+    >
+      <svg
+        className="w-4 h-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+      </svg>
+      Back
+    </motion.button>
+  )
 }

@@ -1,15 +1,35 @@
 import Hero from '@/components/Hero'
 import FeaturedProjects from '@/components/FeaturedProjects'
+import CurrentlyBuilding from '@/components/CurrentlyBuilding'
 import SectionCard from '@/components/SectionCard'
+import { socialLinks } from '@/lib/social-links'
+
+/**
+ * Home page — Calm landing page that introduces the site
+ */
 
 export default function HomePage() {
   return (
     <>
+      {/* Hero */}
       <Hero />
+
+      {/* Featured projects */}
       <FeaturedProjects />
-      <section className="home-sections">
-        <div className="section-content">
-          <div className="section-card-grid">
+
+      {/* Currently building */}
+      <CurrentlyBuilding />
+
+      {/* Quick link cards */}
+      <section className="py-20 px-5" aria-labelledby="explore-title">
+        <div className="max-w-[var(--max-width-content)] mx-auto">
+          <span className="inline-block text-xs font-medium tracking-widest uppercase text-accent mb-3">
+            Explore
+          </span>
+          <h2 id="explore-title" className="text-text text-2xl sm:text-3xl font-bold mb-8">
+            Around the Site
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <SectionCard
               href="/about"
               label="About"
@@ -17,54 +37,58 @@ export default function HomePage() {
               description="Who I am, what I'm learning, and how this site helps me practice web development."
             />
             <SectionCard
-              href="/projects"
-              label="Work"
-              title="Experiments & Projects"
-              description="Live builds, UI experiments, and ongoing iterations I'm actively working on."
+              href="/lab"
+              label="Lab"
+              title="Experiments & Prototypes"
+              description="Small builds, weird UI ideas, and things I made while learning."
             />
             <SectionCard
               href="/socials"
               label="Socials"
-              title="Connect"
-              description="Find me across the web — GitHub, email, and more."
+              title="Find me online."
+              description="Links to everywhere I post — GitHub, socials, and more."
             />
             <SectionCard
               href="/contact"
               label="Contact"
-              title="Say Hi"
-              description="Want to share feedback, resources, or ideas? Reach out and connect."
+              title="Say hi."
+              description="Want to share feedback, ideas, or just chat? Reach out anytime."
             />
           </div>
         </div>
-
-        <p className="retro-marquee" aria-label="Retro announcement">
-          <div className="marquee-content">★ Welcome to Chaddy&apos;s Cyber Book Fair ★ Check out the new builds in the lab ★ Don&apos;t forget to sign the guestbook! ★</div>
-        </p>
       </section>
 
-      <section className="retro-links" aria-labelledby="lab-title">
-        <header className="retro-section-header">
-          <p className="retro-section-label">Secret Experiment Shelf</p>
-          <h2 id="lab-title">Featured Experiments from the Lab</h2>
-          <p className="retro-section-desc">Tiny builds, weird UI ideas, JavaScript games, and interaction experiments — shipped one pixel at a time.</p>
-        </header>
-
-        <div className="retro-card-grid">
-          <Link className="retro-card book-fair-card" href="/lab/pixel-art/">
-            <div className="sticker-label">HOT BUILD!</div>
-            <h3>Pixel Art Editor</h3>
-            <p>Make tiny pixel art right in the browser.</p>
-          </Link>
-          <Link className="retro-card book-fair-card" href="/lab/tic-tac-toe/">
-            <div className="sticker-label">LAB PICK!</div>
-            <h3>Tic Tac Toe Neural Grid</h3>
-            <p>A small game experiment from the lab.</p>
-          </Link>
-          <Link className="retro-card book-fair-card" href="/projects">
-            <div className="sticker-label">COOL!</div>
-            <h3>View All Projects</h3>
-            <p>See the full catalog of featured work.</p>
-          </Link>
+      {/* Compact social strip */}
+      <section className="py-12 px-5 border-t border-border" aria-label="Social links">
+        <div className="max-w-[var(--max-width-content)] mx-auto flex flex-wrap justify-center gap-4">
+          {socialLinks
+            .filter((link) => link.url.startsWith('http'))
+            .map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.name}
+                className="
+                  flex items-center gap-2 px-4 py-2 rounded-xl
+                  bg-surface border border-border text-text-muted text-sm
+                  hover:bg-surface-hover hover:text-text hover:border-border-hover
+                  transition-all duration-200 no-underline
+                "
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                >
+                  <path d={link.iconPath} />
+                </svg>
+                {link.name}
+                <span className="sr-only">(opens in new tab)</span>
+              </a>
+            ))}
         </div>
       </section>
     </>

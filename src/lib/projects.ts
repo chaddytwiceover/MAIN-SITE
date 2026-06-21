@@ -1,63 +1,94 @@
+/**
+ * Projects — Central data source
+ *
+ * Edit this file to add, remove, or update projects.
+ * Used by: Projects page, Featured Projects section on Home
+ */
+
+export type ProjectStatus =
+  | 'Live'
+  | 'Prototype'
+  | 'In Progress'
+  | 'Experiment'
+  | 'Coming Soon'
+
 export interface Project {
   id: string
   title: string
-  category: 'web' | 'experiment'
   description: string
-  focus: string
-  stack: string
-  status: string
+  tech: string[]
+  status: ProjectStatus
+  /** Link to the live project (if available) */
   url?: string
-  svgBg: string
-  svgStroke: string
-  svgLabel: string
-  problem: string
-  approach: string
-  result: string
-  learned: string
+  /** Link to the source code (if available) */
+  sourceUrl?: string
+  /** Whether to feature this project on the home page */
   featured?: boolean
 }
 
 export const projects: Project[] = [
   {
-    id: 'the-lab',
-    title: 'The Lab',
-    category: 'experiment',
-    description: 'My sandbox for interaction experiments and front-end concept testing.',
-    focus: 'UI experiments + front-end practice',
-    stack: 'HTML, CSS, JavaScript, SVG',
-    status: 'Active learning project',
-    url: 'https://lab.chaddytwiceover.com',
-    svgBg: '#f4f3f0',
-    svgStroke: '#4a6741',
-    svgLabel: 'THE LAB',
-    problem: 'I needed a dedicated space to experiment with front-end ideas without worrying about breaking a "real" project.',
-    approach: 'Built a standalone lab site to host small, self-contained experiments — each one exploring a specific UI concept or JavaScript technique.',
-    result: 'An active collection of experiments including a pixel art editor, a minimax AI tic-tac-toe game, and a Simon Says game — all live and playable.',
-    learned: 'Shipping small experiments regularly is a great way to stay consistent and build confidence. Constraints (vanilla JS, no frameworks) forced me to understand fundamentals deeply.',
+    id: 'pixel-art',
+    title: 'Pixel Art Editor',
+    description:
+      'A browser-based pixel art editor with nature-inspired palettes, symmetry modes, spray brush, and rotating Bob Ross quotes.',
+    tech: ['HTML', 'CSS', 'JavaScript', 'Canvas API'],
+    status: 'Live',
+    url: '/demos/pixel-art/index.html',
+    featured: true,
+  },
+  {
+    id: 'simon-says',
+    title: 'Simon Says Game',
+    description:
+      'A classic memory game — repeat the sequence as it gets longer and faster. Simple, satisfying, and surprisingly hard.',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    status: 'Live',
+    url: '/demos/simon-says/index.html',
+  },
+  {
+    id: 'tic-tac-toe',
+    title: 'Tic Tac Toe — Neural Grid',
+    description:
+      'Cyberpunk-themed tic tac toe with three AI difficulty levels, including an unbeatable minimax algorithm with alpha-beta pruning.',
+    tech: ['HTML', 'CSS', 'JavaScript', 'AI / Minimax'],
+    status: 'Live',
+    url: '/demos/tic-tac-toe/index.html',
     featured: true,
   },
   {
     id: 'social-hub',
     title: 'Social Hub',
-    category: 'web',
-    description: 'Original standalone social links page, now integrated into the main portfolio.',
-    focus: 'Navigation patterns + usability',
-    stack: 'HTML, CSS, JavaScript, SVG',
-    status: 'Integrated into main site',
-    svgBg: '#1a0820',
-    svgStroke: '#ff2d78',
-    svgLabel: 'SOCIAL HUB',
+    description:
+      'Custom link-in-bio page, originally standalone — now integrated into this site as the Socials page.',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    status: 'Live',
+    url: '/socials',
+    featured: true,
   },
   {
     id: 'main-site',
     title: 'This Site',
-    category: 'web',
-    description: 'The portfolio itself — iterating on design systems, accessibility, and responsive layouts.',
-    focus: 'Design systems + accessibility',
-    stack: 'HTML, CSS, JavaScript',
-    status: 'Continuously improved',
-    svgBg: '#0a1408',
-    svgStroke: '#ffe600',
-    svgLabel: 'MAIN SITE',
+    description:
+      'The portfolio itself — iterating on design systems, accessibility, responsive layouts, and moody vibes.',
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+    status: 'In Progress',
+    sourceUrl: 'https://github.com/chaddytwiceover',
+  },
+  {
+    id: 'coming-soon-1',
+    title: 'Weather Dashboard',
+    description:
+      'A sleek weather app experiment with animated backgrounds and location-based forecasts. Still sketching this one out.',
+    tech: ['React', 'API', 'CSS Animations'],
+    status: 'Coming Soon',
+  },
+  {
+    id: 'coming-soon-2',
+    title: 'Markdown Previewer',
+    description:
+      'A minimal live markdown editor and previewer with syntax highlighting. On the list for when I get around to it.',
+    tech: ['TypeScript', 'React'],
+    status: 'Coming Soon',
   },
 ]

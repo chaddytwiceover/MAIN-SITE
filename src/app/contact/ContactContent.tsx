@@ -1,60 +1,42 @@
 'use client'
 
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import ContactForm from '@/components/ContactForm'
-import { useSkipAnimation } from '@/lib/useSafeAnimation'
+import { socialLinks } from '@/lib/social-links'
+import SocialLinkButton from '@/components/SocialLinkButton'
+import SectionHeader from '@/components/SectionHeader'
+import PageTransition from '@/components/PageTransition'
+
+/**
+ * ContactContent — Simple contact page
+ *
+ * Friendly message with email and social links.
+ * No heavy form — just easy ways to reach out.
+ */
 
 export default function ContactContent() {
-  const skip = useSkipAnimation()
-
   return (
-    <section className="page-section" id="contact">
-      <motion.div
-        className="section-content"
-        initial={skip ? false : { opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: skip ? 0 : 0.5, ease: 'easeOut' }}
-      >
-        <BackButton />
-        <span className="section-label">Contact</span>
-        <h1>Say hi.</h1>
-        <p>
-          If you want to talk web dev, share feedback, or trade resources, feel
-          free to reach out.
+    <PageTransition className="min-h-screen pt-28 pb-16 px-5">
+      <div className="max-w-md mx-auto">
+        <SectionHeader
+          label="Contact"
+          title="Say hi."
+          description="Want to say hi, share feedback, or check out what I'm making? You can find me around the internet below."
+        />
+
+        {/* Social links */}
+        <div className="flex flex-col gap-3">
+          {socialLinks
+            .filter((link) => ['GitHub', 'X / Twitter', 'Instagram', 'TikTok', 'Email'].includes(link.name))
+            .map((link, index) => (
+              <SocialLinkButton key={link.name} link={link} index={index} />
+            ))}
+        </div>
+
+        {/* Friendly note */}
+        <p className="text-center text-text-dim text-sm mt-10 leading-relaxed">
+          I&apos;m always happy to hear from people — whether it&apos;s feedback,
+          questions, resources, or just a friendly hello. No need to be formal.
         </p>
-
-        <ContactForm />
-
-        <nav aria-label="Social links">
-          <div className="social-links">
-            <a
-              href="https://github.com/chaddytwiceover"
-              className="social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-              <span className="sr-only">(opens in new tab)</span>
-            </a>
-            <a
-              href="mailto:contact@chaddytwiceover.com"
-              className="social-link"
-            >
-              Email
-            </a>
-            <a
-              href="https://lab.chaddytwiceover.com"
-              className="social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              The Lab
-              <span className="sr-only">(opens in new tab)</span>
-            </a>
-          </div>
-        </nav>
-      </motion.div>
-    </section>
+      </div>
+    </PageTransition>
   )
 }

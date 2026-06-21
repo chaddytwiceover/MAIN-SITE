@@ -1,98 +1,71 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import BackButton from '@/components/BackButton'
-import { useSkipAnimation } from '@/lib/useSafeAnimation'
+import { motion, useReducedMotion } from 'framer-motion'
+import { socialLinks } from '@/lib/social-links'
+import SocialLinkButton from '@/components/SocialLinkButton'
+import PageTransition from '@/components/PageTransition'
 
-const socialLinks = [
-  {
-    name: 'GitHub',
-    url: 'https://github.com/chaddytwiceover',
-    description: 'Code repositories and open source contributions',
-    icon: '◈',
-  },
-  {
-    name: 'Twitter / X',
-    url: 'https://x.com/chaddytwiceover',
-    description: 'Quick updates and web dev thoughts',
-    icon: '◇',
-  },
-  {
-    name: 'TikTok',
-    url: 'https://www.tiktok.com/@chaddytwiceover',
-    description: 'Short-form content and project clips',
-    icon: '◆',
-  },
-  {
-    name: 'Instagram',
-    url: 'https://www.instagram.com/chaddytwiceover/',
-    description: 'Visual updates and behind-the-scenes posts',
-    icon: '◉',
-  },
-  {
-    name: 'Email',
-    url: 'mailto:contact@chaddytwiceover.com',
-    description: 'Direct email contact',
-    icon: '◈',
-  },
-]
+/**
+ * SocialsContent — Linktree-style social links page
+ *
+ * Centered profile card with stacked link buttons.
+ * Designed to look especially good on mobile.
+ */
 
 export default function SocialsContent() {
-  const skip = useSkipAnimation()
+  const prefersReduced = useReducedMotion()
 
   return (
-    <section className="page-section" id="socials">
-      <motion.div
-        className="section-content"
-        initial={skip ? false : { opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: skip ? 0 : 0.5, ease: 'easeOut' }}
-      >
-        <BackButton />
-        <span className="section-label">Socials</span>
-        <h1>{"Let's connect."}</h1>
-        <p>
-          Find me across the web — all handles are <strong>chaddytwiceover</strong>.
-        </p>
+    <PageTransition className="min-h-screen flex items-center justify-center pt-24 pb-16 px-5">
+      <div className="w-full max-w-md mx-auto">
+        {/* Profile card */}
+        <motion.div
+          className="text-center mb-10"
+          initial={prefersReduced ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: prefersReduced ? 0 : 0.5 }}
+        >
+          {/* Avatar placeholder — initials circle */}
+          <div
+            className="
+              w-20 h-20 mx-auto mb-5 rounded-full
+              bg-accent/10 border border-accent/20
+              flex items-center justify-center
+              text-accent text-2xl font-bold
+            "
+            aria-hidden="true"
+          >
+            C
+          </div>
 
-        <div className="socials-grid">
+          <h1 className="text-text text-2xl font-bold mb-2">
+            chaddytwiceover
+          </h1>
+          <p className="text-text-muted text-base m-0 max-w-none">
+            Web experiments, hobby projects, and moody internet stuff.
+          </p>
+        </motion.div>
+
+        {/* Social link buttons */}
+        <div className="flex flex-col gap-3">
           {socialLinks.map((link, index) => (
-            <motion.a
-              key={link.name}
-              href={link.url}
-              className="social-card"
-              target={link.url.startsWith('http') ? '_blank' : undefined}
-              rel={
-                link.url.startsWith('http') ? 'noopener noreferrer' : undefined
-              }
-              initial={skip ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: skip ? 0 : 0.4,
-                delay: skip ? 0 : index * 0.1,
-                ease: 'easeOut',
-              }}
-              whileHover={skip ? {} : { scale: 1.02, y: -4 }}
-              whileTap={skip ? {} : { scale: 0.98 }}
-            >
-              <span className="social-icon" aria-hidden="true">
-                {link.icon}
-              </span>
-              <h2 className="social-name">{link.name}</h2>
-              <p className="social-description">{link.description}</p>
-              {link.url.startsWith('http') && (
-                <span className="sr-only">(opens in new tab)</span>
-              )}
-            </motion.a>
+            <SocialLinkButton key={link.name} link={link} index={index} />
           ))}
         </div>
 
-        <div className="socials-note">
-          <p>
-            {'// All links open in new tabs. Feel free to reach out anytime.'}
-          </p>
-        </div>
-      </motion.div>
-    </section>
+        {/* Footer note */}
+        <motion.p
+          className="text-center text-text-dim text-xs mt-10"
+          initial={prefersReduced ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: prefersReduced ? 0 : 0.5,
+            delay: prefersReduced ? 0 : 0.6,
+          }}
+        >
+          All external links open in new tabs.
+        </motion.p>
+      </div>
+    </PageTransition>
   )
 }

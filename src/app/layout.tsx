@@ -10,12 +10,12 @@ export const metadata: Metadata = {
     template: '%s — chaddytwiceover',
   },
   description:
-    'chaddytwiceover is a personal landing page for links, experiments, socials, and random things I make.',
+    'A moody little corner of the web for things I make, try, and share. Front-end experiments, small projects, links, and digital odds & ends.',
   metadataBase: new URL('https://chaddytwiceover.com'),
   openGraph: {
     title: 'chaddytwiceover',
     description:
-      'A personal landing page for links, experiments, socials, and random things I make.',
+      'A moody little corner of the web for things I make, try, and share.',
     url: 'https://chaddytwiceover.com',
     siteName: 'chaddytwiceover',
     type: 'website',
@@ -33,15 +33,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'chaddytwiceover',
     description:
-      'A personal landing page for links, experiments, socials, and random things I make.',
+      'A moody little corner of the web for things I make, try, and share.',
     site: '@chaddytwiceover',
     creator: '@chaddytwiceover',
     images: ['/og-image.png'],
   },
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#faf9f7' },
-    { media: '(prefers-color-scheme: dark)', color: '#111110' },
-  ],
   other: {
     referrer: 'strict-origin-when-cross-origin',
   },
@@ -57,9 +53,24 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
+        <meta name="theme-color" content="#0f1117" />
+        {/* Google Fonts — Inter */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -70,7 +81,7 @@ export default function RootLayout({
                 name: 'chaddytwiceover',
                 url: 'https://chaddytwiceover.com',
                 description:
-                  'A personal landing page for links, experiments, socials, and random things I make.',
+                  'A moody little corner of the web for things I make, try, and share.',
               },
               {
                 '@context': 'https://schema.org',

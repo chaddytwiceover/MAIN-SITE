@@ -1,60 +1,55 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useSkipAnimation } from '@/lib/useSafeAnimation'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+
+/**
+ * ScrollToTop — Floating button to scroll back to the top
+ *
+ * Only appears after scrolling down 400px.
+ */
 
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false)
-  const skip = useSkipAnimation()
+  const prefersReduced = useReducedMotion()
 
   useEffect(() => {
-    let rafId: number
     const handleScroll = () => {
-      cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(() => {
-        setVisible(window.scrollY > 400)
-      })
+      setVisible(window.scrollY > 400)
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      cancelAnimationFrame(rafId)
-    }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: skip ? 'instant' : 'smooth' })
-  }
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.button
-          className="scroll-to-top"
-          onClick={scrollToTop}
-          initial={skip ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={skip ? { opacity: 0 } : { opacity: 0, y: 10 }}
-          transition={{ duration: skip ? 0 : 0.2 }}
-          aria-label="Scroll to top"
           type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Scroll to top"
+          className="
+            fixed bottom-6 right-6 z-50
+            w-10 h-10 flex items-center justify-center rounded-xl
+            bg-surface backdrop-blur-md border border-border
+            text-text-muted hover:text-accent hover:border-border-hover
+            transition-colors duration-200
+            focus-visible:outline-2 focus-visible:outline-accent
+          "
+          initial={prefersReduced ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: prefersReduced ? 0 : 0.2 }}
         >
           <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
+            className="w-5 h-5"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
             aria-hidden="true"
           >
-            <path
-              d="M4 10L8 6L12 10"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
           </svg>
         </motion.button>
       )}
