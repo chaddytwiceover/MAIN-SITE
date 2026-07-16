@@ -15,8 +15,8 @@ jobs:
     name: check readiness
     runs-on: ubuntu-latest
     outputs:
-      deployment-enabled: ${{ fromJson(steps.project.outputs.info).deployment-enabled }}
-      branch-id: ${{ fromJson(steps.project.outputs.info).branch-id }}
+      deployment-enabled: ${{ steps.readiness.outputs.deployment-enabled }}
+      branch-id: ${{ steps.readiness.outputs.branch-id }}
     steps:
       - name: Fetch project data
         uses: ionos-deploy-now/project-action@v1
@@ -26,6 +26,55 @@ jobs:
           service-host: api-us.ionos.space
           project-id: 4434bad0-df21-407b-a1ae-a9a93c5cd032
           action: retrieve-info
+      - name: Debug project info output
+        env:
+          RAW_INFO: ${{ steps.project.outputs.info }}
+        run: |
+          echo "project-info length: ${#RAW_INFO}"
+          if [ -z "$RAW_INFO" ]; then
+            echo "::warning::project-action returned empty info output"
+          else
+            echo "project-info preview: ${RAW_INFO:0:300}"
+          fi
+      - name: Prepare readiness outputs
+        id: readiness
+        env:
+          RAW_INFO: ${{ steps.project.outputs.info }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+
+          raw_info = os.getenv("RAW_INFO", "").strip()
+          deployment_enabled = "false"
+          branch_id = ""
+
+          if raw_info:
+              try:
+                  data = json.loads(raw_info)
+                  enabled_raw = data.get("deployment-enabled", False)
+                  if isinstance(enabled_raw, bool):
+                      deployment_enabled = "true" if enabled_raw else "false"
+                  elif isinstance(enabled_raw, str):
+                      deployment_enabled = "true" if enabled_raw.lower() == "true" else "false"
+                  else:
+                      deployment_enabled = "true" if enabled_raw else "false"
+
+                  branch_raw = data.get("branch-id", "")
+                  branch_id = "" if branch_raw is None else str(branch_raw)
+              except json.JSONDecodeError as error:
+                  print(f"::warning::Unable to parse project info JSON: {error}")
+          else:
+              print("::warning::Skipping JSON parse because project info output is empty")
+
+          output_path = os.environ["GITHUB_OUTPUT"]
+          with open(output_path, "a", encoding="utf-8") as output_file:
+              output_file.write(f"deployment-enabled={deployment_enabled}\n")
+              output_file.write(f"branch-id={branch_id}\n")
+
+          print(f"resolved deployment-enabled={deployment_enabled}")
+          print(f"resolved branch-id={branch_id}")
+          PY
 
 
   build:
