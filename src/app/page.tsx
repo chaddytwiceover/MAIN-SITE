@@ -25,7 +25,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[var(--max-width-content)]">
           <div className="mb-8 flex items-end justify-between gap-4">
             <div>
-              <p className="mb-3 font-mono text-xs uppercase tracking-widest text-accent">// featured experiments</p>
+              <p className="mb-3 font-mono text-xs uppercase tracking-widest text-accent">{'// featured experiments'}</p>
               <h2 className="text-2xl">lab highlights</h2>
             </div>
             <Link href="/lab" className="font-mono text-xs uppercase tracking-widest text-text-dim hover:text-text">
@@ -50,7 +50,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-[var(--max-width-content)] px-6 py-16">
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>
-            <p className="mb-3 font-mono text-xs uppercase tracking-widest text-accent">// recent whatever</p>
+            <p className="mb-3 font-mono text-xs uppercase tracking-widest text-accent">{'// recent whatever'}</p>
             <h2 className="text-2xl">latest notes</h2>
           </div>
           <Link href="/whatever" className="font-mono text-xs uppercase tracking-widest text-text-dim hover:text-text">

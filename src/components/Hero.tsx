@@ -21,7 +21,7 @@ export default function Hero() {
         animate={skip ? undefined : animation.animate}
         transition={skip ? undefined : animation.transition}
       >
-        <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-accent">// personal playground</p>
+        <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-accent">{'// personal playground'}</p>
         <h1 className="font-heading text-[clamp(2.8rem,10vw,7rem)] font-bold leading-none tracking-[-0.04em] text-text">
           chaddytwiceover
         </h1>
