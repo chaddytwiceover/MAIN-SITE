@@ -84,7 +84,7 @@ export default function RootLayout({
                   'https://github.com/chaddytwiceover',
                   'https://twitter.com/chaddytwiceover',
                   'https://instagram.com/chaddytwiceover',
-                  'https://tiktok.com/@chaddytwiceover',
+                  'https://soundcloud.com/chaddytwiceover',
                 ],
               },
             ]),

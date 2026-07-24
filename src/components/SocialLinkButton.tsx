@@ -12,6 +12,7 @@ interface SocialLinkButtonProps {
 export default function SocialLinkButton({ link, index }: SocialLinkButtonProps) {
   const skipAnim = useSkipAnimation()
   const isExternal = link.url.startsWith('http') || link.url.startsWith('mailto')
+  const isPlaceholder = link.url === '#'
 
   return (
     <motion.a
@@ -51,11 +52,14 @@ export default function SocialLinkButton({ link, index }: SocialLinkButtonProps)
         <span className="block text-text-dim text-sm truncate">
           {link.description}
         </span>
+        {link.handle && (
+          <span className="block font-mono text-xs text-text-dim mt-1">{link.handle}</span>
+        )}
       </div>
 
       {/* Arrow indicator */}
       <span className="flex-shrink-0 text-text-dim transition-transform duration-150 group-hover:translate-x-1">
-        →
+      {isPlaceholder ? 'soon' : '→'}
       </span>
 
       {isExternal && <span className="sr-only">(opens in new tab)</span>}

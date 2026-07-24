@@ -9,6 +9,7 @@ const filters = [
   { value: 'all', label: 'All' },
   { value: 'live', label: 'Live' },
   { value: 'experiment', label: 'Experiment' },
+  { value: 'prototype', label: 'Prototype' },
   { value: 'coming soon', label: 'Coming Soon' },
 ]
 

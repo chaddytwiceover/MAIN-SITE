@@ -13,6 +13,7 @@ const footerNav = [
   { href: '/lab', label: 'Lab' },
   { href: '/whatever', label: 'Whatever' },
   { href: '/links', label: 'Links' },
+  { href: '/guestbook', label: 'Guestbook' },
 ]
 
 export default function Footer() {

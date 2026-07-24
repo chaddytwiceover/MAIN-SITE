@@ -23,7 +23,7 @@ export default function LabContent() {
         <SectionHeader
           label="// lab"
           title="Lab"
-          description="experiments, builds, and digital doodads."
+          description="experiments, builds, and digital doodads. each card includes quick tech notes and a play/view path when it exists."
         />
 
         <FilterBar activeFilter={filter} onFilter={setFilter} />

@@ -35,6 +35,12 @@ export default function LabCard({ project }: LabCardProps) {
         {project.description}
       </p>
 
+      {project.techNotes && (
+        <p className="text-text-dim text-xs font-mono mb-4">
+          tech: {project.techNotes}
+        </p>
+      )}
+
       <div className="flex flex-wrap gap-2 mt-auto">
         {project.tags.map(tag => (
           <span key={tag} className="border border-border px-2 py-0.5 font-mono text-xs text-text-dim">
