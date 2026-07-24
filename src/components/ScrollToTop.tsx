@@ -5,8 +5,6 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 
 /**
  * ScrollToTop — Floating button to scroll back to the top
- *
- * Only appears after scrolling down 400px.
  */
 
 export default function ScrollToTop() {
@@ -30,15 +28,15 @@ export default function ScrollToTop() {
           aria-label="Scroll to top"
           className="
             fixed bottom-6 right-6 z-50
-            w-10 h-10 flex items-center justify-center rounded-xl
-            bg-surface backdrop-blur-md border border-border
-            text-text-muted hover:text-accent hover:border-border-hover
+            w-10 h-10 flex items-center justify-center rounded-none
+            bg-bg-raised border border-border
+            text-text-dim hover:text-accent hover:border-accent
             transition-colors duration-200
             focus-visible:outline-2 focus-visible:outline-accent
           "
-          initial={prefersReduced ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
+          initial={prefersReduced ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: prefersReduced ? 0 : 0.2 }}
         >
           <svg

@@ -1,30 +1,24 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
-
-/**
- * CurrentlyBuilding — "What I'm working on" section
- *
- * Displays a staggered list of current projects/tasks
- * with accent dot indicators and glass panel styling.
- */
+import { motion } from 'framer-motion'
+import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
 const items = [
   {
-    label: 'Improving the Lab',
-    note: 'Adding more experiments and polishing existing ones',
+    label: 'tinkering with the lab',
+    note: 'adding new experiments',
   },
   {
-    label: 'Building new UI experiments',
-    note: 'Exploring animation patterns and interactive components',
+    label: 'building random UI things',
+    note: 'because why not',
   },
   {
-    label: 'Writing dev notes',
-    note: 'Documenting builds and lessons learned along the way',
+    label: 'writing whatever comes to mind',
+    note: 'notes, thoughts, etc',
   },
   {
-    label: 'Exploring new frameworks',
-    note: 'Getting deeper into React, Next.js, and TypeScript',
+    label: 'exploring new frameworks',
+    note: 'always learning',
   },
 ]
 
@@ -41,51 +35,48 @@ const item = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { type: 'spring', bounce: 0.3, duration: 0.6 },
+    transition: { duration: 0.4 },
   },
 }
 
 export default function CurrentlyBuilding() {
-  const prefersReduced = useReducedMotion()
+  const skip = useSkipAnimation()
 
   return (
-    <section className="py-20 px-5">
-      <div className="max-w-[var(--max-width-content)] mx-auto">
-        <span className="inline-block text-xs font-medium tracking-widest uppercase text-accent mb-3">
-          Now
-        </span>
-        <h2 className="text-text text-2xl sm:text-3xl font-bold mb-8">
-          Currently Building
-        </h2>
+    <section className="py-20 px-6 max-w-[var(--max-width-content)] mx-auto">
+      <div className="border border-border p-6 bg-bg-raised">
+        <div className="font-mono text-xs tracking-widest uppercase text-text-dim mb-8">
+          {'// currently'}
+        </div>
 
         <motion.div
-          className="grid gap-3"
-          variants={container}
-          initial={prefersReduced ? false : 'hidden'}
+          className="flex flex-col"
+          variants={skip ? undefined : container}
+          initial={skip ? false : 'hidden'}
           whileInView="show"
           viewport={{ once: true, margin: '-60px' }}
         >
-          {items.map((entry) => (
+          {items.map((entry, idx) => (
             <motion.div
-              key={entry.label}
+              key={idx}
               className="
-                flex items-start gap-4 p-4
-                bg-surface backdrop-blur-md border border-border rounded-xl
-                transition-colors duration-200 hover:bg-surface-hover
+                flex items-start gap-4 py-4
+                border-b border-border last:border-b-0 last:pb-0
               "
-              variants={prefersReduced ? undefined : item}
+              variants={skip ? undefined : item}
             >
-              {/* Accent dot */}
               <span
-                className="flex-shrink-0 w-2.5 h-2.5 mt-1.5 rounded-full bg-accent"
+                className="text-accent font-mono font-bold mt-0.5"
                 aria-hidden="true"
-              />
+              >
+                -
+              </span>
 
               <div>
-                <strong className="block text-text text-sm font-semibold mb-0.5">
+                <strong className="block text-text font-bold mb-0.5 font-sans">
                   {entry.label}
                 </strong>
-                <span className="text-text-muted text-sm">
+                <span className="text-text-muted text-sm font-sans">
                   {entry.note}
                 </span>
               </div>

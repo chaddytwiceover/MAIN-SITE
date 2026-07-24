@@ -3,30 +3,27 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { motion, useScroll, useReducedMotion } from 'framer-motion'
+import { motion, useScroll } from 'framer-motion'
 
 /**
  * Nav — Main site navigation
  *
- * Glassmorphic sticky header with scroll progress bar.
+ * Solid soft brutalist header with scroll progress bar.
  * Mobile: slide-down menu with focus trap and Escape-to-close.
- * Active route has an animated underline indicator.
+ * Active route has a solid bottom border indicator.
  */
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/projects', label: 'Projects' },
   { href: '/lab', label: 'Lab' },
-  { href: '/about', label: 'About' },
-  { href: '/socials', label: 'Socials' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/whatever', label: 'Whatever' },
+  { href: '/links', label: 'Links' },
 ]
 
 export default function Nav() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
-  const prefersReduced = useReducedMotion()
   const { scrollYProgress } = useScroll()
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
@@ -76,7 +73,7 @@ export default function Nav() {
     <>
       {/* Scroll progress indicator */}
       <motion.div
-        className="scroll-progress-bar"
+        className="fixed top-0 left-0 right-0 h-1 bg-accent z-[60] origin-left"
         style={{ scaleX: scrollYProgress }}
       />
 
@@ -84,9 +81,8 @@ export default function Nav() {
         aria-label="Main navigation"
         ref={navRef}
         className="
-          fixed top-0 w-full z-50
-          bg-bg/80 backdrop-blur-xl
-          border-b border-border
+          fixed top-1 w-full z-50
+          bg-bg-raised border-b border-border
           transition-colors duration-300
         "
       >
@@ -95,7 +91,7 @@ export default function Nav() {
           <Link
             href="/"
             className="
-              text-text font-semibold text-base tracking-tight
+              font-heading font-bold text-text text-xl tracking-tighter
               hover:text-accent transition-colors duration-200
               no-underline
             "
@@ -110,8 +106,8 @@ export default function Nav() {
             type="button"
             className={`
               relative w-8 h-8 flex flex-col items-center justify-center gap-1.5
-              md:hidden rounded-lg transition-colors duration-200
-              hover:bg-surface focus-visible:outline-2 focus-visible:outline-accent
+              md:hidden rounded-none transition-colors duration-200
+              hover:bg-bg focus-visible:outline-2 focus-visible:outline-accent
               ${menuOpen ? 'z-50' : ''}
             `}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -134,7 +130,7 @@ export default function Nav() {
           </button>
 
           {/* Desktop nav links */}
-          <ul className="hidden md:flex items-center gap-1 list-none m-0 p-0">
+          <ul className="hidden md:flex items-center gap-6 list-none m-0 p-0">
             {navLinks.map(({ href, label }) => {
               const isActive = pathname === href || pathname === `${href}/`
               return (
@@ -144,26 +140,15 @@ export default function Nav() {
                     onClick={closeMenu}
                     aria-current={isActive ? 'page' : undefined}
                     className={`
-                      relative px-3.5 py-2 text-sm font-medium rounded-lg
-                      transition-colors duration-200 no-underline
+                      font-mono text-sm tracking-wide uppercase
+                      pb-1 border-b-2 transition-colors duration-200 no-underline
                       ${isActive
-                        ? 'text-accent'
-                        : 'text-text-muted hover:text-text hover:bg-surface'
+                        ? 'border-accent text-accent'
+                        : 'border-transparent text-text-muted hover:text-text hover:border-border-strong'
                       }
                     `}
                   >
                     {label}
-                    {isActive && (
-                      <motion.span
-                        layoutId="nav-underline"
-                        className="absolute bottom-0 left-3 right-3 h-0.5 bg-accent rounded-full"
-                        transition={{
-                          type: 'spring',
-                          bounce: 0.2,
-                          duration: prefersReduced ? 0 : 0.6,
-                        }}
-                      />
-                    )}
                   </Link>
                 </li>
               )
@@ -174,39 +159,33 @@ export default function Nav() {
         {/* Mobile menu overlay */}
         <div
           className={`
-            md:hidden fixed inset-0 top-0 z-40
-            bg-bg/95 backdrop-blur-xl
+            md:hidden fixed inset-0 top-[53px] z-40
+            bg-bg-raised border-b border-border
             transition-all duration-300
             ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
           `}
           id="nav-links"
         >
-          <ul className="flex flex-col items-center justify-center h-full gap-2 list-none m-0 p-0">
-            {navLinks.map(({ href, label }, index) => {
+          <ul className="flex flex-col items-center justify-start pt-12 h-full gap-8 list-none m-0 p-0">
+            {navLinks.map(({ href, label }) => {
               const isActive = pathname === href || pathname === `${href}/`
               return (
                 <li key={href}>
-                  <motion.div
-                    initial={prefersReduced || !menuOpen ? false : { opacity: 0, y: 16 }}
-                    animate={menuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                    transition={{
-                      duration: prefersReduced ? 0 : 0.3,
-                      delay: prefersReduced ? 0 : index * 0.05,
-                    }}
+                  <Link
+                    href={href}
+                    onClick={closeMenu}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`
+                      block font-mono text-xl tracking-wide uppercase
+                      pb-1 border-b-2 transition-colors duration-200 no-underline
+                      ${isActive
+                        ? 'border-accent text-accent'
+                        : 'border-transparent text-text-muted hover:text-text hover:border-border-strong'
+                      }
+                    `}
                   >
-                    <Link
-                      href={href}
-                      onClick={closeMenu}
-                      aria-current={isActive ? 'page' : undefined}
-                      className={`
-                        block px-8 py-3 text-2xl font-medium rounded-xl
-                        transition-colors duration-200 no-underline
-                        ${isActive ? 'text-accent' : 'text-text-muted hover:text-text'}
-                      `}
-                    >
-                      {label}
-                    </Link>
-                  </motion.div>
+                    {label}
+                  </Link>
                 </li>
               )
             })}

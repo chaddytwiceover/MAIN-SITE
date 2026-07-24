@@ -1,65 +1,47 @@
 import Hero from '@/components/Hero'
-import FeaturedProjects from '@/components/FeaturedProjects'
 import CurrentlyBuilding from '@/components/CurrentlyBuilding'
 import SectionCard from '@/components/SectionCard'
 import { socialLinks } from '@/lib/social-links'
 
-/**
- * Home page — Calm landing page that introduces the site
- */
-
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
       <Hero />
 
-      {/* Featured projects */}
-      <FeaturedProjects />
-
-      {/* Currently building */}
-      <CurrentlyBuilding />
-
-      {/* Quick link cards */}
-      <section className="py-20 px-5" aria-labelledby="explore-title">
-        <div className="max-w-[var(--max-width-content)] mx-auto">
-          <span className="inline-block text-xs font-medium tracking-widest uppercase text-accent mb-3">
-            Explore
-          </span>
-          <h2 id="explore-title" className="text-text text-2xl sm:text-3xl font-bold mb-8">
-            Around the Site
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <SectionCard
-              href="/about"
-              label="About"
-              title="Learning in public."
-              description="Who I am, what I'm learning, and how this site helps me practice web development."
-            />
-            <SectionCard
-              href="/lab"
-              label="Lab"
-              title="Experiments & Prototypes"
-              description="Small builds, weird UI ideas, and things I made while learning."
-            />
-            <SectionCard
-              href="/socials"
-              label="Socials"
-              title="Find me online."
-              description="Links to everywhere I post — GitHub, socials, and more."
-            />
-            <SectionCard
-              href="/contact"
-              label="Contact"
-              title="Say hi."
-              description="Want to share feedback, ideas, or just chat? Reach out anytime."
-            />
-          </div>
+      <section className="max-w-[var(--max-width-content)] mx-auto px-6 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-border border border-border">
+          <SectionCard
+            href="/lab"
+            label="01"
+            title="Lab"
+            description="experiments, builds, and digital doodads"
+          />
+          <SectionCard
+            href="/whatever"
+            label="02"
+            title="Whatever"
+            description="notes, thoughts, and random stuff"
+          />
+          <SectionCard
+            href="/links"
+            label="03"
+            title="Links"
+            description="find me elsewhere on the internet"
+          />
         </div>
       </section>
 
-      {/* Compact social strip */}
-      <section className="py-12 px-5 border-t border-border" aria-label="Social links">
+      <CurrentlyBuilding />
+
+      <section className="py-24 px-6">
+        <div className="max-w-[var(--max-width-narrow)] mx-auto text-center">
+          <p className="text-text-muted text-lg leading-relaxed font-sans">
+            this is chaddytwiceover — a personal corner of the internet where i post experiments, notes, and whatever else. not a portfolio. not a business. just a place to build and share.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-12 px-6 border-t border-border">
         <div className="max-w-[var(--max-width-content)] mx-auto flex flex-wrap justify-center gap-4">
           {socialLinks
             .filter((link) => link.url.startsWith('http'))
@@ -69,12 +51,11 @@ export default function HomePage() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={link.name}
                 className="
-                  flex items-center gap-2 px-4 py-2 rounded-xl
-                  bg-surface border border-border text-text-muted text-sm
-                  hover:bg-surface-hover hover:text-text hover:border-border-hover
-                  transition-all duration-200 no-underline
+                  flex items-center gap-2 px-4 py-2 rounded-none
+                  bg-bg border border-border text-text-muted text-sm
+                  hover:bg-text hover:text-bg
+                  transition-colors duration-150 no-underline
                 "
               >
                 <svg
@@ -86,7 +67,6 @@ export default function HomePage() {
                   <path d={link.iconPath} />
                 </svg>
                 {link.name}
-                <span className="sr-only">(opens in new tab)</span>
               </a>
             ))}
         </div>

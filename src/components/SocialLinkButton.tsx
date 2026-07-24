@@ -1,14 +1,8 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { useSkipAnimation } from '@/lib/useSafeAnimation'
 import type { SocialLink } from '@/lib/social-links'
-
-/**
- * SocialLinkButton — Large stacked link button for the Socials page
- *
- * Linktree-style button with icon, platform name, and subtle arrow.
- * Glass panel styling with Framer Motion hover/tap feedback.
- */
 
 interface SocialLinkButtonProps {
   link: SocialLink
@@ -16,7 +10,7 @@ interface SocialLinkButtonProps {
 }
 
 export default function SocialLinkButton({ link, index }: SocialLinkButtonProps) {
-  const prefersReduced = useReducedMotion()
+  const skipAnim = useSkipAnimation()
   const isExternal = link.url.startsWith('http') || link.url.startsWith('mailto')
 
   return (
@@ -25,29 +19,24 @@ export default function SocialLinkButton({ link, index }: SocialLinkButtonProps)
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
       className="
-        group flex items-center gap-4 w-full px-6 py-4
-        bg-surface backdrop-blur-md border border-border rounded-2xl
-        transition-all duration-300
-        hover:bg-surface-hover hover:border-border-hover
-        hover:shadow-[0_8px_32px_rgba(125,211,252,0.06)]
-        focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2
+        group flex items-center gap-4 w-full px-5 py-4
+        border border-border bg-bg-raised
+        transition-all duration-150
+        hover:border-border-strong hover:-translate-y-[1px]
       "
-      initial={prefersReduced ? false : { opacity: 0, y: 16 }}
+      initial={skipAnim ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: prefersReduced ? 0 : 0.4,
-        delay: prefersReduced ? 0 : index * 0.08,
-        ease: 'easeOut',
+        duration: 0.3,
+        delay: skipAnim ? 0 : index * 0.08,
       }}
-      whileHover={prefersReduced ? {} : { scale: 1.02, y: -2 }}
-      whileTap={prefersReduced ? {} : { scale: 0.98 }}
     >
       {/* Platform icon */}
-      <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-xl bg-accent-soft text-accent">
+      <span className="flex-shrink-0 w-10 h-10 border border-border flex items-center justify-center">
         <svg
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="w-5 h-5"
+          className="w-5 h-5 text-accent"
           aria-hidden="true"
         >
           <path d={link.iconPath} />
@@ -56,7 +45,7 @@ export default function SocialLinkButton({ link, index }: SocialLinkButtonProps)
 
       {/* Label */}
       <div className="flex-1 min-w-0">
-        <span className="block text-text font-medium text-base">
+        <span className="block font-heading font-semibold text-text">
           {link.name}
         </span>
         <span className="block text-text-dim text-sm truncate">
@@ -65,16 +54,9 @@ export default function SocialLinkButton({ link, index }: SocialLinkButtonProps)
       </div>
 
       {/* Arrow indicator */}
-      <svg
-        className="flex-shrink-0 w-5 h-5 text-text-dim transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        aria-hidden="true"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-      </svg>
+      <span className="flex-shrink-0 text-text-dim transition-transform duration-150 group-hover:translate-x-1">
+        →
+      </span>
 
       {isExternal && <span className="sr-only">(opens in new tab)</span>}
     </motion.a>

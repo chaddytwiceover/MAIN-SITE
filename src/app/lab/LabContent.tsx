@@ -1,62 +1,55 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { labProjects } from '@/lib/lab-projects'
 import LabCard from '@/components/LabCard'
 import SectionHeader from '@/components/SectionHeader'
 import PageTransition from '@/components/PageTransition'
-
-/**
- * LabContent — Client component for the Lab page
- *
- * Creative sandbox grid of small experiments and prototypes.
- */
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08 },
-  },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring', bounce: 0.25, duration: 0.55 },
-  },
-}
+import FilterBar from '@/components/FilterBar'
+import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
 export default function LabContent() {
-  const prefersReduced = useReducedMotion()
+  const [filter, setFilter] = useState('all')
+  const skipAnimation = useSkipAnimation()
+
+  const filteredProjects = labProjects.filter(p => 
+    filter === 'all' ? true : p.status === filter
+  )
 
   return (
-    <PageTransition className="min-h-screen pt-28 pb-16 px-5">
-      <div className="max-w-[var(--max-width-content)] mx-auto">
+    <PageTransition>
+      <div className="max-w-[var(--max-width-content)] mx-auto px-6 py-20">
         <SectionHeader
-          label="Lab"
-          title="Experiments & Prototypes"
-          description="Small experiments, unfinished ideas, weird UI bits, and things I'm learning by building."
+          label="// lab"
+          title="Lab"
+          description="experiments, builds, and digital doodads."
         />
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-          aria-label="Lab experiments"
-          variants={container}
-          initial={prefersReduced ? false : 'hidden'}
-          animate="show"
-        >
-          {labProjects.map((project) => (
-            <motion.div
-              key={project.slug}
-              variants={prefersReduced ? undefined : item}
-            >
-              <LabCard project={project} />
-            </motion.div>
-          ))}
-        </motion.div>
+        <FilterBar activeFilter={filter} onFilter={setFilter} />
+
+        <div className="bg-border p-[1px] mt-8">
+          <motion.div 
+            layout={!skipAnimation}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-border"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project) => (
+                <motion.div
+                  key={project.slug}
+                  layout={!skipAnimation}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="bg-bg h-full"
+                >
+                  <LabCard project={project} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </div>
       </div>
     </PageTransition>
   )

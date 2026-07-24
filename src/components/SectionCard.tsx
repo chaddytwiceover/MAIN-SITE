@@ -1,13 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { motion, useReducedMotion } from 'framer-motion'
-
-/**
- * SectionCard — Quick-link card for the home page grid
- *
- * Glass panel with label, title, description, and subtle hover animation.
- */
+import { motion } from 'framer-motion'
+import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
 interface SectionCardProps {
   href: string
@@ -22,29 +17,29 @@ export default function SectionCard({
   title,
   description,
 }: SectionCardProps) {
-  const prefersReduced = useReducedMotion()
+  const skip = useSkipAnimation()
 
   return (
     <motion.div
-      initial={prefersReduced ? false : { opacity: 0, y: 16 }}
+      initial={skip ? false : { opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: prefersReduced ? 0 : 0.5 }}
+      transition={{ duration: skip ? 0 : 0.5 }}
+      className="h-full"
     >
       <Link
         href={href}
         className="
-          group block p-6
-          bg-surface backdrop-blur-md border border-border rounded-2xl
-          transition-all duration-300 no-underline
-          hover:bg-surface-hover hover:border-border-hover
-          hover:shadow-[0_8px_32px_rgba(125,211,252,0.04)]
+          group block h-full p-6
+          bg-bg-raised border border-border rounded-none
+          transition-all duration-150 no-underline
+          hover:border-border-strong hover:-translate-y-[2px]
         "
       >
-        <span className="text-xs font-medium tracking-widest uppercase text-accent mb-2 block">
+        <span className="font-mono text-xs tracking-widest uppercase text-text-dim block mb-3">
           {label}
         </span>
-        <h2 className="text-text font-semibold text-lg mb-2 group-hover:text-accent transition-colors duration-200">
+        <h2 className="font-heading text-lg font-semibold text-text mb-2 group-hover:text-accent transition-colors duration-150">
           {title}
         </h2>
         <p className="text-text-muted text-sm leading-relaxed m-0">
