@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <section className="max-w-[var(--max-width-content)] mx-auto px-6 pt-32 pb-16 md:pt-40 md:pb-20">
-        <p className="font-mono text-xs tracking-[0.2em] uppercase text-text-dim mb-6">// personal digital clubhouse</p>
+        <p className="font-mono text-xs tracking-[0.2em] uppercase text-text-dim mb-6">{'// personal digital clubhouse'}</p>
         <h1 className="text-[clamp(2.5rem,10vw,7rem)] font-heading leading-[0.95] tracking-[-0.04em] text-text mb-6">
           chaddytwiceover
         </h1>
