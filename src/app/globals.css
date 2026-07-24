@@ -35,11 +35,11 @@
   --color-status-soon: #555550;
 
   /* ── Fonts ──────────────────────────────────────────────────────── */
-  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui,
-    -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+  --font-heading: "Space Grotesk", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, "Cascadia Code",
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code",
     "Source Code Pro", Menlo, Consolas, "Courier New", monospace;
 
   /* ── Sizing ─────────────────────────────────────────────────────── */
