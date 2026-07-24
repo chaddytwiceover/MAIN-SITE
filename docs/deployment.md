@@ -24,13 +24,13 @@ npm run build   # ✅ Should generate `out/` directory
 **Expected build output:**
 
 - `out/index.html` (home page)
-- `out/about/index.html`
-- `out/projects/index.html`
-- `out/pricing/index.html`
-- `out/socials/index.html`
-- `out/contact/index.html`
+- `out/lab/index.html`
+- `out/lab/<slug>/index.html`
+- `out/whatever/index.html`
+- `out/links/index.html`
 - `out/_next/` (JS/CSS bundles)
 - `out/images/` (static assets)
+- `out/.htaccess` (security headers + Apache rewrite rules)
 
 ---
 
@@ -48,6 +48,7 @@ Best for automatic deployments from Git.
    - **Publish Directory:** `out`
 
 3. **Deploy:** IONOS will automatically build and deploy on every commit.
+   - The build includes a postbuild step that copies `.htaccess` into `out/`.
 
 ---
 
@@ -76,16 +77,16 @@ npm run build
 
 3. Upload **all contents** of the `out/` directory:
    - `index.html`
-   - `about/`, `projects/`, `socials/`, `contact/` directories
+   - `lab/`, `links/`, `whatever/` directories
    - `_next/` directory
    - `images/` directory
-   - `.htaccess` (from repo root, **not** from `out/`)
+   - `.htaccess` (already generated in `out/`)
 
 #### Step 3: Verify `.htaccess`
 
 Ensure `.htaccess` is in the same directory as `index.html` on the server. This file provides:
 
-- Clean URLs (`/about` instead of `/about.html`)
+- Clean URLs (`/lab` instead of `/lab.html`)
 - Security headers
 - HTTPS redirect
 
@@ -148,7 +149,7 @@ Or move the repository outside of OneDrive.
 
 **Fix:**
 
-1. Ensure `.htaccess` is in the document root (same directory as `index.html`)
+1. Ensure the generated `out/.htaccess` file is in the document root (same directory as `index.html`)
 2. Verify your IONOS hosting supports `.htaccess` (Apache hosting required)
 
 ---
@@ -170,9 +171,9 @@ Or move the repository outside of OneDrive.
 After deployment, test the following:
 
 1. **Homepage loads:** `https://your-domain.com/`
-2. **Clean URLs work:** `https://your-domain.com/about`, `https://your-domain.com/socials`
+2. **Clean URLs work:** `https://your-domain.com/lab`, `https://your-domain.com/links`, `https://your-domain.com/whatever`
 3. **Contact form opens email client** (validates client-side logic)
-4. **Social links work** (validates external links on socials page)
+4. **Social links work** (validates external links on the links page)
 5. **Neon toggle persists** (validates localStorage)
 6. **Security headers present:**
 
