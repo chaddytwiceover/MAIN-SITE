@@ -5,19 +5,12 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion, useScroll } from 'framer-motion'
 
-/**
- * Nav — Main site navigation
- *
- * Solid soft brutalist header with scroll progress bar.
- * Mobile: slide-down menu with focus trap and Escape-to-close.
- * Active route has a solid bottom border indicator.
- */
-
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/lab', label: 'Lab' },
   { href: '/whatever', label: 'Whatever' },
   { href: '/links', label: 'Links' },
+  { href: '/guestbook', label: 'Guestbook' },
 ]
 
 export default function Nav() {
@@ -28,18 +21,17 @@ export default function Nav() {
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    return () => {
+      document.body.style.overflow = ''
+    }
   }, [menuOpen])
 
-  // Close on route change
   useEffect(() => {
     setMenuOpen(false)
   }, [pathname])
 
-  // Escape to close + focus trap
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && menuOpen) {
@@ -49,9 +41,7 @@ export default function Nav() {
       }
 
       if (e.key === 'Tab' && menuOpen && navRef.current) {
-        const focusable = navRef.current.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled])'
-        )
+        const focusable = navRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
         if (focusable.length === 0) return
         const first = focusable[0]
         const last = focusable[focusable.length - 1]
@@ -65,72 +55,39 @@ export default function Nav() {
         }
       }
     }
+
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [menuOpen])
 
   return (
     <>
-      {/* Scroll progress indicator */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-accent z-[60] origin-left"
-        style={{ scaleX: scrollYProgress }}
-      />
+      <motion.div className="fixed left-0 right-0 top-0 z-[60] h-1 origin-left bg-accent" style={{ scaleX: scrollYProgress }} />
 
-      <nav
-        aria-label="Main navigation"
-        ref={navRef}
-        className="
-          fixed top-1 w-full z-50
-          bg-bg-raised border-b border-border
-          transition-colors duration-300
-        "
-      >
-        <div className="max-w-[var(--max-width-content)] mx-auto flex items-center justify-between px-5 py-3.5">
-          {/* Logo / site name */}
+      <nav aria-label="Main navigation" ref={navRef} className="fixed top-1 z-50 w-full border-b border-border bg-bg-raised">
+        <div className="mx-auto flex max-w-[var(--max-width-content)] items-center justify-between px-5 py-3.5">
           <Link
             href="/"
-            className="
-              font-heading font-bold text-text text-xl tracking-tighter
-              hover:text-accent transition-colors duration-200
-              no-underline
-            "
+            className="font-heading text-xl font-bold tracking-tighter text-text no-underline transition-colors duration-200 hover:text-accent"
             aria-current={pathname === '/' ? 'page' : undefined}
           >
             chaddytwiceover
           </Link>
 
-          {/* Hamburger toggle (mobile) */}
           <button
             id="menu-toggle"
             type="button"
-            className={`
-              relative w-8 h-8 flex flex-col items-center justify-center gap-1.5
-              md:hidden rounded-none transition-colors duration-200
-              hover:bg-bg focus-visible:outline-2 focus-visible:outline-accent
-              ${menuOpen ? 'z-50' : ''}
-            `}
+            className={`relative flex h-8 w-8 flex-col items-center justify-center gap-1.5 transition-colors duration-200 hover:bg-bg focus-visible:outline-2 focus-visible:outline-accent md:hidden ${menuOpen ? 'z-50' : ''}`}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
             aria-controls="nav-links"
             onClick={() => setMenuOpen((prev) => !prev)}
           >
-            <span
-              className={`
-                block w-5 h-0.5 bg-text-muted transition-all duration-300 origin-center
-                ${menuOpen ? 'rotate-45 translate-y-[4px]' : ''}
-              `}
-            />
-            <span
-              className={`
-                block w-5 h-0.5 bg-text-muted transition-all duration-300 origin-center
-                ${menuOpen ? '-rotate-45 -translate-y-[4px]' : ''}
-              `}
-            />
+            <span className={`block h-0.5 w-5 origin-center bg-text-muted transition-all duration-300 ${menuOpen ? 'translate-y-[4px] rotate-45' : ''}`} />
+            <span className={`block h-0.5 w-5 origin-center bg-text-muted transition-all duration-300 ${menuOpen ? '-translate-y-[4px] -rotate-45' : ''}`} />
           </button>
 
-          {/* Desktop nav links */}
-          <ul className="hidden md:flex items-center gap-6 list-none m-0 p-0">
+          <ul className="m-0 hidden list-none items-center gap-6 p-0 md:flex">
             {navLinks.map(({ href, label }) => {
               const isActive = pathname === href || pathname === `${href}/`
               return (
@@ -139,14 +96,11 @@ export default function Nav() {
                     href={href}
                     onClick={closeMenu}
                     aria-current={isActive ? 'page' : undefined}
-                    className={`
-                      font-mono text-sm tracking-wide uppercase
-                      pb-1 border-b-2 transition-colors duration-200 no-underline
-                      ${isActive
+                    className={`border-b-2 pb-1 font-mono text-sm uppercase tracking-wide no-underline transition-colors duration-200 ${
+                      isActive
                         ? 'border-accent text-accent'
-                        : 'border-transparent text-text-muted hover:text-text hover:border-border-strong'
-                      }
-                    `}
+                        : 'border-transparent text-text-muted hover:border-border-strong hover:text-text'
+                    }`}
                   >
                     {label}
                   </Link>
@@ -156,17 +110,13 @@ export default function Nav() {
           </ul>
         </div>
 
-        {/* Mobile menu overlay */}
         <div
-          className={`
-            md:hidden fixed inset-0 top-[53px] z-40
-            bg-bg-raised border-b border-border
-            transition-all duration-300
-            ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
-          `}
+          className={`fixed inset-0 top-[53px] z-40 border-b border-border bg-bg-raised transition-all duration-300 md:hidden ${
+            menuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+          }`}
           id="nav-links"
         >
-          <ul className="flex flex-col items-center justify-start pt-12 h-full gap-8 list-none m-0 p-0">
+          <ul className="m-0 flex h-full list-none flex-col items-center justify-start gap-8 p-0 pt-12">
             {navLinks.map(({ href, label }) => {
               const isActive = pathname === href || pathname === `${href}/`
               return (
@@ -175,14 +125,11 @@ export default function Nav() {
                     href={href}
                     onClick={closeMenu}
                     aria-current={isActive ? 'page' : undefined}
-                    className={`
-                      block font-mono text-xl tracking-wide uppercase
-                      pb-1 border-b-2 transition-colors duration-200 no-underline
-                      ${isActive
+                    className={`block border-b-2 pb-1 font-mono text-xl uppercase tracking-wide no-underline transition-colors duration-200 ${
+                      isActive
                         ? 'border-accent text-accent'
-                        : 'border-transparent text-text-muted hover:text-text hover:border-border-strong'
-                      }
-                    `}
+                        : 'border-transparent text-text-muted hover:border-border-strong hover:text-text'
+                    }`}
                   >
                     {label}
                   </Link>

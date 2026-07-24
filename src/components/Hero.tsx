@@ -10,33 +10,32 @@ export default function Hero() {
   const animation = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.55 },
   }
 
   return (
-    <section className="flex flex-col items-center justify-center max-w-[var(--max-width-content)] mx-auto px-6 py-32 md:py-40">
-      <motion.div 
-        className="w-full text-center"
+    <section className="mx-auto flex max-w-[var(--max-width-content)] flex-col justify-center px-6 pb-16 pt-32 md:pt-40">
+      <motion.div
+        className="w-full"
         initial={skip ? false : animation.initial}
         animate={skip ? undefined : animation.animate}
         transition={skip ? undefined : animation.transition}
       >
-        <h1 className="font-heading text-text text-[clamp(3rem,10vw,7rem)] font-bold tracking-[-0.04em] leading-none">
+        <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-accent">// personal playground</p>
+        <h1 className="font-heading text-[clamp(2.8rem,10vw,7rem)] font-bold leading-none tracking-[-0.04em] text-text">
           chaddytwiceover
         </h1>
-        
-        <hr className="border-t border-border w-full mt-6 mb-8" />
-        
-        <p className="font-mono text-text-dim text-xs tracking-widest uppercase mb-12">
-          {'// personal lab'}
+        <hr className="mb-6 mt-6 w-full border-t border-border" />
+        <p className="mb-10 max-w-2xl text-base text-text-muted md:text-lg">
+          front-end experiments, digital doodads, and whatever else ends up here.
         </p>
-        
-        <div className="flex flex-row items-center justify-center gap-4">
+
+        <div className="flex flex-wrap items-center gap-3">
           <Button href="/lab" variant="primary">
-            Lab
+            enter lab
           </Button>
           <Button href="/links" variant="secondary">
-            Links
+            social links
           </Button>
         </div>
       </motion.div>
