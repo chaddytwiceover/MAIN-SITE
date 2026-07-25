@@ -27,7 +27,7 @@ export default function FlappyBird() {
   const [gameStarted, setGameStarted] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number | null>(null);
 
   const containerHeight = 600;
   const containerWidth = 448; // max-w-md is 448px typically
@@ -160,7 +160,7 @@ export default function FlappyBird() {
     }
 
     return () => {
-      if (requestRef.current) {
+      if (requestRef.current !== null) {
         cancelAnimationFrame(requestRef.current);
       }
     };
