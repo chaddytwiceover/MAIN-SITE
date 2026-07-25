@@ -8,7 +8,7 @@ export default function GuestbookContent() {
     <PageTransition>
       <section className="mx-auto max-w-[var(--max-width-narrow)] px-6 py-20">
         <SectionHeader
-          label="// guestbook"
+          number="04"
           title="Say hi"
           description="Guestbook is intentionally lightweight for now. Drop a message by email and I’ll collect highlights here later."
         />

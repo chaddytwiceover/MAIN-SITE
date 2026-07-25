@@ -10,7 +10,7 @@ export default function LinksContent() {
     <PageTransition>
       <div className="mx-auto max-w-[var(--max-width-narrow)] px-6 py-20">
         <SectionHeader
-          label="// links"
+          number="03"
           title="Find me elsewhere"
           description="A cleaner personal link hub: socials, sound, code, and whatever platforms get added next."
         />

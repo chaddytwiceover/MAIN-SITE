@@ -14,10 +14,10 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-[var(--max-width-content)] px-6 pb-20">
         <div className="grid grid-cols-1 gap-[1px] border border-border bg-border md:grid-cols-4">
-          <SectionCard href="/lab" label="01" title="Lab" description="experiments, tiny builds, weird UI ideas" />
-          <SectionCard href="/whatever" label="02" title="Whatever" description="quick notes, updates, random thoughts" />
-          <SectionCard href="/links" label="03" title="Links" description="socials and corners of the internet" />
-          <SectionCard href="/guestbook" label="04" title="Guestbook" description="say hi or leave a quick message" />
+          <SectionCard href="/lab" number="01" title="Lab" description="experiments, tiny builds, weird UI ideas" />
+          <SectionCard href="/whatever" number="02" title="Whatever" description="quick notes, updates, random thoughts" />
+          <SectionCard href="/links" number="03" title="Links" description="socials and corners of the internet" />
+          <SectionCard href="/guestbook" number="04" title="Guestbook" description="say hi or leave a quick message" />
         </div>
       </section>
 

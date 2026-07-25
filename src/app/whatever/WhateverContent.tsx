@@ -13,7 +13,7 @@ export default function WhateverContent() {
     <PageTransition>
       <div className="mx-auto max-w-[var(--max-width-narrow)] px-6 py-20">
         <SectionHeader
-          label="// whatever"
+          number="02"
           title="Notes / Whatever"
           description="A running log for ideas, build notes, random updates, and internet brain-noise worth keeping."
         />
