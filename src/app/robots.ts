@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://chaddytwiceover.com'
+export const dynamic = 'force-static'
 
 export default function robots(): MetadataRoute.Robots {
   return {
