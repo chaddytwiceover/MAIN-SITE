@@ -11,6 +11,16 @@ export interface LabProject {
 
 export const labProjects: LabProject[] = [
   {
+    slug: 'flappy-bird',
+    title: 'Flappy Bird Clone',
+    description: 'A Next.js port of an iOS SwiftUI Flappy Bird clone.',
+    techNotes: 'React State + requestAnimationFrame game loop and AABB collision.',
+    tags: ['React', 'Next.js', 'Game', 'TailwindCSS'],
+    status: 'live',
+    demoUrl: '/lab/flappy-bird',
+    featured: true,
+  },
+  {
     slug: 'pixel-art',
     title: 'Pixel Art Editor',
     description:
