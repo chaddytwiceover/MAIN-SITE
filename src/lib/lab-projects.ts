@@ -53,14 +53,4 @@ export const labProjects: LabProject[] = [
     demoUrl: '/demos/simon-says/index.html',
     featured: true,
   },
-  {
-    slug: 'met-eyes',
-    title: 'MetEyes',
-    description:
-      'Met Gallery AI Guide. Real-world project fetching data and generating insights.',
-    techNotes: 'JavaScript + API Integration.',
-    tags: ['JavaScript', 'API'],
-    status: 'live',
-    demoUrl: 'https://github.com/chaddytwiceover/MetEyes',
-  },
 ]
