@@ -1,10 +1,8 @@
 import Link from 'next/link'
 import Hero from '@/components/Hero'
 import LabCard from '@/components/LabCard'
-import SocialLinkButton from '@/components/SocialLinkButton'
 import { labProjects } from '@/lib/lab-projects'
 import { posts } from '@/lib/posts'
-import { socialLinks } from '@/lib/social-links'
 
 export default function HomePage() {
   const featuredProjects = labProjects.filter((project) => project.featured).slice(0, 4)
@@ -33,21 +31,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 03 — LINKS */}
-      <section className="mx-auto max-w-[var(--max-width-content)] px-6 pb-24">
-        <div className="mb-8 flex items-end justify-between border-b-[3px] border-border pb-4">
-          <div className="flex items-baseline gap-4">
-            <span className="section-num text-3xl">03</span>
-            <h2 className="font-heading text-4xl font-bold uppercase tracking-tight text-text">Links</h2>
-          </div>
-        </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {socialLinks.map((link, i) => (
-            <SocialLinkButton key={link.name} link={link} index={i} />
-          ))}
-        </div>
-      </section>
 
       {/* 04 — WHATEVER */}
       <section className="mx-auto max-w-[var(--max-width-content)] px-6 pb-16">
