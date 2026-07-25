@@ -33,7 +33,7 @@ export default function ScrollToTop() {
           exit={{ opacity: 0, y: 20 }}
           whileHover={{ y: -4 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 p-3 border-3 border-border bg-bg-raised text-text hover:border-accent hover:text-accent transition-colors z-50 shadow-[4px_4px_0_#00FFD0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="fixed bottom-6 right-6 p-4 neo-border bg-bg-raised text-text hover:bg-accent hover:text-bg hover:neo-border-accent hover:neo-shadow-hover transition-colors duration-0 z-50 neo-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           aria-label="Scroll to top"
         >
           <svg 

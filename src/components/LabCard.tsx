@@ -1,31 +1,28 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import type { LabProject } from '@/lib/lab-projects'
-import { useSkipAnimation } from '@/lib/useSafeAnimation'
 
 interface LabCardProps {
   project: LabProject
 }
 
 const statusColors: Record<string, string> = {
-  live: 'text-accent',
-  experiment: 'text-accent-warm',
-  prototype: 'text-text-muted',
-  'coming soon': 'text-text-dim',
+  live: 'bg-accent text-bg',
+  experiment: 'bg-accent-warm text-bg',
+  prototype: 'bg-text-muted text-bg',
+  'coming soon': 'bg-text-dim text-bg',
 }
 
 export default function LabCard({ project }: LabCardProps) {
-  const skipAnimation = useSkipAnimation()
   const statusColor = statusColors[project.status] || 'text-text-dim'
   const isPlayable = project.demoUrl && project.demoUrl !== '#'
 
   return (
-    <motion.article whileHover={skipAnimation ? {} : { y: -2 }} className="h-full border border-border bg-bg-raised p-6">
+    <article className="h-full neo-card bg-bg p-6 flex flex-col transition-shadow duration-0 hover:neo-shadow-hover">
       <div className="mb-4 flex items-start justify-between gap-3">
-        <h2 className="font-heading text-lg font-bold text-text">{project.title}</h2>
-        <span className={`mt-1 shrink-0 font-mono text-xs uppercase tracking-wider ${statusColor}`}>
+        <h2 className="font-heading text-2xl font-bold text-text uppercase">{project.title}</h2>
+        <span className={`mt-1 shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-widest ${statusColor}`}>
           {project.status}
         </span>
       </div>
@@ -33,32 +30,30 @@ export default function LabCard({ project }: LabCardProps) {
       <p className="mb-4 text-sm text-text-muted">{project.description}</p>
       {project.techNotes && <p className="mb-6 font-mono text-xs tracking-wide text-text-dim">tech: {project.techNotes}</p>}
 
-      <div className="mt-auto flex flex-wrap gap-2 pb-5">
-        {project.tags.map((tag) => (
-          <span key={tag} className="border border-border px-2 py-0.5 font-mono text-xs text-text-dim">
-            {tag}
-          </span>
-        ))}
+      <div className="mt-auto flex flex-wrap gap-2 pb-8">
+        <span className="font-mono text-xs text-text-muted">
+          {project.tags.join(' / ')}
+        </span>
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-3">
         <Link
           href={`/lab/${project.slug}`}
-          className="border border-border px-3 py-2 font-mono text-xs uppercase tracking-wider text-text-muted transition-colors hover:border-border-strong hover:text-text"
+          className="font-mono text-sm font-bold uppercase tracking-widest text-text transition-colors hover:text-accent"
         >
-          details
+          DETAILS
         </Link>
         {isPlayable && (
           <a
             href={project.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-accent px-3 py-2 font-mono text-xs uppercase tracking-wider text-accent transition-colors hover:border-accent-hover hover:text-accent-hover"
+            className="font-mono text-sm font-bold uppercase tracking-widest text-accent transition-colors hover:text-accent-hover"
           >
-            play
+            → OPEN
           </a>
         )}
       </div>
-    </motion.article>
+    </article>
   )
 }

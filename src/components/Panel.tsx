@@ -8,8 +8,8 @@ const Panel = forwardRef<HTMLDivElement, PanelProps>(({ children, className = ''
   return (
     <div
       ref={ref}
-      className={`border-3 border-border bg-bg-raised p-6 ${
-        hover ? 'transition-shadow duration-200 hover:shadow-[4px_4px_0_#00FFD0]' : ''
+      className={`neo-border bg-bg-raised p-6 ${
+        hover ? 'transition-shadow duration-0 hover:neo-shadow-hover' : ''
       } ${className}`}
       {...props}
     >

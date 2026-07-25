@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { motion, useScroll } from 'framer-motion'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -17,7 +16,6 @@ export default function Nav() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll()
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
 
@@ -62,9 +60,7 @@ export default function Nav() {
 
   return (
     <>
-      <motion.div className="fixed left-0 right-0 top-0 z-[60] h-1 origin-left bg-accent" style={{ scaleX: scrollYProgress }} />
-
-      <nav aria-label="Main navigation" ref={navRef} className="fixed top-1 z-50 w-full border-b border-border bg-bg-raised">
+      <nav aria-label="Main navigation" ref={navRef} className="fixed top-0 z-50 w-full neo-border-accent border-x-0 border-t-0 bg-bg-raised">
         <div className="mx-auto flex max-w-[var(--max-width-content)] items-center justify-between px-5 py-3.5">
           <Link
             href="/"
@@ -96,10 +92,10 @@ export default function Nav() {
                     href={href}
                     onClick={closeMenu}
                     aria-current={isActive ? 'page' : undefined}
-                    className={`border-b-2 pb-1 font-mono text-sm uppercase tracking-wide no-underline transition-colors duration-200 ${
+                    className={`px-3 py-1 font-mono text-sm uppercase tracking-wide no-underline transition-colors duration-0 ${
                       isActive
-                        ? 'border-accent text-accent'
-                        : 'border-transparent text-text-muted hover:border-border-strong hover:text-text'
+                        ? 'bg-accent text-bg neo-shadow'
+                        : 'bg-transparent text-text-muted hover:bg-border hover:text-text'
                     }`}
                   >
                     {label}
@@ -111,7 +107,7 @@ export default function Nav() {
         </div>
 
         <div
-          className={`fixed inset-0 top-[53px] z-40 border-b border-border bg-bg-raised transition-all duration-300 md:hidden ${
+          className={`fixed inset-0 z-40 bg-bg transition-all duration-0 md:hidden ${
             menuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
           }`}
           id="nav-links"
@@ -125,10 +121,10 @@ export default function Nav() {
                     href={href}
                     onClick={closeMenu}
                     aria-current={isActive ? 'page' : undefined}
-                    className={`block border-b-2 pb-1 font-mono text-xl uppercase tracking-wide no-underline transition-colors duration-200 ${
+                    className={`block px-6 py-3 font-mono text-2xl uppercase tracking-wide no-underline transition-colors duration-0 ${
                       isActive
-                        ? 'border-accent text-accent'
-                        : 'border-transparent text-text-muted hover:border-border-strong hover:text-text'
+                        ? 'bg-accent text-bg neo-shadow'
+                        : 'bg-transparent text-text-muted hover:bg-border hover:text-text'
                     }`}
                   >
                     {label}

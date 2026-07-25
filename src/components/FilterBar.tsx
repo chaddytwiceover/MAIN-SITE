@@ -18,10 +18,10 @@ export default function FilterBar({ activeFilter, onFilterChange }: FilterBarPro
           <button
             key={filter}
             onClick={() => onFilterChange(filter)}
-            className={`font-mono text-xs uppercase px-4 py-2 border-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+            className={`font-mono font-bold text-sm uppercase px-6 py-3 border-3 transition-colors duration-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
               isActive 
-                ? 'bg-accent text-bg border-accent' 
-                : 'border-transparent text-dim hover:border-border hover:text-text'
+                ? 'bg-accent text-bg border-accent neo-shadow' 
+                : 'bg-transparent border-border text-text-dim hover:bg-border hover:text-text'
             }`}
           >
             {filter}

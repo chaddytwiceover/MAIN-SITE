@@ -26,49 +26,49 @@ export default function LabProjectContent({ project }: Props) {
         initial={skip ? false : { opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: skip ? 0 : 0.35 }}
-        className="border border-border bg-bg-raised p-6 md:p-8"
+        className="neo-card bg-bg p-8 md:p-12"
       >
         <div className="mb-8 flex items-center justify-between gap-4">
           <Link
             href="/lab"
-            className="font-mono text-xs uppercase tracking-widest text-text-dim transition-colors hover:text-text"
+            className="font-mono text-sm font-bold uppercase tracking-widest text-text-dim hover:text-accent transition-colors duration-0"
           >
-            ← back to lab
+            ← BACK TO LAB
           </Link>
-          <span className="font-mono text-xs uppercase tracking-widest text-accent">{statusLabel[project.status]}</span>
+          <span className="font-mono text-sm font-bold uppercase tracking-widest text-accent px-2 py-1 bg-bg-raised neo-border">{statusLabel[project.status]}</span>
         </div>
 
-        <h1 className="mb-4 text-[clamp(2rem,4vw,3.5rem)]">{project.title}</h1>
-        <p className="mb-6 max-w-3xl text-base text-text-muted">{project.description}</p>
+        <h1 className="mb-6 font-heading text-[clamp(2rem,4vw,4rem)] font-bold uppercase text-text tracking-tight">{project.title}</h1>
+        <p className="mb-8 max-w-3xl text-lg text-text-muted">{project.description}</p>
 
         {project.techNotes && (
-          <p className="mb-8 border-l-2 border-border-accent pl-4 font-mono text-sm text-text-muted">tech notes: {project.techNotes}</p>
+          <p className="mb-10 neo-border border-y-0 border-r-0 border-accent pl-6 font-mono text-sm text-text-muted">tech notes: {project.techNotes}</p>
         )}
 
         <div className="mb-8 flex flex-wrap gap-2" aria-label="Technologies">
           {project.tags.map((tag) => (
-            <span key={tag} className="border border-border px-2 py-1 font-mono text-xs text-text-dim">
+            <span key={tag} className="neo-border px-3 py-1 font-mono text-xs font-bold text-text-dim">
               {tag}
             </span>
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-4 mt-8">
           {playable && (
             <a
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-accent bg-accent px-4 py-2 font-mono text-xs uppercase tracking-wider text-bg transition-colors hover:bg-transparent hover:text-accent"
+              className="font-mono font-bold text-sm uppercase tracking-widest px-8 py-4 transition-all duration-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent inline-block text-center bg-accent text-bg neo-border-accent neo-shadow hover:bg-bg hover:text-accent hover:neo-shadow-hover"
             >
-              play experiment
+              PLAY EXPERIMENT
             </a>
           )}
           <Link
             href="/lab"
-            className="border border-border px-4 py-2 font-mono text-xs uppercase tracking-wider text-text-muted transition-colors hover:border-border-strong hover:text-text"
+            className="font-mono font-bold text-sm uppercase tracking-widest px-8 py-4 transition-all duration-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent inline-block text-center bg-transparent text-text neo-border neo-shadow hover:bg-text hover:text-bg hover:neo-shadow-hover"
           >
-            browse more
+            BROWSE MORE
           </Link>
         </div>
       </motion.div>

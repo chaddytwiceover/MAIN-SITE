@@ -22,7 +22,7 @@ export const labProjects: LabProject[] = [
   },
   {
     slug: 'pixel-art',
-    title: 'Pixel Art Editor',
+    title: 'Happy Little Pixels',
     description:
       'A lightweight pixel editor with a spray brush, color presets, and tiny quality-of-life tools for quick doodads.',
     techNotes: 'Canvas API + custom brush math + keyboard shortcuts.',
@@ -54,33 +54,13 @@ export const labProjects: LabProject[] = [
     featured: true,
   },
   {
-    slug: 'css-hover-gallery',
-    title: 'CSS Hover Gallery',
+    slug: 'met-eyes',
+    title: 'MetEyes',
     description:
-      'A pure CSS playground focused on layered hover interactions and strong motion restraint.',
-    techNotes: 'No JS; transform stack + blend-mode experiments.',
-    tags: ['CSS', 'UI'],
-    status: 'experiment',
-    demoUrl: '#',
-  },
-  {
-    slug: 'gradient-generator',
-    title: 'Gradient Generator',
-    description:
-      'A rough but useful gradient sandbox for testing palettes before they land in bigger projects.',
-    techNotes: 'Color stop interpolation and copy-ready CSS output.',
-    tags: ['JavaScript', 'CSS'],
-    status: 'prototype',
-    demoUrl: '#',
-  },
-  {
-    slug: 'tiny-arcade-loader',
-    title: 'Tiny Arcade Loader',
-    description:
-      'Upcoming micro loader that rotates mini game intros and transitions like old cabinet boot screens.',
-    techNotes: 'Planned with sprite sheets and timed CSS keyframes.',
-    tags: ['Animation', 'CSS', 'Sprites'],
-    status: 'coming soon',
-    demoUrl: '#',
+      'Met Gallery AI Guide. Real-world project fetching data and generating insights.',
+    techNotes: 'JavaScript + API Integration.',
+    tags: ['JavaScript', 'API'],
+    status: 'live',
+    demoUrl: 'https://github.com/chaddytwiceover/MetEyes',
   },
 ]

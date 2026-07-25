@@ -10,12 +10,12 @@ export const metadata: Metadata = {
     template: '%s — chaddytwiceover',
   },
   description:
-    'personal lab. front-end experiments, digital doodads, and whatever else ends up here.',
+    'see the world in my eyes / web development',
   metadataBase: new URL('https://chaddytwiceover.com'),
   openGraph: {
     title: 'chaddytwiceover',
     description:
-      'personal lab. front-end experiments, digital doodads, and whatever else ends up here.',
+      'see the world in my eyes / web development',
     url: 'https://chaddytwiceover.com',
     siteName: 'chaddytwiceover',
     type: 'website',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'chaddytwiceover',
     description:
-      'personal lab. front-end experiments, digital doodads, and whatever else ends up here.',
+      'see the world in my eyes / web development',
     site: '@chaddytwiceover',
     creator: '@chaddytwiceover',
     images: ['/og-image.png'],
@@ -72,7 +72,7 @@ export default function RootLayout({
                 name: 'chaddytwiceover',
                 url: 'https://chaddytwiceover.com',
                 description:
-                  'personal lab. front-end experiments, digital doodads, and whatever else ends up here.',
+                  'see the world in my eyes / web development',
               },
               {
                 '@context': 'https://schema.org',

@@ -17,8 +17,8 @@ export default function LabContent() {
 
   return (
     <div className="max-w-[var(--max-width-content)] mx-auto px-6 py-20 min-h-screen">
-      <div className="mb-12">
-        <span className="font-mono text-accent text-sm tracking-wider uppercase block mb-2">{'// lab'}</span>
+      <div className="mb-12 border-b-[3px] border-border pb-8">
+        <div className="section-num text-3xl mb-2">01</div>
         <h1 className="font-heading text-5xl md:text-7xl font-bold uppercase tracking-tight text-text">LAB</h1>
       </div>
       
@@ -27,10 +27,10 @@ export default function LabContent() {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`font-mono text-sm font-bold uppercase px-4 py-2 border-[3px] transition-all shadow-[4px_4px_0px_0px_#f0f0f0] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] ${
+            className={`font-mono text-sm font-bold uppercase px-6 py-3 border-[3px] transition-all duration-0 ${
               filter === f 
-                ? 'bg-accent text-bg border-accent shadow-[4px_4px_0px_0px_#f0f0f0]' 
-                : 'bg-bg text-text border-border hover:bg-bg-raised'
+                ? 'bg-accent text-bg border-accent neo-shadow' 
+                : 'bg-bg text-text border-border hover:bg-text hover:text-bg hover:neo-border-accent'
             }`}
           >
             {f}
@@ -56,7 +56,7 @@ export default function LabContent() {
       </motion.div>
       
       {filteredProjects.length === 0 && (
-        <div className="py-20 text-center border-[3px] border-dashed border-border p-8 bg-bg-raised">
+        <div className="py-20 text-center neo-border p-8 bg-bg">
           <p className="font-mono text-text-muted">No projects found matching the filter.</p>
         </div>
       )}

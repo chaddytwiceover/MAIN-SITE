@@ -12,24 +12,23 @@ const footerNav = [
 
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-border bg-bg">
+    <footer className="mt-24 neo-border border-x-0 border-b-0 bg-bg">
       <div className="mx-auto max-w-[var(--max-width-content)] px-5 py-12">
-        <nav aria-label="Footer navigation" className="mb-8">
-          <ul className="m-0 flex list-none flex-wrap justify-center gap-x-8 gap-y-4 p-0">
-            {footerNav.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="font-mono text-sm uppercase tracking-wide text-text-dim no-underline transition-colors duration-200 hover:text-text"
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="mb-8 flex justify-center gap-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <nav aria-label="Footer navigation">
+            <ul className="m-0 flex list-none flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 p-0">
+              {footerNav.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="font-mono text-sm uppercase tracking-wide text-text-dim no-underline transition-colors duration-0 hover:bg-accent hover:text-bg px-2 py-1"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           {socialLinks
             .filter((link) => link.url.startsWith('http'))
             .map((link) => (
@@ -39,7 +38,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.name}
-                className="flex h-10 w-10 items-center justify-center border border-transparent text-text-dim transition-all duration-200 hover:border-accent hover:text-accent"
+                className="flex h-10 w-10 items-center justify-center neo-border text-text transition-all duration-0 hover:bg-accent hover:text-bg hover:neo-shadow"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
                   <path d={link.iconPath} />
@@ -49,8 +48,8 @@ export default function Footer() {
             ))}
         </div>
 
-        <p className="m-0 text-center font-mono text-xs text-text-dim">&copy; {new Date().getFullYear()} chaddytwiceover</p>
-      </div>
+          <p className="m-0 font-mono text-xs text-text-dim">&copy; {new Date().getFullYear()} chaddytwiceover</p>
+        </div>
     </footer>
   )
 }

@@ -22,7 +22,7 @@ export default function WhateverContent() {
           {posts.map((post, i) => (
             <motion.article
               key={post.id}
-              className="border-b border-border py-8 last:border-b-0"
+              className="neo-border border-x-0 border-t-0 py-12 last:border-b-0"
               initial={skipAnim ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -30,13 +30,13 @@ export default function WhateverContent() {
                 delay: skipAnim ? 0 : i * 0.1,
               }}
             >
-              <div className="font-mono text-xs tracking-wider text-text-dim">{post.date}</div>
-              <h2 className="mt-2 font-heading text-xl font-semibold text-text">{post.title}</h2>
+              <div className="inline-block neo-border border-x-0 border-t-0 px-1 py-1 font-mono text-[10px] font-bold tracking-widest text-accent mb-2">{post.date}</div>
+              <h2 className="mt-4 font-heading text-3xl font-bold uppercase text-text">{post.title}</h2>
               <div className="mt-3 whitespace-pre-wrap text-text-muted">{post.content}</div>
               {post.tags && post.tags.length > 0 && (
                 <div className="mt-4 flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
-                    <span key={tag} className="border border-border px-2 py-1 font-mono text-xs text-text-dim">
+                    <span key={tag} className="neo-border px-2 py-1 font-mono text-xs font-bold text-text-dim">
                       {tag}
                     </span>
                   ))}

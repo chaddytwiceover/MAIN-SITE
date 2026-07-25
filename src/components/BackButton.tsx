@@ -9,7 +9,7 @@ export default function BackButton() {
     <motion.button
       onClick={() => router.back()}
       whileHover="hover"
-      className="group flex items-center gap-2 font-mono text-sm text-dim hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      className="group flex items-center gap-2 font-mono font-bold text-sm text-text-dim hover:text-accent transition-colors duration-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
       <motion.svg 
         variants={{ hover: { x: -4 } }}

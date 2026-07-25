@@ -20,10 +20,9 @@ export default function SocialLinkButton({ link, index }: SocialLinkButtonProps)
       rel={isExternal ? 'noopener noreferrer' : undefined}
       className="
         group flex items-center gap-4 w-full p-4
-        border-[3px] border-border bg-bg
-        shadow-[4px_4px_0_#00FFD0]
-        hover:bg-text hover:text-bg hover:border-accent
-        transition-all duration-200
+        neo-border bg-bg neo-shadow
+        hover:bg-text hover:text-bg hover:neo-border-accent hover:neo-shadow-hover
+        transition-colors duration-0
         focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2
       "
       initial={skipAnim ? false : { opacity: 0, y: 10 }}
@@ -34,7 +33,7 @@ export default function SocialLinkButton({ link, index }: SocialLinkButtonProps)
       }}
     >
       {/* Platform icon */}
-      <span className="flex-shrink-0 w-12 h-12 border-[3px] border-border flex items-center justify-center group-hover:border-bg transition-colors duration-200">
+      <span className="flex-shrink-0 w-12 h-12 neo-border flex items-center justify-center group-hover:border-bg transition-colors duration-0">
         <svg
           viewBox="0 0 24 24"
           fill="currentColor"
@@ -56,7 +55,7 @@ export default function SocialLinkButton({ link, index }: SocialLinkButtonProps)
       </div>
 
       {/* Arrow indicator */}
-      <span className="flex-shrink-0 font-mono text-xl text-text-dim transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent">
+      <span className="flex-shrink-0 font-mono text-2xl font-bold text-text-dim transition-colors duration-0 group-hover:text-accent">
         →
       </span>
 
