@@ -1,11 +1,11 @@
-import type { Metadata } from 'next'
-import LabContent from './LabContent'
+import { Metadata } from 'next';
+import LabContent from './LabContent';
 
 export const metadata: Metadata = {
   title: 'Lab',
-  description: 'experiments, builds, and digital doodads.'
-}
+  description: 'Experiments, prototypes, and web development learning in public.',
+};
 
 export default function LabPage() {
-  return <LabContent />
+  return <LabContent />;
 }

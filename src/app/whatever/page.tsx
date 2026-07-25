@@ -1,10 +1,11 @@
-import WhateverContent from './WhateverContent'
+import { Metadata } from 'next';
+import WhateverContent from './WhateverContent';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Whatever',
-  description: 'notes, thoughts, and random stuff.',
-}
+  description: 'Thoughts, logs, and random updates.',
+};
 
 export default function WhateverPage() {
-  return <WhateverContent />
+  return <WhateverContent />;
 }

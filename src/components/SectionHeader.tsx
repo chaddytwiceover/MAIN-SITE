@@ -1,46 +1,24 @@
-'use client'
-
-import { ReactNode } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
-
-/**
- * SectionHeader — Consistent heading block for page sections
- */
+'use client';
 
 interface SectionHeaderProps {
-  /** Small uppercase label above the title */
-  label?: string
-  /** Main section title */
-  title: string
-  /** Supporting description text */
-  description?: string | ReactNode
-  className?: string
+  number: string;
+  title: string;
+  description?: string;
 }
 
-export default function SectionHeader({
-  label,
-  title,
-  description,
-  className = '',
-}: SectionHeaderProps) {
-  const prefersReduced = useReducedMotion()
-
+export default function SectionHeader({ number, title, description }: SectionHeaderProps) {
   return (
-    <motion.header
-      className={`mb-10 ${className}`}
-      initial={prefersReduced ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: prefersReduced ? 0 : 0.3, ease: 'easeOut' }}
-    >
-      {label && (
-        <span className="inline-block font-mono text-xs tracking-widest uppercase text-accent mb-3">
-          {label}
-        </span>
-      )}
-      <h1 className="font-heading font-bold text-text mb-4">{title}</h1>
+    <div className="mb-12">
+      <div className="font-mono text-accent mb-2">{number}</div>
+      <h2 className="font-heading font-bold text-text text-3xl md:text-5xl uppercase mb-4">
+        {title}
+      </h2>
+      <div className="w-16 border-b-3 border-accent mb-6" />
       {description && (
-        <p className="text-text-muted text-lg max-w-2xl">{description}</p>
+        <p className="font-mono text-text-muted text-lg max-w-2xl">
+          {description}
+        </p>
       )}
-    </motion.header>
-  )
+    </div>
+  );
 }

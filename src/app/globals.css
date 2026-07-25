@@ -1,46 +1,41 @@
 @import "tailwindcss";
 
 /* ===================================================================
-   DESIGN SYSTEM — Soft Brutalist
+   DESIGN SYSTEM — Neo-Brutalist
    chaddytwiceover.com
    =================================================================== */
 
 @theme {
   /* ── Background ────────────────────────────────────────────────── */
   --color-bg: #0a0a0a;
-  --color-bg-raised: #141414;
+  --color-bg-raised: #111111;
   --color-bg-inset: #0e0e0e;
 
   /* ── Text ──────────────────────────────────────────────────────── */
-  --color-text: #e8e4de;
-  --color-text-muted: #8a8880;
-  --color-text-dim: #555550;
+  --color-text: #f0f0f0;
+  --color-text-muted: #999999;
+  --color-text-dim: #555555;
 
   /* ── Accents ───────────────────────────────────────────────────── */
-  --color-accent: #5b8fd9;
-  --color-accent-hover: #7aa8e8;
-  --color-accent-warm: #d9654a;
-  --color-accent-warm-hover: #e87e66;
+  --color-accent: #00FFD0;
+  --color-accent-hover: #00E6BB;
+  --color-accent-warm: #E0FF00;
+  --color-accent-warm-hover: #CCE600;
 
   /* ── Borders ───────────────────────────────────────────────────── */
-  --color-border: #222222;
-  --color-border-strong: #3a3a3a;
-  --color-border-accent: #5b8fd9;
+  --color-border: #f0f0f0;
+  --color-border-strong: #00FFD0;
+  --color-border-accent: #00FFD0;
 
   /* ── Status ─────────────────────────────────────────────────────── */
-  --color-status-live: #5b8fd9;
-  --color-status-progress: #d9654a;
-  --color-status-experiment: #8a8880;
-  --color-status-prototype: #555550;
-  --color-status-soon: #555550;
+  --color-status-live: #00FFD0;
+  --color-status-experiment: #E0FF00;
+  --color-status-prototype: #555555;
 
   /* ── Fonts ──────────────────────────────────────────────────────── */
-  --font-heading: "Space Grotesk", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Helvetica, Arial, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code",
-    "Source Code Pro", Menlo, Consolas, "Courier New", monospace;
+  --font-heading: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "Courier New", monospace;
 
   /* ── Sizing ─────────────────────────────────────────────────────── */
   --max-width-content: 1120px;
@@ -65,7 +60,7 @@
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -74,14 +69,16 @@ body {
   min-height: 100vh;
 }
 
+/* No rounded corners globally */
+*, *::before, *::after {
+  border-radius: 0 !important;
+}
+
 /* ===================================================================
    TYPOGRAPHY
    =================================================================== */
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: 700;
   color: var(--color-text);
@@ -90,19 +87,14 @@ h4 {
 
 h1 {
   font-size: clamp(2rem, 4vw, 3rem);
-  letter-spacing: -0.03em;
 }
 
 h2 {
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-  letter-spacing: -0.02em;
-  font-weight: 600;
 }
 
 h3 {
   font-size: 1.125rem;
-  letter-spacing: -0.01em;
-  font-weight: 600;
 }
 
 p {
@@ -127,7 +119,39 @@ a:hover {
 }
 
 /* ===================================================================
-   UTILITY — Mono label (uppercase tracked JetBrains Mono)
+   UTILITIES — Neo-brutalist
+   =================================================================== */
+
+/* Neo-brutalist offset shadow */
+.neo-shadow {
+  box-shadow: 4px 4px 0 var(--color-accent);
+}
+.neo-shadow-hover {
+  box-shadow: 6px 6px 0 var(--color-accent);
+}
+.neo-shadow-warm {
+  box-shadow: 4px 4px 0 var(--color-accent-warm);
+}
+
+/* Thick borders */
+.neo-border {
+  border: 3px solid var(--color-border);
+}
+.neo-border-accent {
+  border: 3px solid var(--color-accent);
+}
+
+/* Section numbers */
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+}
+
+/* ===================================================================
+   UTILITIES — Existing
    =================================================================== */
 
 .label-mono {

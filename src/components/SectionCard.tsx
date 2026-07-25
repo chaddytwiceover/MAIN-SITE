@@ -1,51 +1,25 @@
-'use client'
-
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { useSkipAnimation } from '@/lib/useSafeAnimation'
+'use client';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface SectionCardProps {
-  href: string
-  label: string
-  title: string
-  description: string
+  number: string;
+  title: string;
+  description: string;
+  href: string;
 }
 
-export default function SectionCard({
-  href,
-  label,
-  title,
-  description,
-}: SectionCardProps) {
-  const skip = useSkipAnimation()
-
+export default function SectionCard({ number, title, description, href }: SectionCardProps) {
   return (
-    <motion.div
-      initial={skip ? false : { opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: skip ? 0 : 0.5 }}
-      className="h-full"
-    >
-      <Link
-        href={href}
-        className="
-          group block h-full p-6
-          bg-bg-raised border border-border rounded-none
-          transition-all duration-150 no-underline
-          hover:border-border-strong hover:-translate-y-[2px]
-        "
+    <Link href={href} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+      <motion.div
+        whileHover={{ y: -4 }}
+        className="border-3 border-border bg-bg p-6 shadow-[4px_4px_0_#00FFD0] hover:shadow-[6px_6px_0_#00FFD0] hover:border-accent transition-all duration-200 h-full flex flex-col"
       >
-        <span className="font-mono text-xs tracking-widest uppercase text-text-dim block mb-3">
-          {label}
-        </span>
-        <h2 className="font-heading text-lg font-semibold text-text mb-2 group-hover:text-accent transition-colors duration-150">
-          {title}
-        </h2>
-        <p className="text-text-muted text-sm leading-relaxed m-0">
-          {description}
-        </p>
-      </Link>
-    </motion.div>
-  )
+        <div className="font-mono text-accent text-sm mb-2">{number}</div>
+        <h3 className="font-heading font-bold text-2xl text-text mb-2">{title}</h3>
+        <p className="font-mono text-text-muted text-sm">{description}</p>
+      </motion.div>
+    </Link>
+  );
 }

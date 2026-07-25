@@ -1,56 +1,56 @@
-'use client'
-
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-
-/**
- * ScrollToTop — Floating button to scroll back to the top
- */
+'use client';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ScrollToTop() {
-  const [visible, setVisible] = useState(false)
-  const prefersReduced = useReducedMotion()
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setVisible(window.scrollY > 400)
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <AnimatePresence>
-      {visible && (
+      {isVisible && (
         <motion.button
-          type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          whileHover={{ y: -4 }}
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 p-3 border-3 border-border bg-bg-raised text-text hover:border-accent hover:text-accent transition-colors z-50 shadow-[4px_4px_0_#00FFD0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           aria-label="Scroll to top"
-          className="
-            fixed bottom-6 right-6 z-50
-            w-10 h-10 flex items-center justify-center rounded-none
-            bg-bg-raised border border-border
-            text-text-dim hover:text-accent hover:border-accent
-            transition-colors duration-200
-            focus-visible:outline-2 focus-visible:outline-accent
-          "
-          initial={prefersReduced ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: prefersReduced ? 0 : 0.2 }}
         >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            aria-hidden="true"
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="24" 
+            height="24" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="3" 
+            strokeLinecap="square" 
+            strokeLinejoin="miter"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+            <path d="M12 19V5M5 12l7-7 7 7" />
           </svg>
         </motion.button>
       )}
     </AnimatePresence>
-  )
+  );
 }

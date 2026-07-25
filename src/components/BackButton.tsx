@@ -1,40 +1,31 @@
-'use client'
-
-import { useRouter } from 'next/navigation'
-import { motion, useReducedMotion } from 'framer-motion'
-
-/**
- * BackButton — Navigate back to the previous page or home
- */
+'use client';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 export default function BackButton() {
-  const router = useRouter()
-  const prefersReduced = useReducedMotion()
+  const router = useRouter();
 
   return (
     <motion.button
-      type="button"
       onClick={() => router.back()}
-      className="
-        inline-flex items-center gap-2 mb-8
-        text-sm font-medium text-text-dim
-        hover:text-text transition-colors duration-200
-        focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2
-      "
-      whileHover={prefersReduced ? {} : { x: -4 }}
-      aria-label="Go back"
+      whileHover="hover"
+      className="group flex items-center gap-2 font-mono text-sm text-dim hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
-      <svg
-        className="w-4 h-4"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        aria-hidden="true"
+      <motion.svg 
+        variants={{ hover: { x: -4 } }}
+        xmlns="http://www.w3.org/2000/svg" 
+        width="16" 
+        height="16" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        strokeWidth="3" 
+        strokeLinecap="square" 
+        strokeLinejoin="miter"
       >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-      </svg>
-      Back
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </motion.svg>
+      <span>BACK</span>
     </motion.button>
-  )
+  );
 }

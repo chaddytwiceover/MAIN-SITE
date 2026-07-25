@@ -19,10 +19,12 @@ export default function SocialLinkButton({ link, index }: SocialLinkButtonProps)
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
       className="
-        group flex items-center gap-4 w-full px-5 py-4
-        border border-border bg-bg-raised
-        transition-all duration-150
-        hover:border-border-strong hover:-translate-y-[1px]
+        group flex items-center gap-4 w-full p-4
+        border-[3px] border-border bg-bg
+        shadow-[4px_4px_0_#00FFD0]
+        hover:bg-text hover:text-bg hover:border-accent
+        transition-all duration-200
+        focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2
       "
       initial={skipAnim ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
@@ -32,11 +34,11 @@ export default function SocialLinkButton({ link, index }: SocialLinkButtonProps)
       }}
     >
       {/* Platform icon */}
-      <span className="flex-shrink-0 w-10 h-10 border border-border flex items-center justify-center">
+      <span className="flex-shrink-0 w-12 h-12 border-[3px] border-border flex items-center justify-center group-hover:border-bg transition-colors duration-200">
         <svg
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="w-5 h-5 text-accent"
+          className="w-5 h-5 text-accent group-hover:text-bg"
           aria-hidden="true"
         >
           <path d={link.iconPath} />
@@ -45,16 +47,16 @@ export default function SocialLinkButton({ link, index }: SocialLinkButtonProps)
 
       {/* Label */}
       <div className="flex-1 min-w-0">
-        <span className="block font-heading font-semibold text-text">
+        <span className="block font-heading font-bold text-text group-hover:text-bg">
           {link.name}
         </span>
-        <span className="block text-text-dim text-sm truncate">
+        <span className="block text-text-dim text-sm font-mono group-hover:text-bg/70 truncate">
           {link.description}
         </span>
       </div>
 
       {/* Arrow indicator */}
-      <span className="flex-shrink-0 text-text-dim transition-transform duration-150 group-hover:translate-x-1">
+      <span className="flex-shrink-0 font-mono text-xl text-text-dim transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent">
         →
       </span>
 

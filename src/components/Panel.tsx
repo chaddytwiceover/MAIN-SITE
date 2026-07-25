@@ -1,38 +1,22 @@
-import { ElementType, forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react';
 
-/**
- * Panel — Solid soft brutalist container
- * 
- * Replaces GlassPanel. Solid background, rigid borders, no shadows/blur.
- */
-
-interface PanelProps {
-  as?: ElementType
-  className?: string
-  hover?: boolean
-  rounded?: boolean
-  children: ReactNode
+interface PanelProps extends React.HTMLAttributes<HTMLDivElement> {
+  hover?: boolean;
 }
 
-const Panel = forwardRef<HTMLElement, PanelProps>(
-  ({ as: Component = 'div', className = '', hover = false, rounded = false, children, ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={`
-          bg-bg-raised border border-border p-6
-          ${rounded ? 'rounded-sm' : 'rounded-none'}
-          ${hover ? 'transition-all duration-200 hover:border-border-strong hover:-translate-y-0.5' : ''}
-          ${className}
-        `}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  }
-)
+const Panel = forwardRef<HTMLDivElement, PanelProps>(({ children, className = '', hover = false, ...props }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={`border-3 border-border bg-bg-raised p-6 ${
+        hover ? 'transition-shadow duration-200 hover:shadow-[4px_4px_0_#00FFD0]' : ''
+      } ${className}`}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+});
 
-Panel.displayName = 'Panel'
-
-export default Panel
+Panel.displayName = 'Panel';
+export default Panel;

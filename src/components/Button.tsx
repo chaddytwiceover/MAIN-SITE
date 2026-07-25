@@ -1,82 +1,38 @@
-'use client'
+import Link from 'next/link';
 
-import { ReactNode } from 'react'
-import Link from 'next/link'
-
-/**
- * Button — Reusable button / link component
- *
- * Soft brutalist styles.
- *
- * Variants:
- *  - primary: Accent solid, hover invert
- *  - secondary: Transparent outline, hover accent
- */
-
-interface ButtonProps {
-  children: ReactNode
-  href?: string
-  onClick?: () => void
-  variant?: 'primary' | 'secondary'
-  className?: string
-  external?: boolean
-  ariaLabel?: string
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary';
+  href?: string;
+  asExternal?: boolean;
 }
 
-const baseClasses =
-  'inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-none font-mono text-sm tracking-wide uppercase transition-all duration-150 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2'
+export default function Button({ variant = 'primary', href, asExternal, className = '', children, ...props }: ButtonProps) {
+  const baseClasses = "font-mono text-sm uppercase tracking-wide px-6 py-3 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent inline-block text-center";
+  
+  const variantClasses = variant === 'primary' 
+    ? "bg-accent text-bg border-3 border-accent shadow-[4px_4px_0_#000] hover:bg-transparent hover:text-accent hover:shadow-[6px_6px_0_#00FFD0]"
+    : "bg-transparent text-text border-3 border-border shadow-[4px_4px_0_#fff] hover:border-accent hover:text-accent hover:shadow-[6px_6px_0_#00FFD0]";
 
-const variants = {
-  primary:
-    'bg-accent text-bg border border-accent hover:bg-transparent hover:text-accent',
-  secondary:
-    'bg-transparent text-text border border-border hover:border-accent hover:text-accent',
-}
+  const combinedClasses = `${baseClasses} ${variantClasses} ${className}`;
 
-export default function Button({
-  children,
-  href,
-  onClick,
-  variant = 'primary',
-  className = '',
-  external = false,
-  ariaLabel,
-}: ButtonProps) {
-  const classes = `${baseClasses} ${variants[variant]} ${className}`
-
-  // External link — plain <a> tag
-  if (href && external) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={classes}
-        aria-label={ariaLabel}
-      >
-        {children}
-      </a>
-    )
-  }
-
-  // Internal link — Next.js Link
   if (href) {
+    if (asExternal) {
+      return (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={combinedClasses}>
+          {children}
+        </a>
+      );
+    }
     return (
-      <Link href={href} className={classes} aria-label={ariaLabel}>
+      <Link href={href} className={combinedClasses}>
         {children}
       </Link>
-    )
+    );
   }
 
-  // Button
   return (
-    <button
-      onClick={onClick}
-      className={classes}
-      aria-label={ariaLabel}
-      type="button"
-    >
+    <button className={combinedClasses} {...props}>
       {children}
     </button>
-  )
+  );
 }

@@ -1,10 +1,11 @@
-import LinksContent from './LinksContent'
+import { Metadata } from 'next';
+import LinksContent from './LinksContent';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Links',
-  description: 'find chaddytwiceover elsewhere on the internet.',
-}
+  description: 'All my links in one place.',
+};
 
 export default function LinksPage() {
-  return <LinksContent />
+  return <LinksContent />;
 }

@@ -1,36 +1,22 @@
-'use client'
+'use client';
+import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+import { useSkipAnimation } from '@/lib/useSafeAnimation';
 
-import { ReactNode } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
-
-/**
- * PageTransition — Wrapper for page-level entrance animations
- *
- * Wraps each page's content in a fade + upward slide on mount.
- */
-
-interface PageTransitionProps {
-  children: ReactNode
-  className?: string
-}
-
-export default function PageTransition({
-  children,
-  className = '',
-}: PageTransitionProps) {
-  const prefersReduced = useReducedMotion()
+export default function PageTransition({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const skip = useSkipAnimation();
 
   return (
     <motion.div
-      className={className}
-      initial={prefersReduced ? false : { opacity: 0, y: 12 }}
+      key={pathname}
+      initial={skip ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: prefersReduced ? 0 : 0.3,
-        ease: 'easeOut',
-      }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3, ease: 'linear' }}
+      className="w-full"
     >
       {children}
     </motion.div>
-  )
+  );
 }
