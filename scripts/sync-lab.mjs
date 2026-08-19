@@ -31,8 +31,9 @@ async function fileExists(p) {
 
 function mapStatus(raw) {
   if (!raw) return 'prototype'
-  if (raw === 'completed' || raw === 'finished') return 'finished'
-  if (raw === 'active') return 'active'
+  if (raw === 'completed' || raw === 'finished' || raw === 'live') return 'live'
+  if (raw === 'active' || raw === 'experiment') return 'experiment'
+  if (raw === 'coming soon') return 'coming soon'
   return 'prototype'
 }
 
@@ -68,6 +69,8 @@ async function main() {
       description:
         meta.description ??
         `A lab experiment exploring ${slugToTitle(slug).toLowerCase()}.`,
+      techNotes: meta.techNotes,
+      featured: meta.featured,
       tags: Array.isArray(meta.technologies)
         ? meta.technologies
         : ['HTML', 'CSS', 'JavaScript'],
@@ -83,9 +86,11 @@ export interface LabProject {
   slug: string
   title: string
   description: string
+  techNotes?: string
   tags: string[]
-  status: 'prototype' | 'finished' | 'active'
+  status: 'live' | 'prototype' | 'experiment' | 'coming soon'
   demoUrl: string
+  featured?: boolean
 }
 
 export const labProjects: LabProject[] = ${JSON.stringify(projects, null, 2)}

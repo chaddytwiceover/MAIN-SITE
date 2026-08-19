@@ -20,6 +20,8 @@
   "image": "./simon-says/screenshot.png",
   "date_created": "2025-10-08",
   "status": "completed",
+  "techNotes": "State machine flow + tuned timing for difficulty ramp.",
+  "featured": true,
   "difficulty": "beginner",
   "estimated_time": "2-3 hours",
   "learning_objectives": [
