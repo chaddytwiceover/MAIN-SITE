@@ -49,7 +49,13 @@ export default function LabContent() {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.2 }}
             >
-              <LabCard project={project} />
+              <LabCard 
+                title={project.title}
+                accent={project.slug === 'pixel-art' ? 'lime' : project.slug === 'tic-tac-toe' ? 'neon' : project.slug === 'simon-says' ? 'amber' : 'lime'}
+                tech={project.tags}
+                description={project.description}
+                href={project.demoUrl}
+              />
             </motion.div>
           ))}
         </AnimatePresence>

@@ -1,0 +1,15 @@
+mode: supervised
+auto_execute: false          # CRITICAL — prevents auto command execution
+require_plan_approval: true
+require_verify_before_pr: true
+agent_manager:
+  max_concurrent_agents: 1   # you supervise one at a time
+  default_model: gemini-3-pro
+  rate_limit: generous       # public preview has generous limits
+artifacts:
+  - task_list
+  - implementation_plan
+  - code_diff
+  - verification_walkthrough
+browser:
+  allow: false               # enable per-task only when testing /labs

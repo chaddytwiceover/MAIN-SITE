@@ -1,0 +1,6 @@
+.env*
+**/*key*
+**/*secret*
+**/*credential*
+node_modules/.cache
+.vercel

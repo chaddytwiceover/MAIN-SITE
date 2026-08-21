@@ -1,59 +1,60 @@
-'use client'
-
-import Link from 'next/link'
-import type { LabProject } from '@/lib/lab-projects'
+import Link from 'next/link';
 
 interface LabCardProps {
-  project: LabProject
+  title: string;
+  accent: 'lime' | 'neon' | 'amber';
+  tech: string[];
+  description: string;
+  href: string;
 }
 
-const statusColors: Record<string, string> = {
-  live: 'bg-accent text-bg',
-  experiment: 'bg-accent-warm text-bg',
-  prototype: 'bg-text-muted text-bg',
-  'coming soon': 'bg-text-dim text-bg',
-}
+export default function LabCard({ title, accent, tech, description, href }: LabCardProps) {
+  const hoverBorderColor = {
+    lime: 'hover:border-lime',
+    neon: 'hover:border-neon',
+    amber: 'hover:border-amber',
+  }[accent];
 
-export default function LabCard({ project }: LabCardProps) {
-  const statusColor = statusColors[project.status] || 'text-text-dim'
-  const isPlayable = project.demoUrl && project.demoUrl !== '#'
+  const dotColor = {
+    lime: 'bg-lime',
+    neon: 'bg-neon',
+    amber: 'bg-amber',
+  }[accent];
+
+  const bgStyles = {
+    lime: 'bg-[url("data:image/svg+xml,%3Csvg width=\'4\' height=\'4\' viewBox=\'0 0 4 4\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M1 1h1v1H1z\' fill=\'%23D6FF5C\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")]',
+    neon: 'bg-[url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M20 0v20H0\' fill=\'none\' stroke=\'%237AFFD2\' stroke-opacity=\'0.05\' stroke-width=\'1\'/%3E%3C/svg%3E")]',
+    amber: 'hover:shadow-[0_0_15px_rgba(255,184,107,0.1)]',
+  }[accent];
 
   return (
-    <article className="h-full neo-card bg-bg p-6 flex flex-col transition-shadow duration-0 hover:neo-shadow-hover">
-      <div className="mb-4 flex items-start justify-between gap-3">
-        <h2 className="font-heading text-2xl font-bold text-text uppercase">{project.title}</h2>
-        <span className={`mt-1 shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-widest ${statusColor}`}>
-          {project.status}
+    <Link href={href} className={`group block relative overflow-hidden rounded-[12px] border border-border bg-bgSoft p-5 transition-all duration-150 hover:bg-bgRaise ${hoverBorderColor}`}>
+      <div className={`absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${bgStyles}`} />
+      
+      <div className="relative z-10 flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <span className={`h-2 w-2 rounded-full ${dotColor} animate-pulse`} />
+          <span className="font-mono text-[10px] uppercase tracking-wider text-textDim">Live</span>
+        </div>
+        <div className="flex flex-wrap gap-2 justify-end">
+          {tech.map((t) => (
+            <span key={t} className="rounded-full border border-border px-2 py-0.5 font-mono text-[10px] uppercase text-textDim">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+      
+      <div className="relative z-10">
+        <h3 className="font-serif text-[20px] lowercase text-text mb-2">{title}</h3>
+        <p className="font-sans text-[14px] text-textDim">{description}</p>
+      </div>
+
+      <div className="relative z-10 mt-6 flex justify-end">
+        <span className="font-mono text-[11px] uppercase tracking-wider text-textDim group-hover:text-text transition-colors">
+          live →
         </span>
       </div>
-
-      <p className="mb-4 text-sm text-text-muted">{project.description}</p>
-      {project.techNotes && <p className="mb-6 font-mono text-xs tracking-wide text-text-dim">tech: {project.techNotes}</p>}
-
-      <div className="mt-auto flex flex-wrap gap-2 pb-8">
-        <span className="font-mono text-xs text-text-muted">
-          {project.tags.join(' / ')}
-        </span>
-      </div>
-
-      <div className="flex flex-wrap gap-3">
-        <Link
-          href={`/lab/${project.slug}`}
-          className="font-mono text-sm font-bold uppercase tracking-widest text-text transition-colors hover:text-accent"
-        >
-          DETAILS
-        </Link>
-        {isPlayable && (
-          <a
-            href={project.demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-sm font-bold uppercase tracking-widest text-accent transition-colors hover:text-accent-hover"
-          >
-            → OPEN
-          </a>
-        )}
-      </div>
-    </article>
-  )
+    </Link>
+  );
 }
