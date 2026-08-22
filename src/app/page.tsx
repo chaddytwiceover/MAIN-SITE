@@ -18,9 +18,9 @@ const cards = [
     href: '/lab',
   },
   {
-    title: 'Contact',
-    description: 'say hi',
-    href: '/contact',
+    title: 'Links',
+    description: 'all links in one place, including email',
+    href: '/links',
   },
 ]
 

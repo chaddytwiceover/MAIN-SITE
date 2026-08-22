@@ -11,7 +11,6 @@ const socials = [
   { label: 'Instagram', handle: '@chaddytwiceover', href: 'https://www.instagram.com/chaddytwiceover/' },
   { label: 'GitHub', handle: 'chaddytwiceover', href: 'https://github.com/chaddytwiceover' },
   { label: 'Twitch', handle: 'chaddytwiceover', href: 'https://twitch.tv/chaddytwiceover' },
-  { label: 'AllMyLinks', handle: 'chaddytwiceover', href: 'https://allmylinks.com/chaddytwiceover' },
 ]
 
 export default function SocialsPage() {
