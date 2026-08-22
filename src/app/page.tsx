@@ -8,12 +8,6 @@ export const metadata: Metadata = {
 
 const cards = [
   {
-    title: 'The Lab',
-    description: 'experiments, prototypes, and weird little builds',
-    href: 'https://lab.chaddytwiceover.com',
-    external: true,
-  },
-  {
     title: 'Socials',
     description: 'find me around the internet',
     href: '/socials',
@@ -52,29 +46,17 @@ export default function HomePage() {
       </section>
 
       <section aria-label="Main links" className="mt-12 grid grid-cols-1 gap-4 md:mt-16 md:grid-cols-2">
-        {cards.map((card) =>
-          card.external ? (
-            <a key={card.title} href={card.href} className={cardClass}>
-              <span className="font-serif text-3xl lowercase text-text">{card.title}</span>
-              <span className="mt-8 flex items-end justify-between gap-6">
-                <span className="max-w-[34ch] text-sm leading-relaxed text-textDim">{card.description}</span>
-                <span aria-hidden="true" className="font-mono text-sm text-textFaint transition-transform group-hover:translate-x-1">
-                  ↗
-                </span>
+        {cards.map((card) => (
+          <Link key={card.title} href={card.href} className={cardClass}>
+            <span className="font-serif text-3xl lowercase text-text">{card.title}</span>
+            <span className="mt-8 flex items-end justify-between gap-6">
+              <span className="max-w-[34ch] text-sm leading-relaxed text-textDim">{card.description}</span>
+              <span aria-hidden="true" className="font-mono text-sm text-textFaint transition-transform group-hover:translate-x-1">
+                →
               </span>
-            </a>
-          ) : (
-            <Link key={card.title} href={card.href} className={cardClass}>
-              <span className="font-serif text-3xl lowercase text-text">{card.title}</span>
-              <span className="mt-8 flex items-end justify-between gap-6">
-                <span className="max-w-[34ch] text-sm leading-relaxed text-textDim">{card.description}</span>
-                <span aria-hidden="true" className="font-mono text-sm text-textFaint transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </span>
-            </Link>
-          ),
-        )}
+            </span>
+          </Link>
+        ))}
       </section>
     </div>
   )
