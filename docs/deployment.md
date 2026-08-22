@@ -27,7 +27,7 @@ npm run build   # ✅ Should generate `out/` directory
 - `out/lab/index.html`
 - `out/lab/<slug>/index.html`
 - `out/whatever/index.html`
-- `out/links/index.html`
+- `out/socials/index.html`
 - `out/_next/` (JS/CSS bundles)
 - `out/images/` (static assets)
 - `out/.htaccess` (security headers + Apache rewrite rules)
@@ -77,7 +77,7 @@ npm run build
 
 3. Upload **all contents** of the `out/` directory:
    - `index.html`
-   - `lab/`, `links/`, `whatever/` directories
+   - `lab/`, `socials/`, `whatever/` directories
    - `_next/` directory
    - `images/` directory
    - `.htaccess` (already generated in `out/`)
@@ -120,7 +120,7 @@ Running `npm audit` will show high-severity vulnerabilities in Next.js 14.2.35:
 **These vulnerabilities do NOT affect this deployment** because:
 
 1. This is a **static export** (no Node.js server runtime)
-2. Image optimization is disabled (`images: { unoptimized: true }`)
+2. Image optimization is disabled (`images: { unoptimized: true })
 3. No React Server Components are used in production
 
 **Action:** No immediate action required. When Next.js 15 stabilizes, consider upgrading.
@@ -171,9 +171,9 @@ Or move the repository outside of OneDrive.
 After deployment, test the following:
 
 1. **Homepage loads:** `https://your-domain.com/`
-2. **Clean URLs work:** `https://your-domain.com/lab`, `https://your-domain.com/links`, `https://your-domain.com/whatever`
+2. **Clean URLs work:** `https://your-domain.com/lab`, `https://your-domain.com/socials`, `https://your-domain.com/whatever`
 3. **Contact form opens email client** (validates client-side logic)
-4. **Social links work** (validates external links on the links page)
+4. **Social links work** (validates external links on the socials page)
 5. **Neon toggle persists** (validates localStorage)
 6. **Security headers present:**
 
