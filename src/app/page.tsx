@@ -17,11 +17,6 @@ const cards = [
     description: 'games, tools, and things I’m building',
     href: '/lab',
   },
-  {
-    title: 'Links',
-    description: 'all links in one place, including email',
-    href: '/links',
-  },
 ]
 
 const cardClass =
