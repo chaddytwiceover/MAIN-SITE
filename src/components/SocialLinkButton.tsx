@@ -11,13 +11,13 @@ interface SocialLinkButtonProps {
 
 export default function SocialLinkButton({ link, index }: SocialLinkButtonProps) {
   const skipAnim = useSkipAnimation()
-  const isExternal = link.url.startsWith('http') || link.url.startsWith('mailto')
+  const opensNewTab = link.url.startsWith('http')
 
   return (
     <motion.a
       href={link.url}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noopener noreferrer' : undefined}
+      target={opensNewTab ? '_blank' : undefined}
+      rel={opensNewTab ? 'noopener noreferrer' : undefined}
       className="
         group flex items-center gap-4 w-full p-4
         neo-border bg-bg neo-shadow
@@ -59,7 +59,7 @@ export default function SocialLinkButton({ link, index }: SocialLinkButtonProps)
         →
       </span>
 
-      {isExternal && <span className="sr-only">(opens in new tab)</span>}
+      {opensNewTab && <span className="sr-only">(opens in new tab)</span>}
     </motion.a>
   )
 }

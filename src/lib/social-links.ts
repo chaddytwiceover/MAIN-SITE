@@ -7,6 +7,13 @@ export interface SocialLink {
 
 export const socialLinks: SocialLink[] = [
   {
+    name: 'Email',
+    url: 'mailto:contact@chaddytwiceover.com',
+    description: 'contact@chaddytwiceover.com',
+    iconPath:
+      'M22.5 6.908V6.75A2.25 2.25 0 0020.25 4.5H3.75A2.25 2.25 0 001.5 6.75v.158l9.653 6.436a1.5 1.5 0 001.694 0L22.5 6.908zM1.5 8.67v8.58A2.25 2.25 0 003.75 19.5h16.5a2.25 2.25 0 002.25-2.25V8.67l-8.69 5.793a3 3 0 01-3.32 0L1.5 8.67z',
+  },
+  {
     name: 'TikTok',
     url: 'https://www.tiktok.com/@chaddytwiceover',
     description: 'short videos',
