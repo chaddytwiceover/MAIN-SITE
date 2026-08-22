@@ -1,59 +1,66 @@
-'use client'
-
 import Link from 'next/link'
-import type { LabProject } from '@/lib/lab-projects'
+
+type Accent = 'lime' | 'neon' | 'amber'
 
 interface LabCardProps {
-  project: LabProject
+  title: string
+  accent: Accent
+  tech: string[]
+  description: string
+  href: string
 }
 
-const statusColors: Record<string, string> = {
-  live: 'bg-accent text-bg',
-  experiment: 'bg-accent-warm text-bg',
-  prototype: 'bg-text-muted text-bg',
-  'coming soon': 'bg-text-dim text-bg',
+const accentClass: Record<Accent, string> = {
+  lime: 'text-lime border-lime/50 hover:border-lime',
+  neon: 'text-neon border-neon/50 hover:border-neon',
+  amber: 'text-amber border-amber/50 hover:border-amber',
 }
 
-export default function LabCard({ project }: LabCardProps) {
-  const statusColor = statusColors[project.status] || 'text-text-dim'
-  const isPlayable = project.demoUrl && project.demoUrl !== '#'
+const dotClass: Record<Accent, string> = {
+  lime: 'bg-lime',
+  neon: 'bg-neon',
+  amber: 'bg-amber',
+}
 
+const patternStyle: Record<Accent, string> = {
+  lime: "bg-[url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23D6FF5C' fill-opacity='0.18'/%3E%3C/svg%3E\")] bg-[length:12px_12px]",
+  neon: "bg-[url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M0 10h20M10 0v20' stroke='%237AFFD2' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E\")] bg-[length:20px_20px]",
+  amber: '',
+}
+
+export default function LabCard({ title, accent, tech, description, href }: LabCardProps) {
   return (
-    <article className="h-full neo-card bg-bg p-6 flex flex-col transition-shadow duration-0 hover:neo-shadow-hover">
-      <div className="mb-4 flex items-start justify-between gap-3">
-        <h2 className="font-heading text-2xl font-bold text-text uppercase">{project.title}</h2>
-        <span className={`mt-1 shrink-0 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-widest ${statusColor}`}>
-          {project.status}
+    <article
+      className={`group relative overflow-hidden rounded-[12px] border bg-bgSoft p-5 transition-colors duration-150 ${accentClass[accent]} ${patternStyle[accent]}`}
+    >
+      {accent === 'amber' && (
+        <span className="pointer-events-none absolute inset-0 rounded-[12px] border border-transparent opacity-0 transition-all duration-200 group-hover:scale-105 group-hover:border-amber/35 group-hover:opacity-100" />
+      )}
+
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        <span className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.08em] text-textDim">
+          <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${dotClass[accent]}`} />
+          live
         </span>
-      </div>
-
-      <p className="mb-4 text-sm text-text-muted">{project.description}</p>
-      {project.techNotes && <p className="mb-6 font-mono text-xs tracking-wide text-text-dim">tech: {project.techNotes}</p>}
-
-      <div className="mt-auto flex flex-wrap gap-2 pb-8">
-        <span className="font-mono text-xs text-text-muted">
-          {project.tags.join(' / ')}
-        </span>
-      </div>
-
-      <div className="flex flex-wrap gap-3">
-        <Link
-          href={`/lab/${project.slug}`}
-          className="font-mono text-sm font-bold uppercase tracking-widest text-text transition-colors hover:text-accent"
-        >
-          DETAILS
-        </Link>
-        {isPlayable && (
-          <a
-            href={project.demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-sm font-bold uppercase tracking-widest text-accent transition-colors hover:text-accent-hover"
+        {tech.map((item) => (
+          <span
+            key={item}
+            className="rounded-full border border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-textFaint"
           >
-            → OPEN
-          </a>
-        )}
+            {item}
+          </span>
+        ))}
       </div>
+
+      <h3 className="font-serif text-[20px] lowercase leading-tight text-text">{title}</h3>
+      <p className="mt-2 text-[14px] leading-relaxed text-textDim">{description}</p>
+
+      <Link
+        href={href}
+        className="mt-5 inline-flex font-mono text-[11px] uppercase tracking-[0.08em] text-textDim transition-colors hover:text-text"
+      >
+        live →
+      </Link>
     </article>
   )
 }
