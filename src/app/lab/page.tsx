@@ -14,12 +14,6 @@ export default function LabPage() {
         <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-textFaint">experiments + prototypes</p>
         <h1 className="mt-3 font-serif text-5xl lowercase tracking-[-0.02em] text-text md:text-7xl">the lab</h1>
         <p className="mt-4 max-w-[58ch] text-textDim">Games, tools, and small ideas built to see what happens.</p>
-        <a
-          href="https://lab.chaddytwiceover.com"
-          className="mt-6 inline-flex min-h-11 items-center rounded-full border border-border px-4 font-mono text-[11px] uppercase tracking-[0.08em] text-textDim transition hover:border-textDim hover:text-text"
-        >
-          Open lab subdomain ↗
-        </a>
       </header>
 
       <section aria-label="Lab experiments" className="mt-12 grid gap-4 md:grid-cols-2">
