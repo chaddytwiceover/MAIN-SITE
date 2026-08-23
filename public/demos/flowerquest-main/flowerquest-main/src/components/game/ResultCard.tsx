@@ -32,11 +32,11 @@ export function ResultCard({ onRestart, onMenu, onContinue }: Props) {
           {demoDone ? "Flower Quest" : won ? copy.winKicker : copy.loseKicker}
         </p>
         <h2 className="mt-1 font-display text-3xl font-semibold">
-          {demoDone ? "Lite Demo complete" : won ? copy.winTitle : copy.loseTitle}
+          {demoDone ? "Quest Complete" : won ? copy.winTitle : copy.loseTitle}
         </h2>
         <p className="mt-3 text-soil/80">
           {demoDone
-            ? "Incredible! You helped Monnie make it through all ten handcrafted gardens!"
+            ? "Incredible! You guided Monnie through all ten handcrafted gardens and completed the full Flower Quest."
             : fill(won ? copy.winBody : copy.loseBody, flowersCollected, flowersNeeded)}
         </p>
         <div className="mt-6 space-y-3">

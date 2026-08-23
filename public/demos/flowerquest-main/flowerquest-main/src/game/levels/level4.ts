@@ -80,6 +80,18 @@ export const level4: LevelDef = {
         { x: 660, y: 760 },
       ],
     },
+    {
+      kind: "bee",
+      x: 576,
+      y: 560,
+      speed: 46,
+      chaseSpeed: 214.5,
+      detectRadius: 150,
+      patrol: [
+        { x: 500, y: 560 },
+        { x: 660, y: 560 },
+      ],
+    },
   ],
   obstacles: [
     { kind: "tree", x: 80, y: 140, height: 170, collides: true },

@@ -10,8 +10,8 @@ export const level8: LevelDef = {
   id: "level-8",
   number: 8,
   name: "The Wasp Garden",
-  objectiveText: "Slip past the territorial wasps and collect 6 sunflowers.",
-  collectibleLabel: "Sunflowers",
+  objectiveText: "Slip past the territorial wasps and collect 8 guarded blooms.",
+  collectibleLabel: "Blooms",
   collectibleIcon: "sunflower",
   environment: {
     mapKey: "map-level-3",
@@ -33,10 +33,11 @@ export const level8: LevelDef = {
     x: 504,
     y: 130,
     unlockAt: "all-flowers",
-    lockedHint: "Collect all 6 sunflowers first!",
+    lockedHint: "Collect all 8 blooms first!",
     unlockedHint: "The river gate has unlocked!",
     unlockedObjective: "Reach the river gate.",
   },
+  objectives: [{ type: "collect", collectible: "any", required: 8, label: "Blooms" }],
   flowers: [
     { kind: "sunflower", x: 230, y: 1560 },
     { kind: "sunflower", x: 800, y: 1500 },
@@ -44,6 +45,8 @@ export const level8: LevelDef = {
     { kind: "sunflower", x: 230, y: 320 },
     { kind: "sunflower", x: 790, y: 320 },
     { kind: "sunflower", x: 504, y: 220 },
+    { kind: "bluebell", x: 320, y: 700 },
+    { kind: "rose", x: 700, y: 700 },
   ],
   hazards: [
     {
@@ -69,7 +72,7 @@ export const level8: LevelDef = {
       x: 710,
       y: 700,
       speed: 50,
-      chaseSpeed: 220,
+      chaseSpeed: 215,
       detectRadius: 150,
       patrol: [
         { x: 600, y: 700 },
@@ -77,10 +80,12 @@ export const level8: LevelDef = {
       ],
     },
     {
-      kind: "beetle",
+      kind: "bee",
       x: 504,
       y: 1480,
-      speed: 50,
+      speed: 49,
+      chaseSpeed: 215,
+      detectRadius: 150,
       patrol: [
         { x: 340, y: 1480 },
         { x: 660, y: 1480 },
@@ -118,9 +123,9 @@ export const level8: LevelDef = {
   completion: {
     winKicker: "Guards evaded",
     winTitle: "The Wasp Garden complete",
-    winBody: "Monnie safely crossed the guarded bridges, collected every sunflower, and reached safety.",
+    winBody: "Monnie safely crossed the guarded bridges, collected every bloom, and reached safety.",
     loseKicker: "Territory guarded!",
     loseTitle: "Stung by wasps",
-    loseBody: "Monnie found {collected} of {needed} sunflowers. Wasps protect their zone — don't linger near them!",
+    loseBody: "Monnie found {collected} of {needed} blooms. Wasps protect their zone — don't linger near them!",
   },
 };
