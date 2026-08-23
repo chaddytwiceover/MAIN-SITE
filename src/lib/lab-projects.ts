@@ -14,6 +14,21 @@ export interface LabProject {
 
 export const labProjects: LabProject[] = [
   {
+    "slug": "flowerquest",
+    "title": "Monnie's Flower Quest",
+    "description": "A polished mobile-first garden adventure where Monnie collects flowers, dodges beetles, and unlocks the garden gate across five handcrafted levels.",
+    "techNotes": "Phaser gameplay embedded through the lab shell, with React/TanStack Start powering the standalone game build.",
+    "featured": true,
+    "tags": [
+      "Phaser",
+      "React",
+      "TypeScript",
+      "Vite"
+    ],
+    "status": "live",
+    "demoUrl": "/lab/flowerquest/"
+  },
+  {
     "slug": "pixel-art",
     "title": "Pixel Art Editor",
     "description": "A feature-rich pixel art editor with nature-inspired color palettes, symmetry drawing modes, spray brush, adjustable canvas sizes, and rotating Bob Ross quotes. Paint happy little trees!",
