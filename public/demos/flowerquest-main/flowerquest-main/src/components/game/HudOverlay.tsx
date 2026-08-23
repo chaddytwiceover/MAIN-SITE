@@ -21,19 +21,28 @@ export function HudOverlay({ onPause }: Props) {
     activePowerUp,
   } = useGameState();
 
-  const [remainingSec, setRemainingSec] = useState<string>("0.0");
+  const [remainingMs, setRemainingMs] = useState<number>(0);
 
   useEffect(() => {
-    if (!activePowerUp) return;
+    if (!activePowerUp) {
+      setRemainingMs(0);
+      return;
+    }
+    setRemainingMs(Math.max(0, activePowerUp.expiresAt - performance.now()));
     const interval = setInterval(() => {
       const ms = Math.max(0, activePowerUp.expiresAt - performance.now());
-      setRemainingSec((ms / 1000).toFixed(1));
+      setRemainingMs(ms);
     }, 100);
     return () => clearInterval(interval);
   }, [activePowerUp]);
 
   const required = objectives.reduce((sum, obj) => sum + obj.required, 0);
   const collected = objectives.reduce((sum, obj) => sum + obj.collected, 0);
+
+  const remainingSec = (remainingMs / 1000).toFixed(1);
+  const buffProgress = activePowerUp
+    ? Math.max(0, Math.min(1, remainingMs / activePowerUp.durationMs))
+    : 0;
 
   return (
     <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden font-sans">
@@ -93,12 +102,12 @@ export function HudOverlay({ onPause }: Props) {
         </div>
 
         {/* Right Controls: Audio + Pause */}
-        <div className="flex items-center gap-1.5">
-          <MuteButton />
+        <div className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-1.5 py-1 shadow-lg backdrop-blur-md">
+          <MuteButton className="h-8 w-8 bg-transparent text-cream" />
           <button
             type="button"
             onClick={onPause}
-            className="pointer-events-auto grid h-9 w-9 place-items-center rounded-full border border-white/15 bg-black/40 text-cream shadow-lg backdrop-blur-md transition-transform active:scale-90 hover:bg-black/60"
+            className="pointer-events-auto grid h-8 w-8 place-items-center rounded-full border border-white/15 bg-black/25 text-cream transition-transform active:scale-90 hover:bg-black/60"
             aria-label="Pause"
           >
             <Pause className="h-4 w-4" strokeWidth={2.5} />
@@ -109,7 +118,7 @@ export function HudOverlay({ onPause }: Props) {
       {/* Floating Active Power-Up Meter */}
       {activePowerUp && (
         <div className="relative z-20 mt-2 flex justify-center">
-          <div className="flex items-center gap-2 rounded-full border border-gold/40 bg-black/60 px-3.5 py-1 shadow-xl backdrop-blur-md animate-fade-in">
+          <div className="flex min-w-56 items-center gap-2 rounded-full border border-gold/40 bg-black/60 px-3.5 py-1 shadow-xl backdrop-blur-md animate-fade-in">
             {activePowerUp.kind === "swift" && (
               <Sparkles className="h-4 w-4 text-gold animate-spin" />
             )}
@@ -125,6 +134,12 @@ export function HudOverlay({ onPause }: Props) {
             <span className="font-mono text-xs font-bold text-gold">
               {remainingSec}s
             </span>
+            <div className="h-1.5 w-16 overflow-hidden rounded-full bg-white/15">
+              <div
+                className="h-full rounded-full bg-gold transition-[width] duration-100"
+                style={{ width: `${Math.round(buffProgress * 100)}%` }}
+              />
+            </div>
           </div>
         </div>
       )}
@@ -149,4 +164,3 @@ export function HudOverlay({ onPause }: Props) {
     </div>
   );
 }
-

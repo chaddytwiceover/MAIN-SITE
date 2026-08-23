@@ -10,8 +10,8 @@ export const level7: LevelDef = {
   id: "level-7",
   number: 7,
   name: "Briar Patch",
-  objectiveText: "Gather 7 roses & tulips, then reach the bramble gate.",
-  collectibleLabel: null,
+  objectiveText: "Gather 10 mixed flowers, then reach the bramble gate.",
+  collectibleLabel: "Flowers",
   collectibleIcon: "rose",
   environment: {
     mapKey: "map-level-2",
@@ -29,15 +29,12 @@ export const level7: LevelDef = {
     { kind: "swift", x: 260, y: 1200 },
     { kind: "frost", x: 920, y: 880 },
   ],
-  objectives: [
-    { type: "collect", collectible: "rose", required: 4, label: "Roses" },
-    { type: "collect", collectible: "tulip", required: 3, label: "Tulips" },
-  ],
+  objectives: [{ type: "collect", collectible: "any", required: 10, label: "Flowers" }],
   exit: {
     x: 576,
     y: 210,
     unlockAt: "all-flowers",
-    lockedHint: "Gather all 7 flowers first!",
+    lockedHint: "Gather all 10 flowers first!",
     unlockedHint: "The Bramble Gate has opened!",
     unlockedObjective: "Reach the bramble gate.",
   },
@@ -49,6 +46,9 @@ export const level7: LevelDef = {
     { kind: "rose", x: 380, y: 480 },
     { kind: "tulip", x: 780, y: 480 },
     { kind: "rose", x: 576, y: 320 },
+    { kind: "bluebell", x: 240, y: 760 },
+    { kind: "sunflower", x: 900, y: 980 },
+    { kind: "daisy", x: 576, y: 620 },
   ],
   hazards: [
     {
@@ -56,7 +56,7 @@ export const level7: LevelDef = {
       x: 576,
       y: 1100,
       speed: 48,
-      chaseSpeed: 220,
+      chaseSpeed: 215,
       detectRadius: 160,
       patrol: [
         { x: 420, y: 1100 },
@@ -68,11 +68,23 @@ export const level7: LevelDef = {
       x: 360,
       y: 640,
       speed: 50,
-      chaseSpeed: 225,
+      chaseSpeed: 215,
       detectRadius: 160,
       patrol: [
         { x: 360, y: 520 },
         { x: 360, y: 780 },
+      ],
+    },
+    {
+      kind: "bee",
+      x: 800,
+      y: 920,
+      speed: 50,
+      chaseSpeed: 215,
+      detectRadius: 160,
+      patrol: [
+        { x: 720, y: 820 },
+        { x: 900, y: 1020 },
       ],
     },
     {

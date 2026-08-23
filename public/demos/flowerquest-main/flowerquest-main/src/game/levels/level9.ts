@@ -10,8 +10,8 @@ export const level9: LevelDef = {
   id: "level-9",
   number: 9,
   name: "Nightshade Run",
-  objectiveText: "Gather 4 roses and 4 bluebells under the watchful wasps.",
-  collectibleLabel: null,
+  objectiveText: "Gather 12 nightshade blooms under the watchful wasps.",
+  collectibleLabel: "Nightshade Blooms",
   collectibleIcon: "bluebell",
   environment: {
     mapKey: "map-level-4",
@@ -30,15 +30,12 @@ export const level9: LevelDef = {
     { kind: "frost", x: 260, y: 700 },
     { kind: "heart", x: 880, y: 700 },
   ],
-  objectives: [
-    { type: "collect", collectible: "rose", required: 4, label: "Roses" },
-    { type: "collect", collectible: "bluebell", required: 4, label: "Bluebells" },
-  ],
+  objectives: [{ type: "collect", collectible: "any", required: 12, label: "Nightshade Blooms" }],
   exit: {
     x: 576,
     y: 180,
     unlockAt: "all-flowers",
-    lockedHint: "Collect all 8 twin blooms first!",
+    lockedHint: "Collect all 12 nightshade blooms first!",
     unlockedHint: "The Nightshade Gate has opened!",
     unlockedObjective: "Reach the garden gate.",
   },
@@ -51,6 +48,10 @@ export const level9: LevelDef = {
     { kind: "bluebell", x: 860, y: 1040 },
     { kind: "bluebell", x: 960, y: 640 },
     { kind: "bluebell", x: 820, y: 360 },
+    { kind: "sunflower", x: 576, y: 1180 },
+    { kind: "tulip", x: 576, y: 700 },
+    { kind: "daisy", x: 420, y: 520 },
+    { kind: "daisy", x: 740, y: 520 },
   ],
   hazards: [
     {
@@ -76,7 +77,7 @@ export const level9: LevelDef = {
       x: 576,
       y: 960,
       speed: 52,
-      chaseSpeed: 230,
+      chaseSpeed: 215,
       detectRadius: 160,
       patrol: [
         { x: 576, y: 800 },
@@ -88,11 +89,23 @@ export const level9: LevelDef = {
       x: 576,
       y: 480,
       speed: 52,
-      chaseSpeed: 230,
+      chaseSpeed: 215,
       detectRadius: 160,
       patrol: [
         { x: 420, y: 480 },
         { x: 730, y: 480 },
+      ],
+    },
+    {
+      kind: "bee",
+      x: 760,
+      y: 1160,
+      speed: 52,
+      chaseSpeed: 215,
+      detectRadius: 160,
+      patrol: [
+        { x: 700, y: 1080 },
+        { x: 860, y: 1240 },
       ],
     },
     {
@@ -103,6 +116,16 @@ export const level9: LevelDef = {
       patrol: [
         { x: 400, y: 1360 },
         { x: 750, y: 1360 },
+      ],
+    },
+    {
+      kind: "beetle",
+      x: 360,
+      y: 1360,
+      speed: 54,
+      patrol: [
+        { x: 240, y: 1360 },
+        { x: 500, y: 1360 },
       ],
     },
   ],

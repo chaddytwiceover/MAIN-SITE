@@ -26,7 +26,6 @@ export const level2: LevelDef = {
   completeOn: "reach-exit",
   powerBlooms: [
     { kind: "swift", x: 780, y: 1200 },
-    { kind: "frost", x: 300, y: 760 },
   ],
   exit: {
     x: 576,
