@@ -120,7 +120,7 @@ Running `npm audit` will show high-severity vulnerabilities in Next.js 14.2.35:
 **These vulnerabilities do NOT affect this deployment** because:
 
 1. This is a **static export** (no Node.js server runtime)
-2. Image optimization is disabled (`images: { unoptimized: true })
+2. Image optimization is disabled (`images: { unoptimized: true }`)
 3. No React Server Components are used in production
 
 **Action:** No immediate action required. When Next.js 15 stabilizes, consider upgrading.
