@@ -75,7 +75,7 @@ async function main() {
         ? meta.technologies
         : ['HTML', 'CSS', 'JavaScript'],
       status: mapStatus(meta.status),
-      demoUrl: `/demos/${slug}/index.html`,
+      demoUrl: meta.demoUrl ?? `/demos/${slug}/index.html`,
     })
   }
 
