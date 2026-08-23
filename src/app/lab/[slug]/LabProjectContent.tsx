@@ -17,7 +17,7 @@ const statusLabel: Record<LabProject['status'], string> = {
 }
 
 function FlowerQuestFrame({ project }: Props) {
-  const gameUrl = process.env.NEXT_PUBLIC_FLOWERQUEST_URL
+  const gameUrl = process.env.NEXT_PUBLIC_FLOWERQUEST_URL ?? '/demos/flowerquest/'
 
   return (
     <section className="mx-auto w-full max-w-[1180px] px-4 py-10 sm:px-6 md:py-14">
