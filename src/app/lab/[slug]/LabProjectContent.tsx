@@ -105,13 +105,6 @@ function FlowerQuestFrame({ project }: Props) {
   )
 }
 
-const statusLabel: Record<LabProject['status'], string> = {
-  live: 'Live',
-  experiment: 'Experiment',
-  prototype: 'Prototype',
-  'coming soon': 'Coming Soon',
-}
-
 export default function LabProjectContent({ project }: Props) {
   const skip = useSkipAnimation()
   const playable = project.demoUrl !== '#'
