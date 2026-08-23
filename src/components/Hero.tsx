@@ -1,44 +1,37 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <section className="mx-auto max-w-[1100px] px-6 py-32 md:px-12">
-      <div className="mb-4">
-        <span className="font-mono text-[11px] uppercase tracking-wider text-textFaint">01</span>
-      </div>
-      
-      <h1 className="mb-8 font-serif text-[48px] lowercase leading-tight tracking-tight text-text md:text-[72px]">
+    <section className="mx-auto w-full max-w-[1100px] px-6 pt-14 md:px-12 md:pt-20">
+      <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-textFaint">01</p>
+      <h1 className="mt-2 font-serif text-[clamp(3rem,9vw,4.5rem)] lowercase leading-[0.92] tracking-[-0.02em] text-text">
         twice over
       </h1>
-      
-      <div className="mb-8 w-12 border-t border-border" />
-      
-      <div className="mb-12">
-        <h2 className="mb-4 font-mono text-[13px] uppercase tracking-[0.08em] text-text">
-          see the world in my eyes / web development
-        </h2>
-        <p className="font-sans text-[15px] leading-relaxed text-textDim max-w-[65ch]">
-          Personal lab built with Next.js, some css, and vibes. No templates.
-        </p>
-      </div>
-      
-      <div className="flex flex-wrap items-center gap-4">
-        <Link 
+      <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.08em] text-textDim">
+        see the world in my eyes / web development
+      </p>
+      <p className="mt-6 max-w-[65ch] text-[15px] leading-relaxed text-textDim">
+        Personal lab built with Next.js, some css, and vibes. No templates.
+      </p>
+
+      <div className="mt-8 flex flex-wrap items-center gap-3">
+        <a
           href="https://x.com/chaddytwiceover"
           target="_blank"
-          rel="noopener noreferrer" 
-          className="group flex items-center gap-2 rounded-full bg-text px-6 py-3 font-mono text-[12px] uppercase tracking-wider text-bg transition-transform hover:scale-[1.02]"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center gap-1 rounded-full bg-text px-4 py-2 font-mono text-[12px] uppercase tracking-[0.08em] text-bg"
         >
-          <span>Follow on X</span>
+          Follow on X
           <span className="transition-transform group-hover:translate-x-[2px]">→</span>
-        </Link>
-        <Link 
+        </a>
+
+        <Link
           href="#labs"
-          className="rounded-full border border-border px-6 py-3 font-mono text-[12px] uppercase tracking-wider text-text transition-colors hover:bg-bgSoft"
+          className="inline-flex items-center rounded-full border border-border px-4 py-2 font-mono text-[12px] uppercase tracking-[0.08em] text-textDim transition-colors hover:text-text"
         >
           Explore Labs
         </Link>
       </div>
     </section>
-  );
+  )
 }

@@ -12,7 +12,7 @@ export default function LabContent() {
   
   const filteredProjects = labProjects.filter(project => {
     if (filter === 'All') return true;
-    return project.status === filter;
+    return project.status === filter.toLowerCase();
   });
 
   return (
@@ -49,10 +49,10 @@ export default function LabContent() {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.2 }}
             >
-              <LabCard 
-                title={project.title}
-                accent={project.slug === 'pixel-art' ? 'lime' : project.slug === 'tic-tac-toe' ? 'neon' : project.slug === 'simon-says' ? 'amber' : 'lime'}
-                tech={project.tags}
+              <LabCard
+                title={project.title.toLowerCase()}
+                accent={project.slug === 'pixel-art' ? 'lime' : project.slug === 'tic-tac-toe' ? 'neon' : 'amber'}
+                tech={project.techNotes ? project.techNotes.split('+').map((item) => item.trim()).slice(0, 3) : project.tags.slice(0, 3)}
                 description={project.description}
                 href={project.demoUrl}
               />

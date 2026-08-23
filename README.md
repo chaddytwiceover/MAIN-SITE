@@ -9,7 +9,7 @@ This repo is a digital home for experiments, notes, and links — not client wor
 - **Home**: intro, featured experiments, and recent notes
 - **Lab**: project playground with status, tech notes, and demo/detail paths
 - **Whatever**: lightweight posts/notes stream
-- **Links**: social hub with room for new platforms
+- **Socials**: social hub with room for new platforms
 - **Guestbook**: simple “say hi” contact entry point
 
 ## Run locally

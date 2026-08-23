@@ -27,7 +27,7 @@ npm run build   # ✅ Should generate `out/` directory
 - `out/lab/index.html`
 - `out/lab/<slug>/index.html`
 - `out/whatever/index.html`
-- `out/links/index.html`
+- `out/socials/index.html`
 - `out/_next/` (JS/CSS bundles)
 - `out/images/` (static assets)
 - `out/.htaccess` (security headers + Apache rewrite rules)
@@ -77,7 +77,7 @@ npm run build
 
 3. Upload **all contents** of the `out/` directory:
    - `index.html`
-   - `lab/`, `links/`, `whatever/` directories
+   - `lab/`, `socials/`, `whatever/` directories
    - `_next/` directory
    - `images/` directory
    - `.htaccess` (already generated in `out/`)
@@ -94,7 +94,17 @@ Ensure `.htaccess` is in the same directory as `index.html` on the server. This 
 
 ## Environment Configuration
 
-This project is a **static export**—no environment variables or backend runtime are required.
+This project is a **static export**, so environment variables are baked in at build time.
+
+### Optional: Flower Quest embed
+
+`/lab/flowerquest/` is ready to embed the standalone Flower Quest deployment. Set this before building the main site:
+
+```bash
+NEXT_PUBLIC_FLOWERQUEST_URL=https://your-flowerquest-deployment-url
+```
+
+In IONOS Deploy Now, add `NEXT_PUBLIC_FLOWERQUEST_URL` in the project's environment variables and redeploy. If the variable is missing, the page shows a polished launch-ready placeholder instead of a broken iframe.
 
 - **`next.config.js`** is configured with:
 
@@ -171,11 +181,12 @@ Or move the repository outside of OneDrive.
 After deployment, test the following:
 
 1. **Homepage loads:** `https://your-domain.com/`
-2. **Clean URLs work:** `https://your-domain.com/lab`, `https://your-domain.com/links`, `https://your-domain.com/whatever`
-3. **Contact form opens email client** (validates client-side logic)
-4. **Social links work** (validates external links on the links page)
-5. **Neon toggle persists** (validates localStorage)
-6. **Security headers present:**
+2. **Clean URLs work:** `https://your-domain.com/lab`, `https://your-domain.com/socials`, `https://your-domain.com/whatever`
+3. **Flower Quest route loads:** `https://your-domain.com/lab/flowerquest/`
+4. **Contact form opens email client** (validates client-side logic)
+5. **Social links work** (validates external links on the socials page)
+6. **Neon toggle persists** (validates localStorage)
+7. **Security headers present:**
 
 ```bash
 curl -I https://your-domain.com
@@ -217,5 +228,3 @@ This site is intentionally minimal. To add analytics:
 - **Project README:** [README.md](README.md)
 
 ---
-
-© 2026 CHADDYTWICEOVER

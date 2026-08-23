@@ -4,7 +4,7 @@ import { labProjects } from '@/lib/lab-projects';
 import LabProjectContent from './LabProjectContent';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
@@ -13,8 +13,9 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const project = labProjects.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const project = labProjects.find((p) => p.slug === slug);
 
   if (!project) {
     return {
@@ -28,8 +29,9 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function LabProjectPage({ params }: Props) {
-  const project = labProjects.find((p) => p.slug === params.slug);
+export default async function LabProjectPage({ params }: Props) {
+  const { slug } = await params;
+  const project = labProjects.find((p) => p.slug === slug);
 
   if (!project) {
     notFound();
