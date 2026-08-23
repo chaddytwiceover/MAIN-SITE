@@ -10,8 +10,8 @@ export const level10: LevelDef = {
   id: "level-10",
   number: 10,
   name: "The Queen's Garden",
-  objectiveText: "Gather all 8 Royal Roses to unlock the Queen's Golden Gate!",
-  collectibleLabel: "Royal Roses",
+  objectiveText: "Gather all 15 royal blooms to unlock the Queen's Golden Gate!",
+  collectibleLabel: "Royal Blooms",
   collectibleIcon: "rose",
   environment: {
     mapKey: "map-level-5",
@@ -28,14 +28,15 @@ export const level10: LevelDef = {
   powerBlooms: [
     { kind: "swift", x: 576, y: 1360 },
     { kind: "frost", x: 90, y: 880 },
+    { kind: "frost", x: 920, y: 360 },
     { kind: "heart", x: 1050, y: 560 },
   ],
-  objectives: [{ type: "collect", collectible: "rose", required: 8, label: "Royal Roses" }],
+  objectives: [{ type: "collect", collectible: "any", required: 15, label: "Royal Blooms" }],
   exit: {
     x: 576,
     y: 150,
     unlockAt: "all-flowers",
-    lockedHint: "Gather all 8 Royal Roses first!",
+    lockedHint: "Gather all 15 Royal Blooms first!",
     unlockedHint: "The Queen's Golden Gate has unlocked!",
     unlockedObjective: "Step through the Queen's Golden Gate!",
   },
@@ -48,6 +49,13 @@ export const level10: LevelDef = {
     { kind: "rose", x: 1050, y: 200 },
     { kind: "rose", x: 220, y: 380 },
     { kind: "rose", x: 880, y: 380 },
+    { kind: "bluebell", x: 350, y: 1220 },
+    { kind: "bluebell", x: 820, y: 1220 },
+    { kind: "sunflower", x: 350, y: 820 },
+    { kind: "sunflower", x: 820, y: 820 },
+    { kind: "tulip", x: 576, y: 560 },
+    { kind: "daisy", x: 220, y: 1120 },
+    { kind: "daisy", x: 920, y: 1120 },
   ],
   hazards: [
     {
@@ -69,11 +77,20 @@ export const level10: LevelDef = {
       leashRadius: 260,
     },
     {
+      kind: "wasp",
+      x: 250,
+      y: 1080,
+      speed: 60,
+      chaseSpeed: 260,
+      guardZone: { x: 250, y: 1080, radius: 140 },
+      leashRadius: 280,
+    },
+    {
       kind: "bee",
       x: 250,
       y: 600,
       speed: 55,
-      chaseSpeed: 235,
+      chaseSpeed: 215,
       detectRadius: 170,
       patrol: [
         { x: 250, y: 440 },
@@ -85,11 +102,23 @@ export const level10: LevelDef = {
       x: 880,
       y: 600,
       speed: 55,
-      chaseSpeed: 235,
+      chaseSpeed: 215,
       detectRadius: 170,
       patrol: [
         { x: 880, y: 440 },
         { x: 880, y: 840 },
+      ],
+    },
+    {
+      kind: "bee",
+      x: 576,
+      y: 980,
+      speed: 55,
+      chaseSpeed: 215,
+      detectRadius: 170,
+      patrol: [
+        { x: 460, y: 980 },
+        { x: 690, y: 980 },
       ],
     },
     {
@@ -110,6 +139,16 @@ export const level10: LevelDef = {
       patrol: [
         { x: 480, y: 420 },
         { x: 670, y: 420 },
+      ],
+    },
+    {
+      kind: "beetle",
+      x: 900,
+      y: 1040,
+      speed: 58,
+      patrol: [
+        { x: 820, y: 940 },
+        { x: 980, y: 1160 },
       ],
     },
   ],
@@ -169,6 +208,6 @@ export const level10: LevelDef = {
     winBody: "Incredible! Monnie conquered all 10 garden realms, outmaneuvered every swarm, and claimed the Golden Bloom!",
     loseKicker: "The Queen Prevails",
     loseTitle: "Defeated in the Royal Maze",
-    loseBody: "Monnie gathered {collected} of {needed} Royal Roses. Time your Frost Petals and Swift Seeds carefully!",
+    loseBody: "Monnie gathered {collected} of {needed} Royal Blooms. Time your Frost Petals and Swift Seeds carefully!",
   },
 };

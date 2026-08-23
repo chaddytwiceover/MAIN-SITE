@@ -69,6 +69,16 @@ export const level3: LevelDef = {
         { x: 380, y: 1388 },
       ],
     },
+    {
+      kind: "beetle",
+      x: 710,
+      y: 478,
+      speed: 45,
+      patrol: [
+        { x: 610, y: 478 },
+        { x: 820, y: 478 },
+      ],
+    },
   ],
   obstacles: [
     { kind: "tree", x: 70, y: 120, height: 168, collides: true },

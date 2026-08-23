@@ -60,7 +60,7 @@ export const level6: LevelDef = {
       x: 320,
       y: 600,
       speed: 45,
-      chaseSpeed: 210,
+      chaseSpeed: 215,
       detectRadius: 150,
       patrol: [
         { x: 260, y: 520 },
@@ -75,6 +75,16 @@ export const level6: LevelDef = {
       patrol: [
         { x: 1100, y: 460 },
         { x: 1100, y: 860 },
+      ],
+    },
+    {
+      kind: "beetle",
+      x: 300,
+      y: 960,
+      speed: 50,
+      patrol: [
+        { x: 260, y: 860 },
+        { x: 340, y: 1140 },
       ],
     },
   ],

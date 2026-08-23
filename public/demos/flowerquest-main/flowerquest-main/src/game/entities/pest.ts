@@ -29,7 +29,7 @@ export function createPest(scene: Phaser.Scene, def: HazardDef): PestRef {
   const origin = { x: def.x, y: def.y };
   const patrol = def.patrol && def.patrol.length > 0 ? def.patrol : [{ x: def.x, y: def.y }];
   const speed = def.speed;
-  const chaseSpeed = def.chaseSpeed ?? speed * 1.5;
+  const chaseSpeed = def.chaseSpeed ?? speed * 1.3;
   const detectRadius = def.detectRadius ?? (kind === "bee" ? 160 : 120);
   const guardZone = def.guardZone ?? { x: def.x, y: def.y, radius: 120 };
   const leashRadius = def.leashRadius ?? 240;
@@ -194,7 +194,7 @@ function updateBee(pest: PestRef, playerX: number, playerY: number, now: number)
     sprite.setVelocity(0, 0);
     if (now >= pest.stateTimer) {
       pest.state = "chase";
-      pest.stateTimer = now + 2600;
+      pest.stateTimer = now + 2500;
       if (pest.alertIcon) pest.alertIcon.setAlpha(0);
     }
   } else if (pest.state === "chase") {
