@@ -16,7 +16,7 @@ export const labProjects: LabProject[] = [
   {
     "slug": "flowerquest",
     "title": "Monnie's Flower Quest",
-    "description": "A polished mobile-first garden adventure where Monnie collects flowers, dodges beetles, and unlocks the garden gate across five handcrafted levels.",
+    "description": "A polished mobile-first garden adventure where Monnie collects flowers, dodges beetles, bees & wasps, collects power blooms, and unlocks the garden gate across ten handcrafted levels.",
     "techNotes": "Phaser gameplay embedded through the lab shell, with React/TanStack Start powering the standalone game build.",
     "featured": true,
     "tags": [
