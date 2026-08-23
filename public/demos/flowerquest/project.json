@@ -5,5 +5,5 @@
   "featured": true,
   "technologies": ["Phaser", "React", "TypeScript", "Vite"],
   "status": "live",
-  "demoUrl": "/lab/flowerquest/"
+  "demoUrl": "/demos/flowerquest/"
 }
