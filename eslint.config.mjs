@@ -4,8 +4,10 @@ const config = [
   ...nextCoreWebVitals,
   {
     ignores: [
-      'public/demos/flowerquest/assets/**',
-      'public/demos/flowerquest-main/flowerquest-main/**',
+      '.next/**',
+      'out/**',
+      'public/**',
+      'node_modules/**',
     ],
   },
   {

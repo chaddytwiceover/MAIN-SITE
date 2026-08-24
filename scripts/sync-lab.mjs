@@ -37,6 +37,21 @@ function mapStatus(raw) {
   return 'prototype'
 }
 
+const HOSTED_PROJECTS = [
+  {
+    slug: 'flowerquest',
+    title: "Monnie's Flower Quest",
+    description:
+      'A polished mobile-first garden adventure where Monnie collects flowers, dodges beetles, bees & wasps, collects power blooms, and unlocks the garden gate across ten handcrafted levels.',
+    techNotes:
+      'Phaser gameplay embedded through the lab shell, with standalone game deployed on Vercel.',
+    featured: true,
+    tags: ['Phaser', 'React', 'TypeScript', 'Vite'],
+    status: 'live',
+    demoUrl: '/lab/flowerquest/',
+  },
+]
+
 async function main() {
   const entries = await readdir(LAB_DIR, { withFileTypes: true })
   const folders = entries
@@ -44,7 +59,7 @@ async function main() {
     .map((e) => e.name)
     .sort()
 
-  const projects = []
+  const projects = [...HOSTED_PROJECTS]
 
   for (const slug of folders) {
     const dir = join(LAB_DIR, slug)

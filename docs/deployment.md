@@ -96,15 +96,13 @@ Ensure `.htaccess` is in the same directory as `index.html` on the server. This 
 
 This project is a **static export**, so environment variables are baked in at build time.
 
-### Optional: Flower Quest embed
+### Flower Quest embed
 
-`/lab/flowerquest/` is ready to embed the standalone Flower Quest deployment. Set this before building the main site:
+`/lab/flowerquest/` embeds the standalone Flower Quest deployment (defaults to `https://flowerquest.vercel.app`). To point to a custom deployment:
 
 ```bash
-NEXT_PUBLIC_FLOWERQUEST_URL=https://your-flowerquest-deployment-url
+NEXT_PUBLIC_FLOWERQUEST_URL=https://flowerquest.vercel.app
 ```
-
-In IONOS Deploy Now, add `NEXT_PUBLIC_FLOWERQUEST_URL` in the project's environment variables and redeploy. If the variable is missing, the page shows a polished launch-ready placeholder instead of a broken iframe.
 
 - **`next.config.js`** is configured with:
 
