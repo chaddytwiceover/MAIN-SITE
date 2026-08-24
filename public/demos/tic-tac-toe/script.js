@@ -1,7 +1,9 @@
 // /script.js - Tic Tac Toe Game
 /**
- * Clean, focused Tic Tac Toe with AI opponent.
- * Features: Three difficulty levels, minimax AI.
+ * Tic Tac Toe with 3 balanced difficulty levels:
+ * - Easy: Casual / randomized play with occasional winning moves
+ * - Medium: Smart and human-like — blocks threats, takes wins, beatable with tactics
+ * - Hard: Unbeatable optimal Minimax with Alpha-Beta pruning
  */
 
 class TicTacToeGame {
@@ -15,12 +17,12 @@ class TicTacToeGame {
       DRAW: 'DRAW'
     };
     this.WINNING_COMBINATIONS = [
-      [0,1,2], [3,4,5], [6,7,8],
-      [0,3,6], [1,4,7], [2,5,8],
-      [0,4,8], [2,4,6]
+      [0,1,2], [3,4,5], [6,7,8], // Rows: win-0, win-1, win-2
+      [0,3,6], [1,4,7], [2,5,8], // Cols: win-3, win-4, win-5
+      [0,4,8], [2,4,6]           // Diagonals: win-6, win-7
     ];
-    this.STORAGE_KEY = 'ttt_scores_v3';
-    this.AI_DELAY = 500;
+    this.STORAGE_KEY = 'ttt_scores_v4';
+    this.AI_DELAY = 350;
     this.CENTER = 4;
     this.CORNERS = [0, 2, 6, 8];
     this.EDGES = [1, 3, 5, 7];
@@ -152,15 +154,6 @@ class TicTacToeGame {
 
   handleHumanPlayerChange() {
     const selectedPlayer = this.elements.humanRadios.find(r => r.checked)?.value;
-    const hasMovesBeenMade = this.state.board.some(cell => cell !== null);
-    
-    if (hasMovesBeenMade) {
-      this.elements.humanRadios.forEach(radio => {
-        radio.checked = radio.value === this.state.humanPlayer;
-      });
-      return;
-    }
-
     if (selectedPlayer && selectedPlayer !== this.state.humanPlayer) {
       this.state.humanPlayer = selectedPlayer;
       this.state.aiPlayer = selectedPlayer === this.PLAYER_X ? this.PLAYER_O : this.PLAYER_X;
@@ -179,9 +172,10 @@ class TicTacToeGame {
     this.resetWinningLine();
     this.elements.statusDisplay.classList.remove('win', 'draw');
     this.elements.cells[0].focus();
-    this.setStatus('Your turn');
 
-    if (this.state.currentPlayer === this.state.aiPlayer) {
+    if (this.state.currentPlayer === this.state.humanPlayer) {
+      this.setStatus('Your turn');
+    } else {
       this.setStatus('AI is thinking...');
       this.scheduleAIMove();
     }
@@ -189,7 +183,7 @@ class TicTacToeGame {
 
   resetBoard() {
     this.elements.cells.forEach((cell, index) => {
-      cell.classList.remove(this.PLAYER_X, this.PLAYER_O, 'clicked');
+      cell.classList.remove(this.PLAYER_X, this.PLAYER_O, 'clicked', 'winner-cell');
       cell.textContent = '';
       cell.disabled = false;
       cell.setAttribute('aria-label', `Cell ${index + 1}: Empty`);
@@ -204,6 +198,7 @@ class TicTacToeGame {
 
   resetWinningLine() {
     this.elements.winningLine.className = 'winning-line';
+    this.elements.cells.forEach(cell => cell.classList.remove('winner-cell'));
   }
 
   handlePlayerInput(event) {
@@ -265,7 +260,7 @@ class TicTacToeGame {
     }
 
     const bestMove = this.getBestAIMove();
-    if (bestMove === null) return;
+    if (bestMove === null || bestMove === undefined) return;
 
     this.makeMove(bestMove, this.state.aiPlayer);
     
@@ -279,10 +274,16 @@ class TicTacToeGame {
     }
   }
 
-  checkForWin(player, board = this.state.board) {
+  checkBoardWin(board, player) {
     return this.WINNING_COMBINATIONS.some(combo =>
-      combo.every(index => board[index] === player)
+      board[combo[0]] === player &&
+      board[combo[1]] === player &&
+      board[combo[2]] === player
     );
+  }
+
+  checkForWin(player, board = this.state.board) {
+    return this.checkBoardWin(board, player);
   }
 
   checkForDraw() {
@@ -293,10 +294,9 @@ class TicTacToeGame {
 
   getWinningCombination() {
     return this.WINNING_COMBINATIONS.find(combo => 
-      combo.every(index => 
-        this.state.board[index] !== null && 
-        this.state.board[index] === this.state.board[combo[0]]
-      )
+      this.state.board[combo[0]] !== null && 
+      this.state.board[combo[0]] === this.state.board[combo[1]] &&
+      this.state.board[combo[0]] === this.state.board[combo[2]]
     );
   }
 
@@ -309,16 +309,22 @@ class TicTacToeGame {
     } else {
       this.state.gameState = winner === this.PLAYER_X ? this.GAME_STATES.X_WINS : this.GAME_STATES.O_WINS;
       
+      if (winner === this.state.humanPlayer) {
+        this.setStatus('You win!');
+      } else {
+        this.setStatus('AI wins!');
+      }
+
       if (winner === this.PLAYER_X) {
         this.state.scores.x++;
-        this.setStatus('X wins!');
       } else {
         this.state.scores.o++;
-        this.setStatus('O wins!');
       }
       
       const winningCombo = this.getWinningCombination();
-      if(winningCombo) this.showWinningLine(winningCombo, winner);
+      if (winningCombo) {
+        this.showWinningLine(winningCombo, winner);
+      }
       
       this.elements.statusDisplay.classList.add('win');
     }
@@ -329,198 +335,143 @@ class TicTacToeGame {
 
   switchTurns() {
     this.state.currentPlayer = this.state.currentPlayer === this.PLAYER_X ? this.PLAYER_O : this.PLAYER_X;
-    this.setStatus('Your turn');
+    if (this.state.currentPlayer === this.state.humanPlayer) {
+      this.setStatus('Your turn');
+    } else {
+      this.setStatus('AI is thinking...');
+    }
   }
-  
+
+  getEmptyIndices(board = this.state.board) {
+    return board.map((cell, index) => cell === null ? index : null)
+                .filter(index => index !== null);
+  }
+
+  findWinningMove(player) {
+    for (const combo of this.WINNING_COMBINATIONS) {
+      const p0 = this.state.board[combo[0]];
+      const p1 = this.state.board[combo[1]];
+      const p2 = this.state.board[combo[2]];
+
+      if (p0 === player && p1 === player && p2 === null) return combo[2];
+      if (p0 === player && p2 === player && p1 === null) return combo[1];
+      if (p1 === player && p2 === player && p0 === null) return combo[0];
+    }
+    return null;
+  }
+
+  // --- AI Difficulty Engine ---
+
   getBestAIMove() {
     const emptyIndices = this.getEmptyIndices();
     if (emptyIndices.length === 0) return null;
 
     switch (this.state.difficulty) {
       case 'easy':
-        return this.getRandomMove(emptyIndices);
+        return this.getEasyMove(emptyIndices);
       case 'medium':
-        return this.getStrategicMove(emptyIndices);
+        return this.getMediumMove(emptyIndices);
       case 'hard':
-        return this.getOptimalMove();
+        return this.getHardMove();
       default:
-        return this.getRandomMove(emptyIndices);
+        return this.getMediumMove(emptyIndices);
     }
   }
 
-  getRandomMove(emptyIndices) {
-    if (Math.random() < 0.3) {
-      const preferredMoves = emptyIndices.filter(index => 
-        index === this.CENTER || this.CORNERS.includes(index)
-      );
-      if (preferredMoves.length > 0) {
-        return preferredMoves[Math.floor(Math.random() * preferredMoves.length)];
-      }
+  // Easy: Casual play (85% random, 15% immediate win if available)
+  getEasyMove(emptyIndices) {
+    if (Math.random() < 0.15) {
+      const winMove = this.findWinningMove(this.state.aiPlayer);
+      if (winMove !== null) return winMove;
     }
     return emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
   }
 
-  getStrategicMove(emptyIndices) {
+  // Medium: Human-like intelligence
+  // - Always takes an immediate win (100%)
+  // - Blocks player's winning moves 80% of the time
+  // - 60% optimal move, 40% strategic corner/center/random move
+  getMediumMove(emptyIndices) {
     const winMove = this.findWinningMove(this.state.aiPlayer);
     if (winMove !== null) return winMove;
-    
+
     const blockMove = this.findWinningMove(this.state.humanPlayer);
-    if (blockMove !== null) return blockMove;
-    
-    const forkMove = this.findForkMove(this.state.aiPlayer);
-    if (forkMove !== null) return forkMove;
-    
-    const blockForkMove = this.findBlockForkMove();
-    if (blockForkMove !== null) return blockForkMove;
-    
-    if (emptyIndices.includes(this.CENTER)) {
+    if (blockMove !== null && Math.random() < 0.8) {
+      return blockMove;
+    }
+
+    if (Math.random() < 0.6) {
+      const optimal = this.getHardMove();
+      if (optimal !== null && optimal !== undefined) return optimal;
+    }
+
+    if (emptyIndices.includes(this.CENTER) && Math.random() < 0.5) {
       return this.CENTER;
     }
-    
-    const oppositeCorner = this.findOppositeCorner();
-    if (oppositeCorner !== null && emptyIndices.includes(oppositeCorner)) {
-      return oppositeCorner;
-    }
-    
-    const availableCorners = this.CORNERS.filter(corner => emptyIndices.includes(corner));
-    if (availableCorners.length > 0) {
+    const availableCorners = this.CORNERS.filter(c => emptyIndices.includes(c));
+    if (availableCorners.length > 0 && Math.random() < 0.5) {
       return availableCorners[Math.floor(Math.random() * availableCorners.length)];
     }
-    
-    const availableEdges = this.EDGES.filter(edge => emptyIndices.includes(edge));
-    if (availableEdges.length > 0) {
-      return availableEdges[Math.floor(Math.random() * availableEdges.length)];
-    }
-    
+
     return emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
   }
 
-  getOptimalMove() {
-    const result = this.minimax(this.state.board, this.state.aiPlayer, true, 0, -Infinity, Infinity);
+  // Hard: Unbeatable optimal Minimax with Alpha-Beta pruning
+  getHardMove() {
+    const emptyIndices = this.getEmptyIndices();
+    // Fast opening: if whole board is empty, pick center or corner
+    if (emptyIndices.length === 9) {
+      const openings = [this.CENTER, 0, 2, 6, 8];
+      return openings[Math.floor(Math.random() * openings.length)];
+    }
+    const result = this.minimax(this.state.board, true, 0, -Infinity, Infinity);
     return result.index;
   }
 
-  findWinningMove(player) {
-    for (const combo of this.WINNING_COMBINATIONS) {
-      const positions = combo.map(index => this.state.board[index]);
-      const playerCount = positions.filter(pos => pos === player).length;
-      const emptyCount = positions.filter(pos => pos === null).length;
-      
-      if (playerCount === 2 && emptyCount === 1) {
-        return combo[positions.indexOf(null)];
-      }
+  // Canonical Minimax with Alpha-Beta pruning
+  minimax(board, isMaximizing, depth = 0, alpha = -Infinity, beta = Infinity) {
+    if (this.checkBoardWin(board, this.state.aiPlayer)) {
+      return { score: 10 - depth, index: null };
     }
-    return null;
-  }
-
-  findForkMove(player) {
-    const emptyIndices = this.getEmptyIndices();
-    
-    for (const index of emptyIndices) {
-      this.state.board[index] = player;
-      let winningMoves = 0;
-      for (const combo of this.WINNING_COMBINATIONS) {
-        const positions = combo.map(i => this.state.board[i]);
-        const playerCount = positions.filter(pos => pos === player).length;
-        const emptyCount = positions.filter(pos => pos === null).length;
-        
-        if (playerCount === 2 && emptyCount === 1) {
-          winningMoves++;
-        }
-      }
-      this.state.board[index] = null;
-      if (winningMoves >= 2) {
-        return index;
-      }
+    if (this.checkBoardWin(board, this.state.humanPlayer)) {
+      return { score: depth - 10, index: null };
     }
-    return null;
-  }
-
-  findBlockForkMove() {
-    const humanFork = this.findForkMove(this.state.humanPlayer);
-    if (humanFork !== null) return humanFork;
-    
-    const emptyIndices = this.getEmptyIndices();
-    for (const index of emptyIndices) {
-      this.state.board[index] = this.state.aiPlayer;
-      const forcedDefense = this.findWinningMove(this.state.aiPlayer);
-      if (forcedDefense !== null) {
-        this.state.board[forcedDefense] = this.state.humanPlayer;
-        const remainingForks = this.findForkMove(this.state.humanPlayer);
-        this.state.board[forcedDefense] = null;
-        
-        if (remainingForks === null) {
-          this.state.board[index] = null;
-          return index;
-        }
-      }
-      this.state.board[index] = null;
-    }
-    return null;
-  }
-
-  findOppositeCorner() {
-    const opposites = [[0, 8], [2, 6], [6, 2], [8, 0]];
-    for (const [corner, opposite] of opposites) {
-      if (this.state.board[corner] === this.state.humanPlayer && 
-          this.state.board[opposite] === null) {
-        return opposite;
-      }
-    }
-    return null;
-  }
-
-  minimax(board, player, isMaximizing, depth = 0, alpha = -Infinity, beta = Infinity) {
-    const score = this.evaluateBoard(board);
-    
-    if (score === 10) return { score: score - depth, index: null };
-    if (score === -10) return { score: score + depth, index: null };
-    if (this.getEmptyIndices(board).length === 0) return { score: 0, index: null };
-    if (depth > 8) return { score: 0, index: null };
-    
     const emptyIndices = this.getEmptyIndices(board);
-    let bestMove = { score: isMaximizing ? -Infinity : Infinity, index: emptyIndices[0] };
-    
-    for (const index of emptyIndices) {
-      board[index] = player;
-      const result = this.minimax(
-        board, 
-        isMaximizing ? this.state.humanPlayer : this.state.aiPlayer, 
-        !isMaximizing, 
-        depth + 1,
-        alpha,
-        beta
-      );
-      board[index] = null;
-      
-      if (isMaximizing) {
-        if (result.score > bestMove.score) {
-          bestMove = { score: result.score, index };
-        }
-        alpha = Math.max(alpha, result.score);
-      } else {
-        if (result.score < bestMove.score) {
-          bestMove = { score: result.score, index };
-        }
-        beta = Math.min(beta, result.score);
-      }
-      
-      if (beta <= alpha) {
-        break;
-      }
+    if (emptyIndices.length === 0) {
+      return { score: 0, index: null };
     }
-    return bestMove;
-  }
 
-  evaluateBoard(board) {
-    if (this.checkForWin(this.state.aiPlayer, board)) return 10;
-    if (this.checkForWin(this.state.humanPlayer, board)) return -10;
-    return 0;
-  }
-
-  getEmptyIndices(board = this.state.board) {
-    return board.map((cell, index) => cell === null ? index : null)
-              .filter(index => index !== null);
+    if (isMaximizing) {
+      let maxScore = -Infinity;
+      let bestIndex = emptyIndices[0];
+      for (const idx of emptyIndices) {
+        board[idx] = this.state.aiPlayer;
+        const result = this.minimax(board, false, depth + 1, alpha, beta);
+        board[idx] = null;
+        if (result.score > maxScore) {
+          maxScore = result.score;
+          bestIndex = idx;
+        }
+        alpha = Math.max(alpha, maxScore);
+        if (beta <= alpha) break;
+      }
+      return { score: maxScore, index: bestIndex };
+    } else {
+      let minScore = Infinity;
+      let bestIndex = emptyIndices[0];
+      for (const idx of emptyIndices) {
+        board[idx] = this.state.humanPlayer;
+        const result = this.minimax(board, true, depth + 1, alpha, beta);
+        board[idx] = null;
+        if (result.score < minScore) {
+          minScore = result.score;
+          bestIndex = idx;
+        }
+        beta = Math.min(beta, minScore);
+        if (beta <= alpha) break;
+      }
+      return { score: minScore, index: bestIndex };
+    }
   }
 
   showWinningLine(winningCombo, winner) {
@@ -529,11 +480,16 @@ class TicTacToeGame {
     
     this.resetWinningLine();
     
+    // Highlight winning cells
+    winningCombo.forEach(index => {
+      if (this.elements.cells[index]) {
+        this.elements.cells[index].classList.add('winner-cell');
+      }
+    });
+
     setTimeout(() => {
-      this.elements.winningLine.classList.add(`win-${comboIndex}`);
-      this.elements.winningLine.classList.add(`${winner}-win`);
-      this.elements.winningLine.classList.add('show');
-    }, 100);
+      this.elements.winningLine.className = `winning-line show win-${comboIndex} ${winner}-win`;
+    }, 50);
   }
 
   setStatus(message) {

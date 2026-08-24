@@ -44,7 +44,7 @@ body {
   max-width: 360px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   padding: 16px;
 }
 
@@ -52,7 +52,7 @@ body {
 .game {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .board-wrapper {
@@ -61,21 +61,25 @@ body {
   border-radius: var(--radius-container);
   padding: 12px;
   position: relative;
+  width: 100%;
+  aspect-ratio: 1;
 }
 
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   gap: 1px;
   background-color: var(--border-color);
   border-radius: var(--radius-panel);
   overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 .cell {
   background-color: var(--bg-color);
   border: none;
-  aspect-ratio: 1;
   font-family: var(--font-sans);
   font-size: 2.5rem;
   font-weight: 300;
@@ -84,12 +88,17 @@ body {
   align-items: center;
   cursor: pointer;
   color: transparent;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
+  user-select: none;
+}
+
+.cell:hover:not(.clicked) {
+  background-color: #111111;
 }
 
 .cell:focus-visible {
-  outline: 2px solid var(--text-primary);
-  outline-offset: -2px;
+  outline: 1px solid var(--text-primary);
+  outline-offset: -1px;
 }
 
 .cell.clicked {
@@ -104,19 +113,41 @@ body {
   color: var(--o-color);
 }
 
+.cell.winner-cell {
+  background-color: #171717;
+}
+
+.cell.winner-cell.x {
+  text-shadow: 0 0 16px var(--x-color);
+}
+
+.cell.winner-cell.o {
+  text-shadow: 0 0 16px var(--o-color);
+}
+
 /* Status & Action */
 .status {
   font-family: var(--font-serif);
   text-transform: lowercase;
   font-size: 28px;
   text-align: center;
+  min-height: 36px;
+  line-height: 1.2;
+}
+
+.status.win {
+  color: var(--text-primary);
+}
+
+.status.draw {
+  color: var(--accent-amber);
 }
 
 .new-game-btn {
   background-color: var(--text-primary);
   color: var(--bg-color);
   border-radius: var(--radius-pill);
-  padding: 12px;
+  padding: 11px;
   border: none;
   font-family: var(--font-mono);
   text-transform: uppercase;
@@ -162,7 +193,7 @@ body {
   background-color: var(--surface-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-container);
-  padding: 4px;
+  padding: 3px;
   font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -176,7 +207,7 @@ body {
 .setting-group label {
   flex: 1;
   text-align: center;
-  padding: 8px 4px;
+  padding: 7px 4px;
   border-radius: var(--radius-pill);
   cursor: pointer;
   color: var(--text-dim);
@@ -204,7 +235,7 @@ body {
   background-color: var(--surface-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-container);
-  padding: 8px 12px;
+  padding: 6px 12px;
 }
 
 .color-label {
@@ -260,7 +291,7 @@ body {
   font-size: 9px;
   text-decoration: underline;
   cursor: pointer;
-  padding: 8px;
+  padding: 4px;
   text-align: center;
   transition: color 0.2s;
 }
@@ -269,22 +300,94 @@ body {
   color: var(--text-dim);
 }
 
-/* Winning Line Visualization (Optional extra styling if used in logic) */
+/* Winning Strike-through Line */
 .winning-line {
   position: absolute;
-  background-color: var(--text-primary);
-  opacity: 0;
-  transition: opacity 0.3s;
   pointer-events: none;
   z-index: 10;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  border-radius: 9999px;
+  background-color: var(--text-primary);
 }
-.winning-line.show { opacity: 0.5; }
-/* Adding basic transforms for standard combinations if winning-line is used */
-.winning-line.win-0 { top: 16%; left: 0; width: 100%; height: 2px; }
-.winning-line.win-1 { top: 50%; left: 0; width: 100%; height: 2px; }
-.winning-line.win-2 { top: 84%; left: 0; width: 100%; height: 2px; }
-.winning-line.win-3 { top: 0; left: 16%; width: 2px; height: 100%; }
-.winning-line.win-4 { top: 0; left: 50%; width: 2px; height: 100%; }
-.winning-line.win-5 { top: 0; left: 84%; width: 2px; height: 100%; }
-.winning-line.win-6 { top: 0; left: 0; width: 100%; height: 2px; transform: rotate(45deg); transform-origin: top left; }
-.winning-line.win-7 { top: 0; right: 0; width: 100%; height: 2px; transform: rotate(-45deg); transform-origin: top right; }
+
+.winning-line.show {
+  opacity: 1;
+}
+
+.winning-line.x-win {
+  background-color: var(--x-color);
+  box-shadow: 0 0 10px var(--x-color);
+}
+
+.winning-line.o-win {
+  background-color: var(--o-color);
+  box-shadow: 0 0 10px var(--o-color);
+}
+
+/* Horizontal lines: rows 0, 1, 2 */
+.winning-line.win-0 {
+  top: calc(12px + (100% - 24px) / 6);
+  left: 20px;
+  width: calc(100% - 40px);
+  height: 4px;
+  transform: translateY(-50%);
+}
+
+.winning-line.win-1 {
+  top: 50%;
+  left: 20px;
+  width: calc(100% - 40px);
+  height: 4px;
+  transform: translateY(-50%);
+}
+
+.winning-line.win-2 {
+  top: calc(100% - 12px - (100% - 24px) / 6);
+  left: 20px;
+  width: calc(100% - 40px);
+  height: 4px;
+  transform: translateY(-50%);
+}
+
+/* Vertical lines: cols 0, 1, 2 */
+.winning-line.win-3 {
+  left: calc(12px + (100% - 24px) / 6);
+  top: 20px;
+  height: calc(100% - 40px);
+  width: 4px;
+  transform: translateX(-50%);
+}
+
+.winning-line.win-4 {
+  left: 50%;
+  top: 20px;
+  height: calc(100% - 40px);
+  width: 4px;
+  transform: translateX(-50%);
+}
+
+.winning-line.win-5 {
+  left: calc(100% - 12px - (100% - 24px) / 6);
+  top: 20px;
+  height: calc(100% - 40px);
+  width: 4px;
+  transform: translateX(-50%);
+}
+
+/* Diagonals */
+.winning-line.win-6 {
+  top: 50%;
+  left: 50%;
+  width: calc((100% - 32px) * 1.35);
+  height: 4px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.winning-line.win-7 {
+  top: 50%;
+  left: 50%;
+  width: calc((100% - 32px) * 1.35);
+  height: 4px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
