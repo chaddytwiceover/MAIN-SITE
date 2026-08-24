@@ -118,16 +118,16 @@ class TicTacToeGame {
 
   handleColorChange(player) {
     const colorMap = {
-      teal: '#2dd4bf',
+      teal: '#D6FF5C',
       red: '#ef4444',
-      blue: '#3b82f6',
+      blue: '#7AFFD2',
       green: '#22c55e',
       purple: '#a855f7',
-      orange: '#f59e0b',
+      orange: '#FFB86B',
       pink: '#ec4899',
-      cyan: '#06b6d4',
+      cyan: '#7AFFD2',
       yellow: '#eab308',
-      lime: '#84cc16'
+      lime: '#D6FF5C'
     };
 
     if (player === 'x') {

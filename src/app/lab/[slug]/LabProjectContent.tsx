@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import type { LabProject } from '@/lib/lab-projects'
@@ -30,6 +31,21 @@ const sourceUrlBySlug: Record<string, string> = {
 export default function LabProjectContent({ project }: Props) {
   const gameUrl = gameUrlBySlug[project.slug] ?? (project.demoUrl.startsWith('/demos/') ? project.demoUrl : undefined)
   const sourceUrl = sourceUrlBySlug[project.slug] ?? 'https://github.com/chaddytwiceover'
+  const frameRef = useRef<HTMLDivElement>(null)
+
+  const lockScroll = useCallback(() => {
+    document.body.style.overflow = 'hidden'
+  }, [])
+
+  const unlockScroll = useCallback(() => {
+    document.body.style.overflow = ''
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [])
 
   return (
     <section className="mx-auto w-full max-w-[1180px] px-4 py-10 sm:px-6 md:py-14">
@@ -46,7 +62,14 @@ export default function LabProjectContent({ project }: Props) {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
-        <div className="overflow-hidden rounded-3xl border border-border bg-bgSoft/40 p-2 shadow-[0_0_42px_rgba(237,235,230,0.06)]">
+        <div
+          ref={frameRef}
+          onMouseEnter={lockScroll}
+          onMouseLeave={unlockScroll}
+          onTouchStart={lockScroll}
+          onTouchEnd={unlockScroll}
+          className="overflow-hidden rounded-3xl border border-border bg-bgSoft/40 p-2 shadow-[0_0_42px_rgba(237,235,230,0.06)]"
+        >
           <div className="relative min-h-[720px] overflow-hidden rounded-[1.25rem] bg-[#1c1612]">
             {gameUrl ? (
               <iframe
