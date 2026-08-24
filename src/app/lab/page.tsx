@@ -17,7 +17,7 @@ export default function LabPage() {
       </header>
 
       <section aria-label="Lab experiments" className="mt-12 grid gap-4 md:grid-cols-2">
-        {labProjects.map((project) => (
+        {labProjects.filter((p) => !p.hidden).map((project) => (
           <article key={project.slug} className="flex flex-col rounded-2xl border border-border bg-bgSoft/35 p-6 transition hover:border-textDim hover:shadow-[0_0_28px_rgba(237,235,230,0.06)]">
             <div className="flex items-start justify-between gap-4">
               <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-textFaint">{project.status}</span>

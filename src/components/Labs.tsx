@@ -10,7 +10,7 @@ const accentBySlug = {
 
 export default function Labs() {
   const labs = labProjects
-    .filter((project) => project.featured ?? project.status === 'live')
+    .filter((project) => !project.hidden && (project.featured ?? project.status === 'live'))
     .map((project) => ({
       title: project.title.toLowerCase(),
       accent: accentBySlug[project.slug as keyof typeof accentBySlug] ?? 'amber',

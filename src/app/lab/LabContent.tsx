@@ -11,6 +11,7 @@ export default function LabContent() {
   const filters = ['All', 'Live', 'Experiment'];
   
   const filteredProjects = labProjects.filter(project => {
+    if (project.hidden) return false;
     if (filter === 'All') return true;
     return project.status === filter.toLowerCase();
   });
