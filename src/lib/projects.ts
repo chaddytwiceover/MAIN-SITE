@@ -28,15 +28,6 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 'pixel-art',
-    title: 'Happy Little Pixels',
-    description: 'bob ross inspired pixel art editor with spray brush, symmetry modes, and nature palettes. canvas API was fun.',
-    tech: ['JavaScript', 'Canvas', 'CSS'],
-    status: 'Live',
-    url: '/demos/pixel-art/index.html',
-    featured: true,
-  },
-  {
     id: 'tic-tac-toe',
     title: 'Neural Grid',
     description: 'tic tac toe with three AI difficulty levels including an unbeatable minimax algorithm. cyberpunk themed because why not.',

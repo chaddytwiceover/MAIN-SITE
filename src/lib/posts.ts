@@ -14,13 +14,7 @@ export const posts: Post[] = [
     content: 'finally got around to building a proper home on the internet. no templates, no website builders — just next.js, some css, and vibes. still figuring out what goes here but that\'s the point.',
     tags: ['meta', 'web'],
   },
-  {
-    id: 'pixel-art-editor',
-    title: 'built a pixel art editor',
-    date: '2026-07-18',
-    content: 'canvas API is wild. made a little pixel art editor with a bob ross color palette because why not. spray tool ended up being the most fun to build.',
-    tags: ['project', 'canvas'],
-  },
+
   {
     id: 'minimax-rabbit-hole',
     title: 'fell down the minimax rabbit hole',

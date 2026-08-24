@@ -29,21 +29,6 @@ export const labProjects: LabProject[] = [
     "demoUrl": "/lab/flowerquest/"
   },
   {
-    "slug": "pixel-art",
-    "title": "Pixel Art Editor",
-    "description": "A feature-rich pixel art editor with nature-inspired color palettes, symmetry drawing modes, spray brush, adjustable canvas sizes, and rotating Bob Ross quotes. Paint happy little trees!",
-    "techNotes": "Canvas API + custom brush math + keyboard shortcuts.",
-    "featured": true,
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Canvas API"
-    ],
-    "status": "live",
-    "demoUrl": "/demos/pixel-art/index.html"
-  },
-  {
     "slug": "simon-says",
     "title": "Simon Says Game",
     "description": "A classic memory game where players must repeat an increasingly complex sequence of colors. Test your memory and concentration skills!",
@@ -55,7 +40,7 @@ export const labProjects: LabProject[] = [
       "JavaScript"
     ],
     "status": "live",
-    "demoUrl": "/demos/simon-says/index.html"
+    "demoUrl": "/lab/simon-says/"
   },
   {
     "slug": "tic-tac-toe",
@@ -69,6 +54,6 @@ export const labProjects: LabProject[] = [
       "JavaScript"
     ],
     "status": "live",
-    "demoUrl": "/demos/tic-tac-toe/index.html"
+    "demoUrl": "/lab/tic-tac-toe/"
   }
 ]

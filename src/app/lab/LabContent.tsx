@@ -51,7 +51,7 @@ export default function LabContent() {
             >
               <LabCard
                 title={project.title.toLowerCase()}
-                accent={project.slug === 'pixel-art' ? 'lime' : project.slug === 'tic-tac-toe' ? 'neon' : 'amber'}
+                accent={project.slug === 'tic-tac-toe' ? 'neon' : 'amber'}
                 tech={project.techNotes ? project.techNotes.split('+').map((item) => item.trim()).slice(0, 3) : project.tags.slice(0, 3)}
                 description={project.description}
                 href={project.demoUrl}

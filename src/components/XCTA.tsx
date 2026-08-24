@@ -6,7 +6,7 @@ export default function XCTA() {
       <div className="mt-5 rounded-[16px] border border-border bg-bgSoft p-6">
         <h2 className="font-mono text-[13px] uppercase tracking-[0.08em] text-textDim">Building in public on X</h2>
         <p className="mt-3 max-w-[65ch] text-[15px] leading-relaxed text-textDim">
-          Daily dev logs, pixel experiments, late-night thoughts. Reply guy era.
+          Daily dev logs, creative experiments, late-night thoughts. Reply guy era.
         </p>
 
         <div className="mt-5 rounded-[12px] border border-border bg-bg p-4 font-mono text-[13px] leading-relaxed text-textDim">
