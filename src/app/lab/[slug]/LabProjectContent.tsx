@@ -18,12 +18,14 @@ const statusLabel: Record<LabProject['status'], string> = {
 
 const gameUrlBySlug: Record<string, string> = {
   flowerquest: process.env.NEXT_PUBLIC_FLOWERQUEST_URL ?? 'https://flowerquest.vercel.app',
+  'south-florida-fighter': process.env.NEXT_PUBLIC_SF_FIGHTER_URL ?? 'https://south-florida-fighter.vercel.app',
   'simon-says': '/demos/simon-says/index.html',
   'tic-tac-toe': '/demos/tic-tac-toe/index.html',
 }
 
 const sourceUrlBySlug: Record<string, string> = {
   flowerquest: 'https://github.com/chaddytwiceover/flowerquest',
+  'south-florida-fighter': 'https://south-florida-fighter.vercel.app',
   'simon-says': 'https://github.com/chaddytwiceover',
   'tic-tac-toe': 'https://github.com/chaddytwiceover',
 }

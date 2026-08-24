@@ -3,6 +3,7 @@ import { labProjects } from '@/lib/lab-projects'
 
 const accentBySlug = {
   flowerquest: 'amber' as const,
+  'south-florida-fighter': 'neon' as const,
   'tic-tac-toe': 'neon' as const,
   'simon-says': 'amber' as const,
 }

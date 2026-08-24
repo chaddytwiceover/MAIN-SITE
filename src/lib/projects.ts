@@ -28,6 +28,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 'south-florida-fighter',
+    title: 'South Florida Fighter',
+    description: 'vibrant 2D arcade fighter set on south florida boardwalks. locked 60 fps action, cancel combo system, and arcade audio.',
+    tech: ['TypeScript', 'Canvas', 'Arcade'],
+    status: 'Live',
+    url: '/lab/south-florida-fighter/',
+    featured: true,
+  },
+  {
     id: 'tic-tac-toe',
     title: 'Neural Grid',
     description: 'tic tac toe with three AI difficulty levels including an unbeatable minimax algorithm. cyberpunk themed because why not.',

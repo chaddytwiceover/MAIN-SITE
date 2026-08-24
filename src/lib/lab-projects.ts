@@ -29,6 +29,21 @@ export const labProjects: LabProject[] = [
     "demoUrl": "/lab/flowerquest/"
   },
   {
+    "slug": "south-florida-fighter",
+    "title": "South Florida Fighter",
+    "description": "A vibrant 2D arcade fighter set on the boardwalks and beaches of South Florida, featuring special cancels, locked 60 FPS combat, and dynamic audio DSP.",
+    "techNotes": "Custom 2D arcade engine with frame-accurate cancel windows, deployed on Vercel.",
+    "featured": true,
+    "tags": [
+      "Arcade",
+      "Canvas",
+      "TypeScript",
+      "Vite"
+    ],
+    "status": "live",
+    "demoUrl": "/lab/south-florida-fighter/"
+  },
+  {
     "slug": "simon-says",
     "title": "Simon Says Game",
     "description": "A classic memory game where players must repeat an increasingly complex sequence of colors. Test your memory and concentration skills!",
