@@ -1,9 +1,9 @@
 const socials = [
-  { label: 'X', href: 'https://x.com/chaddytwiceover', primary: true },
-  { label: 'Instagram', href: 'https://instagram.com/chaddytwiceover' },
   { label: 'TikTok', href: 'https://tiktok.com/@chaddytwiceover' },
-  { label: 'Twitch', href: 'https://twitch.tv/chaddytwiceover' },
+  { label: 'Instagram', href: 'https://instagram.com/chaddytwiceover' },
+  { label: 'Twitter', href: 'https://x.com/chaddytwiceover' },
   { label: 'GitHub', href: 'https://github.com/chaddytwiceover' },
+  { label: 'Email', href: 'mailto:contact@chaddytwiceover.com' },
 ]
 
 export default function Socials() {
@@ -18,11 +18,7 @@ export default function Socials() {
             href={social.href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`rounded-full border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.08em] transition-colors ${
-              social.primary
-                ? 'scale-125 border-text bg-text text-bg'
-                : 'border-border text-textDim hover:text-text'
-            }`}
+            className="rounded-full border border-border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.08em] text-textDim transition-colors hover:border-textDim hover:text-text"
           >
             {social.label}
           </a>

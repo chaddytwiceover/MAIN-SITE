@@ -6,11 +6,11 @@ export const metadata: Metadata = {
 }
 
 const socials = [
-  { label: 'Twitter / X', handle: '@chaddytwiceover', href: 'https://x.com/chaddytwiceover' },
   { label: 'TikTok', handle: '@chaddytwiceover', href: 'https://www.tiktok.com/@chaddytwiceover' },
   { label: 'Instagram', handle: '@chaddytwiceover', href: 'https://www.instagram.com/chaddytwiceover/' },
+  { label: 'Twitter', handle: '@chaddytwiceover', href: 'https://x.com/chaddytwiceover' },
   { label: 'GitHub', handle: 'chaddytwiceover', href: 'https://github.com/chaddytwiceover' },
-  { label: 'Twitch', handle: 'chaddytwiceover', href: 'https://twitch.tv/chaddytwiceover' },
+  { label: 'Email', handle: 'contact@chaddytwiceover.com', href: 'mailto:contact@chaddytwiceover.com' },
 ]
 
 export default function SocialsPage() {
