@@ -27,11 +27,8 @@ export default function LabPage() {
             <p className="mt-3 flex-1 text-sm leading-relaxed text-textDim">{project.description}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href={`/lab/${project.slug}`} className="inline-flex min-h-11 items-center rounded-full bg-text px-4 font-mono text-[11px] uppercase tracking-[0.08em] text-bg">
-                View project
+                Play now
               </Link>
-              <a href={project.demoUrl} className="inline-flex min-h-11 items-center rounded-full border border-border px-4 font-mono text-[11px] uppercase tracking-[0.08em] text-textDim transition hover:border-textDim hover:text-text">
-                Play demo ↗
-              </a>
             </div>
           </article>
         ))}

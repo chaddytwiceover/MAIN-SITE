@@ -59,7 +59,7 @@ export default function LabCard({ title, accent, tech, description, href }: LabC
         href={href}
         className="mt-5 inline-flex font-mono text-[11px] uppercase tracking-[0.08em] text-textDim transition-colors hover:text-text"
       >
-        live →
+        play →
       </Link>
     </article>
   )
