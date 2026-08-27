@@ -22,7 +22,7 @@ const links = [
   },
 ]
 
-const signals = ['three.js', 'webgl', 'glsl shaders', 'next.js']
+const signals = ['three.js', 'glsl shaders', 'next.js', 'typescript', 'tailwind css']
 
 export default function HomePage() {
   return (

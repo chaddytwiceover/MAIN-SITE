@@ -49,12 +49,12 @@ export const labProjects: LabProject[] = [
     "slug": "simon-says",
     "title": "Simon Says Game",
     "description": "A classic memory game where players must repeat an increasingly complex sequence of colors. Test your memory and concentration skills!",
-    "techNotes": "State machine flow + tuned timing for difficulty ramp.",
+    "techNotes": "State machine flow + Web Audio synthesizer + tuned difficulty curve.",
     "featured": true,
     "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript"
+      "JavaScript",
+      "Web Audio API",
+      "CSS Grid"
     ],
     "status": "live",
     "demoUrl": "/lab/simon-says/"
@@ -63,12 +63,12 @@ export const labProjects: LabProject[] = [
     "slug": "tic-tac-toe",
     "title": "Tic Tac Toe — Neural Grid",
     "description": "A cyberpunk-themed Tic Tac Toe game with three AI difficulty levels — from casual random moves to an unbeatable minimax algorithm with alpha-beta pruning.",
-    "techNotes": "Minimax with score-depth weighting for cleaner AI decisions.",
+    "techNotes": "Canonical Minimax with Alpha-Beta pruning + score-depth weighting.",
     "featured": true,
     "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript"
+      "JavaScript",
+      "Minimax AI",
+      "CSS Grid"
     ],
     "status": "live",
     "demoUrl": "/lab/tic-tac-toe/"

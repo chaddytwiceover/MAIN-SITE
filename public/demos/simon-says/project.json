@@ -4,23 +4,23 @@
   "description": "A classic memory game where players must repeat an increasingly complex sequence of colors. Test your memory and concentration skills!",
   "category": "Game",
   "technologies": [
-    "HTML",
-    "CSS",
-    "JavaScript"
+    "JavaScript",
+    "Web Audio API",
+    "CSS Grid"
   ],
   "features": [
     "Interactive color sequence gameplay",
+    "Synthesized Web Audio arcade sound",
     "Progressive difficulty scaling",
     "Real-time score tracking",
-    "Visual feedback and animations",
-    "Responsive design"
+    "Responsive design with touch focus lock"
   ],
   "demo_url": "./simon-says/index.html",
   "github_url": "",
   "image": "./simon-says/screenshot.png",
   "date_created": "2025-10-08",
   "status": "completed",
-  "techNotes": "State machine flow + tuned timing for difficulty ramp.",
+  "techNotes": "State machine flow + Web Audio synthesizer + tuned difficulty curve.",
   "featured": true,
   "difficulty": "beginner",
   "estimated_time": "2-3 hours",

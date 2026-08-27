@@ -1,8 +1,8 @@
 {
   "title": "Tic Tac Toe — Neural Grid",
   "description": "A cyberpunk-themed Tic Tac Toe game with three AI difficulty levels — from casual random moves to an unbeatable minimax algorithm with alpha-beta pruning.",
-  "techNotes": "Minimax with score-depth weighting for cleaner AI decisions.",
-  "technologies": ["HTML", "CSS", "JavaScript"],
+  "techNotes": "Canonical Minimax with Alpha-Beta pruning + score-depth weighting.",
+  "technologies": ["JavaScript", "Minimax AI", "CSS Grid"],
   "status": "completed",
   "featured": true
 }
