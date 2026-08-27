@@ -60,38 +60,24 @@ void main() {
   vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution.xy) / uResolution.y;
   vec2 pointer = (uPointer - 0.5) * vec2(uResolution.x / uResolution.y, 1.0);
   
-  // Interactive pointer glow
+  // Interactive subtle pointer proximity
   float pointerDist = length(uv - pointer);
-  float pointerGlow = 0.065 / max(pointerDist, 0.05);
+  float pointerGlow = 0.018 / max(pointerDist * 1.5 + 0.1, 0.08);
 
-  // Evolving dual-frequency energy waves
-  float waveA = fbm(uv * 1.8 + vec2(uTime * 0.04, -uTime * 0.02));
-  float waveB = fbm(uv * 3.6 - vec2(uTime * 0.025, uTime * 0.035));
-  
-  // Soft energy ridges
-  float ridge = abs(sin((uv.x + waveA * 0.3) * 6.0 + uTime * 0.25));
-  float beam = smoothstep(0.88, 0.2, ridge) * 0.38;
-  
-  // Subtle holographic grid lines
-  float grid = smoothstep(0.985, 1.0, sin((uv.x + waveB * 0.06) * 32.0)) * 0.06;
+  // Evolving soft wave movement
+  float wave = fbm(uv * 2.2 + vec2(uTime * 0.02, -uTime * 0.015));
+  float ridge = abs(sin((uv.x + wave * 0.25) * 4.0 + uTime * 0.15));
+  float beam = smoothstep(0.92, 0.4, ridge) * 0.045;
 
-  // Site Brand Palette
-  vec3 ink = vec3(0.039, 0.039, 0.039);         // #0A0A0A
-  vec3 lime = vec3(0.839, 1.0, 0.361);         // #D6FF5C
-  vec3 neon = vec3(0.478, 1.0, 0.824);         // #7AFFD2
-  vec3 amber = vec3(1.0, 0.722, 0.420);        // #FFB86B
-  vec3 bone = vec3(0.929, 0.922, 0.902);        // #EDEBE6
+  // Pure Site Palette Tokens
+  vec3 ink = vec3(0.0392, 0.0392, 0.0392);       // Strict #0A0A0A base canvas
+  vec3 neon = vec3(0.478, 1.0, 0.824);          // #7AFFD2 subtle highlight
+  vec3 lime = vec3(0.839, 1.0, 0.361);          // #D6FF5C pointer accent
 
-  // Vignette gradient for dark edge fade
-  float vignette = smoothstep(1.15, 0.25, length(uv));
-  
-  // Base atmosphere
+  // Clean uniform base with delicate micro-shimmer
   vec3 color = ink;
-  color += neon * beam * 0.32 * uRouteIntensity;
-  color += amber * waveB * 0.06 * uRouteIntensity;
-  color += bone * grid * 0.8 * uRouteIntensity;
-  color += lime * pointerGlow * 0.075;
-  color *= 0.55 + vignette * 0.75;
+  color += neon * beam * uRouteIntensity;
+  color += lime * pointerGlow * uRouteIntensity;
 
   gl_FragColor = vec4(color, 1.0);
 }
@@ -133,14 +119,14 @@ void main() {
   
   // Blend between neon cyan and lime based on seed
   vec3 color = mix(vec3(0.839, 1.0, 0.361), vec3(0.478, 1.0, 0.824), vSeed);
-  gl_FragColor = vec4(color, mask * 0.55);
+  gl_FragColor = vec4(color, mask * 0.42);
 }
 `
 
 export default function GlobalShaderCanvas() {
   const mountRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
-  const intensityTargetRef = useRef<number>(1.0)
+  const intensityTargetRef = useRef<number>(0.85)
   const uniformsRef = useRef<{
     uTime: { value: number }
     uResolution: { value: THREE.Vector2 }
@@ -148,15 +134,9 @@ export default function GlobalShaderCanvas() {
     uRouteIntensity: { value: number }
   } | null>(null)
 
-  // Route-based scene tone adjustment
+  // Keep background atmosphere consistent across all pages
   useEffect(() => {
-    if (pathname === '/') {
-      intensityTargetRef.current = 1.0
-    } else if (pathname.startsWith('/lab')) {
-      intensityTargetRef.current = 0.85
-    } else {
-      intensityTargetRef.current = 0.65
-    }
+    intensityTargetRef.current = 0.85
   }, [pathname])
 
   useEffect(() => {

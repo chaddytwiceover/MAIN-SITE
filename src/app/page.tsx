@@ -27,13 +27,9 @@ export default function HomePage() {
   return (
     <div className="min-h-[calc(100vh-73px)] overflow-hidden">
       <section className="relative isolate flex min-h-[calc(100vh-73px)] items-stretch">
-        <div className="pointer-events-none !absolute inset-0 !z-10 bg-[linear-gradient(90deg,rgba(10,10,10,0.85),rgba(10,10,10,0.45)_45%,rgba(10,10,10,0.15))]" />
-        <div className="pointer-events-none !absolute inset-x-0 bottom-0 !z-10 h-40 bg-[linear-gradient(0deg,#0a0a0a,rgba(10,10,10,0))]" />
-
         <div className="relative z-20 mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-10 px-6 py-12 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.55fr)] md:px-12 md:py-20">
           <div className="flex min-h-[380px] flex-col justify-center md:min-h-[500px]">
-            <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-neon">live shader index</p>
-            <h1 className="mt-4 font-serif text-[clamp(2.2rem,7.5vw,6.2rem)] lowercase leading-[0.95] tracking-[-0.02em] text-text">
+            <h1 className="font-serif text-[clamp(2.2rem,7.5vw,6.2rem)] lowercase leading-[0.95] tracking-[-0.02em] text-text">
               chaddytwiceover
             </h1>
             <p className="mt-6 max-w-[56ch] text-base leading-relaxed text-text md:text-lg">
