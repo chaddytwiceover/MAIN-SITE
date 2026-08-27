@@ -201,10 +201,11 @@ export default function ThreeShaderScene() {
     }
 
     const onPointerMove = (event: PointerEvent) => {
-      const rect = mount.getBoundingClientRect()
+      const width = window.innerWidth || 1
+      const height = window.innerHeight || 1
       uniforms.uPointer.value.set(
-        THREE.MathUtils.clamp((event.clientX - rect.left) / rect.width, 0, 1),
-        THREE.MathUtils.clamp(1 - (event.clientY - rect.top) / rect.height, 0, 1),
+        THREE.MathUtils.clamp(event.clientX / width, 0, 1),
+        THREE.MathUtils.clamp(1 - event.clientY / height, 0, 1),
       )
     }
 
@@ -220,12 +221,12 @@ export default function ThreeShaderScene() {
     resize()
     render()
     window.addEventListener('resize', resize)
-    mount.addEventListener('pointermove', onPointerMove)
+    window.addEventListener('pointermove', onPointerMove)
 
     return () => {
       window.cancelAnimationFrame(animationFrame)
       window.removeEventListener('resize', resize)
-      mount.removeEventListener('pointermove', onPointerMove)
+      window.removeEventListener('pointermove', onPointerMove)
       background.geometry.dispose()
       particleGeometry.dispose()
       background.material.dispose()
@@ -235,5 +236,5 @@ export default function ThreeShaderScene() {
     }
   }, [])
 
-  return <div ref={mountRef} className="!absolute inset-0 !z-0 overflow-hidden" aria-hidden="true" />
+  return <div ref={mountRef} className="pointer-events-none !absolute inset-0 !z-0 overflow-hidden" aria-hidden="true" />
 }

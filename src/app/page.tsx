@@ -29,8 +29,8 @@ export default function HomePage() {
     <div className="min-h-[calc(100vh-73px)] overflow-hidden bg-bg">
       <section className="relative isolate flex min-h-[calc(100vh-73px)] items-stretch">
         <ThreeShaderScene />
-        <div className="!absolute inset-0 !z-10 bg-[linear-gradient(90deg,rgba(10,10,10,0.94),rgba(10,10,10,0.62)_45%,rgba(10,10,10,0.26))]" />
-        <div className="!absolute inset-x-0 bottom-0 !z-10 h-40 bg-[linear-gradient(0deg,#0a0a0a,rgba(10,10,10,0))]" />
+        <div className="pointer-events-none !absolute inset-0 !z-10 bg-[linear-gradient(90deg,rgba(10,10,10,0.94),rgba(10,10,10,0.62)_45%,rgba(10,10,10,0.26))]" />
+        <div className="pointer-events-none !absolute inset-x-0 bottom-0 !z-10 h-40 bg-[linear-gradient(0deg,#0a0a0a,rgba(10,10,10,0))]" />
 
         <div className="relative z-20 mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-10 px-6 py-14 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.55fr)] md:px-12 md:py-20">
           <div className="flex min-h-[560px] flex-col justify-center">
@@ -54,7 +54,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="flex flex-col justify-end gap-4 pb-4 md:pb-10">
+          <div className="relative z-30 flex flex-col justify-end gap-4 pb-4 md:pb-10">
             <div className="rounded-lg border border-white/10 bg-black/40 p-4 backdrop-blur-md">
               <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
                 <p className="font-mono text-[11px] uppercase text-textFaint">renderer</p>
@@ -80,12 +80,12 @@ export default function HomePage() {
               </dl>
             </div>
 
-            <div className="grid gap-3">
+            <div className="relative z-30 grid gap-3">
               {links.map((link) => (
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="group rounded-lg border border-white/10 bg-bgSoft/70 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-neon/50 hover:bg-bgRaise focus-visible:border-text"
+                  className="group relative z-30 block cursor-pointer rounded-lg border border-white/10 bg-bgSoft/70 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-neon/50 hover:bg-bgRaise focus-visible:border-text"
                 >
                   <span className="font-mono text-[11px] uppercase text-textFaint">{link.kicker}</span>
                   <span className="mt-2 flex items-end justify-between gap-5">
