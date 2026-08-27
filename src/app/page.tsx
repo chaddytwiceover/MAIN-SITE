@@ -30,13 +30,13 @@ export default function HomePage() {
         <div className="pointer-events-none !absolute inset-0 !z-10 bg-[linear-gradient(90deg,rgba(10,10,10,0.85),rgba(10,10,10,0.45)_45%,rgba(10,10,10,0.15))]" />
         <div className="pointer-events-none !absolute inset-x-0 bottom-0 !z-10 h-40 bg-[linear-gradient(0deg,#0a0a0a,rgba(10,10,10,0))]" />
 
-        <div className="relative z-20 mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-10 px-6 py-14 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.55fr)] md:px-12 md:py-20">
-          <div className="flex min-h-[560px] flex-col justify-center">
-            <p className="font-mono text-[11px] uppercase text-neon">live shader index</p>
-            <h1 className="mt-5 max-w-[8ch] break-words font-serif text-[clamp(4rem,11vw,8.4rem)] lowercase leading-[0.88] text-text">
+        <div className="relative z-20 mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-10 px-6 py-12 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.55fr)] md:px-12 md:py-20">
+          <div className="flex min-h-[380px] flex-col justify-center md:min-h-[500px]">
+            <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-neon">live shader index</p>
+            <h1 className="mt-4 font-serif text-[clamp(2.2rem,7.5vw,6.2rem)] lowercase leading-[0.95] tracking-[-0.02em] text-text">
               chaddytwiceover
             </h1>
-            <p className="mt-7 max-w-[56ch] text-lg leading-relaxed text-text md:text-xl">
+            <p className="mt-6 max-w-[56ch] text-base leading-relaxed text-text md:text-lg">
               A personal WebGL surface for links, experiments, socials, and whatever gets built next.
             </p>
 
@@ -52,55 +52,28 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative z-30 flex flex-col justify-end gap-4 pb-4 md:pb-10">
-            <div className="rounded-lg border border-white/10 bg-black/40 p-4 backdrop-blur-md">
-              <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
-                <p className="font-mono text-[11px] uppercase text-textFaint">renderer</p>
-                <span className="h-2 w-2 rounded-full bg-neon shadow-[0_0_16px_rgba(122,255,210,0.8)]" />
-              </div>
-              <dl className="mt-4 grid grid-cols-2 gap-3 font-mono text-[11px] uppercase">
-                <div>
-                  <dt className="text-textFaint">mode</dt>
-                  <dd className="mt-1 text-text">webgl</dd>
-                </div>
-                <div>
-                  <dt className="text-textFaint">material</dt>
-                  <dd className="mt-1 text-text">shader</dd>
-                </div>
-                <div>
-                  <dt className="text-textFaint">input</dt>
-                  <dd className="mt-1 text-text">pointer</dd>
-                </div>
-                <div>
-                  <dt className="text-textFaint">state</dt>
-                  <dd className="mt-1 text-lime">active</dd>
-                </div>
-              </dl>
-            </div>
-
-            <div className="relative z-30 grid gap-3">
-              {links.map((link) => (
-                <Link
-                  key={link.title}
-                  href={link.href}
-                  className="group relative z-30 block cursor-pointer rounded-lg border border-white/10 bg-bgSoft/70 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-neon/50 hover:bg-bgRaise focus-visible:border-text"
-                >
-                  <span className="font-mono text-[11px] uppercase text-textFaint">{link.kicker}</span>
-                  <span className="mt-2 flex items-end justify-between gap-5">
-                    <span>
-                      <span className="block font-serif text-3xl lowercase leading-none text-text">{link.title}</span>
-                      <span className="mt-3 block max-w-[32ch] text-sm leading-relaxed text-textDim">{link.description}</span>
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="font-mono text-sm text-neon transition-transform group-hover:translate-x-1"
-                    >
-                      -&gt;
-                    </span>
+          <div className="relative z-30 flex flex-col justify-center gap-3 pb-4 md:pb-0">
+            {links.map((link) => (
+              <Link
+                key={link.title}
+                href={link.href}
+                className="group relative z-30 block cursor-pointer rounded-lg border border-white/10 bg-bgSoft/70 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-neon/50 hover:bg-bgRaise focus-visible:border-text"
+              >
+                <span className="font-mono text-[11px] uppercase text-textFaint">{link.kicker}</span>
+                <span className="mt-2 flex items-end justify-between gap-5">
+                  <span>
+                    <span className="block font-serif text-3xl lowercase leading-none text-text">{link.title}</span>
+                    <span className="mt-3 block max-w-[32ch] text-sm leading-relaxed text-textDim">{link.description}</span>
                   </span>
-                </Link>
-              ))}
-            </div>
+                  <span
+                    aria-hidden="true"
+                    className="font-mono text-sm text-neon transition-transform group-hover:translate-x-1"
+                  >
+                    -&gt;
+                  </span>
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
