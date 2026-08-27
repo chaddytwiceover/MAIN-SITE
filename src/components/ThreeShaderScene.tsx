@@ -118,12 +118,19 @@ export default function ThreeShaderScene() {
     if (!mount) return
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: false,
-      powerPreference: 'high-performance',
-      preserveDrawingBuffer: true,
-    })
+    let renderer: THREE.WebGLRenderer
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: false,
+        powerPreference: 'high-performance',
+        preserveDrawingBuffer: true,
+      })
+    } catch (e) {
+      console.warn('WebGL is not supported or failed to initialize:', e)
+      return
+    }
+
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8))
     renderer.setClearColor(0x0a0a0a, 1)
     renderer.domElement.className = 'block h-full w-full'

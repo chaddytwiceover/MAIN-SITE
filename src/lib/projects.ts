@@ -42,7 +42,7 @@ export const projects: Project[] = [
     description: 'tic tac toe with three AI difficulty levels including an unbeatable minimax algorithm. cyberpunk themed because why not.',
     tech: ['JavaScript', 'Minimax', 'AI'],
     status: 'Live',
-    url: '/demos/tic-tac-toe/index.html',
+    url: '/lab/tic-tac-toe/',
     featured: true,
   },
   {
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     description: 'classic memory game. repeat the sequence as it gets longer and faster. simple, satisfying, surprisingly hard.',
     tech: ['JavaScript', 'Game', 'CSS'],
     status: 'Live',
-    url: '/demos/simon-says/index.html',
+    url: '/lab/simon-says/',
   },
   {
     id: 'meteyes',
