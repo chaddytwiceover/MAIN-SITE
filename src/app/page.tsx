@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import ThreeShaderScene from '@/components/ThreeShaderScene'
 
 export const metadata: Metadata = {
   title: { absolute: 'chaddytwiceover' },
@@ -26,10 +25,9 @@ const signals = ['three.js', 'glsl shaders', 'next.js', 'typescript', 'tailwind 
 
 export default function HomePage() {
   return (
-    <div className="min-h-[calc(100vh-73px)] overflow-hidden bg-bg">
+    <div className="min-h-[calc(100vh-73px)] overflow-hidden">
       <section className="relative isolate flex min-h-[calc(100vh-73px)] items-stretch">
-        <ThreeShaderScene />
-        <div className="pointer-events-none !absolute inset-0 !z-10 bg-[linear-gradient(90deg,rgba(10,10,10,0.94),rgba(10,10,10,0.62)_45%,rgba(10,10,10,0.26))]" />
+        <div className="pointer-events-none !absolute inset-0 !z-10 bg-[linear-gradient(90deg,rgba(10,10,10,0.85),rgba(10,10,10,0.45)_45%,rgba(10,10,10,0.15))]" />
         <div className="pointer-events-none !absolute inset-x-0 bottom-0 !z-10 h-40 bg-[linear-gradient(0deg,#0a0a0a,rgba(10,10,10,0))]" />
 
         <div className="relative z-20 mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-10 px-6 py-14 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.55fr)] md:px-12 md:py-20">

@@ -29,13 +29,13 @@ export default function SocialsPage() {
             href={social.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex min-h-16 items-center justify-between gap-6 rounded-2xl border border-border bg-bgSoft/35 px-5 py-4 transition hover:border-textDim hover:bg-bgSoft hover:shadow-[0_0_24px_rgba(237,235,230,0.06)]"
+            className="group flex min-h-16 items-center justify-between gap-6 rounded-2xl border border-border/80 bg-bgSoft/60 px-5 py-4 backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:border-neon/40 hover:bg-bgSoft hover:shadow-[0_0_24px_rgba(122,255,210,0.08)]"
           >
             <span>
-              <span className="block text-base text-text">{social.label}</span>
+              <span className="block text-base text-text transition-colors group-hover:text-neon">{social.label}</span>
               <span className="mt-1 block font-mono text-[11px] text-textFaint">{social.handle}</span>
             </span>
-            <span aria-hidden="true" className="font-mono text-sm text-textFaint transition-transform group-hover:translate-x-1">↗</span>
+            <span aria-hidden="true" className="font-mono text-sm text-textFaint transition-transform group-hover:translate-x-1 group-hover:text-neon">↗</span>
           </a>
         ))}
       </div>

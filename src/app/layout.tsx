@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
+import GlobalShaderCanvas from '@/components/GlobalShaderCanvas'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <GlobalShaderCanvas />
         <a href="#main-content" className="skip-link">Skip to content</a>
         <Nav />
         <main id="main-content">{children}</main>

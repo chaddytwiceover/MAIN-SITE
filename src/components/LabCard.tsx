@@ -11,15 +11,15 @@ interface LabCardProps {
 }
 
 const accentClass: Record<Accent, string> = {
-  lime: 'text-lime border-lime/50 hover:border-lime',
-  neon: 'text-neon border-neon/50 hover:border-neon',
-  amber: 'text-amber border-amber/50 hover:border-amber',
+  lime: 'text-lime border-lime/30 hover:border-lime hover:shadow-[0_0_24px_rgba(214,255,92,0.14)]',
+  neon: 'text-neon border-neon/30 hover:border-neon hover:shadow-[0_0_24px_rgba(122,255,210,0.14)]',
+  amber: 'text-amber border-amber/30 hover:border-amber hover:shadow-[0_0_24px_rgba(255,184,107,0.14)]',
 }
 
 const dotClass: Record<Accent, string> = {
-  lime: 'bg-lime',
-  neon: 'bg-neon',
-  amber: 'bg-amber',
+  lime: 'bg-lime shadow-[0_0_8px_rgba(214,255,92,0.8)]',
+  neon: 'bg-neon shadow-[0_0_8px_rgba(122,255,210,0.8)]',
+  amber: 'bg-amber shadow-[0_0_8px_rgba(255,184,107,0.8)]',
 }
 
 const patternStyle: Record<Accent, string> = {
@@ -31,35 +31,31 @@ const patternStyle: Record<Accent, string> = {
 export default function LabCard({ title, accent, tech, description, href }: LabCardProps) {
   return (
     <article
-      className={`group relative overflow-hidden rounded-[12px] border bg-bgSoft p-5 transition-colors duration-150 ${accentClass[accent]} ${patternStyle[accent]}`}
+      className={`group relative overflow-hidden rounded-[14px] border bg-bgSoft/80 p-5 backdrop-blur-md transition-all duration-200 hover:-translate-y-1 ${accentClass[accent]} ${patternStyle[accent]}`}
     >
-      {accent === 'amber' && (
-        <span className="pointer-events-none absolute inset-0 rounded-[12px] border border-transparent opacity-0 transition-all duration-200 group-hover:scale-105 group-hover:border-amber/35 group-hover:opacity-100" />
-      )}
-
       <div className="mb-4 flex flex-wrap items-center gap-2">
-        <span className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.08em] text-textDim">
+        <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-textDim">
           <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${dotClass[accent]}`} />
           live
         </span>
         {tech.map((item) => (
           <span
             key={item}
-            className="rounded-full border border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-textFaint"
+            className="rounded-full border border-border/80 bg-black/20 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-textFaint"
           >
             {item}
           </span>
         ))}
       </div>
 
-      <h3 className="font-serif text-[20px] lowercase leading-tight text-text">{title}</h3>
+      <h3 className="font-serif text-[21px] lowercase leading-tight text-text">{title}</h3>
       <p className="mt-2 text-[14px] leading-relaxed text-textDim">{description}</p>
 
       <Link
         href={href}
-        className="mt-5 inline-flex font-mono text-[11px] uppercase tracking-[0.08em] text-textDim transition-colors hover:text-text"
+        className="mt-5 inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.08em] text-textDim transition-colors hover:text-text group-hover:text-text"
       >
-        play →
+        play <span className="transition-transform group-hover:translate-x-0.5">→</span>
       </Link>
     </article>
   )
