@@ -17,7 +17,8 @@ export default function CopyEmailButton() {
     <button
       type="button"
       onClick={copyEmail}
-      className="inline-flex min-h-11 items-center rounded-full border border-border px-4 font-mono text-[11px] uppercase tracking-[0.08em] text-textDim transition hover:border-textDim hover:text-text"
+      aria-live="polite"
+      className="inline-flex min-h-11 items-center rounded-full border border-border px-4 font-mono text-[11px] uppercase tracking-[0.08em] text-textDim transition hover:border-textDim hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text"
     >
       {copied ? 'Copied' : 'Copy email'}
     </button>

@@ -24,9 +24,11 @@ describe('CopyEmailButton', () => {
     jest.useRealTimers();
   });
 
-  it('renders with initial button text', () => {
+  it('renders with initial button text and aria-live attribute', () => {
     render(<CopyEmailButton />);
-    expect(screen.getByRole('button', { name: /copy email/i })).toBeInTheDocument();
+    const button = screen.getByRole('button', { name: /copy email/i });
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveAttribute('aria-live', 'polite');
   });
 
   it('copies email to clipboard and updates button text on click', async () => {
