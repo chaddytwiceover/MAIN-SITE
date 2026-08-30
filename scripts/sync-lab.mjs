@@ -47,6 +47,7 @@ const HOSTED_PROJECTS = [
       'Phaser gameplay embedded through the lab shell, with standalone game deployed on Vercel.',
     featured: true,
     hidden: true,
+    accent: 'amber',
     tags: ['Phaser', 'React', 'TypeScript', 'Vite'],
     status: 'live',
     demoUrl: '/lab/flowerquest/',
@@ -59,6 +60,7 @@ const HOSTED_PROJECTS = [
     techNotes:
       'Custom 2D arcade engine with frame-accurate cancel windows, deployed on Vercel.',
     featured: true,
+    accent: 'neon',
     tags: ['Arcade', 'Canvas', 'TypeScript', 'Vite'],
     status: 'live',
     demoUrl: '/lab/south-florida-fighter/',
@@ -99,6 +101,7 @@ async function main() {
         `A lab experiment exploring ${slugToTitle(slug).toLowerCase()}.`,
       techNotes: meta.techNotes,
       featured: meta.featured,
+      accent: meta.accent ?? 'amber',
       tags: Array.isArray(meta.technologies)
         ? meta.technologies
         : ['HTML', 'CSS', 'JavaScript'],
@@ -120,6 +123,7 @@ export interface LabProject {
   demoUrl: string
   featured?: boolean
   hidden?: boolean
+  accent?: 'amber' | 'neon'
 }
 
 export const labProjects: LabProject[] = ${JSON.stringify(projects, null, 2)}
