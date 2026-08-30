@@ -343,13 +343,8 @@ class TicTacToeGame {
   }
 
   getEmptyIndices(board = this.state.board) {
-    const emptyIndices = [];
-    for (let i = 0; i < board.length; i++) {
-      if (board[i] === null) {
-        emptyIndices.push(i);
-      }
-    }
-    return emptyIndices;
+    return board.map((cell, index) => cell === null ? index : null)
+                .filter(index => index !== null);
   }
 
   findWinningMove(player) {

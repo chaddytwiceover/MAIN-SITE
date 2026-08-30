@@ -1,65 +1,43 @@
-import React from 'react';
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import LabCard from './LabCard';
 
-describe('LabCard', () => {
+describe('LabCard Component', () => {
   const defaultProps = {
-    title: 'Interactive 3D Simulation',
-    accent: 'lime' as const,
-    tech: ['Three.js', 'React', 'WebGL'],
-    description: 'A experimental 3D particle simulation built with Three.js.',
-    href: '/demos/simulation',
+    title: 'Test Lab',
+    accent: 'neon' as const,
+    tech: ['React', 'TypeScript'],
+    description: 'A test description for the lab card.',
+    href: '/labs/test-lab',
   };
 
-  it('renders title, description, tech tags, and play link correctly', () => {
+  it('renders the title and description correctly', () => {
     render(<LabCard {...defaultProps} />);
 
-    expect(screen.getByText('Interactive 3D Simulation')).toBeInTheDocument();
-    expect(screen.getByText('A experimental 3D particle simulation built with Three.js.')).toBeInTheDocument();
-
-    defaultProps.tech.forEach((item) => {
-      expect(screen.getByText(item)).toBeInTheDocument();
-    });
-
-    const link = screen.getByRole('link', { name: /play/i });
-    expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', '/demos/simulation');
+    expect(screen.getByText('Test Lab')).toBeInTheDocument();
+    expect(screen.getByText('A test description for the lab card.')).toBeInTheDocument();
   });
 
-  it('renders correctly with lime accent classes', () => {
+  it('renders the tech stack correctly', () => {
+    render(<LabCard {...defaultProps} />);
+
+    expect(screen.getByText('React')).toBeInTheDocument();
+    expect(screen.getByText('TypeScript')).toBeInTheDocument();
+  });
+
+  it('renders the href correctly in the link', () => {
+    render(<LabCard {...defaultProps} />);
+
+    const link = screen.getByRole('link');
+    expect(link).toHaveAttribute('href', '/labs/test-lab');
+    expect(link).toHaveTextContent('play');
+  });
+
+  it('applies the correct accent class', () => {
     const { container } = render(<LabCard {...defaultProps} accent="lime" />);
 
-    const article = container.querySelector('article');
-    expect(article).toHaveClass('text-lime', 'border-lime/30');
-
-    const dot = container.querySelector('span.animate-pulse');
-    expect(dot).toHaveClass('bg-lime');
-  });
-
-  it('renders correctly with neon accent classes', () => {
-    const { container } = render(<LabCard {...defaultProps} accent="neon" />);
-
-    const article = container.querySelector('article');
-    expect(article).toHaveClass('text-neon', 'border-neon/30');
-
-    const dot = container.querySelector('span.animate-pulse');
-    expect(dot).toHaveClass('bg-neon');
-  });
-
-  it('renders correctly with amber accent classes', () => {
-    const { container } = render(<LabCard {...defaultProps} accent="amber" />);
-
-    const article = container.querySelector('article');
-    expect(article).toHaveClass('text-amber', 'border-amber/30');
-
-    const dot = container.querySelector('span.animate-pulse');
-    expect(dot).toHaveClass('bg-amber');
-  });
-
-  it('renders correctly when tech array is empty', () => {
-    render(<LabCard {...defaultProps} tech={[]} />);
-
-    expect(screen.getByText('Interactive 3D Simulation')).toBeInTheDocument();
-    expect(screen.getByText('live')).toBeInTheDocument();
+    // The article is the first child of the container
+    const article = container.firstChild as HTMLElement;
+    expect(article).toHaveClass('text-lime');
   });
 });

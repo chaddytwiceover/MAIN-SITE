@@ -123,76 +123,6 @@ void main() {
 }
 `
 
-interface ShaderUniforms {
-  uTime: { value: number }
-  uResolution: { value: THREE.Vector2 }
-  uPointer: { value: THREE.Vector2 }
-  uRouteIntensity: { value: number }
-  [uniform: string]: THREE.IUniform
-}
-
-function createParticleGeometry(particleCount: number): THREE.BufferGeometry {
-  const positions = new Float32Array(particleCount * 3)
-  const seeds = new Float32Array(particleCount)
-  const sizes = new Float32Array(particleCount)
-
-  for (let i = 0; i < particleCount; i++) {
-    const radius = 0.3 + Math.random() * 2.2
-    const angle = Math.random() * Math.PI * 2
-    positions[i * 3] = Math.cos(angle) * radius * 1.3
-    positions[i * 3 + 1] = Math.sin(angle) * radius * 0.8
-    positions[i * 3 + 2] = -0.3 - Math.random() * 2.8
-    seeds[i] = Math.random()
-    sizes[i] = 2.5 + Math.random() * 3.0
-  }
-
-  const particleGeo = new THREE.BufferGeometry()
-  particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-  particleGeo.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 1))
-  particleGeo.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1))
-
-  return particleGeo
-}
-
-function createBackgroundMesh(uniforms: ShaderUniforms): {
-  mesh: THREE.Mesh
-  geometry: THREE.PlaneGeometry
-  material: THREE.ShaderMaterial
-} {
-  const geometry = new THREE.PlaneGeometry(2, 2)
-  const material = new THREE.ShaderMaterial({
-    vertexShader,
-    fragmentShader,
-    uniforms,
-    depthWrite: false,
-    depthTest: false,
-  })
-  const mesh = new THREE.Mesh(geometry, material)
-  mesh.frustumCulled = false
-  return { mesh, geometry, material }
-}
-
-function createParticlePoints(
-  uniforms: ShaderUniforms,
-  particleCount = 320
-): {
-  points: THREE.Points
-  geometry: THREE.BufferGeometry
-  material: THREE.ShaderMaterial
-} {
-  const geometry = createParticleGeometry(particleCount)
-  const material = new THREE.ShaderMaterial({
-    vertexShader: particleVertexShader,
-    fragmentShader: particleFragmentShader,
-    uniforms,
-    transparent: true,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-  })
-  const points = new THREE.Points(geometry, material)
-  return { points, geometry, material }
-}
-
 export default function GlobalShaderCanvas() {
   const mountRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
@@ -247,19 +177,49 @@ export default function GlobalShaderCanvas() {
     uniformsRef.current = uniforms
 
     // Background GLSL Plane
-    const {
-      mesh: background,
-      geometry: backgroundGeo,
-      material: backgroundMat,
-    } = createBackgroundMesh(uniforms)
+    const backgroundGeo = new THREE.PlaneGeometry(2, 2)
+    const backgroundMat = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      uniforms,
+      depthWrite: false,
+      depthTest: false,
+    })
+    const background = new THREE.Mesh(backgroundGeo, backgroundMat)
+    background.frustumCulled = false
     scene.add(background)
 
     // Ambient 3D Particle Constellation
-    const {
-      points: particles,
-      geometry: particleGeo,
-      material: particleMat,
-    } = createParticlePoints(uniforms)
+    const particleCount = 320
+    const positions = new Float32Array(particleCount * 3)
+    const seeds = new Float32Array(particleCount)
+    const sizes = new Float32Array(particleCount)
+
+    for (let i = 0; i < particleCount; i++) {
+      const radius = 0.3 + Math.random() * 2.2
+      const angle = Math.random() * Math.PI * 2
+      positions[i * 3] = Math.cos(angle) * radius * 1.3
+      positions[i * 3 + 1] = Math.sin(angle) * radius * 0.8
+      positions[i * 3 + 2] = -0.3 - Math.random() * 2.8
+      seeds[i] = Math.random()
+      sizes[i] = 2.5 + Math.random() * 3.0
+    }
+
+    const particleGeo = new THREE.BufferGeometry()
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+    particleGeo.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 1))
+    particleGeo.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1))
+
+    const particleMat = new THREE.ShaderMaterial({
+      vertexShader: particleVertexShader,
+      fragmentShader: particleFragmentShader,
+      uniforms,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    })
+
+    const particles = new THREE.Points(particleGeo, particleMat)
     scene.add(particles)
 
     const clock = new THREE.Clock()

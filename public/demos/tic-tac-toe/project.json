@@ -4,6 +4,5 @@
   "techNotes": "Canonical Minimax with Alpha-Beta pruning + score-depth weighting.",
   "technologies": ["JavaScript", "Minimax AI", "CSS Grid"],
   "status": "completed",
-  "featured": true,
-  "accent": "neon"
+  "featured": true
 }
