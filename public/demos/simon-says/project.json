@@ -22,7 +22,6 @@
   "status": "completed",
   "techNotes": "State machine flow + Web Audio synthesizer + tuned difficulty curve.",
   "featured": true,
-  "accent": "amber",
   "difficulty": "beginner",
   "estimated_time": "2-3 hours",
   "learning_objectives": [

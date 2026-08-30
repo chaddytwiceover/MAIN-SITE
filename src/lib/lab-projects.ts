@@ -11,7 +11,6 @@ export interface LabProject {
   demoUrl: string
   featured?: boolean
   hidden?: boolean
-  accent?: 'amber' | 'neon'
 }
 
 export const labProjects: LabProject[] = [
@@ -22,7 +21,6 @@ export const labProjects: LabProject[] = [
     "techNotes": "Phaser gameplay embedded through the lab shell, with standalone game deployed on Vercel.",
     "featured": true,
     "hidden": true,
-    "accent": "amber",
     "tags": [
       "Phaser",
       "React",
@@ -38,7 +36,6 @@ export const labProjects: LabProject[] = [
     "description": "A vibrant 2D arcade fighter set on the boardwalks and beaches of South Florida, featuring special cancels, locked 60 FPS combat, and dynamic audio DSP.",
     "techNotes": "Custom 2D arcade engine with frame-accurate cancel windows, deployed on Vercel.",
     "featured": true,
-    "accent": "neon",
     "tags": [
       "Arcade",
       "Canvas",
@@ -54,7 +51,6 @@ export const labProjects: LabProject[] = [
     "description": "A classic memory game where players must repeat an increasingly complex sequence of colors. Test your memory and concentration skills!",
     "techNotes": "State machine flow + Web Audio synthesizer + tuned difficulty curve.",
     "featured": true,
-    "accent": "amber",
     "tags": [
       "JavaScript",
       "Web Audio API",
@@ -69,7 +65,6 @@ export const labProjects: LabProject[] = [
     "description": "A cyberpunk-themed Tic Tac Toe game with three AI difficulty levels — from casual random moves to an unbeatable minimax algorithm with alpha-beta pruning.",
     "techNotes": "Canonical Minimax with Alpha-Beta pruning + score-depth weighting.",
     "featured": true,
-    "accent": "neon",
     "tags": [
       "JavaScript",
       "Minimax AI",
