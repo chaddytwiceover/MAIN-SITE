@@ -20,7 +20,6 @@ export const labProjects: LabProject[] = [
     "description": "A polished mobile-first garden adventure where Monnie collects flowers, dodges beetles, bees & wasps, collects power blooms, and unlocks the garden gate across ten handcrafted levels.",
     "techNotes": "Phaser gameplay embedded through the lab shell, with standalone game deployed on Vercel.",
     "featured": true,
-    "hidden": true,
     "tags": [
       "Phaser",
       "React",

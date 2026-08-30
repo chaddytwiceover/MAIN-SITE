@@ -46,7 +46,6 @@ const HOSTED_PROJECTS = [
     techNotes:
       'Phaser gameplay embedded through the lab shell, with standalone game deployed on Vercel.',
     featured: true,
-    hidden: true,
     tags: ['Phaser', 'React', 'TypeScript', 'Vite'],
     status: 'live',
     demoUrl: '/lab/flowerquest/',
