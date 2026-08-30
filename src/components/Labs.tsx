@@ -1,19 +1,12 @@
 import LabCard from '@/components/LabCard'
 import { labProjects } from '@/lib/lab-projects'
 
-const accentBySlug = {
-  flowerquest: 'amber' as const,
-  'south-florida-fighter': 'neon' as const,
-  'tic-tac-toe': 'neon' as const,
-  'simon-says': 'amber' as const,
-}
-
 export default function Labs() {
   const labs = labProjects
     .filter((project) => !project.hidden && (project.featured ?? project.status === 'live'))
     .map((project) => ({
       title: project.title.toLowerCase(),
-      accent: accentBySlug[project.slug as keyof typeof accentBySlug] ?? 'amber',
+      accent: project.accent ?? 'amber',
       tech: project.tags.slice(0, 3),
       description: project.description,
       href: project.demoUrl,

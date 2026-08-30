@@ -1,8 +1,9 @@
 import { createReadStream, existsSync } from 'node:fs'
 import { createServer } from 'node:http'
-import { extname, join, normalize, resolve } from 'node:path'
+import { extname, join, normalize, resolve, sep } from 'node:path'
 
 const root = resolve(process.cwd(), 'out')
+const rootWithSep = root.endsWith(sep) ? root : `${root}${sep}`
 const port = Number(process.env.PORT || 3003)
 
 const contentTypes = {
@@ -23,7 +24,7 @@ createServer((request, response) => {
   const requestedPath = pathname === '/' || pathname.endsWith('/') ? `${pathname}index.html` : pathname
   const filePath = normalize(join(root, requestedPath))
 
-  if (!filePath.startsWith(root)) {
+  if (filePath !== root && !filePath.startsWith(rootWithSep)) {
     response.writeHead(403)
     response.end('Forbidden')
     return
