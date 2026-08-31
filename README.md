@@ -19,3 +19,9 @@ npm install
 npm run dev
 ```
 
+## Validate
+
+```bash
+npm run lint
+npm run build
+```
