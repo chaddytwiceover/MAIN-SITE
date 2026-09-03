@@ -24,7 +24,7 @@ tailwind_imports = """@tailwind base;
   --transition: all 0.1s steps(2);
   --font-mono: 'Courier New', Courier, monospace;
   --font-sans: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
-  
+
   --yellow: #ffff00;
   --pink: #ff00ff;
   --cyan: #00ffff;
@@ -256,4 +256,3 @@ footer { border-top: 4px solid var(--border); background: var(--surface); margin
 
 with open('src/app/globals.css', 'w') as f:
     f.write(tailwind_imports)
-

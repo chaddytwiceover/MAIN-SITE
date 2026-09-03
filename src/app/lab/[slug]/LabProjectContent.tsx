@@ -80,6 +80,7 @@ export default function LabProjectContent({ project }: Props) {
                 className="absolute inset-0 h-full w-full border-0"
                 allow="autoplay; fullscreen; gamepad"
                 loading="eager"
+                sandbox="allow-scripts"
               />
             ) : (
               <div className="flex min-h-[720px] items-center justify-center bg-[radial-gradient(circle_at_30%_20%,#4f8f5c,#245c3a_35%,#3a271c_80%)] p-8 text-center">
