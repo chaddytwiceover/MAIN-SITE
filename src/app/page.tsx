@@ -27,8 +27,8 @@ export default function HomePage() {
   return (
     <div className="min-h-[calc(100vh-73px)] overflow-hidden">
       <section className="relative isolate flex min-h-[calc(100vh-73px)] items-stretch">
-        <div className="relative z-20 mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-10 px-6 py-12 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.55fr)] md:px-12 md:py-20">
-          <div className="flex min-h-[380px] flex-col justify-center md:min-h-[500px]">
+        <div className="relative z-20 mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-6 px-6 py-8 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.55fr)] md:gap-10 md:px-12 md:py-12">
+          <div className="flex flex-col justify-center">
             <h1 className="font-serif text-[clamp(2.2rem,7.5vw,6.2rem)] lowercase leading-[0.95] tracking-[-0.02em] text-text">
               chaddytwiceover
             </h1>
