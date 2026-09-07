@@ -21,7 +21,14 @@ async function buildManifest() {
   const projects = []
   for (const entry of await readdir(resolve(root, 'out/lab'), { withFileTypes: true })) {
     if (!entry.isDirectory()) continue
-    const html = await readFile(resolve(root, 'out/lab', entry.name, 'index.html'), 'utf8')
+    let html
+    try {
+      html = await readFile(resolve(root, 'out/lab', entry.name, 'index.html'), 'utf8')
+    } catch (error) {
+      // Next also exports directories containing navigation data, not HTML routes.
+      if (error.code === 'ENOENT') continue
+      throw error
+    }
     if (!html.includes('<iframe')) continue
     projects.push({ path: `/lab/${entry.name}/`, ...inspectFrame(html) })
   }
