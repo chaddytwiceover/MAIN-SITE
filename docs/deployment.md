@@ -98,11 +98,7 @@ This project is a **static export**, so environment variables are baked in at bu
 
 ### Flower Quest embed
 
-`/lab/flowerquest/` embeds the standalone Flower Quest deployment (defaults to `https://flowerquest.vercel.app`). To point to a custom deployment:
-
-```bash
-NEXT_PUBLIC_FLOWERQUEST_URL=https://flowerquest.vercel.app
-```
+`/lab/flowerquest/` embeds the standalone Flower Quest deployment at `https://flowerquest.vercel.app/`. The iframe and "Open full screen" link use this fixed URL, with no environment-variable override.
 
 - **`next.config.js`** is configured with:
 

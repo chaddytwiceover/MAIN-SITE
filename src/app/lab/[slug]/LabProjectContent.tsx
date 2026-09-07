@@ -17,7 +17,7 @@ const statusLabel: Record<LabProject['status'], string> = {
 }
 
 const gameUrlBySlug: Record<string, string> = {
-  flowerquest: process.env.NEXT_PUBLIC_FLOWERQUEST_URL ?? 'https://flowerquest.vercel.app',
+  flowerquest: 'https://flowerquest.vercel.app/',
   'south-florida-fighter': process.env.NEXT_PUBLIC_SF_FIGHTER_URL ?? 'https://south-florida-fighter.vercel.app',
   'simon-says': 'https://simon-says-neon.vercel.app/',
   'tic-tac-toe': 'https://tic-tac-toe-two-self-24.vercel.app/',
