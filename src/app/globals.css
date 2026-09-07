@@ -85,3 +85,30 @@ a {
   outline: 1px solid #edebe6;
   outline-offset: 2px;
 }
+/* Give games the available viewport without trapping normal page scrolling. */
+.lab-game-player {
+  display: flex;
+  flex-direction: column;
+  height: clamp(320px, 78svh, 900px);
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: #1c1612;
+}
+
+.lab-game-player-expanded,
+.lab-game-player:fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100dvh;
+  border-radius: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* The site's nested stacking contexts must not cover the fullscreen fallback. */
+main:has(.lab-game-player-expanded),
+section:has(.lab-game-player-expanded),
+div:has(.lab-game-player-expanded) {
+  z-index: 1000;
+}

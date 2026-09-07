@@ -27,6 +27,11 @@ jobs:
         with:
           submodules: 'recursive'
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
       - name: Run script
 # uncomment the following lines if you want to add environment variables for this step
 #        env:

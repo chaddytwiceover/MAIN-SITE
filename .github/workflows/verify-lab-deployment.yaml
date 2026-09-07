@@ -1,0 +1,39 @@
+name: Verify live lab deployment
+
+on:
+  workflow_run:
+    workflows: ['Deploy Now: Deploy to IONOS']
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require completed deployment
+        env:
+          CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+        run: |
+          if [ "$CONCLUSION" != success ]; then
+            echo "::error::IONOS deployment ended with $CONCLUSION. Review the deployment run; a successful build does not mean production was updated."
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check live revision and iframe configuration
+        env:
+          EXPECTED_REVISION: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            if node scripts/lab-deployment.mjs verify https://chaddytwiceover.com "$EXPECTED_REVISION"; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 6 ]; then sleep 10; fi
+          done
+          exit 1

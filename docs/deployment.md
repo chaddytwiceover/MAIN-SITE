@@ -6,7 +6,7 @@ This document provides complete instructions for deploying this Next.js static s
 
 ## Prerequisites
 
-- Node.js 18+ and npm installed locally
+- Node.js 22+ and npm installed locally
 - IONOS hosting account (Deploy Now or Web Hosting)
 - Domain configured and DNS pointing to IONOS
 
@@ -44,7 +44,7 @@ Best for automatic deployments from Git.
 2. **Configure build settings:**
    - **Framework Preset:** Next.js (Static HTML Export)
    - **Build Command:** `npm run build`
-   - **Node Version:** 18.x or 20.x
+   - **Node Version:** 22.x
    - **Publish Directory:** `out`
 
 3. **Deploy:** IONOS will automatically build and deploy on every commit.
@@ -98,7 +98,23 @@ This project is a **static export**, so environment variables are baked in at bu
 
 ### Flower Quest embed
 
-`/lab/flowerquest/` embeds the standalone Flower Quest deployment at `https://flowerquest.vercel.app/`. The iframe and "Open full screen" link use this fixed URL, with no environment-variable override.
+`/lab/flowerquest/` embeds the standalone Flower Quest deployment at `https://flowerquest.vercel.app/`. The iframe and "Open game in new tab" link use this fixed URL, with no environment-variable override.
+
+Both featured games use `GamePlayer`, which retains the iframe while entering fullscreen. Browsers without native fullscreen use an expanded player within the site. The exit button stays visible in either mode. Use "Focus game" to send keyboard focus into the game. Background WebGL rendering is disabled on lab detail routes.
+
+### Verify the deployed lab
+
+The build validates exported iframe URLs and permissions and writes `out/lab-deployment.json` with the build commit. After the IONOS deployment workflow completes, `verify-lab-deployment.yaml` checks the live commit, game URLs, and sandbox attributes. It fails if deployment was blocked, even if the build succeeded.
+
+To check an expected deployed commit manually:
+
+```bash
+node scripts/lab-deployment.mjs verify https://chaddytwiceover.com <full-commit-sha>
+```
+
+These checks validate delivery and iframe configuration, not interactive gameplay. Also test both games on desktop and mobile: start, keyboard/touch input, audio after a gesture, saved progress where supported, rotation, fullscreen entry/exit, and returning to the lab.
+
+If GitHub holds the IONOS run as potentially malicious, review the workflow and approve that run through an authenticated GitHub web session. Do not assume the site updated because the orchestration/build workflow succeeded. Check the deployment run and then the live verifier.
 
 - **`next.config.js`** is configured with:
 
