@@ -16,23 +16,9 @@ const statusLabel: Record<LabProject['status'], string> = {
   'coming soon': 'Coming Soon',
 }
 
-const gameUrlBySlug: Record<string, string> = {
-  flowerquest: 'https://flowerquest.vercel.app/',
-  'south-florida-fighter': process.env.NEXT_PUBLIC_SF_FIGHTER_URL ?? 'https://south-florida-fighter.vercel.app',
-  'simon-says': 'https://simon-says-neon.vercel.app/',
-  'tic-tac-toe': 'https://tic-tac-toe-two-self-24.vercel.app/',
-}
-
-const sourceUrlBySlug: Record<string, string> = {
-  flowerquest: 'https://github.com/chaddytwiceover/flowerquest',
-  'south-florida-fighter': 'https://south-florida-fighter.vercel.app',
-  'simon-says': 'https://github.com/chaddytwiceover',
-  'tic-tac-toe': 'https://github.com/chaddytwiceover',
-}
-
 export default function LabProjectContent({ project }: Props) {
-  const gameUrl = gameUrlBySlug[project.slug] ?? (project.demoUrl.startsWith('/demos/') ? project.demoUrl : undefined)
-  const sourceUrl = sourceUrlBySlug[project.slug] ?? 'https://github.com/chaddytwiceover'
+  const gameUrl = project.gameUrl ?? (project.demoUrl.startsWith('/demos/') ? project.demoUrl : undefined)
+  const sourceUrl = project.sourceUrl ?? 'https://github.com/chaddytwiceover'
   const frameRef = useRef<HTMLDivElement>(null)
 
   const lockScroll = useCallback(() => {
@@ -80,7 +66,7 @@ export default function LabProjectContent({ project }: Props) {
                 className="absolute inset-0 h-full w-full border-0"
                 allow="autoplay; fullscreen; gamepad"
                 loading="eager"
-                sandbox="allow-scripts"
+                sandbox="allow-scripts allow-same-origin"
               />
             ) : (
               <div className="flex min-h-[720px] items-center justify-center bg-[radial-gradient(circle_at_30%_20%,#4f8f5c,#245c3a_35%,#3a271c_80%)] p-8 text-center">
