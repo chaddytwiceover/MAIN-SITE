@@ -38,8 +38,8 @@ export const projects: Project[] = [
   },
   {
     id: 'tic-tac-toe',
-    title: 'Neural Grid',
-    description: 'tic tac toe with three AI difficulty levels including an unbeatable minimax algorithm. cyberpunk themed because why not.',
+    title: 'Tic Tac Toe',
+    description: 'dark-themed, minimalist tic tac toe with 3 AI difficulty levels (including unbeatable minimax), 2-player pass & play, and 4 custom palettes.',
     tech: ['JavaScript', 'Minimax AI', 'CSS Grid'],
     status: 'Live',
     url: '/lab/tic-tac-toe/',

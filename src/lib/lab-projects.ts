@@ -51,14 +51,14 @@ export const labProjects: LabProject[] = [
   },
   {
     slug: 'tic-tac-toe',
-    title: 'Tic Tac Toe — Neural Grid',
-    description: "A cyberpunk-themed Tic Tac Toe game with three AI difficulty levels — from casual random moves to an unbeatable minimax algorithm with alpha-beta pruning.",
-    techNotes: "Canonical Minimax with Alpha-Beta pruning + score-depth weighting.",
+    title: 'Tic Tac Toe',
+    description: "A dark-themed, minimalist Tic Tac Toe game featuring three AI difficulty levels (Easy, tactical Medium, and unbeatable Minimax), 2-player local Pass & Play, dynamic hover ghost previews, and 4 curated color palettes.",
+    techNotes: "Minimax algorithm with alpha-beta pruning & opening book optimization, tactical heuristic AI, and animated SVG win lines.",
     featured: true,
-    tags: ['JavaScript', 'Minimax AI', 'CSS Grid'],
+    tags: ['JavaScript', 'Minimax AI', 'Heuristic AI', 'CSS Grid'],
     status: 'live',
     demoUrl: '/lab/tic-tac-toe/',
     gameUrl: 'https://tic-tac-toe-two-self-24.vercel.app/',
-    sourceUrl: 'https://github.com/chaddytwiceover'
+    sourceUrl: 'https://github.com/chaddytwiceover/tic-tac-toe'
   }
 ]

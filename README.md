@@ -23,7 +23,7 @@ A personal WebGL playground and digital hub for interactive experiments, web gam
     - **Monnie's Flower Quest**: Mobile-first garden adventure powered by Phaser 3 & Vite.
     - **South Florida Fighter**: 2D arcade combat engine running on HTML5 Canvas at 60 FPS.
     - **Simon Says**: Memory game with state machine architecture and Web Audio API synthesizer.
-    - **Tic Tac Toe — Neural Grid**: Cyberpunk grid with Minimax AI and Alpha-Beta pruning.
+    - **Tic Tac Toe**: Minimalist dark-themed game with 3 AI difficulty levels (including unbeatable Minimax), 2-player pass & play, and 4 color palettes.
 - **Content & Hubs**:
   - `/lab`: Interactive experiment library with tag filtering and responsive preview cards.
   - `/whatever`: Lightweight stream of notes, logs, and technical writeups.
