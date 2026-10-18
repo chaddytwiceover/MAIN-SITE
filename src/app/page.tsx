@@ -1,78 +1,87 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { labProjects } from '@/lib/lab-projects'
+import { posts } from '@/lib/posts'
+import styles from './home.module.css'
 
 export const metadata: Metadata = {
   title: { absolute: 'chaddytwiceover' },
-  description: 'A WebGL home for links, experiments, socials, and things I make.',
+  description: 'My little corner of the internet. Games, experiments, notes, and whatever comes next.',
 }
 
-const links = [
-  {
-    title: 'Lab',
-    kicker: 'Interactive builds',
-    description: 'Games, tools, and WebGL experiments in progress.',
-    href: '/lab',
-  },
-  {
-    title: 'Socials',
-    kicker: 'Elsewhere online',
-    description: 'Profiles, updates, and the places I post from.',
-    href: '/socials',
-  },
-]
-
-const signals = ['three.js', 'glsl shaders', 'next.js', 'typescript', 'tailwind css']
+function Arrow() {
+  return <span className={styles.arrow} aria-hidden="true">↗</span>
+}
 
 export default function HomePage() {
+  const flower = labProjects.find(project => project.slug === 'flowerquest')!
+  const ticTacToe = labProjects.find(project => project.slug === 'tic-tac-toe')!
+  const latestPost = [...posts].sort((a, b) => b.date.localeCompare(a.date))[0]
+
   return (
-    <div className="min-h-[calc(100vh-73px)] overflow-hidden">
-      <section className="relative isolate flex min-h-[calc(100vh-73px)] items-stretch">
-        <div className="relative z-20 mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-6 px-6 py-8 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.55fr)] md:gap-10 md:px-12 md:py-12">
-          <div className="flex flex-col justify-center">
-            <h1 className="font-serif text-[clamp(2.2rem,7.5vw,6.2rem)] lowercase leading-[0.95] tracking-[-0.02em] text-text">
-              chaddytwiceover
-            </h1>
-            <p className="mt-6 max-w-[56ch] text-base leading-relaxed text-text md:text-lg">
-              A personal WebGL surface for links, experiments, socials, and whatever gets built next.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-2" aria-label="Site stack">
-              {signals.map((signal) => (
-                <span
-                  key={signal}
-                  className="rounded-lg border border-white/10 bg-black/30 px-3 py-2 font-mono text-[11px] uppercase text-textDim backdrop-blur"
-                >
-                  {signal}
-                </span>
-              ))}
-            </div>
+    <div className={`${styles.home} bento-home`}>
+      <div className={styles.pageIntro}>
+        <p><span className={styles.statusDot} /> a personal space on the internet</p>
+        <span>built with curiosity.</span>
+      </div>
+      <section className={styles.grid} aria-label="A little bit of everything">
+        <article className={`${styles.card} ${styles.intro}`}>
+          <div className={styles.introTop}>
+            <span className={styles.monogram} aria-hidden="true">c<span>↗</span></span>
+            <span className={styles.eyebrow}>hello, internet</span>
           </div>
-
-          <div className="relative z-30 flex flex-col justify-center gap-3 pb-4 md:pb-0">
-            {links.map((link) => (
-              <Link
-                key={link.title}
-                href={link.href}
-                className="group relative z-30 block cursor-pointer rounded-lg border border-white/10 bg-bgSoft/70 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-neon/50 hover:bg-bgRaise focus-visible:border-text"
-              >
-                <span className="font-mono text-[11px] uppercase text-textFaint">{link.kicker}</span>
-                <span className="mt-2 flex items-end justify-between gap-5">
-                  <span>
-                    <span className="block font-serif text-3xl lowercase leading-none text-text">{link.title}</span>
-                    <span className="mt-3 block max-w-[32ch] text-sm leading-relaxed text-textDim">{link.description}</span>
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className="font-mono text-sm text-neon transition-transform group-hover:translate-x-1"
-                  >
-                    -&gt;
-                  </span>
-                </span>
-              </Link>
-            ))}
+          <div>
+            <h1>chaddy,<br />twice over<span className={styles.period}>.</span></h1>
+            <p className={styles.tagline}>see the world in my eyes / web development</p>
+            <p className={styles.introCopy}>a little code, a lot of curiosity.<br />this is where my ideas end up.</p>
           </div>
-        </div>
+          <a className={styles.textLink} href="https://x.com/chaddytwiceover" target="_blank" rel="noopener noreferrer">follow the process <span aria-hidden="true">↗</span></a>
+        </article>
+        <Link href={flower.demoUrl} className={`${styles.card} ${styles.flower}`}>
+          <div className={styles.cardTop}><span className={styles.eyebrow}>a little escape</span><Arrow /></div>
+          <div className={styles.garden} aria-hidden="true">
+            <span className={styles.orbit} /><span className={styles.orbitTwo} />
+            <div className={styles.bloom}><i /><i /><i /><i /><i /><i /><b /></div>
+            <span className={styles.stem} /><span className={styles.leaf} />
+            <span className={styles.sparkOne}>✳</span><span className={styles.sparkTwo}>+</span>
+          </div>
+          <div className={styles.cardBottom}><span className={styles.pill}>play something</span><h2>monnie’s flower quest</h2><p>a small adventure. a garden to explore.</p></div>
+        </Link>
+        <Link href="/lab" className={`${styles.card} ${styles.lab}`}>
+          <div className={styles.cardTop}><span className={styles.eyebrow}>the playground</span><Arrow /></div>
+          <div className={styles.labGlyph} aria-hidden="true">✳</div>
+          <div><h2>made for the<br />fun of it.</h2><p>games, experiments & happy accidents.</p></div>
+          <span className={styles.labFooter}>explore the lab <span>{String(labProjects.filter(p => !p.hidden).length).padStart(2, '0')} builds ↗</span></span>
+        </Link>
+        <Link href={ticTacToe.demoUrl} className={`${styles.card} ${styles.game}`}>
+          <div className={styles.cardTop}><span className={styles.eyebrow}>your move</span><Arrow /></div>
+          <div className={styles.ticGrid} aria-hidden="true">{['×', '', '○', '', '×', '', '○', '', '×'].map((cell, index) => <span key={index} className={cell === '×' ? styles.cross : ''}>{cell}</span>)}</div>
+          <div><h2>one more round?</h2><p>you vs. the machine. tic tac toe.</p></div>
+        </Link>
+        <Link href="/whatever" className={`${styles.card} ${styles.note}`}>
+          <div className={styles.cardTop}><span className={styles.eyebrow}>a note to the internet</span><Arrow /></div>
+          <div className={styles.noteContent}><span className={styles.noteMark} aria-hidden="true">“</span><h2>{latestPost.title}</h2><p>{latestPost.content}</p></div>
+          <span className={styles.noteDate}>{new Date(`${latestPost.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).toLowerCase()} <span>read the notes ↗</span></span>
+        </Link>
+        <article className={`${styles.card} ${styles.elsewhere}`}>
+          <div className={styles.cardTop}><span className={styles.eyebrow}>same chaddy, elsewhere</span><span aria-hidden="true">↗</span></div>
+          <h2>let’s cross paths.</h2>
+          <div className={styles.socialLinks}>
+            {[
+              { name: 'x / twitter', href: 'https://x.com/chaddytwiceover' },
+              { name: 'github', href: 'https://github.com/chaddytwiceover' },
+              { name: 'instagram', href: 'https://instagram.com/chaddytwiceover' },
+            ].map(social => <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer">{social.name}<span aria-hidden="true">↗</span></a>)}
+          </div>
+          <Link className={styles.allSocials} href="/socials">all the places <span aria-hidden="true">→</span></Link>
+        </article>
+        <a href="mailto:contact@chaddytwiceover.com" className={`${styles.card} ${styles.hello}`}>
+          <span className={styles.helloIcon} aria-hidden="true">☺</span>
+          <div><span className={styles.eyebrow}>a good place to start</span><h2>say hello.</h2><p>an idea, a question, or just a wave.</p></div>
+          <Arrow />
+        </a>
       </section>
+      <div className={styles.pageOutro}><span>always a work in progress.</span><span>thanks for stopping by <span aria-hidden="true">✳</span></span></div>
     </div>
   )
 }

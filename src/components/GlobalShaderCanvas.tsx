@@ -127,6 +127,7 @@ export default function GlobalShaderCanvas() {
   const mountRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
   const isGamePage = pathname.startsWith('/lab/') && pathname !== '/lab/'
+  const hideCanvas = isGamePage || pathname === '/'
   const intensityTargetRef = useRef<number>(0.85)
   const uniformsRef = useRef<{
     uTime: { value: number }
@@ -142,7 +143,7 @@ export default function GlobalShaderCanvas() {
 
   useEffect(() => {
     const mount = mountRef.current
-    if (!mount || isGamePage) return
+    if (!mount || hideCanvas) return
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -308,7 +309,7 @@ export default function GlobalShaderCanvas() {
         renderer.domElement.remove()
       }
     }
-  }, [isGamePage])
+  }, [hideCanvas])
 
   return (
     <div

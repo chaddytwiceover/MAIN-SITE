@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "postbuild": "node scripts/copy-htaccess.mjs && node scripts/lab-deployment.mjs",
-    "start": "next start",
+    "start": "node scripts/static-preview.mjs",
+    "preview": "node scripts/static-preview.mjs",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test": "jest"

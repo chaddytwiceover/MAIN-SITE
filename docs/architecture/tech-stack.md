@@ -1,89 +1,33 @@
-# Tech Stack Blueprint
+# Tech stack
 
-This document describes the tech stack used in the CHADDYTWICEOVER portfolio so it can be referenced for maintenance and future projects.
+The site uses Next.js 16, React 19, TypeScript, and Node.js 22 or later. `package.json` declares compatible versions; `package-lock.json` records the installed dependency tree.
 
-## Overview
+## Application
 
-This project is a **Next.js (React) site deployed as a static export**. The build produces a static output folder (`out/`) that can be hosted on any static hosting provider (including IONOS Deploy Now) without running a Node server at runtime.
+- Next.js App Router, with `output: 'export'` and `trailingSlash: true`.
+- React Server Components for static content; client components for interactions.
+- TypeScript with strict checks and `@/` mapped to `src/`.
+- Lab metadata in `src/lib/lab-projects.ts`; notes in `src/lib/posts.ts`.
 
-## Core Framework
+## Presentation
 
-- **Next.js** (React framework)
-  - Rendering model: **Static export**
-  - Key config:
-    - `output: 'export'` (generates static files into `out/`)
-    - `images: { unoptimized: true }` (required for static export when using `next/image`)
-    - `trailingSlash: true` (routes output as `/path/index.html`)
+- Tailwind CSS v4 through `@tailwindcss/postcss` and `postcss.config.mjs`.
+- Scoped CSS Modules for the bento homepage, plus shared `src/app/globals.css`.
+- Framer Motion for page transitions and interactive elements.
+- Three.js for the background on supporting pages; disabled on the homepage and game routes.
+- Local system font stacks with no external font download requirement.
 
-- **React 18**
-  - UI library used by Next.js
+## Quality checks
 
-## Language / Tooling
+- ESLint flat configuration in `eslint.config.mjs`.
+- TypeScript configuration in `tsconfig.json`.
+- Jest, jsdom, and React Testing Library for game player behavior.
+- GitHub Actions for build, lint, type checks, tests, and CodeQL.
 
-- **TypeScript**
-  - Types: `@types/node`, `@types/react`, `@types/react-dom`
-  - Config: `tsconfig.json`
-  - Next TS env: `next-env.d.ts`
+## Hosting
 
-## Styling
+The production build exports to `out/` for IONOS / Apache. No Next.js server is needed in production. `npm start` and `npm run preview` use `scripts/static-preview.mjs` to serve an existing export locally.
 
-- **Tailwind CSS**
-  - Utility-first CSS framework
-- **PostCSS**
-  - Build-time CSS processing
-- **Autoprefixer**
-  - Adds vendor prefixes for broader browser compatibility
+`scripts/copy-htaccess.mjs` copies Apache configuration. `scripts/lab-deployment.mjs` validates game frames, writes the deployed revision manifest, and can verify a live deployment.
 
-## UI / Motion
-
-- **Framer Motion**
-  - Animations and transitions
-
-## Package Manager
-
-- **npm**
-  - Lockfile present: `package-lock.json`
-
-## Key Scripts (npm)
-
-Typical scripts used:
-
-- `npm run dev` — local development
-- `npm run build` — production build (**also performs static export due to Next config**)
-- `npm run start` — starts a Next server (**not used for static hosting**)
-- `npm run lint` — linting
-
-## Build Output / Hosting Model
-
-### Build output directory
-
-- **`out/`** (static export output)
-
-### Hosting requirements
-
-- Static file hosting (no server runtime required)
-- Serve the site from the `out/` directory
-
-### IONOS Deploy Now settings (recommended)
-
-- Install: `npm ci`
-- Build: `npm run build`
-- Publish directory: `out`
-
-## Notes / Legacy Files
-
-This repository may contain older static-site/PWA artifacts (for example `index.html`, `styles.css`, `app.js`, `service-worker.js`, `offline.html`, `manifest.webmanifest`, `.htaccess`) from a previous non-Next version.
-
-For a clean Next.js blueprint, consider removing legacy root static files if they are no longer used, to avoid confusion in static hosting setups (hosts may accidentally serve the root `index.html` instead of the Next export output).
-
-## Blueprint Checklist (for main domain)
-
-1. Create a new Next.js project (or reuse this repo).
-2. Ensure `next.config.js` includes:
-   - `output: 'export'`
-   - `images: { unoptimized: true }`
-   - `trailingSlash: true` (optional but recommended for static hosts)
-3. Use Tailwind setup (Tailwind + PostCSS + Autoprefixer).
-4. Add Framer Motion if animations are needed.
-5. Configure hosting to deploy the `out/` folder.
-6. (Optional) Remove any legacy root `index.html` and related assets to prevent mis-deploys.
+`public/demos/` contains standalone local games; the lab registry also points to externally hosted Vercel game builds. `.github/workflows/` and `.deploy-now/` retain the IONOS deployment setup.

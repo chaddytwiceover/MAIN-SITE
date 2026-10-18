@@ -6,3 +6,18 @@ out
 **/.vercel
 tsconfig.tsbuildinfo
 
+# Local configuration (keep shareable examples)
+.env*
+!.env.example
+!.env.*.example
+
+# Logs and generated reports
+*.log
+coverage/
+
+# Editor and operating system files
+.DS_Store
+Thumbs.db
+__pycache__/
+*.py[cod]
+

@@ -1,106 +1,39 @@
-# Site Architecture
+# Site architecture
 
-## Overview
-
-This portfolio is a statically-exported Next.js application designed for performance, simplicity, and ease of deployment. The architecture prioritizes maintainability and developer experience.
-
-## Framework
-
-**Next.js 14 (App Router)**
-
-- Server Components by default
-- Static export configuration
-- File-system based routing
-- Built-in SEO support
-
-## Language
-
-**TypeScript**
-
-- Type-safe components and utilities
-- Enhanced IDE support
-- Reduced runtime errors
-
-## Styling
-
-**Tailwind CSS**
-
-- Utility-first CSS framework
-- Custom configuration in `tailwind.config.ts`
-- PostCSS for processing
-- Minimal custom CSS in `globals.css`
-
-## Animation
-
-**Framer Motion**
-
-- Declarative animations
-- Gesture support
-- Reduced motion preferences respected via `useSafeAnimation` hook
-- Used throughout for page transitions and micro-interactions
-
-## Deployment
-
-**Static Export**
-
-- Deployed to IONOS hosting
-- Output directory: `out/`
-- No server-side runtime required
-- Compatible with any static hosting provider
+The site uses the Next.js App Router and a static export (`out/`). There is no server runtime or database in production.
 
 ## Routes
 
-| Route       | Description                                |
-| ----------- | ------------------------------------------ |
-| `/`         | Homepage with hero and featured projects   |
-| `/about`    | About the developer                        |
-| `/projects` | Portfolio projects showcase with filtering |
-| `/pricing`  | Freelance services and pricing tiers       |
-| `/socials`  | Social media links hub                     |
-| `/contact`  | Contact form (mailto-based)                |
+| Route | Purpose |
+| --- | --- |
+| `/` | Minimalist bento homepage with introduction, featured games, latest note, and social links |
+| `/lab/` | Lab catalog |
+| `/lab/[slug]/` | Playable game embed and project details |
+| `/whatever/` | Notes and build updates |
+| `/socials/` | Social profiles and contact links |
+| `/guestbook/` | Email-based guestbook invitation |
+| `/pricing/` | Services and pricing |
 
-## Data Management
+`src/app/robots.ts` generates `robots.txt`; `src/app/sitemap.ts` generates the sitemap. Static files live in `public/`.
 
-**Project Data**
+## Content
 
-- Stored in `src/lib/projects.ts`
-- TypeScript interfaces for type safety
-- No external database or CMS
-- Easy to update and maintain
+`src/lib/lab-projects.ts` is the single game registry, used by the homepage, lab catalog, and generated game routes. Update its tags, status, metadata, or embed URLs there.
 
-## Component Organization
+`src/lib/posts.ts` holds notes. The homepage selects the most recent entry by date.
 
-**App Directory Structure**
+## Components and styles
 
-- Each route has a `page.tsx` for metadata/SEO
-- Client components suffixed with `Content.tsx`
-- Shared components in `src/components/`
-- Utilities and hooks in `src/lib/`
+Route files are Server Components by default. Interactive pages use client components for animations and game controls. Shared components live in `src/components/`; reduced-motion support lives in `src/lib/useSafeAnimation.ts`.
 
-**Component Patterns**
+Homepage styling is scoped through `src/app/home.module.css`. Shared CSS and the homepage navigation/footer palette are in `src/app/globals.css`. The animated Three.js background is disabled on the homepage and game player routes.
 
-- Server Components for static content
-- Client Components (`'use client'`) for interactivity
-- Composition over configuration
-- Props-based customization
+## Build and hosting
 
-## Build Process
+1. `npm ci` installs the locked dependencies.
+2. `npm run build` exports static HTML and assets.
+3. Postbuild scripts copy Apache configuration and validate game iframe permissions.
+4. `npm run preview` serves `out/` locally on port 3003.
+5. IONOS Deploy Now workflows handle production publication and live game validation.
 
-1. **Development**: `npm run dev` - Next.js dev server
-2. **Production**: `npm run build` - Static export generation
-3. **Output**: `out/` directory contains deployable static files
-
-## Performance Considerations
-
-- Static generation for fast load times
-- Optimized images via Next.js Image component
-- Minimal JavaScript bundle
-- CSS purged via Tailwind's JIT compiler
-- Reduced motion support for accessibility
-
-## Future Architecture Considerations
-
-- Potential CMS integration for project data
-- Blog functionality with MDX support
-- Analytics integration
-- Progressive enhancement strategies
+The export uses trailing slashes and unoptimized images, as configured in `next.config.js`. Deployment details are in [the deployment guide](../deployment.md).

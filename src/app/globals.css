@@ -112,3 +112,31 @@ section:has(.lab-game-player-expanded),
 div:has(.lab-game-player-expanded) {
   z-index: 1000;
 }
+
+/* Homepage palette stays scoped so embedded labs retain their own appearance. */
+html:has(.bento-home), body:has(.bento-home) {
+  color-scheme: light;
+  background: #f4f4ee;
+  color: #252923;
+}
+body:has(.bento-home)::before { display: none; }
+body:has(.bento-home) ::selection { background: #dce5ce; color: #252923; }
+.home-nav { background: #f4f4eef2; border-color: #e2e4db; }
+.home-nav > div { max-width: 1140px; padding: 16px 32px; }
+.home-nav .nav-brand { font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 15px; font-weight: 600; letter-spacing: -.7px; text-transform: lowercase; }
+.nav-brand-dot { display: none; }
+.home-nav .nav-brand-dot { display: inline; color: #7a8c60; }
+.home-nav a { color: #6d7369; text-transform: lowercase; font-family: inherit; letter-spacing: 0; font-size: 11px; }
+.home-nav a[aria-current='page'] { background: #e5e9dc; color: #252923; }
+.home-nav a:hover { color: #252923; }
+.home-nav a:focus-visible { outline-color: #466336; }
+body:has(.bento-home) > footer { border-color: #e2e4db; }
+body:has(.bento-home) > footer > div { max-width: 1140px; padding: 20px 32px; }
+body:has(.bento-home) > footer p { color: #6d7369; text-transform: lowercase; font-family: inherit; font-size: 10px; letter-spacing: 0; }
+@media (max-width: 580px) {
+  .home-nav > div { padding: 10px 18px; gap: 8px; }
+  .home-nav .nav-brand { font-size: 13px; }
+  .home-nav ul { gap: 0; }
+  .home-nav ul a { padding-left: 10px; padding-right: 10px; }
+  body:has(.bento-home) > footer > div { padding: 18px; }
+}
