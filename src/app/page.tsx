@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import LocalClock from '@/components/LocalClock'
 import { labProjects } from '@/lib/lab-projects'
 import { posts } from '@/lib/posts'
 import styles from './home.module.css'
@@ -80,6 +81,7 @@ export default function HomePage() {
           <div><span className={styles.eyebrow}>a good place to start</span><h2>say hello.</h2><p>an idea, a question, or just a wave.</p></div>
           <Arrow />
         </a>
+        <LocalClock />
       </section>
       <div className={styles.pageOutro}><span>always a work in progress.</span><span>thanks for stopping by <span aria-hidden="true">✳</span></span></div>
     </div>
