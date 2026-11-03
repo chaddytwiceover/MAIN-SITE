@@ -140,3 +140,18 @@ body:has(.bento-home) > footer p { color: #6d7369; text-transform: lowercase; fo
   .home-nav ul a { padding-left: 10px; padding-right: 10px; }
   body:has(.bento-home) > footer > div { padding: 18px; }
 }
+
+
+/* Autumn neo-brutalist homepage shell; other routes keep their existing styling. */
+html:has(.bento-home),body:has(.bento-home){background:#e9ddc7;color:#24241f}
+body:has(.bento-home)::before{display:none}
+body:has(.bento-home) ::selection{background:#c65b32;color:#fff}
+body:has(.bento-home) .home-nav{background:#e9ddc7;border-color:#24241f}
+body:has(.bento-home) .home-nav>div{max-width:1440px;padding:16px clamp(16px,4vw,60px)}
+body:has(.bento-home) .home-nav .nav-brand{font-weight:900;text-transform:uppercase;letter-spacing:-.03em;color:#24241f}
+body:has(.bento-home) .home-nav a{color:#24241f;font-weight:700;text-transform:uppercase}
+body:has(.bento-home) .home-nav a:hover{color:#c65b32}
+body:has(.bento-home) .home-nav a[aria-current='page']{background:#f2b94b;color:#24241f}
+body:has(.bento-home)>footer{background:#e9ddc7;border-color:#24241f}
+body:has(.bento-home)>footer>div{max-width:1440px}
+body:has(.bento-home)>footer p{color:#24241f}
