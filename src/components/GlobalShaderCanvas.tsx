@@ -127,7 +127,7 @@ export default function GlobalShaderCanvas() {
   const mountRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
   const isGamePage = pathname.startsWith('/lab/') && pathname !== '/lab/'
-  const hideCanvas = isGamePage || pathname === '/'
+  const hideCanvas = isGamePage
   const intensityTargetRef = useRef<number>(0.85)
   const uniformsRef = useRef<{
     uTime: { value: number }
@@ -314,7 +314,7 @@ export default function GlobalShaderCanvas() {
   return (
     <div
       ref={mountRef}
-      className="fixed inset-0 -z-10 h-full w-full pointer-events-none overflow-hidden"
+      className="site-shader-layer"
       aria-hidden="true"
     />
   )
