@@ -140,3 +140,22 @@ body:has(.bento-home) > footer p { color: #6d7369; text-transform: lowercase; fo
   .home-nav ul a { padding-left: 10px; padding-right: 10px; }
   body:has(.bento-home) > footer > div { padding: 18px; }
 }
+
+/* Keep the original subtle WebGL atmosphere visible behind every page. */
+.site-shader-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+.site-shader-layer canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
