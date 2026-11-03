@@ -1,46 +1,89 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import LocalClock from '@/components/LocalClock'
 import { labProjects } from '@/lib/lab-projects'
 import { posts } from '@/lib/posts'
 import styles from './home.module.css'
 
 export const metadata: Metadata = {
-  title: { absolute: 'TWICEOVER — Creative developer & digital experiments' },
-  description: 'Software, games, and creative experiments. A digital playground by Chaddy Twiceover.',
+  title: { absolute: 'chaddytwiceover' },
+  description: 'My little corner of the internet. Games, experiments, notes, and whatever comes next.',
+}
+
+function Arrow() {
+  return <span className={styles.arrow} aria-hidden="true">↗</span>
 }
 
 export default function HomePage() {
-  const featured = labProjects.filter(project => !project.hidden).slice(0, 3)
+  const flower = labProjects.find(project => project.slug === 'flowerquest')!
+  const ticTacToe = labProjects.find(project => project.slug === 'tic-tac-toe')!
   const latestPost = [...posts].sort((a, b) => b.date.localeCompare(a.date))[0]
+
   return (
     <div className={`${styles.home} bento-home`}>
-      <div className={styles.utility}><span><span className={styles.liveDot} /> INDEPENDENT DEVELOPER / DIGITAL MAKER</span><span>EST. 2025 — ALWAYS IN PROGRESS</span></div>
-      <section className={styles.hero} aria-labelledby="hero-title">
-        <div className={styles.heroMeta}><span>TWICEOVER® / PORTFOLIO 2026</span><span>01 — INTRODUCTION</span></div>
-        <div className={styles.heroBody}>
-          <p className={styles.kicker}>CODE / CURIOSITY / CREATIVE CHAOS ✳</p>
-          <h1 id="hero-title">BUILDING<br />WHAT&apos;S<br /><em>NEXT<span>.</span></em></h1>
-          <div className={styles.heroBottom}><p>Hey, I&apos;m Chaddy. I make things for the web, build playful experiences, and experiment with what technology can become.</p><Link className={styles.primaryButton} href="/lab">EXPLORE MY WORK <span aria-hidden="true">↗</span></Link></div>
-        </div>
-        <div className={styles.heroFooter}><span>DESIGN × ENGINEERING</span><span>SCROLL TO EXPLORE ↓</span></div>
-        <span className={styles.heroStar} aria-hidden="true">✳</span>
-      </section>
-      <div className={styles.marquee} aria-label="Software, games, and experiments"><span>SOFTWARE ✳ GAMES ✳ EXPERIMENTS ✳ CREATIVE CODE ✳ ALWAYS BUILDING ✳</span></div>
-      <section className={styles.section} aria-labelledby="work-title">
-        <div className={styles.sectionHeading}><div><p className={styles.overline}>02 / SELECTED WORK</p><h2 id="work-title">THE GOOD<br /><i>STUFF.</i></h2></div><Link href="/lab" className={styles.inlineLink}>ALL PROJECTS ↗</Link></div>
-        <div className={styles.workGrid}>
-          <Link href="/lab" className={`${styles.featureCard} ${styles.olive}`}><span className={styles.cardIndex}>01 / THE PLAYGROUND</span><span className={styles.cardSymbol} aria-hidden="true">✳</span><div><h3>THE LAB<span>↗</span></h3><p>Games, prototypes, experiments, and happy accidents. {labProjects.filter(p => !p.hidden).length} builds and counting.</p></div></Link>
-          <div className={styles.sideStack}>
-            {featured.slice(0,2).map((project,index)=><Link key={project.slug} href={project.demoUrl} className={`${styles.featureCard} ${index === 0 ? styles.amber : styles.cream}`}><span className={styles.cardIndex}>0{index+2} / INTERACTIVE PROJECT</span><div><span className={styles.smallSymbol} aria-hidden="true">{index===0?'↗':'✦'}</span><h3>{project.title.toUpperCase()} <span>↗</span></h3><p>OPEN EXPERIENCE →</p></div></Link>)}
+      <div className={styles.pageIntro}>
+        <p><span className={styles.statusDot} /> a personal space on the internet</p>
+        <span>built with curiosity.</span>
+      </div>
+      <section className={styles.grid} aria-label="A little bit of everything">
+        <article className={`${styles.card} ${styles.intro}`}>
+          <div className={styles.introTop}>
+            <span className={styles.monogram} aria-hidden="true">c<span>↗</span></span>
+            <span className={styles.eyebrow}>hello, internet</span>
           </div>
-        </div>
+          <div>
+            <h1>chaddy,<br />twice over<span className={styles.period}>.</span></h1>
+            <p className={styles.tagline}>see the world in my eyes / web development</p>
+            <p className={styles.introCopy}>a little code, a lot of curiosity.<br />this is where my ideas end up.</p>
+          </div>
+          <a className={styles.textLink} href="https://x.com/chaddytwiceover" target="_blank" rel="noopener noreferrer">follow the process <span aria-hidden="true">↗</span></a>
+        </article>
+        <Link href={flower.demoUrl} className={`${styles.card} ${styles.flower}`}>
+          <div className={styles.cardTop}><span className={styles.eyebrow}>a little escape</span><Arrow /></div>
+          <div className={styles.garden} aria-hidden="true">
+            <span className={styles.orbit} /><span className={styles.orbitTwo} />
+            <div className={styles.bloom}><i /><i /><i /><i /><i /><i /><b /></div>
+            <span className={styles.stem} /><span className={styles.leaf} />
+            <span className={styles.sparkOne}>✳</span><span className={styles.sparkTwo}>+</span>
+          </div>
+          <div className={styles.cardBottom}><span className={styles.pill}>play something</span><h2>monnie’s flower quest</h2><p>a small adventure. a garden to explore.</p></div>
+        </Link>
+        <Link href="/lab" className={`${styles.card} ${styles.lab}`}>
+          <div className={styles.cardTop}><span className={styles.eyebrow}>the playground</span><Arrow /></div>
+          <div className={styles.labGlyph} aria-hidden="true">✳</div>
+          <div><h2>made for the<br />fun of it.</h2><p>games, experiments & happy accidents.</p></div>
+          <span className={styles.labFooter}>explore the lab <span>{String(labProjects.filter(p => !p.hidden).length).padStart(2, '0')} builds ↗</span></span>
+        </Link>
+        <Link href={ticTacToe.demoUrl} className={`${styles.card} ${styles.game}`}>
+          <div className={styles.cardTop}><span className={styles.eyebrow}>your move</span><Arrow /></div>
+          <div className={styles.ticGrid} aria-hidden="true">{['×', '', '○', '', '×', '', '○', '', '×'].map((cell, index) => <span key={index} className={cell === '×' ? styles.cross : ''}>{cell}</span>)}</div>
+          <div><h2>one more round?</h2><p>you vs. the machine. tic tac toe.</p></div>
+        </Link>
+        <Link href="/whatever" className={`${styles.card} ${styles.note}`}>
+          <div className={styles.cardTop}><span className={styles.eyebrow}>a note to the internet</span><Arrow /></div>
+          <div className={styles.noteContent}><span className={styles.noteMark} aria-hidden="true">“</span><h2>{latestPost.title}</h2><p>{latestPost.content}</p></div>
+          <span className={styles.noteDate}>{new Date(`${latestPost.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).toLowerCase()} <span>read the notes ↗</span></span>
+        </Link>
+        <article className={`${styles.card} ${styles.elsewhere}`}>
+          <div className={styles.cardTop}><span className={styles.eyebrow}>same chaddy, elsewhere</span><span aria-hidden="true">↗</span></div>
+          <h2>let’s cross paths.</h2>
+          <div className={styles.socialLinks}>
+            {[
+              { name: 'x / twitter', href: 'https://x.com/chaddytwiceover' },
+              { name: 'github', href: 'https://github.com/chaddytwiceover' },
+              { name: 'instagram', href: 'https://instagram.com/chaddytwiceover' },
+            ].map(social => <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer">{social.name}<span aria-hidden="true">↗</span></a>)}
+          </div>
+          <Link className={styles.allSocials} href="/socials">all the places <span aria-hidden="true">→</span></Link>
+        </article>
+        <a href="mailto:contact@chaddytwiceover.com" className={`${styles.card} ${styles.hello}`}>
+          <span className={styles.helloIcon} aria-hidden="true">☺</span>
+          <div><span className={styles.eyebrow}>a good place to start</span><h2>say hello.</h2><p>an idea, a question, or just a wave.</p></div>
+          <Arrow />
+        </a>
+        <LocalClock />
       </section>
-      <section className={styles.aboutGrid} aria-label="About and notes">
-        <div className={styles.about}><p className={styles.overline}>03 / THE PERSON BEHIND THE PIXELS</p><h2>CURIOUS<br />BY <i>DESIGN.</i></h2><p>I&apos;m a developer who likes the space between useful software and unexpected ideas. This is my corner of the internet—part portfolio, part playground, always evolving.</p><Link href="/socials" className={styles.inlineLink}>FIND ME ONLINE ↗</Link></div>
-        <Link href="/whatever" className={styles.notes}><span className={styles.overline}>LATEST FIELD NOTE / ↗</span><span className={styles.quoteMark}>“</span><h3>{latestPost?.title ?? 'THOUGHTS IN PROGRESS'}</h3><p>{latestPost?.content ?? 'Notes from the process of making things.'}</p><span className={styles.noteFooter}>READ THE NOTES ↗</span></Link>
-      </section>
-      <section className={styles.contact}><div><span className={styles.overline}>04 / LET&apos;S CONNECT</span><h2>GOT AN<br /><i>IDEA?</i></h2></div><div><p>Projects, collaborations, questions, or just saying hello—my inbox is open.</p><Link href="/socials" className={styles.primaryButton}>LET&apos;S TALK ↗</Link></div></section>
-      <div className={styles.endline}><span>TWICEOVER.DEV © 2026</span><span>MADE WITH CURIOSITY ✳</span></div>
+      <div className={styles.pageOutro}><span>always a work in progress.</span><span>thanks for stopping by <span aria-hidden="true">✳</span></span></div>
     </div>
   )
 }
