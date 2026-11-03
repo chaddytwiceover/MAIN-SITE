@@ -7,16 +7,16 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'chaddytwiceover',
-    template: '%s — chaddytwiceover',
+    default: 'TWICEOVER',
+    template: '%s — TWICEOVER',
   },
   description: 'my corner of the internet — links, experiments, socials, and random things I make',
-  metadataBase: new URL('https://chaddytwiceover.com'),
+  metadataBase: new URL('https://twiceover.dev'),
   openGraph: {
-    title: 'chaddytwiceover',
+    title: 'TWICEOVER',
     description: 'my corner of the internet — links, experiments, socials, and random things I make',
-    url: 'https://chaddytwiceover.com',
-    siteName: 'chaddytwiceover',
+    url: 'https://twiceover.dev',
+    siteName: 'TWICEOVER',
     type: 'website',
     locale: 'en_US',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'chaddytwiceover' }],
@@ -37,7 +37,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: '#0a0a0a',
+  themeColor: '#e9ddc7',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -50,8 +50,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
-              name: 'chaddytwiceover',
-              url: 'https://chaddytwiceover.com',
+              name: 'TWICEOVER',
+              url: 'https://twiceover.dev',
               description: 'my corner of the internet — links, experiments, socials, and random things I make',
             }),
           }}
