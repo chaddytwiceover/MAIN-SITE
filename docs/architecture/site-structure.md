@@ -1,6 +1,6 @@
 # Site architecture
 
-The site uses the Next.js App Router and a static export (`out/`). There is no server runtime or database in production.
+The site uses the Next.js App Router on Vercel. Current content pages are prerendered; there is no application database.
 
 ## Routes
 
@@ -31,9 +31,9 @@ Homepage styling is scoped through `src/app/home.module.css`. Shared CSS and the
 ## Build and hosting
 
 1. `npm ci` installs the locked dependencies.
-2. `npm run build` exports static HTML and assets.
-3. Postbuild scripts copy Apache configuration and validate game iframe permissions.
-4. `npm run preview` serves `out/` locally on port 3003.
-5. IONOS Deploy Now workflows handle production publication and live game validation.
+2. `npm run build` creates the Next.js production build in `.next/`.
+3. `npm run preview` serves that build locally on port 3003.
+4. GitHub Actions runs build, lint, type checks, tests, and CodeQL.
+5. Vercel's Git integration handles preview and production deployments.
 
-The export uses trailing slashes and unoptimized images, as configured in `next.config.js`. Deployment details are in [the deployment guide](../deployment.md).
+The app uses trailing slashes and unoptimized images, as configured in `next.config.js`. `vercel.json` contains production response headers and the www redirect. The domain remains registered at Name.com. Deployment details are in [the deployment guide](../deployment.md).

@@ -2,9 +2,9 @@
 
 My corner of the internet: games, experiments, notes, and social links.
 
-Live site: [chaddytwiceover.com](https://chaddytwiceover.com)
+Live site: [twiceover.dev](https://twiceover.dev)
 
-Built with Next.js App Router, React, TypeScript, Tailwind CSS, Framer Motion, and Three.js. The site exports static files for IONOS / Apache hosting. See `package.json` for dependency versions.
+Built with Next.js App Router, React, TypeScript, Tailwind CSS, Framer Motion, and Three.js. The site deploys to Vercel using its Next.js integration; the domain is registered with Name.com. See `package.json` for dependency versions.
 
 ## Local development
 
@@ -22,12 +22,12 @@ Open [localhost:3000](http://localhost:3000). On Windows, installing dependencie
 | Command | Purpose |
 | --- | --- |
 | `npm run dev` | Development server on port 3000 |
-| `npm run build` | Static export into `out/`, Apache config, and validated game manifest |
-| `npm run preview` | Serve an existing `out/` build on port 3003 |
-| `npm start` | Alias for the static preview server |
+| `npm run build` | Next.js production build in `.next/` |
+| `npm run preview` | Serve the production build on port 3003 |
+| `npm start` | Serve the production build on port 3000 |
 | `npm run typecheck` | TypeScript checks |
 | `npm run lint` | ESLint using `eslint.config.mjs` |
-| `npm test -- --runInBand` | Game player tests |
+| `npm test -- --runInBand` | Component tests |
 
 Build before using the preview server. Set `PORT` to override its default port.
 
@@ -50,7 +50,7 @@ npm run build
 npm run preview
 ```
 
-Deploy the contents of `out/` to the web root. The postbuild scripts copy `.htaccess`, check exported game iframe permissions, and generate `lab-deployment.json` with the Git revision. Keep the `.github/workflows/` and `.deploy-now/` configuration for IONOS Deploy Now.
+Vercel builds the connected GitHub repository with the Next.js framework preset. Keep the output directory at its framework default, with no `out` override. `vercel.json` preserves the domain redirect and response headers. GitHub Actions runs quality checks; Vercel handles deployment.
 
 [Deployment guide](docs/deployment.md)
 

@@ -1,9 +1,0 @@
-version: 1.0
-
-deploy:
-  bootstrap:
-    excludes:
-      - .deploy-now
-  recurring:
-    excludes:
-      - .deploy-now

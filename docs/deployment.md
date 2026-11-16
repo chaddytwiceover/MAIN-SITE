@@ -1,240 +1,59 @@
-# IONOS Deployment Guide — CHADDYTWICEOVER Portfolio
+# Vercel deployment
 
-This document provides complete instructions for deploying this Next.js static site to IONOS hosting.
+Vercel hosts this Next.js application. Name.com is the domain registrar. No Apache configuration, static-export postbuild, FTP upload, or IONOS workflow is required.
 
----
+## Project settings
 
-## Prerequisites
+Connect `chaddytwiceover/MAIN-SITE` in Vercel with:
 
-- Node.js 22+ and npm installed locally
-- IONOS hosting account (Deploy Now or Web Hosting)
-- Domain configured and DNS pointing to IONOS
+| Setting | Value |
+| --- | --- |
+| Framework preset | Next.js |
+| Root directory | Repository root |
+| Install command | `npm ci` |
+| Build command | `npm run build` |
+| Output directory | Framework default; disable any `out` override |
+| Production branch | `main` |
+| Node.js | 22.x or a compatible supported version |
 
----
+These are expected settings, not a claim that the remote project was changed. Vercel's Git integration handles deployments. Existing GitHub CI runs build, lint, type checks, tests, and CodeQL.
 
-## Pre-Deployment Checklist
+## Local verification
 
-Before deployment, verify the following in your local environment:
-
-```bash
-npm run lint    # ✅ Should pass with no errors
-npm run build   # ✅ Should generate `out/` directory
-```
-
-**Expected build output:**
-
-- `out/index.html` (home page)
-- `out/lab/index.html`
-- `out/lab/<slug>/index.html`
-- `out/whatever/index.html`
-- `out/socials/index.html`
-- `out/_next/` (JS/CSS bundles)
-- `out/images/` (static assets)
-- `out/.htaccess` (security headers + Apache rewrite rules)
-
----
-
-## Deployment Options
-
-### Option 1: IONOS Deploy Now (Recommended)
-
-Best for automatic deployments from Git.
-
-1. **Connect your Git repository** to IONOS Deploy Now
-2. **Configure build settings:**
-   - **Framework Preset:** Next.js (Static HTML Export)
-   - **Build Command:** `npm run build`
-   - **Node Version:** 22.x
-   - **Publish Directory:** `out`
-
-3. **Deploy:** IONOS will automatically build and deploy on every commit.
-   - The build includes a postbuild step that copies `.htaccess` into `out/`.
-
----
-
-### Option 2: IONOS Web Hosting (FTP/SFTP)
-
-For manual deployment via FTP or SFTP.
-
-#### Step 1: Build Locally
-
-```bash
-npm install
+```sh
+npm ci
+npm run lint
+npm run typecheck
+npm test -- --runInBand
 npm run build
+npm run preview
 ```
 
-#### Step 2: Upload to IONOS
+Open http://localhost:3003. `npm start` uses port 3000. Both commands serve the production `.next/` build. Do not set `output: 'export'` or restore the old `out/` postbuild scripts.
 
-1. Connect to your IONOS hosting via FTP/SFTP:
-   - Host: `your-domain.com` or FTP hostname from IONOS panel
-   - Username: Your IONOS FTP username
-   - Password: Your IONOS FTP password
+Check the homepage, lab catalog, each game page, socials, notes, guestbook, pricing, robots.txt, sitemap.xml, and an unknown route. Test game input, fullscreen entry/exit, and mobile orientation separately; a successful build does not validate external game availability or gameplay.
 
-2. Navigate to your **document root**, typically:
-   - `/` (root)
-   - `/htdocs/`
-   - `/html/`
+## Domain at Name.com
 
-3. Upload **all contents** of the `out/` directory:
-   - `index.html`
-   - `lab/`, `socials/`, `whatever/` directories
-   - `_next/` directory
-   - `images/` directory
-   - `.htaccess` (already generated in `out/`)
+The repository's current primary domain is `twiceover.dev`, with `www.twiceover.dev` redirected to it in `vercel.json`.
 
-#### Step 3: Verify `.htaccess`
+1. Add both names to the Vercel project's Domains settings.
+2. Use the exact DNS record values Vercel displays for that project.
+3. If Name.com manages the authoritative DNS, update those records there. If nameservers point elsewhere, update the records with that DNS provider.
+4. Preserve unrelated mail and verification records.
+5. Wait for Vercel to report valid configuration and HTTPS availability, then verify both names.
 
-Ensure `.htaccess` is in the same directory as `index.html` on the server. This file provides:
+The domain does not need to transfer registrars. This repository change does not edit DNS or Vercel account settings.
 
-- Clean URLs (`/lab` instead of `/lab.html`)
-- Security headers
-- HTTPS redirect
+## Response headers and redirects
 
----
-
-## Environment Configuration
-
-This project is a **static export**, so environment variables are baked in at build time.
-
-### Flower Quest embed
-
-`/lab/flowerquest/` embeds the standalone Flower Quest deployment at `https://flowerquest.vercel.app/`. The iframe and "Open game in new tab" link use this fixed URL, with no environment-variable override.
-
-Both featured games use `GamePlayer`, which retains the iframe while entering fullscreen. Browsers without native fullscreen use an expanded player within the site. The exit button stays visible in either mode. Use "Focus game" to send keyboard focus into the game. Background WebGL rendering is disabled on lab detail routes.
-
-### Verify the deployed lab
-
-The build validates exported iframe URLs and permissions and writes `out/lab-deployment.json` with the build commit. After the IONOS deployment workflow completes, `verify-lab-deployment.yaml` checks the live commit, game URLs, and sandbox attributes. It fails if deployment was blocked, even if the build succeeded.
-
-To check an expected deployed commit manually:
-
-```bash
-node scripts/lab-deployment.mjs verify https://chaddytwiceover.com <full-commit-sha>
-```
-
-These checks validate delivery and iframe configuration, not interactive gameplay. Also test both games on desktop and mobile: start, keyboard/touch input, audio after a gesture, saved progress where supported, rotation, fullscreen entry/exit, and returning to the lab.
-
-If GitHub holds the IONOS run as potentially malicious, review the workflow and approve that run through an authenticated GitHub web session. Do not assume the site updated because the orchestration/build workflow succeeded. Check the deployment run and then the live verifier.
-
-- **`next.config.js`** is configured with:
-
-  ```js
-  output: 'export',
-  images: { unoptimized: true },
-  trailingSlash: true,
-  ```
-
-- **Contact form** uses `mailto:` (no server-side processing)
-
----
-
-## Security Notes
-
-### npm Audit Warnings
-
-Running `npm audit` will show high-severity vulnerabilities in Next.js 14.2.35:
-
-- **DoS via Image Optimizer remotePaths** (GHSA-9g9p-9gw9-jx7f)
-- **DoS via React Server Components** (GHSA-h25m-26qc-wcjf)
-
-**These vulnerabilities do NOT affect this deployment** because:
-
-1. This is a **static export** (no Node.js server runtime)
-2. Image optimization is disabled (`images: { unoptimized: true }`)
-3. No React Server Components are used in production
-
-**Action:** No immediate action required. When Next.js 15 stabilizes, consider upgrading.
-
----
+`vercel.json` carries the former Apache response headers, including the iframe allowlist for the lab games, and the www-to-apex redirect. These platform settings apply on Vercel; local `next start` does not emulate `vercel.json` headers or redirects. Verify them on a Vercel preview/production deployment before declaring the migration live.
 
 ## Troubleshooting
 
-### Issue: `EBUSY` or locked files during `npm install`
+- An error mentioning `out/lab` or `.htaccess` means the obsolete postbuild command is still running. Confirm the deployment uses the updated commit and `npm run build`.
+- An output-directory error can indicate an old `out` override in Vercel project settings. Use the Next.js framework default.
+- A wrong page after deployment requires checking Vercel's deployed commit and production domain assignment.
+- A blocked game iframe requires checking the deployed CSP frame-src list, the game URL, and the game's own embedding policy.
 
-**Cause:** OneDrive or antivirus software locking `node_modules` files.
-
-**Fix:**
-
-1. Pause OneDrive sync (right-click OneDrive icon → Pause syncing)
-2. Delete `node_modules` folder
-3. Run `npm install`
-
-Or move the repository outside of OneDrive.
-
----
-
-### Issue: "404 Not Found" for subpages on IONOS
-
-**Cause:** `.htaccess` not uploaded or not in the correct location.
-
-**Fix:**
-
-1. Ensure the generated `out/.htaccess` file is in the document root (same directory as `index.html`)
-2. Verify your IONOS hosting supports `.htaccess` (Apache hosting required)
-
----
-
-### Issue: Styles or scripts not loading
-
-**Cause:** Incorrect base path or missing `_next` directory.
-
-**Fix:**
-
-1. Verify `_next/` directory was uploaded
-2. Check browser console for 404 errors
-3. Ensure `next.config.js` does **not** have a custom `basePath` or `assetPrefix`
-
----
-
-## Deployment Verification
-
-After deployment, test the following:
-
-1. **Homepage loads:** `https://your-domain.com/`
-2. **Clean URLs work:** `https://your-domain.com/lab`, `https://your-domain.com/socials`, `https://your-domain.com/whatever`
-3. **Flower Quest route loads:** `https://your-domain.com/lab/flowerquest/`
-4. **Contact form opens email client** (validates client-side logic)
-5. **Social links work** (validates external links on the socials page)
-6. **Neon toggle persists** (validates localStorage)
-7. **Security headers present:**
-
-```bash
-curl -I https://your-domain.com
-```
-
-Expected headers:
-
-- `X-Content-Type-Options: nosniff`
-- `X-Frame-Options: DENY`
-- `Strict-Transport-Security: max-age=31536000`
-
----
-
-## Post-Deployment
-
-### Custom Domain Setup
-
-If using a custom domain:
-
-1. Update `metadataBase` in [`src/app/layout.tsx`](src/app/layout.tsx):
-   ```ts
-   metadataBase: new URL('https://your-custom-domain.com'),
-   ```
-2. Rebuild and redeploy
-
-### Analytics / Monitoring
-
-This site is intentionally minimal. To add analytics:
-
-- Add Google Analytics via `<Script>` in `layout.tsx`
-- Or use IONOS Web Analytics if available in your plan
-
----
-
-## Support
-
-- **IONOS Deploy Now Docs:** https://docs.ionos.space/
-- **Next.js Static Exports:** https://nextjs.org/docs/app/building-your-application/deploying/static-exports
-- **Project README:** [README.md](README.md)
-
----
+References: [Next.js on Vercel](https://vercel.com/docs/frameworks/full-stack/nextjs), [custom domains](https://vercel.com/docs/domains/set-up-custom-domain), [Git integration](https://vercel.com/docs/git).

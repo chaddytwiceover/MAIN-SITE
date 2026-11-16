@@ -4,7 +4,7 @@ The site uses Next.js 16, React 19, TypeScript, and Node.js 22 or later. `packag
 
 ## Application
 
-- Next.js App Router, with `output: 'export'` and `trailingSlash: true`.
+- Next.js App Router, with `trailingSlash: true` and Vercel's native Next.js build.
 - React Server Components for static content; client components for interactions.
 - TypeScript with strict checks and `@/` mapped to `src/`.
 - Lab metadata in `src/lib/lab-projects.ts`; notes in `src/lib/posts.ts`.
@@ -26,8 +26,8 @@ The site uses Next.js 16, React 19, TypeScript, and Node.js 22 or later. `packag
 
 ## Hosting
 
-The production build exports to `out/` for IONOS / Apache. No Next.js server is needed in production. `npm start` and `npm run preview` use `scripts/static-preview.mjs` to serve an existing export locally.
+Vercel hosts the application through its Next.js integration. The build creates `.next/`; `npm start` serves it on port 3000 and `npm run preview` on port 3003. The domain is registered at Name.com.
 
-`scripts/copy-htaccess.mjs` copies Apache configuration. `scripts/lab-deployment.mjs` validates game frames, writes the deployed revision manifest, and can verify a live deployment.
+`vercel.json` defines the www redirect and response headers. GitHub Actions performs quality checks; Vercel's Git integration publishes deployments.
 
-`public/demos/` contains standalone local games; the lab registry also points to externally hosted Vercel game builds. `.github/workflows/` and `.deploy-now/` retain the IONOS deployment setup.
+`public/demos/` contains standalone local games; the lab registry also points to externally hosted Vercel game builds.

@@ -5,9 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "node scripts/copy-htaccess.mjs && node scripts/lab-deployment.mjs",
-    "start": "node scripts/static-preview.mjs",
-    "preview": "node scripts/static-preview.mjs",
+    "start": "next start",
+    "preview": "next start --port 3003",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test": "jest"
