@@ -11,8 +11,7 @@ export default function LabProjectContent({ project }: { project: LabProject }) 
       <h1>{project.title}</h1>
       <p>{project.description}</p>
       <div className="game-links">
-        {gameUrl && <a className="text-link" href={gameUrl} target="_blank" rel="noopener noreferrer">Open game in new tab</a>}
-        {project.sourceUrl && project.sourceUrl !== gameUrl && <a className="text-link" href={project.sourceUrl} target="_blank" rel="noopener noreferrer">View source</a>}
+        {project.sourceUrl && !new URL(project.sourceUrl).hostname.endsWith(".vercel.app") && <a className="text-link" href={project.sourceUrl} target="_blank" rel="noopener noreferrer">View source</a>}
       </div>
     </section>
   )

@@ -59,7 +59,7 @@ export const labProjects: LabProject[] = [
     status: 'live',
     demoUrl: '/lab/south-florida-fighter/',
     gameUrl: process.env.NEXT_PUBLIC_SF_FIGHTER_URL ?? 'https://south-florida-fighter.vercel.app',
-    sourceUrl: 'https://south-florida-fighter.vercel.app'
+    sourceUrl: 'https://github.com/chaddytwiceover/south-florida-fighter'
   },
   {
     slug: 'simon-says',
