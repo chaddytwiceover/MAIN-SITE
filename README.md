@@ -4,7 +4,7 @@ My corner of the internet: games, experiments, notes, and social links.
 
 Live site: [twiceover.dev](https://twiceover.dev)
 
-Built with Next.js App Router, React, TypeScript, Tailwind CSS, Framer Motion, and Three.js. The site deploys to Vercel using its Next.js integration; the domain is registered with Name.com. See `package.json` for dependency versions.
+The Contact Sheet portfolio uses Next.js App Router, React, TypeScript, Tailwind CSS, and locally served Anton and IBM Plex Mono. The site deploys to Vercel using its Next.js integration; the domain is registered with Name.com. See `package.json` for dependency versions.
 
 ## Local development
 
@@ -33,12 +33,13 @@ Build before using the preview server. Set `PORT` to override its default port.
 
 ## Where to edit
 
-- `src/app/page.tsx` and `src/app/home.module.css`: bento homepage.
-- `src/app/globals.css`: shared styles and homepage navigation/footer palette.
-- `src/lib/lab-projects.ts`: the single registry for lab games, metadata, and embed URLs.
-- `src/lib/posts.ts`: notes displayed on `/whatever` and the homepage.
-- `src/app/socials/page.tsx`: social profiles and contact links.
-- `src/components/`: shared navigation, page transitions, game player, and background shader.
+- `src/app/page.tsx` and `src/components/ProjectFrames.tsx`: featured game, paired stills, and selected work.
+- `src/app/globals.css`: Contact Sheet layout, typography, responsive frame controls, and game shell.
+- `src/lib/lab-projects.ts`: project order, captions, responsive image dimensions, launch labels, and embed URLs.
+- `src/lib/posts.ts`: notes displayed on `/whatever`.
+- `src/app/socials/page.tsx`: the four profile destinations.
+- `src/components/`: shared navigation, project presentation, and the iframe game player.
+- `public/contact/`: matched WebP stills captured from the running games.
 - `public/demos/`: standalone local game files. Keep these alongside the external game embeds.
 
 For current routes and structure, see [site architecture](docs/architecture/site-structure.md) and [tech stack](docs/architecture/tech-stack.md). Design proposals in `docs/agent-prompts/` and the older wireframe documents are reference material, not the current implementation.

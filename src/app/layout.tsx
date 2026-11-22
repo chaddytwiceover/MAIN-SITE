@@ -1,22 +1,20 @@
 import type { Metadata, Viewport } from 'next'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
-import ScrollToTop from '@/components/ScrollToTop'
-import GlobalShaderCanvas from '@/components/GlobalShaderCanvas'
 import './globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'TWICEOVER',
-    template: '%s — TWICEOVER',
+    default: 'Twice Over',
+    template: '%s — Twice Over',
   },
-  description: 'my corner of the internet — links, experiments, socials, and random things I make',
+  description: 'Games and interactive projects by chaddytwiceover.',
   metadataBase: new URL('https://twiceover.dev'),
   openGraph: {
-    title: 'TWICEOVER',
-    description: 'my corner of the internet — links, experiments, socials, and random things I make',
+    title: 'Twice Over',
+    description: 'Games and interactive projects by chaddytwiceover.',
     url: 'https://twiceover.dev',
-    siteName: 'TWICEOVER',
+    siteName: 'Twice Over',
     type: 'website',
     locale: 'en_US',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'chaddytwiceover' }],
@@ -24,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'chaddytwiceover',
-    description: 'my corner of the internet — links, experiments, socials, and random things I make',
+    description: 'Games and interactive projects by chaddytwiceover.',
     site: '@chaddytwiceover',
     creator: '@chaddytwiceover',
     images: ['/og-image.png'],
@@ -37,12 +35,12 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: '#0a0a0a',
+  themeColor: '#F8F5EE',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <script
           type="application/ld+json"
@@ -50,20 +48,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
-              name: 'TWICEOVER',
+              name: 'Twice Over',
               url: 'https://twiceover.dev',
-              description: 'my corner of the internet — links, experiments, socials, and random things I make',
+              description: 'Games and interactive projects by chaddytwiceover.',
             }),
           }}
         />
       </head>
       <body>
-        <GlobalShaderCanvas />
         <a href="#main-content" className="skip-link">Skip to content</a>
         <Nav />
-        <main id="main-content">{children}</main>
+        <main id="main-content" tabIndex={-1}>{children}</main>
         <Footer />
-        <ScrollToTop />
       </body>
     </html>
   )

@@ -1,9 +1,10 @@
+import Link from 'next/link'
+
 export default function Footer() {
   return (
-    <footer className="border-t border-border">
-      <div className="mx-auto w-full max-w-[1100px] px-6 py-7 md:px-12">
-        <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-textFaint">© 2026 CHADDYTWICEOVER</p>
-      </div>
+    <footer className="site-footer sheet">
+      <span>© 2026 chaddytwiceover</span>
+      <Link href="/socials/">Socials</Link>
     </footer>
   )
 }
