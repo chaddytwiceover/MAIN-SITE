@@ -138,8 +138,7 @@ body:has(.home-page) {
 .catalog-entry .frames { gap: 9px; }
 .catalog-entry .exposure { background: #ebe7de; }
 .catalog-entry .exposure img { height: clamp(215px, 24vw, 350px); object-fit: contain; }
-.catalog-entry .frames-fighter .exposure img { object-fit: cover; object-position: 42% center; }
-.catalog-entry .frames-simon .exposure img, .catalog-entry .frames-tic .exposure img { height: auto; }
+.catalog-entry .frames-fighter .exposure img, .catalog-entry .frames-simon .exposure img, .catalog-entry .frames-tic .exposure img { height: auto; }
 .catalog-entry h2, .game-shell h1 { font-size: clamp(2.4rem, 4.1vw, 4.5rem); margin-top: 20px; }
 .socials .page-heading { margin-bottom: 0; }
 .profiles li { border-bottom: 1px solid var(--rule); }
@@ -162,7 +161,6 @@ body:has(.home-page) {
 @media (max-width: 760px) {
   .catalog-grid { grid-template-columns: 1fr; }
   .catalog-entry .exposure img { height: clamp(214px, 56vw, 340px); }
-  .catalog-entry .frames-fighter .exposure img { height: auto; }
   .selections { grid-template-columns: 1fr; gap: 22px; }
   .selection { align-items: center; }
   .selection + .selection { border-top: 1px solid var(--rule); padding-top: 22px; }
