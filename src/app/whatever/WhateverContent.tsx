@@ -11,9 +11,8 @@ export default function WhateverContent() {
 
   return (
     <PageTransition>
-      <div className="mx-auto max-w-[var(--max-width-narrow)] px-6 py-20">
+      <div className="sheet">
         <SectionHeader
-          number="02"
           title="Notes / Whatever"
           description="A running log for ideas, build notes, random updates, and internet brain-noise worth keeping."
         />
@@ -22,7 +21,7 @@ export default function WhateverContent() {
           {posts.map((post, i) => (
             <motion.article
               key={post.id}
-              className="neo-border border-x-0 border-t-0 py-12 last:border-b-0"
+              className="note-row"
               initial={skipAnim ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -30,13 +29,13 @@ export default function WhateverContent() {
                 delay: skipAnim ? 0 : i * 0.1,
               }}
             >
-              <div className="inline-block neo-border border-x-0 border-t-0 px-1 py-1 font-mono text-[10px] font-bold tracking-widest text-accent mb-2">{post.date}</div>
-              <h2 className="mt-4 font-heading text-3xl font-bold uppercase text-text">{post.title}</h2>
-              <div className="mt-3 whitespace-pre-wrap text-text-muted">{post.content}</div>
+              <div className="note-meta">{post.date}</div>
+              <h2 className="note-title mt-4">{post.title}</h2>
+              <div className="mt-3 max-w-prose whitespace-pre-wrap">{post.content}</div>
               {post.tags && post.tags.length > 0 && (
                 <div className="mt-4 flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
-                    <span key={tag} className="neo-border px-2 py-1 font-mono text-xs font-bold text-text-dim">
+                    <span key={tag} className="note-meta">
                       {tag}
                     </span>
                   ))}
