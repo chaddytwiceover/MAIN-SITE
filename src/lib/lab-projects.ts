@@ -47,10 +47,10 @@ export const labProjects: LabProject[] = [
     title: 'South Florida Fighter',
     description: "Trade punches on the streets of South Florida in a two-dimensional arcade fighter.",
     stills: {
-      prefix: 'fighter', small: 480, width: 525, height: 320,
+      prefix: 'fighter', small: 240, width: 448, height: 448,
       frames: [
-        { caption: 'Closing in', alt: 'Two fighters face each other beneath the Wynwood mural.' },
-        { caption: '22 damage', alt: 'A punch connects. A spark and a yellow 22 appear between the fighters.' },
+        { caption: 'A1A Ocean Boardwalk', alt: 'A fighter stands on a beachside bench as an opponent approaches along the boardwalk.' },
+        { caption: 'Wynwood Graffiti District', alt: 'Two fighters face off below a mural of a pink flamingo and a sea turtle.' },
       ],
     },
     techNotes: "Custom 2D arcade engine with frame-accurate cancel windows, deployed on Vercel.",

@@ -55,7 +55,27 @@ main { flex: 1; }
 .site-header nav [aria-current], .site-header nav a:hover { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
 .site-footer { margin-top: clamp(40px, 6vw, 90px); padding-block: 19px 28px; border-top: 1px solid var(--ink); font: 0.8125rem var(--mono); }
 .site-footer a, .text-link { text-decoration: underline; text-underline-offset: 4px; }
-.home-page { container-type: inline-size; }
+body:has(.home-page) {
+  --paper: #f5f1e9;
+  --ink: #263b34;
+  --violet: #934b30;
+  background: linear-gradient(155deg, #f6ecdd, var(--paper) 48%, #e4eceb);
+}
+.home-page {
+  container-type: inline-size;
+  padding-block: clamp(36px, 8vh, 96px) 24px;
+}
+.home-tagline {
+  max-width: 56ch;
+  color: var(--ink);
+  font: clamp(1rem, 1.6vw, 1.375rem)/1.65 var(--mono);
+}
+.home-tagline a {
+  color: #86442d;
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+.home-tagline a:hover { color: var(--ink); }
 .masthead, .featured-credit h2, .selection h3, .page-heading h1, .catalog-entry h2, .platform, .game-shell h1 {
   font: 400 3rem/1.04 var(--display);
   letter-spacing: -.025em;
@@ -118,8 +138,7 @@ main { flex: 1; }
 .catalog-entry .frames { gap: 9px; }
 .catalog-entry .exposure { background: #ebe7de; }
 .catalog-entry .exposure img { height: clamp(215px, 24vw, 350px); object-fit: contain; }
-.catalog-entry .frames-fighter .exposure img { object-fit: cover; object-position: 42% center; }
-.catalog-entry .frames-simon .exposure img, .catalog-entry .frames-tic .exposure img { height: auto; }
+.catalog-entry .frames-fighter .exposure img, .catalog-entry .frames-simon .exposure img, .catalog-entry .frames-tic .exposure img { height: auto; }
 .catalog-entry h2, .game-shell h1 { font-size: clamp(2.4rem, 4.1vw, 4.5rem); margin-top: 20px; }
 .socials .page-heading { margin-bottom: 0; }
 .profiles li { border-bottom: 1px solid var(--rule); }
@@ -142,7 +161,6 @@ main { flex: 1; }
 @media (max-width: 760px) {
   .catalog-grid { grid-template-columns: 1fr; }
   .catalog-entry .exposure img { height: clamp(214px, 56vw, 340px); }
-  .catalog-entry .frames-fighter .exposure img { height: auto; }
   .selections { grid-template-columns: 1fr; gap: 22px; }
   .selection { align-items: center; }
   .selection + .selection { border-top: 1px solid var(--rule); padding-top: 22px; }
